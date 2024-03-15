@@ -1,12 +1,16 @@
-import Createpost from './Createpostpage/Createpost';
+import ProfilePage from './ProfilePage/ProfilePage';
+import NavBar from './NavBar/NavBar';
 import './index.css';
+
 
 function App() {
   return (
     <>
-    <Createpost/>
-    
+    <NavBar/>
+    <ProfilePage/>
     </>
+    
+    
 
   );
 }

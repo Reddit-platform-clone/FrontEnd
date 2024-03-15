@@ -1,0 +1,134 @@
+.leftside {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    font-size: 15px;
+    height: max-content;
+}
+
+.list-group {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.home{
+    text-decoration: none;
+}
+
+.popular{
+    text-decoration: none;
+}
+
+.All{
+    text-decoration: none;
+}
+
+
+.list-group-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #e9ecef;
+}
+
+.dropdown {
+    margin-top: 20px;
+    position: relative;
+}
+
+.dropdown span {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 1;
+    text-align: right;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.middlepage {
+    display: flex;
+    
+}
+
+
+.username{
+    display: flex;
+    margin-left: 20px;
+    margin-top: -260px;
+    font-style: oblique;
+
+}
+
+.sarakelid {
+    display: flex;
+    margin-left: 25px;
+    margin-top: 0px;
+}
+
+.logo{
+    width: 70px; /* Adjust the width to your preference */
+    height: 70px; /* Adjust the height to your preference */
+    border-radius: 50%; /* To make the image appear rounded */
+    border: 1px solid #ccc;
+    margin-left: 220px;
+    margin-top: -260px;
+};
+
+.navcontents{
+    position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%
+}
+.profilecontents{
+    position: absolute;
+   margin-left: 250px;
+    margin-top: -150px;
+    font-size: large;
+    font-style: italic;
+    
+}
+
+.profilecontents div {
+    display: flex;
+    flex-direction:horizontal; /* Stack items Horizontal */
+    
+}
+
+.profilecontents a {
+    display: block; /* Display links as block elements */
+    padding: 8px; /* Add padding for better spacing */
+    text-decoration: none; /* Remove default underline */
+    color: #333; /* Set link color */
+}
+
+.profilecontents a:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+}
