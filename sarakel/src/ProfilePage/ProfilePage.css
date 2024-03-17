@@ -130,5 +130,110 @@
 }
 
 .profilecontents a:hover {
-    background-color: #f0f0f0; /* Change background color on hover */
+    background-color: #c2720f; /* Change background color on hover */
 }
+
+.plus-icon {
+    display: flex;
+    font-size: 24px; /* Adjust size as needed */
+    margin-left: 5px; /* Adjust spacing between button and icon */
+    
+  }
+
+  .nav-link{
+    padding: 10px 20px;
+    background-color: #007bff; /* You can adjust the color as needed */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+  }
+
+  .createpost{
+    display: inline-block;
+  }
+
+  .rightside {
+    position: absolute;
+    bottom: -190px; /* Adjust as needed */
+    right: 20px;
+     
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align contents to the right side */
+  }
+
+  .p-4-container {
+    position: absolute;
+    bottom: -270px; /* Adjust as needed */
+    right: 20px;
+    
+    width: 100%;
+    display: flex;
+    
+}
+
+.p-4 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    
+    max-width: 250px; /* Adjust width as needed */
+}
+
+.p-4 > * {
+    margin-right: 10px;
+}
+
+.profile-container {
+    max-width: 80px; /* Adjust width as needed */
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-right: 20px; /* Add margin for spacing */
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    flex-direction: horizontal;
+}
+
+  .profile-card {
+    padding: 20px;
+  }
+
+
+  .button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #c9841c;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #005ea6;
+  }
+
+  .button-ghost {
+    background-color: transparent;
+    color: #0079d3;
+    border: 1px solid #0079d3;
+  }
+
+  .button-ghost:hover {
+    background-color: #f0f0f0;
+  }
+
+
