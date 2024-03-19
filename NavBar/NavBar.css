@@ -1,0 +1,213 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  border: rgb(184, 19, 184);
+  border-width: 20px;
+}
+
+.navbar {
+  position: fixed; /* Make the navbar fixed on the screen */
+  top: 0; /* Position it at the top of the screen */
+  width: 100%; /* Take up the full width of the screen */
+  z-index: 1000; /* Ensure it appears above other content */
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: rgb(190, 22, 190);
+  box-shadow: rgb(153, 30, 153);
+  border-width: 10px;
+}
+
+.left, .right {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  flex-grow: 1; /* Allow the center div to grow and fill the available space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd; /* Change background color to match the grey color of the search bar */
+  border-radius: 50px;
+  margin-left: 20px;
+  padding: 0 20px; /* Add padding to the center div if needed */
+}
+
+
+input[type="text"] {
+  flex-grow: 1; /* Allow the search input to expand and fill the available space */
+  padding: 6px;
+  background-color: #ddd;
+  border: none; /* Remove border */
+  border-radius: 20px;
+}
+input[type="text"]:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+#search-icon {
+  font-size: 20px; /* Increase the size of the search icon */
+}
+.img{
+    width: 40px;
+}
+
+.logo {
+  color: rgb(235, 101, 12);
+  text-decoration: none;
+  font-size: 30px;
+  font-weight :1000;
+  position: relative;
+}
+
+
+
+
+.hamburger-menu {
+font-size: 30px;
+cursor: pointer;
+margin-right: 20px; /* Adjust margin as needed */
+position: relative;
+}
+
+.chat-button {
+border-radius: 50%; /* Make the button circular */
+width: 40px; /* Set the width */
+height: 40px; /* Set the height */
+background-color: transparent; /* Optional: Set the background color to transparent */
+border: none; /* Optional: Remove border */
+cursor: pointer; /* Set cursor to pointer for better user experience */
+display: flex; /* Ensure icon is centered vertically and horizontally */
+justify-content: center;
+align-items: center;
+transition: box-shadow 0.3s ease;
+}
+
+.chat-button svg {
+font-size: 25px; /* Adjust the font size of the icon */
+}
+
+.notification-button {
+border-radius: 50%;
+width: 40px;
+height: 40px;
+background-color: transparent;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: box-shadow 0.3s ease;
+border: none;
+}
+.notification-button svg,
+.user-button svg{
+font-size: 25px;
+}
+
+.create-button {
+border-radius: 50%;
+width: 100px;
+height: 40px;
+background-color: transparent;
+border: none;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: box-shadow 0.3s ease;
+}
+.create-button span {
+font-size: 13px; 
+font-weight: 500; 
+}
+
+.create-button svg{
+font-size: 25px;
+margin-right: 5px;
+}
+
+.chat-button:hover,
+.notification-button:hover,
+.create-button:hover,
+.user-button:hover {
+  background-color: rgba(128, 128, 128, 0.3); /* Semi-transparent grey background on hover */
+  transform: translateY(2px); /* Move the button down slightly on hover */
+  margin-top: -4px;
+}
+
+
+.user-button{
+border-radius: 50%;
+width: 40px;
+height: 40px;
+background-color: transparent;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: box-shadow 0.3s ease;
+border: none;
+}
+
+
+
+
+/* Common style for all buttons */
+.button {
+  position: relative; /* Make the button container for absolute positioning of pseudo-element */
+}
+
+/* Style for tooltip */
+.button::after {
+  content: attr(data-title); 
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px;
+  width: 80px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
+}
+
+/* Show tooltip on hover */
+.button:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+
+.hamburger-menu::after {
+  content: attr(data-title); /* Display the data-title attribute as tooltip content */
+  position: absolute;
+  top: 100%; /* Position the tooltip below the element */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
+}
+
+/* Show tooltip on hover */
+.hamburger-menu:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+
