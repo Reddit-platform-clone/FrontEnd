@@ -1,0 +1,39 @@
+.btn {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  padding: 15px 12px 12px;
+  margin: 0px 8px 0px 0px;
+  cursor: pointer;
+  color: #7c7c7c;
+  background-color: white;
+}
+
+.btn:hover {
+  color: rgb(0, 0, 0);
+}
+
+.active{
+  color: black;
+  border-bottom: solid 3px #0079d3 ;
+}
+
+.SettingHeader{
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  padding:  16px 20px 20px;
+  margin: 0 auto;
+  color: var(--newCommunityTheme-bodyText);
+  fill: #fff;
+}
+.hide{
+  z-index: -1; 
+  visibility: collapse !important;
+  position: fixed;
+}
+.show{
+  visibility: visible;
+  z-index: 1;
+}

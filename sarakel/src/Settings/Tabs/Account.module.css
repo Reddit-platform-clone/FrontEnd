@@ -1,0 +1,529 @@
+.tab{
+    max-width: 55%;
+    margin: 0 ;
+    display: flex;
+    padding: 0 16px;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+}
+.w100{
+  width: 100%;
+}
+.header{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    color: var(--newCommunityTheme-bodyText);
+    padding: 40px 0;
+
+}
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-weight: 400;
+    src: url('//unpkg.com/@ibm/plex/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Regular.woff2')
+      format('woff2');
+  }
+
+.font{
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+}
+.Subheaders{
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--newCommunityTheme-line);
+    color: var(--newCommunityTheme-metaText);
+    margin-bottom: 32px;
+    padding-bottom: 6px;
+    color: #7c7c7c;
+
+}
+.SubheadersSpcl{
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 12px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--newCommunityTheme-line);
+  color: var(--newCommunityTheme-metaText);
+  color: #7c7c7c;
+  padding-bottom: 10px;
+}
+
+
+.SettingTopics{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--newCommunityTheme-bodyText);
+    display: -ms-flexbox;
+    display: flex;
+    letter-spacing: 1px;
+    color: #1c1c1c;
+    margin-bottom: 4px;
+}
+
+.SettingToggles{
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: row;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+.SettingTogglesReverse{
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-pack: end;
+  justify-content: flex-start;
+  margin-bottom: 32px;
+}
+
+.Change {
+    color: #0079d3;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 20px;
+    border: solid 1px #0079d3 !important;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+  }
+
+  .Change:hover{
+      background-color: rgb(239, 250, 249);
+  }
+  .faded{
+      opacity: 0.5;
+  }
+  .Subtext{
+    font-size: 12px;
+    line-height: 16px;
+    color: #7c7c7c;
+    font-weight: 500;
+    width: 80%;
+  }
+  .box{
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: row;
+  }
+  .BoxText{
+    max-width: 80%;
+  }
+  .disabled{
+    padding-left: 32px;
+  }
+  .dropbtn {
+    background-color: transparent;
+    color: #0079d3;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 24px;
+  }
+  
+  .dropdown {
+    position: relative;
+    overflow:visible;
+  }
+  
+  .dropdownContent {
+    display: none;
+    position:absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    padding: 8px;
+  }
+  
+  .dropdownContent a {
+    padding:8px;
+    text-decoration: none;
+    display: block;
+    float : none;
+    color: #7c7c7c ;
+  }
+  
+  .dropdownContent a:hover {
+    background-color: rgb(239, 250, 249);
+    color: black;
+  }
+  .dropdown:hover .dropdownContent {
+    display: block;
+  }
+
+  .CountryDrpDwn{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    appearance: none;
+    background: none;
+    padding-left: 32px;
+    padding-right: 20px;
+    height: 20px;
+    color: #0079d3;
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-right;
+    text-align: right;
+    border-style:none;
+    background-color: transparent;
+    border: solid 0px transparent;
+  }
+  .Blue{
+    color: #0079d3;
+  }
+  .SettingToggles span{
+      margin-right: 5px;
+  }
+    #apple {
+    margin-right: 8px;
+    }
+  .ConnectApple{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #000000 ;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+  }
+  .ConnectTwitter{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #5baeee ;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+  }
+  .ConnectGoogle{
+    color: #0079d3;
+    text-decoration: none;
+    background-color: #ffffff ;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    border:solid 1px #0079d3;
+  }
+  .google{
+      width: 18px;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+  }
+  
+  .switch input { 
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e2e2 ;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 20px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .delete{
+    fill: #ff585b;
+    -ms-flex: none;
+    flex: none;
+    margin-right: 4px;
+    width: 20px;
+  }
+  .DeleteAcc{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #ff585b;
+    display: -ms-flexbox;
+    display: flex;
+    text-decoration: none;
+  }
+
+  .SmTextBox{
+    background-color: var(--newCommunityTheme-body);;
+    color: var(--newCommunityTheme-bodyText);
+    box-sizing: border-box;
+    height: 48px;
+    margin-bottom: 8px;
+    border-image: initial;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    font-family: inherit;
+    border-style: groove;
+    border: 1px solid rgb(118, 118, 118) ;
+  }
+  .BgTextBox{
+    background-color: var(--newCommunityTheme-body);
+    border: 1px solid var(--newCommunityTheme-line);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--newCommunityTheme-bodyText);
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border-style:groove;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    border-width: 1px;
+  }
+
+.plusLogo{
+  width: 12px;
+  margin-right: 8px;
+}
+.AddLinks{
+    color: #000000;
+    text-decoration: none;
+    background-color: #edeff1;
+    border-radius: 20px;
+    border: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 16px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 10px 12px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+
+.PicBox{
+  border: 1px dashed #d7d7d7;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+  cursor: pointer;
+}
+.PFPbox{
+  align-items: center;
+    background-color: #f6f7f8;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.addPic{
+  width: 36px;
+}
+.content{
+  max-width: 100%;
+}
+
+.ContentView{
+  border: none;
+}
+.ContentViewOptions{
+  background-color: rgb(255, 255, 255);
+}
+
+.mb{
+  margin-bottom: 32px;
+}
+.w80{
+  width: 80%;
+
+}
+.InputTextDiv{
+    border-radius: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    height: 52px;
+}
+.w100{
+  width: 100% ;
+}
+.BlockUserDiv{
+    border: 1px solid;
+    display: flex;
+    border-style: groove;
+    border-radius: 5px;
+}
+.Inputbox{
+  border: none;
+  font-family: Noto Sans, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.Add{
+  font-size: 14px;
+  line-height: 32px;
+  color: #0079d3;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+}
+.SocialList{
+  list-style: none;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #edeff1;
+  border-radius: 9999px;
+  color: var(--newRedditTheme-bodyText);
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  margin-right: 8px;
+  padding: 10px 12px;
+  white-space: nowrap;
+  margin: 6px 2px;
+  width: fit-content;
+}
+.SocialImg{
+  margin-right: 8px;
+}
+.SocialDiv{
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.SocialSection{
+  width: fit-content;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  max-width: 538px;
+  min-width: 410px;
+}
+.SocialLinks{
+  align-items: center;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: auto;
+  padding: 75px 30px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(28, 28, 28, .9);
+}
+.SocialHeader{
+  padding: 16px;
+  height: min-content;
+  border-bottom: 1px  groove;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--newRedditTheme-titleText);
+  text-align: center;
+}

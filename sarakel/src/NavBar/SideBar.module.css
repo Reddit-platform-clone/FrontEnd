@@ -1,0 +1,89 @@
+::-webkit-scrollbar{
+    width: 5px;
+
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(99, 99, 99);
+    border-radius: 10px;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 5px 0px 20px;
+
+}
+
+.scrollbox{
+    overflow: auto;
+}
+.scrollboxInner p{
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+}
+.sidebarButtons{
+    color: #000000;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 100%;
+    padding: 4px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebarButtons:hover{
+    background-color: #eaedef;
+}
+span {
+    width: 100%;
+    height: 100%;
+    text-align: start;
+    display: flex;
+}
+
+.sideIcon{
+    width: 20px;
+    margin-right: 10px;
+
+    margin-top: 1px;
+}
+
+.sideArrow{
+    width: 14px;
+    margin-right: 10px;
+    padding-bottom: 5px;
+    margin-top: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FlexEnd{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    text-align: end;
+}
+.InnerResources{
+    padding-left: 0.5rem;
+    visibility: visible;
+}
+.hide{
+    visibility: collapse;
+}
+.rotate{
+    transform: rotate(180deg);
+}
