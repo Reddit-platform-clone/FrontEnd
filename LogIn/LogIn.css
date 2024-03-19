@@ -1,0 +1,152 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal {
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 550px;
+    max-height: 630px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .login-content{
+    margin-top: 30px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+.login-close-btn{
+    border-radius: 30px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.login-close-btn:hover{
+    background-color: rgba(128, 128, 128,0.3);
+}
+
+.login-content p{
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.login-google{
+    margin-top: 5px;
+}
+.login-apple{
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.login-google,
+.login-apple {
+  display: flex;
+  align-items: center;
+}
+
+.login-google svg,
+.login-apple svg {
+  margin-right: 110px; /* Adjust the margin as needed */
+  font-size: 20px;
+}
+
+.login-google, .login-apple{
+    background-color: #ffffff;
+    width: 400px;
+    height: 40px;
+    border-radius: 40px;
+    font-size: 15px;
+    border-color: rgba(128, 128, 128,0.05);
+    
+}
+
+.login-google:hover, .login-apple:hover{
+    background-color:rgba(128, 128, 128,0.1);
+    
+}
+.divider {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .divider-text {
+    margin: 0 10px;
+    color: #ccc;
+    font-size: 13px;
+    color: black;
+  }
+  
+  #username{
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  #username,#password{
+    border: none;
+    background-color: rgba(128, 128, 128,0.2);
+    width: 400px;
+    height: 58px;
+    border-radius: 15px;
+    font-size: 15px;
+  }
+#username:hover,#password:hover{
+    background-color: rgba(128, 128, 128,0.3);
+}
+
+  .input-group input::placeholder {
+    color: rgba(128, 128, 128,1);
+  }
+  #username:focus,
+  #password:focus {
+    outline: none;
+  }
+
+  .login-forgot-text{
+    margin-top: 35px;
+    display: flex;
+  }
+
+  .login-new-text{
+    display: flex;
+    margin-top: 10px;
+  }
+
+  .login-btn-final{
+    background-color: #D93A00;
+    width: 400px;
+    height: 48px;
+    border-radius: 40px;
+    font-size: 15px;
+    margin-top: 15px;
+    border: none;
+    color: white;
+  }
+
+.login-privcy-plcy,.login-user-agremnt,.login-signup-text,.login-forgot-password,.login-forgot-username{
+    text-decoration: none;
+}
+
+.login-signup-text,.login-forgot-password,.login-forgot-username{
+
+}
