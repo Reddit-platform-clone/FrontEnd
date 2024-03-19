@@ -1,7 +1,6 @@
 import React, { } from 'react';
 import classes from './SideBar.module.css'
 import sarakel from './three_39007.png'
-import './bootstrap.min.css'
 
 export default function SideBar() {
     const [toggle, setToggle] = React.useState(true)
