@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LogIn.css';
 import { IoMdClose } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
-
-
+import SignUpOne from '../SignUp/SignUpOne';
+import ForgotUsername from './ForgotUsername';
+import ForgotPassword from './ForgotPassword';
 
 function LogIn() {
+  const [redirectToSignUp, setRedirectToSignUp] = useState(false);
+  const [ShowUsername, setUsername] = useState(false);
+  const [showPassword,setPassword] = useState(false);
+
+  const handleSignUpClick = () => {
+    setRedirectToSignUp(true);
+  };
+
+  const handleUsernameClick = () =>{
+    setUsername(true);
+  }
+
+  const handlePasswordClick = () =>{
+    setPassword(true);
+  }
+
+  if (redirectToSignUp) {
+    return <SignUpOne />;
+  }
+
+  if(ShowUsername){
+    return <ForgotUsername />;
+  }
+
+  if(showPassword){
+    return <ForgotPassword />
+  }
+
   return (
     <div className="overlay">
       <div className="modal">
@@ -35,12 +64,12 @@ function LogIn() {
             <br></br>
 
             <div className='login-forgot-text'>
-            <p>Forgot your <a href="#" className='login-forgot-username'>username</a> or <a href="#" className="login-forgot-password">password</a>
+            <p>Forgot your <a href="#" className='login-forgot-username' onClick={handleUsernameClick}>username</a> or <a href="#" className="login-forgot-password" onClick={handlePasswordClick}>password</a>
             ?</p>
             </div>
 
             <div className='login-new-text'>
-            <p>New to Sarakel? <a href="#" className="login-signup-text">Sign Up</a>
+            <p>New to Sarakel? <a href="#" className="login-signup-text" onClick={handleSignUpClick}>Sign Up</a>
             </p>
             </div>
 
