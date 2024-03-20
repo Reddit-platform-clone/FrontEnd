@@ -37,3 +37,7 @@
   visibility: visible;
   z-index: 1;
 }
+.show1{
+  visibility: visible;
+  z-index: 3;
+}

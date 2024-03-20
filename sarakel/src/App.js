@@ -1,13 +1,13 @@
 
 import SideBar from './NavBar/SideBar'
-import Social from './Settings/Tabs/SocialLinks'
-// import Settings from './Settings/SettingPage.js'
+//import Social from './Settings/Tabs/SocialLinks'
+import Settings from './Settings/SettingPage.js'
 function App() {
   return (
     <div className="App">
-      <Social />
+      {/* <Social /> */}
       {/* <SideBar /> */}
-      {/* <Settings /> */}
+      <Settings />
     </div>
   );
 }

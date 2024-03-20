@@ -9,7 +9,6 @@ import Emails from './Tabs/Emails';
 import Subscription from './Tabs/Subscription';
 import ChatsMessaging from './Tabs/Chats&Messaging';
 
-
 export default function Settings() {
     const [value,setValue] = React.useState(0)
     const tabArray = []

@@ -389,6 +389,7 @@
     align-items: center;
     text-align: center;
     display: flex;
+    cursor: pointer;
 }
 
 .PicBox{
@@ -494,6 +495,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+.SocialInputDiv{
+  padding: 16px;
+
+
+}
 .SocialSection{
   width: fit-content;
   text-align: center;
@@ -511,11 +517,11 @@
   justify-content: center;
   height: 100%;
   overflow: auto;
-  padding: 75px 30px 20px;
-  position: fixed;
+  box-shadow: 0 2px 20px 0 rgba(0,0,0,.3);
+  margin-bottom: 32px;
   top: 0;
   width: 100%;
-  background-color: rgba(28, 28, 28, .9);
+
 }
 .SocialHeader{
   padding: 16px;
@@ -526,4 +532,41 @@
   line-height: 24px;
   color: var(--newRedditTheme-titleText);
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SocialHeader1{
+  padding: 16px;
+  height: min-content;
+  border-bottom: 1px  groove;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--newRedditTheme-titleText);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+}
+.SocialInput{
+  width: fit-content;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  max-width: 538px;
+  min-width: 410px;
+}
+.BackArrow{
+  width: 20px;
+  margin-right: 20%;
+}
+.hide{
+  z-index: -1; 
+  visibility: collapse !important;
+  position: fixed;
+}
+.show{
+  visibility: visible;
+  z-index: 3;
 }
