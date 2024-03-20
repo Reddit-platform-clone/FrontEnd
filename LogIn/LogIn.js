@@ -37,8 +37,8 @@ function LogIn() {
   }
 
   return (
-    <div className="overlay">
-      <div className="modal">
+    <div className="login-overlay">
+      <div className="login-modal">
         <div className='login-content'>
         <button className='login-close-btn'> <IoMdClose /> </button>
 
@@ -49,10 +49,10 @@ function LogIn() {
         <br></br>
         <button className='login-apple'><FaApple />Continue with Apple</button>
 
-        <div className="divider">
-            <span className="divider-line"></span>
-            <span className="divider-text">OR</span>
-            <span className="divider-line"></span>
+        <div className="login-divider">
+            <span className="login-divider-line"></span>
+            <span className="login-divider-text">OR</span>
+            <span className="login-divider-line"></span>
           </div>
 
           <div className="input-group">
