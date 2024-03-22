@@ -42,25 +42,33 @@
       "id": "1",
       "name": "User 1",
       "email": "user1@domain.com",
-      "pass": "123456789"
+      "pass": "123456789",
+      "LoggedIn": 1,
+      "gender": "select"
     },
     {
       "id": "2",
       "name": "User 2",
       "email": "user2@domain.com",
-      "pass": "123456789"
+      "pass": "123456789",
+      "LoggedIn": 0,
+      "gender": "select"
     },
     {
       "id": "3",
       "name": "User 3",
       "email": "user3@domain.com",
-      "pass": "123456789"
+      "pass": "123456789",
+      "LoggedIn": 0,
+      "gender": "select"
     },
     {
       "id": "2a0a",
       "email": "bahy@gmail.com",
       "password": "987654321",
-      "type": "User"
+      "type": "User",
+      "LoggedIn":0,
+      "gender": "select"
     }
   ],
   "posts":[

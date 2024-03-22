@@ -3,9 +3,38 @@ import './bootstrap.min.css';
 import classes from './Account.module.css' 
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Account() {
+    const [gender, setGender] = React.useState("select")
+
+    const GetLoggedIn = () =>{
+        let log = "0"
+          log =  mock.users.map(function(item){
+                if(item.LoggedIn === 1){
+                    log = item.id
+                }
+                
+            })
+            if (log === 0){
+                console.log(55)
+            }
+            console.log(log)
+            return log
+        }
+    const GenderHandler = () => {
+        let user = GetLoggedIn()
+        console.log(user)
+        mock.users.map((item) =>{
+            if(item.id === user ){
+                item.gender = gender
+                console.log(item.gender)
+            }
+        })
+    }
+
+    
     return(
-        <div className={`${classes.tab} `}>
+        <div className={`${classes.tab}`}>
             <div className=''>
                 <h2 className={`${classes.header}`}>Account Settings</h2>
                 <h3 className={`${classes.Subheaders}`}>ACCOUNT PREFERENCES <hr className='mt-2'></hr></h3>
@@ -34,13 +63,12 @@ export default function Account() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <div className={`${classes.dropdown}`}>
-                            <button className={`${classes.dropbtn} `}><span className={`${classes.font}`}>SELECT</span></button>
+                            <button className={`${classes.dropbtn} `}><span className={`${classes.font}`}>{gender}</span></button>
                             <div className={`${classes.dropdownContent} ${classes.font}`}>
-                                <a href="#">Male</a>
-                                <a href="#">Woman</a>
-                                <a href="#">Non-Binary</a>
-                                <a href="#">I Refer To Myself As...</a>
-                                <a href="#">I Prefer Not To Say</a>
+                                <a  onClick={() => {setGender("Male"); setTimeout(function() { GenderHandler(); }, 500);}}>Male</a>
+                                <a  onClick={() => {setGender("Woman")}}>Woman</a>
+                                <a  onClick={() => {setGender("Non-Bianry")}}>Non-Binary</a>
+                                <a  onClick={() => {setGender("I prefer not to say")}}>I Prefer Not To Say</a>
                             </div>
                         </div>
                     </div>
