@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import classes from './SideBar.module.css'
-import sarakel from './three_39007.png'
+import sarakel from './WhatsApp Image 2024-03-18 at 12.02.45 AM.jpeg'
 
 export default function SideBar() {
     const [toggle, setToggle] = React.useState(true)
@@ -132,7 +132,6 @@ export default function SideBar() {
                 )
                 }   
            </div>
-           
        </nav>
     )
 }

@@ -1,0 +1,115 @@
+{
+  "communities": [
+    {
+      "id": "1",
+      "name": "os os bin laden",
+      "description": "basketball",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+    },
+    {
+      "id": "2",
+      "name": "AC Milan",
+      "description": "football",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png"
+    },
+    {
+      "id": "3",
+      "name": "Mclaren",
+      "description": "Formula 1",
+      "image": "https://brandlogos.net/wp-content/uploads/2022/04/mclaren_formula_1_team-logo-brandlogos.net_.png"
+    },
+    {
+      "id": "5",
+      "name": "batman",
+      "description": "movie",
+      "image": "https://th.bing.com/th/id/R.893fce91a195f8c5cd77e60bcedc5b0f?rik=I0KTeJ5Fw2S6EA&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "4",
+      "name": "india",
+      "description": "country",
+      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "6",
+      "name": "love",
+      "description": "topic",
+      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "User 1",
+      "email": "user1@domain.com",
+      "pass": "123456789"
+    },
+    {
+      "id": "2",
+      "name": "User 2",
+      "email": "user2@domain.com",
+      "pass": "123456789"
+    },
+    {
+      "id": "3",
+      "name": "User 3",
+      "email": "user3@domain.com",
+      "pass": "123456789"
+    },
+    {
+      "id": "2a0a",
+      "email": "bahy@gmail.com",
+      "password": "987654321",
+      "type": "User"
+    }
+  ],
+  "posts":[
+    {
+      "id": "1",
+      "user_id": "1",
+      "community_id": "1",
+      "title":"The good old days", 
+      "text": "hitler couldn't pull this off even if he wanted to, os os>>>>",
+      "media": ["https://www.thoughtco.com/thmb/d0R4SEcyfQZ6V6CSVTzdODh1CmY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/911-WTC-1339505-crop-592232ea5f9b58f4c0f79be3.jpg"],
+      "likes":"18",
+      "comments":"7",
+      "time":"4 hr.",
+      "reason":"Popular on Sarakel now"
+    },
+    {
+      "id": "2",
+      "user_id": "2",
+      "community_id": "2",
+      "title":"New Signing",
+      "text": "kalam kteer 3ala ad eh el player dah gamed",
+      "media": ["https://icdn.sempremilan.com/wp-content/uploads/2023/06/2023.06.30-CU-LoftusCheek-Web-copy.jpg"],
+      "likes":"1890",
+      "comments":"56",
+      "time":"15 hr.",
+      "reason":"Promoted"
+    },
+    {
+      "id": "3",
+      "user_id": "3",
+      "community_id": "3",
+      "title":"weed",
+      "text": "Go McLaren! Let's win the next race!",
+      "media": "C:\\Users\\moham\\Desktop\\CMP-Software-Engineering-main\\FrontEnd\\sarakel\\src\\test.mp4",
+      "likes":"181",
+      "comments":"57",
+      "time":"1 day",
+      "reason":"interest in a similar community"
+    },
+    {
+      "id": "4",
+      "user_id": "4",
+      "community_id": "1",
+      "title":"Happiness", 
+      "text": "metro boomin is blowing roofs off with his music fr, Thats something I know a thing or two about:)",
+      "likes":"18",
+      "comments":"7",
+      "time":"4 hr.",
+      "reason":"Popular on Sarakel now"
+    }
+  ]
+}

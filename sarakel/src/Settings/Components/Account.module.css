@@ -201,6 +201,7 @@
   }
     #apple {
     margin-right: 8px;
+    width: fit-content;
     }
   .ConnectApple{
     color: #ffffff;

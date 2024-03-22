@@ -334,7 +334,7 @@ export default function Account() {
                         <p className={`${classes.Subtext}`}>Connect a Twitter account to enable the choice to tweet your new posts and display a link on your profile. We will never post to Twitter without your permission.</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
-                    <a href="#" className={`${classes.ConnectTwitter} ${classes.font}`}><span href="#" class="fa fa-twitter"></span>Connect with twitter</a>
+                    <a href="#" className={`${classes.ConnectTwitter} ${classes.font}`}><span href="#" class="fa fa-twitter" id={`${classes.apple}`}></span>Connect with twitter</a>
                     </div><br></br>
                     <div className={`${classes.box} ${classes.disabled}`}>
                     <div className={`${classes.faded}`}>

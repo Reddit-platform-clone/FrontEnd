@@ -7,20 +7,22 @@ import { FaPlus } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 import { TbCirclesRelation } from "react-icons/tb";
-
+import { Outlet, Link } from "react-router-dom";
 
 
 
 function NavBar() {
   return (
-    <nav>
+      
+    <nav className='NavContainer'>
+      
     <div className='container-fluid'>
       <div className="navbar sticky-top">
-        <div className="left">
+        <Link to='/' className="left textStyle">
           {/* <div className="hamburger-menu" data-title="Open navigation">&#9776;</div> */}
           <img src={logo} className="img" alt="Logo" />
-          <a href="#" className="logo" >Sarakel</a>
-        </div>
+          <a className="logo" >Sarakel</a>
+        </Link>
 
         
         <div className="center">
@@ -46,9 +48,13 @@ function NavBar() {
           <span>Create</span>
         </button>  
 
-        <button className="button user-button" data-title="Open profile menu"> 
-          <TbCirclesRelation />
-        </button>
+        <div className='dropdown'>
+          <button className='dropbtn user-button'><span><img className='userImage' src='	https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png'></img></span></button>
+          <div className='dropdownContent'>
+              <a >User profile</a>
+              <Link to='/settings'>User Settings</Link>
+          </div>
+        </div>
 
 
         
