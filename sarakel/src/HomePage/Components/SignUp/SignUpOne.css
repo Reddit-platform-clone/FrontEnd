@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
   }
   
   .signup-modal {
@@ -44,57 +45,34 @@
     margin-top: -10px;
 }
 
-.signup-google{
-    margin-top: 5px;
-}
-.signup-apple{
-    margin-top: -10px;
-    margin-bottom: 10px;
+.signup-content h2{
+  margin-bottom: 20px;
 }
 
-.signup-google svg,
-.signup-apple svg {
-  margin-right: 110px; /* Adjust the margin as needed */
-  font-size: 20px;
+.signUpOne-google{
+  width: 400px;
+}
+.signUpOne-divider {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.signup-google, .signup-apple{
-    background-color: #ffffff;
-    width: 400px;
-    height: 40px;
-    border-radius: 40px;
-    font-size: 25px;
-    border-color: rgba(128, 128, 128,0.05);
-    display: flex;
-    align-items: center;
-    
+/* Style for the divider line */
+.SignUpOne-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
 }
 
-.signup-google:hover, .signup-apple:hover{
-    background-color:rgba(128, 128, 128,0.1);
-    
-}
-.signup-divider {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .signup-divider-line {
-    flex: 1;
-    height: 1px;
-    background-color: #ccc;
-  }
-  
-  .signup-divider-text {
-    margin: 0 10px;
-    color: #ccc;
-    font-size: 13px;
-    color: black;
-  }
-  
+/* Style for the text "OR" */
+.SignUpOne-divider-text {
+  margin: 0 10px;
+  color: black;
+  font-size: 13px;
+}  
   #signup-email{
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 10px;
   }
 
