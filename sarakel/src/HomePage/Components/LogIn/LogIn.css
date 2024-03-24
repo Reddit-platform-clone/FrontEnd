@@ -45,58 +45,36 @@
     margin-top: -10px;
 }
 
-.login-google{
-    margin-top: 5px;
-}
-.login-apple{
-    margin-top: -10px;
-    margin-bottom: 10px;
+.login-content h2{
+  margin-bottom: 20px;
 }
 
-.login-google,
-.login-apple {
+.login-google-oauth{
+  width: 400px;
+  height: 48px;
+  border-radius: 500px;
+}
+/* Add a divider between "Continue with Apple" button and the rest of the page */
+.login-divider {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
-.login-google svg,
-.login-apple svg {
-  margin-right: 110px; /* Adjust the margin as needed */
-  font-size: 20px;
+/* Style for the divider line */
+.login-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
 }
 
-.login-google, .login-apple{
-    background-color: #ffffff;
-    width: 400px;
-    height: 40px;
-    border-radius: 40px;
-    font-size: 15px;
-    border-color: rgba(128, 128, 128,0.05);
-    
+/* Style for the text "OR" */
+.login-divider-text {
+  margin: 0 10px;
+  color: black;
+  font-size: 13px;
 }
 
-.login-google:hover, .login-apple:hover{
-    background-color:rgba(128, 128, 128,0.1);
-    
-}
-.login-divider {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .login-divider-line {
-    flex: 1;
-    height: 1px;
-    background-color: #ccc;
-  }
-  
-  .login-divider-text {
-    margin: 0 10px;
-    color: #ccc;
-    font-size: 13px;
-    color: black;
-  }
   
   #username{
     margin-top: 20px;
@@ -131,6 +109,7 @@
   .login-new-text{
     display: flex;
     margin-top: 10px;
+    margin-right: 100px;
   }
 
   .login-btn-final{
@@ -139,11 +118,13 @@
     height: 48px;
     border-radius: 40px;
     font-size: 15px;
-    margin-top: 15px;
+    margin-top: 45px;
     border: none;
     color: white;
     cursor: pointer;
   }
+
+  
 
 .login-privcy-plcy,.login-user-agremnt,.login-signup-text,.login-forgot-password,.login-forgot-username{
     text-decoration: none;

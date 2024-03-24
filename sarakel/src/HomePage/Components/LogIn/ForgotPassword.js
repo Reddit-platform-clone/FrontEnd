@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
-import './ForgotPassword.css';
-import SignUpOne from '../SignUp/SignUpOne';
-import LogIn from './LogIn.js'; 
-import ForgotUsername from './ForgotUsername.js';
+import React, { useState } from "react";
+import "./ForgotPassword.css";
+import SignUpOne from "../SignUp/SignUpOne";
+import LogIn from "./LogIn.js";
+import ForgotUsername from "./ForgotUsername.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
+import jsonData from "../mock.json"; // Import JSON data
+import { ToastContainer, toast } from "react-toastify";
 
 
 function ForgotPassword() {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showUsername, setUsername] = useState(false);
+  const [showBackButton, setBackButton] = useState(false);
+
+
+  const handleResetPasswordClick = () => {
+    const username = document.getElementById("forget-password-username").value;
+    const password = document.getElementById("forget-password-pass").value;
+
+    const user = jsonData.users.find(user => user.email === username && user.pass === password);
+
+    if (user) {
+      toast.success("Password reset successfully!");
+    } else {
+      toast.error("Invalid username or password.");
+    }
+  };
 
   const handleSignUpClick = () => {
     setShowSignUp(true);
@@ -20,62 +37,114 @@ function ForgotPassword() {
     setShowLogin(true);
   };
 
-  const handleUseranmeClick = () =>{
+  const handleUseranmeClick = () => {
     setUsername(true);
   };
 
   const handleBackButtonClick = () => {
-    setShowSignUp(false);
-    setShowLogin(false);
-    setUsername(false);
+    setBackButton(true);
   };
 
   if (showSignUp) {
     return <SignUpOne />;
   }
 
-  if (showLogin) {
+  if (showLogin || showBackButton) {
     return <LogIn />;
   }
 
-  if(showUsername){
+  if (showUsername) {
     return <ForgotUsername />;
   }
 
   return (
     <div className="forget-password-overlay">
       <div className="forget-password-modal">
-        <div className='forget-password-content'>
-          <button className='forget-password-back-btn' onClick={handleBackButtonClick}> <FaArrowLeft /> </button>
-          <button className='forget-password-close-btn'> <IoMdClose /> </button>
+        <div className="forget-password-content">
+          <button
+            className="forget-password-back-btn"
+            onClick={handleBackButtonClick}
+          >
+            {" "}
+            <FaArrowLeft />{" "}
+          </button>
+          <button className="forget-password-close-btn">
+            {" "}
+            <IoMdClose />{" "}
+          </button>
 
           <h2>Reset your password</h2>
-          <p>Tell us the username and email address associated with your Reddit account, and we’ll send you an email with a link to reset your password.</p>
+          <p>
+            Tell us the username and email address associated with your Reddit
+            account, and we’ll send you an email with a link to reset your
+            password.
+          </p>
 
           <div className="forget-password-input-group">
             <label htmlFor="username"></label>
-            <input id="forget-password-email" type="text" placeholder="Username*" required />
+            <input
+              id="forget-password-username"
+              type="text"
+              placeholder="Username*"
+              required
+            />
 
-            <label htmlFor="email"></label>
-            <input id="forget-password-email" type="text" placeholder="Email*" required />
-          
-            <br></br>
+            <label htmlFor="password"></label>
+            <input
+              id="forget-password-pass"
+              type="text"
+              placeholder="Password*"
+              required
+            />
+          </div>
+          <br></br>
 
-            <div className='forget-password-forgot-text'>
-              <p>Don't have an email or need assistance logging in? <a href="#" className="forget-password-get-help">Get help</a></p>
-            </div>
-
-            <div className='forget-password-forgot-text'>
-              <p>Forgot your <a href="#" className="forget-password-username" onClick={handleUseranmeClick}>username</a> ?</p>
-            </div>
-
-            <div className='forget-password-new-text'>
-              <p><a href="#" className="forget-password-signup-text" onClick={handleSignUpClick}>Sign Up</a> . <a href="#" className="forget-password-login-text" onClick={handleLoginClick}>Login</a></p>
-            </div>
-
-            <button className='forget-password-btn-final'>Reset passsword</button>
+          <div className="forget-password-forgot-text">
+            <p>
+              Don't have an email or need assistance logging in?{" "}
+              <a href="#" className="forget-password-get-help">
+                Get help
+              </a>
+            </p>
           </div>
 
+          <div className="forget-password-forgot-text">
+            <p>
+              Forgot your{" "}
+              <a
+                href="#"
+                className="forget-password-username"
+                onClick={handleUseranmeClick}
+              >
+                username
+              </a>{" "}
+              ?
+            </p>
+          </div>
+
+          <div className="forget-password-new-text">
+            <p>
+              <a
+                href="#"
+                className="forget-password-signup-text"
+                onClick={handleSignUpClick}
+              >
+                Sign Up
+              </a>{" "}
+              .{" "}
+              <a
+                href="#"
+                className="forget-password-login-text"
+                onClick={handleLoginClick}
+              >
+                Login
+              </a>
+            </p>
+          </div>
+
+          <button className="forget-password-btn-final" onClick={handleResetPasswordClick}>Reset passsword</button>
+
+          <ToastContainer />
         </div>
       </div>
     </div>

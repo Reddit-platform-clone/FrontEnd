@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
   }
   
   .forget-username-modal {
@@ -44,12 +45,12 @@
 
 .forget-username-content p{
     font-size: 14px;
-    margin-top: -10px;
 }
 
-
+.forget-username-content h2{
+  margin-top: 10px;
+}
   #forget-username-email{
-    margin-top: 20px;
     margin-bottom: 10px;
     border: none;
     background-color: rgba(128, 128, 128,0.2);
@@ -85,7 +86,7 @@
     height: 48px;
     border-radius: 40px;
     font-size: 15px;
-    margin-top: 175px;
+    margin-top: 155px;
     border: none;
     color: white;
     cursor: pointer;
