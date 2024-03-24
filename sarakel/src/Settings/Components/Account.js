@@ -6,25 +6,25 @@ import can from './red-trash-can-icon.png'
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Account() {
     const [gender, setGender] = React.useState("select")
+    let x 
+    // let b
     const GetLoggedIn = () =>{
             mock.users.map((user) => {
                 if(user.LoggedIn === 1){
-                    return user.id
+                    x = user.id
+                    return JSON.stringify(user.id)
                 }
             })
         }
         let userId = GetLoggedIn();
-    const GenderHandler = () => {
-        
+    const GenderHandler = (g) =>{
         mock.users.map((user) =>{
-            if(user.id === userId ){
-                user.gender = gender
-                console.log(55)
+            if(user.id === x ){
+                user.gender = g
             }
         })
-       
+        
     }
-
     
     return(
         <div className={`${classes.tab}`}>
@@ -58,10 +58,10 @@ export default function Account() {
                         <div className={`${classes.dropdown}`}>
                             <button className={`${classes.dropbtn} `}><span className={`${classes.font}`}>{gender}</span></button>
                             <div className={`${classes.dropdownContent} ${classes.font}`}>
-                                <a  onClick={() => {setGender("Male"); GenderHandler()}}>Male</a>
-                                <a  onClick={() => {setGender("Woman"); GenderHandler()}}>Woman</a>
-                                <a  onClick={() => {setGender("Non-Bianry"); GenderHandler()}}>Non-Binary</a>
-                                <a  onClick={() => {setGender("I prefer not to say"); GenderHandler()}}>I Prefer Not To Say</a>
+                                <a  onClick={() => {setGender("Male"); GenderHandler("male")}}>Male</a>
+                                <a  onClick={() => {setGender("Woman"); GenderHandler("woman")}}>Woman</a>
+                                <a  onClick={() => {setGender("Non-Bianry"); GenderHandler("Non-Bianry")}}>Non-Binary</a>
+                                <a  onClick={() => {setGender("I prefer not to say"); GenderHandler("I prefer not to say")}}>I Prefer Not To Say</a>
                             </div>
                         </div>
                     </div>
