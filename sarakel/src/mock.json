@@ -14,9 +14,9 @@
     },
     {
       "id": "3",
-      "name": "Mclaren",
-      "description": "Formula 1",
-      "image": "https://brandlogos.net/wp-content/uploads/2022/04/mclaren_formula_1_team-logo-brandlogos.net_.png"
+      "name": "Babatunde",
+      "description": "Black lives matter",
+      "image": "https://i.ibb.co/ZHBsQ7s/joe.png"
     },
     {
       "id": "5",
@@ -39,7 +39,7 @@
   ],
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "name": "User 1",
       "email": "user1@domain.com",
       "pass": "123456789",
@@ -100,9 +100,9 @@
       "id": "3",
       "user_id": "3",
       "community_id": "3",
-      "title":"weed",
-      "text": "Go McLaren! Let's win the next race!",
-      "media": "C:\\Users\\moham\\Desktop\\CMP-Software-Engineering-main\\FrontEnd\\sarakel\\src\\test.mp4",
+      "title":"in my true colors",
+      "text": "King of anemia",
+      "media": "https://i.ibb.co/m6SrBJF/joe2.png",
       "likes":"181",
       "comments":"57",
       "time":"1 day",
@@ -113,7 +113,7 @@
       "user_id": "4",
       "community_id": "1",
       "title":"Happiness", 
-      "text": "metro boomin is blowing roofs off with his music fr, Thats something I know a thing or two about:)",
+      "text": "Have u ever wondered why the emergency hotline is 911?? Im changing the world fr",
       "likes":"18",
       "comments":"7",
       "time":"4 hr.",

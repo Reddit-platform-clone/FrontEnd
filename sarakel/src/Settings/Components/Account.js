@@ -6,30 +6,23 @@ import can from './red-trash-can-icon.png'
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Account() {
     const [gender, setGender] = React.useState("select")
-
     const GetLoggedIn = () =>{
-        let log = "0"
-          log =  mock.users.map(function(item){
-                if(item.LoggedIn === 1){
-                    log = item.id
+            mock.users.map((user) => {
+                if(user.LoggedIn === 1){
+                    return user.id
                 }
-                
             })
-            if (log === 0){
+        }
+        let userId = GetLoggedIn();
+    const GenderHandler = () => {
+        
+        mock.users.map((user) =>{
+            if(user.id === userId ){
+                user.gender = gender
                 console.log(55)
             }
-            console.log(log)
-            return log
-        }
-    const GenderHandler = () => {
-        let user = GetLoggedIn()
-        console.log(user)
-        mock.users.map((item) =>{
-            if(item.id === user ){
-                item.gender = gender
-                console.log(item.gender)
-            }
         })
+       
     }
 
     
@@ -65,10 +58,10 @@ export default function Account() {
                         <div className={`${classes.dropdown}`}>
                             <button className={`${classes.dropbtn} `}><span className={`${classes.font}`}>{gender}</span></button>
                             <div className={`${classes.dropdownContent} ${classes.font}`}>
-                                <a  onClick={() => {setGender("Male"); setTimeout(function() { GenderHandler(); }, 500);}}>Male</a>
-                                <a  onClick={() => {setGender("Woman")}}>Woman</a>
-                                <a  onClick={() => {setGender("Non-Bianry")}}>Non-Binary</a>
-                                <a  onClick={() => {setGender("I prefer not to say")}}>I Prefer Not To Say</a>
+                                <a  onClick={() => {setGender("Male"); GenderHandler()}}>Male</a>
+                                <a  onClick={() => {setGender("Woman"); GenderHandler()}}>Woman</a>
+                                <a  onClick={() => {setGender("Non-Bianry"); GenderHandler()}}>Non-Binary</a>
+                                <a  onClick={() => {setGender("I prefer not to say"); GenderHandler()}}>I Prefer Not To Say</a>
                             </div>
                         </div>
                     </div>
