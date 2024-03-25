@@ -5,26 +5,54 @@ import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Account() {
-    const [gender, setGender] = React.useState("select")
-    let x 
-    // let b
-    const GetLoggedIn = () =>{
-            mock.users.map((user) => {
-                if(user.LoggedIn === 1){
-                    x = user.id
-                    return JSON.stringify(user.id)
-                }
-            })
+    let Google
+    let UserId 
+    let SavedGender
+    let UserEmail
+    let Country
+    let googleArray = []
+    let view1
+    let view2
+    const [toggle1, setToggle1] = React.useState(false)
+    const [toggle2, setToggle2] = React.useState(false)
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            UserId = user.id
+            SavedGender = user.gender
+            Google = user.google
+            UserEmail = user.email
+            Country = user.Country
         }
-        let userId = GetLoggedIn();
+    })
+    const [gender, setGender] = React.useState(SavedGender)
+    const [value, setValue] = React.useState(Google)
     const GenderHandler = (g) =>{
         mock.users.map((user) =>{
-            if(user.id === x ){
+            if(user.id === UserId ){
                 user.gender = g
+                
             }
         })
         
     }
+    const GoogleHandler = (g) =>{
+        mock.users.map((user) =>{
+            if(user.id === UserId ){
+                user.google = g
+            }
+        })
+        
+    }
+    const secArray = []
+    for(let i=0;i<2;i++){
+        if (i===value){
+        secArray.push(`${classes.show}`)
+        }
+        else{
+        secArray.push(`${classes.hide}`)
+        }
+    }
+       
     
     return(
         <div className={`${classes.tab}`}>
@@ -33,22 +61,42 @@ export default function Account() {
                 <h3 className={`${classes.Subheaders}`}>ACCOUNT PREFERENCES <hr className='mt-2'></hr></h3>
                 <div className={`${classes.box}`}>
                     <div >
-                        <h3 className={`${classes.SettingTopics}`}>Email address</h3>
-                        <p className={`${classes.Subtext}`}>khalidashraf0033@gmail.com</p>
+                        <h3 className={`${classes.SettingTopics} ${classes.font}`}>Email address</h3>
+                        <p className={`${classes.Subtext}`}>{UserEmail}</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
-                    <a href="#" className={`${classes.Change} ${classes.font}`}>Change</a>
+                    <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle1(!toggle1)}} Toggle State>Change</a>
                     </div>
                 </div>
+                {toggle1 &&(<div className={`${classes.mb}`} >
+                    <div className={`${classes.BlockUserDiv}`}>
+                        <div className={`${classes.w80} ${classes.InputTextDiv}`}>
+                            <input type="text" placeholder=' Input New Email'  className={`${classes.w100} ${classes.Inputbox}`}></input>
+                        </div>
+                        <div className={`${classes.SettingToggles}`}>
+                            <button className={`${classes.Add}`}>ADD</button>
+                        </div>
+                    </div>
+                </div>)}
                 <div className={`${classes.box}`}>
                     <div >
                         <h3 className={`${classes.SettingTopics} ${classes.font}`}>Change password</h3>
                         <p className={`${classes.Subtext}`}>Password must be at least 8 characters long</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
-                    <a href="#" className={`${classes.Change} ${classes.font}`}>Change</a>
+                    <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle2(!toggle2)}} Toggle State>Change</a>
                     </div>
                 </div>
+                {toggle2 &&(<div className={`${classes.mb}`} >
+                    <div className={`${classes.BlockUserDiv}`}>
+                        <div className={`${classes.w80} ${classes.InputTextDiv}`}>
+                            <input type="text" placeholder=' New Password'  className={`${classes.w100} ${classes.Inputbox}`}></input>
+                        </div>
+                        <div className={`${classes.SettingToggles}`}>
+                            <button className={`${classes.Add}`}>ADD</button>
+                        </div>
+                    </div>
+                </div>)}
                 <div className={`${classes.box}`}>
                     <div>
                     <h3 className={`${classes.SettingTopics}`}>Gender</h3>
@@ -58,8 +106,8 @@ export default function Account() {
                         <div className={`${classes.dropdown}`}>
                             <button className={`${classes.dropbtn} `}><span className={`${classes.font}`}>{gender}</span></button>
                             <div className={`${classes.dropdownContent} ${classes.font}`}>
-                                <a  onClick={() => {setGender("Male"); GenderHandler("male")}}>Male</a>
-                                <a  onClick={() => {setGender("Woman"); GenderHandler("woman")}}>Woman</a>
+                                <a  onClick={() => {setGender("Male"); GenderHandler("Male")}}>Male</a>
+                                <a  onClick={() => {setGender("Woman"); GenderHandler("Woman")}}>Woman</a>
                                 <a  onClick={() => {setGender("Non-Bianry"); GenderHandler("Non-Bianry")}}>Non-Binary</a>
                                 <a  onClick={() => {setGender("I prefer not to say"); GenderHandler("I prefer not to say")}}>I Prefer Not To Say</a>
                             </div>
@@ -82,7 +130,7 @@ export default function Account() {
                     </div>
                     <div className={`${classes.box}`}>
                     <select name="country" className={`${classes.CountryDrpDwn}`} id="country">
-                        <option value="0" label="Select a country ... " selected="selected" >Select a country </option>
+                        <option value="0" label={Country + '....'} selected="selected" ></option>
                         <optgroup id="country-optgroup-Africa" label="Africa" className={`${classes.Blue}`}>
                             <option value="DZ" label="Algeria">Algeria</option>
                             <option value="AO" label="Angola">Angola</option>
@@ -384,8 +432,9 @@ export default function Account() {
                         <h3 className={`${classes.SettingTopics} ${classes.font}`}>Connect to Google</h3>
                         <p className={`${classes.Subtext}`}>Connect account to log in to Reddit with Google</p>
                     </div>
-                    <div className={`${classes.SettingToggles}`}>
-                    <a href="#" className={`${classes.ConnectGoogle} ${classes.font}`}><span href="#" className={`${classes.google}`}><img src={icon} className={`${classes.google}`}></img></span>Connect to Google</a>
+                    <div className={`${classes.SettingToggles} `}>
+                    <a href="#" className={`${classes.ConnectGoogle} ${classes.font} ${secArray[0]} `} onClick={() => {setValue(1) ; GoogleHandler(1)}}><span href="#" className={`${classes.google}`}><img src={icon} className={`${classes.google}`}></img></span>Connect to Google</a>
+                    <span className={`${classes.left} ${secArray[1]}`} onClick={() => {setValue(0) ; GoogleHandler(0)}}>(<a href='#' >Disconnect</a>)</span>
                     </div>
                 </div>
                 <h3 className={`${classes.Subheaders}`}>BETA TESTS <hr className='mt-2'></hr> </h3>

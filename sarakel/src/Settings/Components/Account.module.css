@@ -8,6 +8,10 @@
 .w100{
   width: 100%;
 }
+.left{
+  display: flex;
+  justify-content: end;
+}
 .header{
     font-size: 20px;
     font-weight: 600;
@@ -73,6 +77,7 @@
     flex-grow: 1;
     -ms-flex-pack: end;
     justify-content: flex-end;
+    margin-bottom: 1rem;
 }
 .SettingTogglesReverse{
   align-items: center;

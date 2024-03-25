@@ -44,7 +44,9 @@
       "email": "user1@domain.com",
       "pass": "123456789",
       "LoggedIn": 1,
-      "gender": "select"
+      "gender": "select",
+      "google": 1,
+      "Country":"Choose a Country..."
     },
     {
       "id": "2",
@@ -52,7 +54,9 @@
       "email": "user2@domain.com",
       "pass": "123456789",
       "LoggedIn": 0,
-      "gender": "select"
+      "gender": "select",
+      "google": 0,
+      "Country":"Choose a Country..."
     },
     {
       "id": "3",
@@ -60,7 +64,9 @@
       "email": "user3@domain.com",
       "pass": "123456789",
       "LoggedIn": 0,
-      "gender": "select"
+      "gender": "select",
+      "google": 0,
+      "Country":"Choose a Country..."
     },
     {
       "id": "2a0a",
@@ -68,7 +74,9 @@
       "password": "987654321",
       "type": "User",
       "LoggedIn":0,
-      "gender": "select"
+      "gender": "select",
+      "google": 0,
+      "Country":"Choose a Country..."
     }
   ],
   "posts":[

@@ -51,10 +51,6 @@ export default function Profile(){
                     <p className={`${classes.Subtext}`}>People who visit your profile will see your social links.</p>
                 </div>
                 <div className={`${classes.SettingTogglesReverse}`} >
-                            <li className={`${classes.SocialList}`}>
-                                <img className={`${classes.SocialImg}`} src={link} />
-                                    {social}
-                            </li>
                     <a  className={`${classes.AddLinks} ${classes.font}`} onClick={() => {setToggle(!toggle) ; setValue(0)} } Toggle State><img src={plus} className={`${classes.plusLogo}`}></img>Add social link</a>
                 </div>
                 {toggle &&(
