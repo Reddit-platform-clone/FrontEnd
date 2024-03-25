@@ -52,7 +52,15 @@
       "ContentVisibility":false,
       "CommunityVisibility": true,
       "DisplayName":"none",
-      "AboutMe":"None"
+      "AboutMe":"None",
+      "SearchResault":false,
+      "Personalized1":false,
+      "Personalized2": false,
+      "Alcohol" : false,
+      "Dating":false,
+      "Gambling":true,
+      "Pregnancy":false,
+      "WeightLoss":true
     },
     {
       "id": "2",
@@ -68,7 +76,15 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None"
+      "AboutMe":"None",
+      "SearchResault":false,
+      "Personalized1":false,
+      "Personalized2": false,
+      "Alcohol" : false,
+      "Dating":false,
+      "Gambling":true,
+      "Pregnancy":false,
+      "WeightLoss":true
     },
     {
       "id": "3",
@@ -84,7 +100,15 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None"
+      "AboutMe":"None",
+      "SearchResault":false,
+      "Personalized1":false,
+      "Personalized2": false,
+      "Alcohol" : false,
+      "Dating":false,
+      "Gambling":true,
+      "Pregnancy":false,
+      "WeightLoss":true
     },
     {
       "id": "2a0a",
@@ -100,7 +124,15 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None"
+      "AboutMe":"None",
+      "SearchResault":false,
+      "Personalized1":false,
+      "Personalized2": false,
+      "Alcohol" : false,
+      "Dating":false,
+      "Gambling":true,
+      "Pregnancy":false,
+      "WeightLoss":true
     }
   ],
   "posts":[

@@ -1,8 +1,52 @@
 import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 
 export default function SafetyPrivacy() {
+    let UserId
+    let searchResault
+    let Personalized1
+    let Personalized2
+    let Alcohol
+    let Dating
+    let Gambling
+    let Pregnancy
+    let Weight
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            UserId = user.id
+            searchResault = user.SearchResault
+            Personalized1 = user.Personalized1
+            Personalized2 = user.Personalized2
+            Alcohol = user.Alcohol
+            Dating = user.Dating
+            Gambling = user.Gambling
+            Pregnancy = user.Pregnancy
+            Weight = user.WeightLoss
+        }
+    })
+    const [search,setSearch] = React.useState(searchResault)
+    const [personal1, setPersonal1] = React.useState(Personalized1)
+    const [personal2,setPersonal2] = React.useState(Personalized2)
+    const [alcohol, setAlcohol] = React.useState(Alcohol)
+    const[date, setDate] = React.useState(Dating)
+    const [gamble, setGambling] = React.useState(Gambling)
+    const[pregnancy, setPregnancy] = React.useState(Pregnancy)
+    const[weight,setWeight ] = React.useState(Weight)
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            user.SearchResault = search
+            user.Personalized1 = personal1
+            user.Personalized2 = personal2
+            user.Alcohol = alcohol
+            user.Dating = date
+            user.Gambling = gamble
+            user.Pregnancy = pregnancy
+            user.WeightLoss = weight
+            return
+        }
+    })
     return(
         <div className={`${classes.tab}`}>
             <div className=''>
@@ -46,7 +90,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {search} onClick={() => {setSearch(!search)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -58,7 +102,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {personal1} onClick={() => {setPersonal1(!personal1)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -70,7 +114,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {personal2} onClick={() => {setPersonal2(!personal2)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -84,7 +128,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {alcohol} onClick={() => {setAlcohol(!alcohol)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -96,19 +140,19 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {date} onClick={() => {setDate(!date)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
                 </div>
                 <div className={`${classes.box}`}>
                     <div>
-                        <h3 className={`${classes.SettingTopics} ${classes.font}`}>Dating</h3>
+                        <h3 className={`${classes.SettingTopics} ${classes.font}`}>Gambling</h3>
                         <p className={`${classes.BoxText} ${classes.Subtext}`}>Allowed</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {gamble} onClick={() => {setGambling(!gamble)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -120,7 +164,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked ={pregnancy} onClick={() => {setPregnancy(!pregnancy)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -132,7 +176,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked = {weight} onClick={() => {setWeight(!weight)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
