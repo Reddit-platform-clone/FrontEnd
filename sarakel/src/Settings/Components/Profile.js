@@ -3,7 +3,7 @@ import './bootstrap.min.css';
 import classes from './Account.module.css' 
 import plus from './plus-sign.png'
 import arrow from './arrow-left-solid.svg'
-
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 
 export default function Profile(){
     const [social, setSocial] = React.useState("None");
@@ -11,6 +11,44 @@ export default function Profile(){
     const placeholder = " " + social + " URL"
     const [value, setValue] = React.useState(1)
     const [toggle, setToggle] = React.useState(false)
+    let UserId
+    let NSFW
+    let AllowFollow
+    let ContentVisibility
+    let CommunityVisibility
+    let Display
+    let AboutMe
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            UserId = user.id
+            NSFW = user.NSFW
+            AllowFollow = user.AllowFollow
+            ContentVisibility = user.ContentVisibility
+            CommunityVisibility = user.CommunityVisibility
+            Display = user.DisplayName
+            AboutMe = user.AboutMe
+        }
+    })
+    const [DisplayName, setDisplayName] = React.useState(Display)
+    const [aboutMe,setAboutMe] = React.useState(AboutMe)
+    const [nsfw, setNSFW] = React.useState(NSFW)
+    const [allowfollow, setAllowFollow] = React.useState(AllowFollow)
+    const [contentvisible, setContentVisible] = React.useState(ContentVisibility)
+    const[communityvisibility, setCommunityVisible] = React.useState(CommunityVisibility)
+
+        mock.users.map((user) => {
+            if(user.LoggedIn === 1){
+                user.NSFW = nsfw
+                user.AllowFollow = allowfollow
+                user.ContentVisibility = contentvisible
+                user.CommunityVisibility = communityvisibility
+                user.DisplayName = DisplayName
+                user.AboutMe = aboutMe
+                console.log(user)
+                return
+            }
+        })
+
     const secArray = []
     for(let i=0;i<2;i++){
         if (i===value){
@@ -19,6 +57,12 @@ export default function Profile(){
         else{
         secArray.push(`${classes.hide}`)
         }
+    }
+    const changeName = event =>{
+        setDisplayName(event.target.value)
+    }
+    const changeAbout = event =>{
+        setAboutMe(event.target.value)
     }
     return(
     <div className={`${classes.tab}`}>
@@ -32,7 +76,7 @@ export default function Profile(){
                 </div>
                 <div className={`${classes.BlockUserDiv}`}>
                         <div className={`${classes.w100} ${classes.InputTextDiv}`}>
-                            <input type="text" placeholder='Display name (optional)'  className={`${classes.w100} ${classes.Inputbox}`}></input>
+                            <input type="text" placeholder={DisplayName} onChange={changeName} className={`${classes.w100} ${classes.Inputbox}`}></input>
                         </div>
                     </div>
             </div>
@@ -42,7 +86,7 @@ export default function Profile(){
                     <p className={`${classes.Subtext}`}>Set a display name. This does not change your username.</p>
                 </div>
                 <div className={`${classes.box}`}>
-                        <textarea placeholder='About (optional)' maxLength='200' rows='4' className={`${classes.BgTextBox}`}></textarea>
+                        <textarea placeholder={aboutMe} onChange={changeAbout} maxLength='200' rows='4' className={`${classes.BgTextBox}`}></textarea>
                 </div>
             </div>
             <div >
@@ -211,7 +255,7 @@ export default function Profile(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                            <input type="checkbox"/>
+                            <input type="checkbox" checked={nsfw} onClick={() => {setNSFW(!nsfw)}} />
                             <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -224,8 +268,8 @@ export default function Profile(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                            <a type="checkbox" />
-                            <span className={`${classes.slider} ${classes.round}`}></span>
+                        <input type="checkbox"checked={allowfollow} onClick={() => {setAllowFollow(!allowfollow)}}/>
+                        <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
             </div>
@@ -235,10 +279,10 @@ export default function Profile(){
                     <p className={`${classes.Subtext}`}>Posts to this profile can appear in <a href='#' className={`${classes.Blue}`}>r/all</a> and your profile can be discovered in <a href='#' className={`${classes.Blue}`}>r/users</a> </p>
                 </div>
                 <div className={`${classes.SettingToggles}`}>
-                    <label className={`${classes.switch}`}>
-                            <a type="checkbox" />
+                        <label className={`${classes.switch}`}>
+                            <input type="checkbox" checked={contentvisible} onClick={() => {setContentVisible(!contentvisible)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
-                    </label>
+                        </label>
                 </div>
             </div>
             <div className={`${classes.box}`} >
@@ -247,10 +291,10 @@ export default function Profile(){
                     <p className={`${classes.Subtext}`}>Show which communities I am active in on my profile.</p>
                 </div>
                 <div className={`${classes.SettingToggles}`}>
-                    <label className={`${classes.switch}`}>
-                            <a type="checkbox" />
+                        <label className={`${classes.switch}`}>
+                            <input id='khaled' type="checkbox" checked={communityvisibility} onClick={() => {setCommunityVisible(!communityvisibility)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
-                    </label>
+                        </label>
                 </div>
             </div>
             <div className={`${classes.box}`}>

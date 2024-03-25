@@ -10,22 +10,39 @@ export default function Account() {
     let SavedGender
     let UserEmail
     let Country
-    let googleArray = []
-    let view1
-    let view2
+    let Pass
+    let saveEmail
+    let SavePass
     const [toggle1, setToggle1] = React.useState(false)
+    if(toggle1 === true){
+        saveEmail = "Save"
+    }else{
+        saveEmail = "Change"
+    }
+    
     const [toggle2, setToggle2] = React.useState(false)
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            UserId = user.id
-            SavedGender = user.gender
-            Google = user.google
-            UserEmail = user.email
-            Country = user.Country
-        }
-    })
+    if(toggle2 === true){
+        SavePass = "Save"
+    }else{
+        SavePass = "Change"
+    }
+
+
+mock.users.map((user) => {
+    if(user.LoggedIn === 1){
+        UserId = user.id
+        SavedGender = user.gender
+        Google = user.google
+        UserEmail = user.email
+        Country = user.Country
+        Pass = user.pass
+        return
+    }
+})  
+    const [Password, setPass] = React.useState(`${Pass}`)
     const [gender, setGender] = React.useState(SavedGender)
     const [value, setValue] = React.useState(Google)
+    const [Email, setEmail] = React.useState(`${UserEmail}`)
     const GenderHandler = (g) =>{
         mock.users.map((user) =>{
             if(user.id === UserId ){
@@ -52,6 +69,32 @@ export default function Account() {
         secArray.push(`${classes.hide}`)
         }
     }
+
+    const AddEmail = () => {
+        mock.users.map((user) =>{
+            if(user.id === UserId ){
+                user.email = Email
+                return
+            }
+        })
+    }
+    const changeEmail = event =>{
+        setEmail(event.target.value)
+
+    }
+    const AddPass = () => {
+        mock.users.map((user) =>{
+            if(user.id === UserId ){
+                user.pass = Password
+                return
+            }
+        })
+    }
+    const changePass = event =>{
+
+        setPass(event.target.value)
+
+    }
        
     
     return(
@@ -65,16 +108,13 @@ export default function Account() {
                         <p className={`${classes.Subtext}`}>{UserEmail}</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
-                    <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle1(!toggle1)}} Toggle State>Change</a>
+                    <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle1(!toggle1); AddEmail()}} >{saveEmail}</a>
                     </div>
                 </div>
                 {toggle1 &&(<div className={`${classes.mb}`} >
                     <div className={`${classes.BlockUserDiv}`}>
                         <div className={`${classes.w80} ${classes.InputTextDiv}`}>
-                            <input type="text" placeholder=' Input New Email'  className={`${classes.w100} ${classes.Inputbox}`}></input>
-                        </div>
-                        <div className={`${classes.SettingToggles}`}>
-                            <button className={`${classes.Add}`}>ADD</button>
+                            <input type="text"  placeholder={UserEmail}  className={`${classes.w100} ${classes.Inputbox}`} onChange={changeEmail}></input>
                         </div>
                     </div>
                 </div>)}
@@ -84,16 +124,13 @@ export default function Account() {
                         <p className={`${classes.Subtext}`}>Password must be at least 8 characters long</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
-                    <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle2(!toggle2)}} Toggle State>Change</a>
+                    <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle2(!toggle2); AddPass()}} Toggle State>{SavePass}</a>
                     </div>
                 </div>
                 {toggle2 &&(<div className={`${classes.mb}`} >
                     <div className={`${classes.BlockUserDiv}`}>
                         <div className={`${classes.w80} ${classes.InputTextDiv}`}>
-                            <input type="text" placeholder=' New Password'  className={`${classes.w100} ${classes.Inputbox}`}></input>
-                        </div>
-                        <div className={`${classes.SettingToggles}`}>
-                            <button className={`${classes.Add}`}>ADD</button>
+                            <input type="text" placeholder=' New Password'  className={`${classes.w100} ${classes.Inputbox}`} onChange={changePass}></input>
                         </div>
                     </div>
                 </div>)}

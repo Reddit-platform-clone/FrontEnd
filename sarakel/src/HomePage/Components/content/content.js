@@ -110,7 +110,7 @@ const Content = () => {
       return <img src={media[0]} alt={text} className="post-image" />;
     } else if (typeof media === 'string') {
       // If media is a string, check if it's a direct link to an image and render it
-      if (media.match(/\.(png|jpeg|jpg|gif|webp)$/) != null) {
+      if (media.match(/\.(jpeg|jpg|gif|png|webp)$/) != null) {
         return <img src={media} alt={text} className="post-image" />;
       } else {
         // If it's not an image URL, assume it's a video and render using React Player

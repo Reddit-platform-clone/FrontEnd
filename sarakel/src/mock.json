@@ -46,7 +46,13 @@
       "LoggedIn": 1,
       "gender": "select",
       "google": 1,
-      "Country":"Choose a Country..."
+      "Country":"Choose a Country...",
+      "NSFW":true,
+      "AllowFollow":false,
+      "ContentVisibility":false,
+      "CommunityVisibility": true,
+      "DisplayName":"none",
+      "AboutMe":"None"
     },
     {
       "id": "2",
@@ -56,7 +62,13 @@
       "LoggedIn": 0,
       "gender": "select",
       "google": 0,
-      "Country":"Choose a Country..."
+      "Country":"Choose a Country...",
+      "NSFW":false,
+      "AllowFollow":false,
+      "ContentVisibility":false,
+      "CommunityVisibility": false,
+      "DisplayName":"None",
+      "AboutMe":"None"
     },
     {
       "id": "3",
@@ -66,7 +78,13 @@
       "LoggedIn": 0,
       "gender": "select",
       "google": 0,
-      "Country":"Choose a Country..."
+      "Country":"Choose a Country...",
+      "NSFW":false,
+      "AllowFollow":false,
+      "ContentVisibility":false,
+      "CommunityVisibility": false,
+      "DisplayName":"None",
+      "AboutMe":"None"
     },
     {
       "id": "2a0a",
@@ -76,7 +94,13 @@
       "LoggedIn":0,
       "gender": "select",
       "google": 0,
-      "Country":"Choose a Country..."
+      "Country":"Choose a Country...",
+      "NSFW":false,
+      "AllowFollow":false,
+      "ContentVisibility":false,
+      "CommunityVisibility": false,
+      "DisplayName":"None",
+      "AboutMe":"None"
     }
   ],
   "posts":[
