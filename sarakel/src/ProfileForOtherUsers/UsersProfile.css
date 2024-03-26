@@ -1,0 +1,102 @@
+/* Updated CSS */
+
+/* Header styling */
+.header {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Logo styling */
+.logo2 {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid black;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Username and user info styling */
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px; /* Reduced margin for better alignment */
+}
+
+.sarakelid {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 20px; /* Increased margin for better separation */
+}
+
+/* Content links styling */
+.Contents {
+    display: flex;
+    flex-wrap: wrap; /* Allow content links to wrap to the next line if necessary */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.Contents a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px; /* Increased margin for better spacing */
+    background-color: beige;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.Contents a:hover {
+    background-color: #926211;
+    color: #fff;
+}
+
+/* Main content container styling */
+.container {
+    max-width: 400px !important; /* Adjusted max-width for better content layout */
+    margin: 20px auto; /* Center container horizontally and add space around it */
+    padding: 20px;
+    border: 1px solid #ddd; /* Lighter border color for separation */
+    border-radius: 10px; /* Rounded corners for container */
+    background-color: #fff; /* White background color */
+}
+
+/* User data section styling */
+.horizontalali {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Increased margin for better separation */
+}
+
+.usersdata p {
+    margin: 0;
+}
+
+/* Button styling */
+.button {
+    padding: 12px 24px; /* Slightly increased padding for buttons */
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #926211;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #7a4f0e; /* Darker hover color */
+}
+
+/* Footer styling */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background color */
+}

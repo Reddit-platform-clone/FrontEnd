@@ -1,0 +1,110 @@
+body{
+    font-size: 12px;
+}
+
+.middlepage {
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Align content at the start */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 850px;
+    height: 100vh; /* Change to occupy the full height of the viewport */
+}
+
+.top-section {
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Add space between top section and profile content */
+}
+
+.username {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+    
+}
+
+.sarakelid {
+    font-size: 13px;
+    color: #777;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.logo1 {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px ;
+    object-fit: cover;
+}
+
+
+.profilecontents {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.profilecontents a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    background-color: #000;/* Set background color to transparent */
+    color: #fff; /* Set text color to white */
+    border-radius: 5px;
+    
+    transition: all 0.3s ease;
+}
+
+.profilecontents a:hover {
+    background-color: #ff7f50; /* Set hover background color to orange */
+    color: #000; /* Change text color to black on hover */
+    transform: translateY(-3px);
+}
+
+.rightside {
+    position: absolute;
+    top: 70%;
+    right: 50px; /* Adjust the distance from the right side */
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    max-width: 300px; /* Adjust the maximum width as needed */
+    width: 100%;
+}
+
+.p-4 {
+    padding: 14px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.p-4:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #926211;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+

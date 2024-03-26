@@ -55,7 +55,7 @@ function SignUpOne() {
 
   // If showSignUpTwo is true, render SignUpTwo component
   if (showSignUpTwo) {
-    return <SignUpTwo />;
+    return<SignUpTwo email={email} />;
   }
 
   // Otherwise, render SignUpOne component

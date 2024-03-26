@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import jsonData from "../../../mock.json"; 
 import { ToastContainer, toast } from "react-toastify";
 
-function SignUpTwo() {
+function SignUpTwo({email}) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
@@ -27,7 +27,7 @@ function SignUpTwo() {
       toast.success("Account created!");
       jsonData.users.push({id: jsonData.users.length + 1,
       name: username,
-      email: "user1@domain.com",
+      email: email,
       pass: pass,
       LoggedIn: 1,
       gender: "select",
