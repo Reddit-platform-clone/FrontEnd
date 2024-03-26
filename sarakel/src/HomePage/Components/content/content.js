@@ -174,6 +174,9 @@ const Content = () => {
                     <p className="post-title">
                       <b>{post.title}</b>
                     </p>
+                    <p>
+                      {post.text}
+                    </p>
                     {renderMediaOrTruncateText(post.media, post.text)}
                   </div>
                   <div className="interaction-container">
