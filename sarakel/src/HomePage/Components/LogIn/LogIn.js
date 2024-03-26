@@ -1,3 +1,4 @@
+// Import necessary dependencies
 import React, { useState } from "react";
 import "./LogIn.css";
 import { IoMdClose } from "react-icons/io";
@@ -11,10 +12,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
 
-function LogIn() {
+function LogIn({ onSuccessfulLogin }) {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
   const [showUsername, setShowUsername] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(true);
 
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
@@ -36,9 +38,16 @@ function LogIn() {
 
     if (user) {
       toast.success("Login successful!");
+      // Call onSuccessfulLogin function passed from parent component
+      onSuccessfulLogin();
     } else {
       toast.error("Invalid username or password.");
     }
+  };
+
+  // Function to handle closing the login modal
+  const handleCloseModal = () => {
+    setShowLoginModal(false);
   };
 
   if (redirectToSignUp) {
@@ -53,11 +62,11 @@ function LogIn() {
     return <ForgotPassword />;
   }
 
-  return (
+  return showLoginModal ? (
     <div className="login-overlay">
       <div className="login-modal">
         <div className="login-content">
-          <button className="login-close-btn">
+          <button className="login-close-btn" onClick={handleCloseModal}>
             {" "}
             <IoMdClose />{" "}
           </button>
@@ -134,7 +143,7 @@ function LogIn() {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default LogIn;

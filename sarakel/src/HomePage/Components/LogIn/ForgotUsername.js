@@ -12,6 +12,7 @@ function ForgotUsername() {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showBackButton, setBackButton] = useState(false);
+  const [showModal, setShowModal] = useState(true); // State for modal visibility
 
   const handleSignUpClick = () => {
     setShowSignUp(true);
@@ -36,6 +37,10 @@ function ForgotUsername() {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   if (showSignUp) {
     return <SignUpOne />;
   }
@@ -45,80 +50,84 @@ function ForgotUsername() {
   }
 
   return (
-    <div className="forget-username-overlay">
-      <div className="forget-username-modal">
-        <div className="forget-username-content">
-          <button
-            className="forget-username-back-btn"
-            onClick={handleBackButtonClick}
-          >
-            {" "}
-            <FaArrowLeft />{" "}
-          </button>
-          <button className="forget-username-close-btn">
-            {" "}
-            <IoMdClose />{" "}
-          </button>
+    <>
+      {showModal && (
+        <div className="forget-username-overlay">
+          <div className="forget-username-modal">
+            <div className="forget-username-content">
+              <button
+                className="forget-username-back-btn"
+                onClick={handleBackButtonClick}
+              >
+                {" "}
+                <FaArrowLeft />{" "}
+              </button>
+              <button className="forget-username-close-btn" onClick={handleCloseModal}>
+                {" "}
+                <IoMdClose />{" "}
+              </button>
 
-          <h2>Recover your username</h2>
-          <p>
-            Tell us the email address associated with your Reddit account, and
-            we’ll send you an email with your username.
-          </p>
-
-          <div className="forget-username-input-group">
-            <label htmlFor="email"></label>
-            <input
-              id="forget-username-email"
-              type="text"
-              placeholder="Email*"
-              required
-            />
-
-            <br></br>
-
-            <div className="forget-username-forgot-text">
+              <h2>Recover your username</h2>
               <p>
-                Don't have an email or need assistance logging in?{" "}
-                <a href="#" className="forget-username-get-help">
-                  Get help
-                </a>
+                Tell us the email address associated with your Reddit account, and
+                we’ll send you an email with your username.
               </p>
-            </div>
 
-            <div className="forget-username-new-text">
-              <p>
-                <a
-                  href="#"
-                  className="forget-username-signup-text"
-                  onClick={handleSignUpClick}
-                >
-                  Sign Up
-                </a>{" "}
-                .{" "}
-                <a
-                  href="#"
-                  className="forget-username-login-text"
-                  onClick={handleLoginClick}
-                >
-                  Login
-                </a>
-              </p>
-            </div>
+              <div className="forget-username-input-group">
+                <label htmlFor="email"></label>
+                <input
+                  id="forget-username-email"
+                  type="text"
+                  placeholder="Email*"
+                  required
+                />
 
-            <button
-              className="forget-username-btn-final"
-              onClick={handleEmailMeClick}
-            >
-              Email Me
-            </button>
+                <br></br>
+
+                <div className="forget-username-forgot-text">
+                  <p>
+                    Don't have an email or need assistance logging in?{" "}
+                    <a href="#" className="forget-username-get-help">
+                      Get help
+                    </a>
+                  </p>
+                </div>
+
+                <div className="forget-username-new-text">
+                  <p>
+                    <a
+                      href="#"
+                      className="forget-username-signup-text"
+                      onClick={handleSignUpClick}
+                    >
+                      Sign Up
+                    </a>{" "}
+                    .{" "}
+                    <a
+                      href="#"
+                      className="forget-username-login-text"
+                      onClick={handleLoginClick}
+                    >
+                      Login
+                    </a>
+                  </p>
+                </div>
+
+                <button
+                  className="forget-username-btn-final"
+                  onClick={handleEmailMeClick}
+                >
+                  Email Me
+                </button>
+              </div>
+
+              {/* Toast notification container */}
+              <ToastContainer />
+            </div>
           </div>
-
-          {/* Toast notification container */}
-          <ToastContainer />
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
