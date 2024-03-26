@@ -55,7 +55,7 @@
       "name": "User 1",
       "email": "user1@domain.com",
       "pass": "123456789",
-      "LoggedIn": 0,
+      "LoggedIn": 1,
       "gender": "select",
       "google": 1,
       "Country":"Choose a Country...",

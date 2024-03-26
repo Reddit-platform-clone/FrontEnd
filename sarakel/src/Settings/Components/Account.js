@@ -99,7 +99,7 @@ mock.users.map((user) => {
     
     return(
         <div className={`${classes.tab}`}>
-            <div className='holder'>
+            <div >
                 <h2 className={`${classes.header}`}>Account Settings</h2>
                 <h3 className={`${classes.Subheaders}`}>ACCOUNT PREFERENCES <hr className='mt-2'></hr></h3>
                 <div className={`${classes.box}`}>
@@ -165,7 +165,7 @@ mock.users.map((user) => {
                         <h3 className={`${classes.SettingTopics} ${classes.font}`}>Local customization</h3>
                         <p className={`${classes.Subtext}`}>Specify a location to customize your recommendations and feed. Reddit does not track your precise geolocation data</p>
                     </div>
-                    <div className={`${classes.box}`}>
+                    <div >
                     <select name="country" className={`${classes.CountryDrpDwn}`} id="country">
                         <option value="0" label={Country + '....'} selected="selected" ></option>
                         <optgroup id="country-optgroup-Africa" label="Africa" className={`${classes.Blue}`}>
@@ -471,7 +471,7 @@ mock.users.map((user) => {
                     </div>
                     <div className={`${classes.SettingToggles} `}>
                     <a href="#" className={`${classes.ConnectGoogle} ${classes.font} ${secArray[0]} `} onClick={() => {setValue(1) ; GoogleHandler(1)}}><span href="#" className={`${classes.google}`}><img src={icon} className={`${classes.google}`}></img></span>Connect to Google</a>
-                    <span className={`${classes.left} ${secArray[1]}`} onClick={() => {setValue(0) ; GoogleHandler(0)}}>(<a href='#' >Disconnect</a>)</span>
+                    <span className={`${classes.left} ${secArray[1]}`} onClick={() => {setValue(0) ; GoogleHandler(0)}}>(<a  >Disconnect</a>)</span>
                     </div>
                 </div>
                 <h3 className={`${classes.Subheaders}`}>BETA TESTS <hr className='mt-2'></hr> </h3>

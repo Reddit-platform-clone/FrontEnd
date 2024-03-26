@@ -89,7 +89,6 @@
   justify-content: flex-start;
   margin-bottom: 32px;
 }
-
 .Change {
     color: #0079d3;
     text-decoration: none;
@@ -192,6 +191,7 @@
     color: #0079d3;
     align-items: flex-end;
     display: flex;
+    width: 12rem;
     justify-content: flex-right;
     text-align: right;
     border-style:none;
@@ -512,7 +512,7 @@
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   max-width: 538px;
-  min-width: 410px;
+
 }
 .SocialLinks{
   align-items: center;
@@ -568,23 +568,22 @@
   margin-right: 20%;
 }
 .hide{
-  z-index: -1; 
+  z-index: -1 !important; 
   visibility: collapse !important;
   position: fixed;
 }
 .show{
   visibility: visible;
-  z-index: 3;
+  z-index: 1;
 }
 @media screen and (min-width:390px) and (max-width:500px){
-  .tab{
-    width: 390px;
-    background-color: #000000;
+  .box{
+    width: 290px;
   }
-  .holder{
-    width: 390px;
-  }
+
 }
-.holder{
-  width: 100px;
+@media screen and(min-width:500px) and (max-width: 677){
+  .w100{
+    width: 600px;
+  }
 }
