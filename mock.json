@@ -1,0 +1,127 @@
+{
+  "communities": [
+    {
+      "id": "1",
+      "name": "miami heat",
+      "description": "basketball",
+      "image": "https://wallpapercave.com/wp/5L7rDlY.jpg",
+      "type":"public",
+      "adult":false
+    },
+    {
+      "id": "2",
+      "name": "FCB",
+      "description": "football",
+      "image": "https://th.bing.com/th/id/OIP.bVqIsOmTQf9y3KxMevE-7QHaEo?rs=1&pid=ImgDetMain",
+      "type":"public",
+      "adult":false
+    },
+    {
+      "id": "3",
+      "name": "Mclaren",
+      "description": "Formula 1",
+      "image": "https://brandlogos.net/wp-content/uploads/2022/04/mclaren_formula_1_team-logo-brandlogos.net_.png",
+      "type":"public",
+      "adult":false
+    },
+    {
+      "id": "5",
+      "name": "batman",
+      "description": "movie",
+      "image": "https://th.bing.com/th/id/R.893fce91a195f8c5cd77e60bcedc5b0f?rik=I0KTeJ5Fw2S6EA&pid=ImgRaw&r=0",
+      "type":"public",
+      "adult":false
+    },
+    {
+      "id": "4",
+      "name": "india",
+      "description": "country",
+      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0",
+      "type":"public",
+      "adult":false
+    },
+    {
+      "id": "6",
+      "name": "love",
+      "description": "topic",
+      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0",
+      "type":"public",
+      "adult":false
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "User 1",
+      "email": "user1@domain.com",
+      "pass": "123456789"
+    },
+    {
+      "id": "2",
+      "name": "User 2",
+      "email": "user2@domain.com",
+      "pass": "123456789"
+    },
+    {
+      "id": "3",
+      "name": "User 3",
+      "email": "user3@domain.com",
+      "pass": "123456789"
+    },
+    {
+      "id": "2a0a",
+      "email": "bahy@gmail.com",
+      "password": "987654321",
+      "type": "User"
+    }
+  ],
+  "posts":[
+    {
+      "id": "1",
+      "user_id": "1",
+      "community_id": "1",
+      "title":"Love", 
+      "text": "Excited for the next Miami Heat game!",
+      "media": ["https://wallpapercave.com/wp/5L7rDlY.jpg"],
+      "likes":"18",
+      "comments":"7",
+      "time":"4 hr.",
+      "reason":"Popular on Sarakel now"
+    },
+    {
+      "id": "2",
+      "user_id": "2",
+      "community_id": "2",
+      "title":"peace",
+      "text": "FCB for life! Can't wait for the next match.",
+      "media": "https://bobbyhadz.com/images/blog/react-prevent-multiple-button-clicks/thumbnail.webp",
+      "likes":"1890",
+      "comments":"56",
+      "time":"15 hr.",
+      "reason":"Promoted"
+    },
+    {
+      "id": "3",
+      "user_id": "3",
+      "community_id": "3",
+      "title":"weed",
+      "text": "Go McLaren! Let's win the next race!",
+      "media": "C:\\Users\\moham\\Desktop\\CMP-Software-Engineering-main\\FrontEnd\\sarakel\\src\\test.mp4",
+      "likes":"181",
+      "comments":"57",
+      "time":"1 day",
+      "reason":"interest in a similar community"
+    },
+    {
+      "id": "4",
+      "user_id": "4",
+      "community_id": "1",
+      "title":"Happiness", 
+      "text": "Quick context all names are fake me(19m) Amy/gf(21f) Ryan/buddy(19m) I haven't slept in 24+hrs so expect spelling mistakes. I (19m) and Amy (21f) went out to the club last night with a bunch of our friends. One of these people was my best friend that I've known for 10+ years Ryan. At the start the night was going fine until I started to notice my girlfriend becoming too intoxicated for how much she had drunk. Amy and her friend apparently took oxys earlier in the night that I wasn't aware of until I asked her why she seemed so messed up. Throughout the night I was offering and telling her she should let me bring her home. She wouldn't go so I just asked my buddy if it was fine if we just hung around her because I wanted to make sure she was okay. Ryan has always had my back before so it wasn't a surprise when he said yes. As the night progressed both Amy and Ryan (Amy especially) continued to get more drunk (I was DD so I wasn't drinking). At one point I saw them dancing on each other and when Ryan stepped away I confronted him about it. It was a little weird when he adamantly denied it even though I was the one who saw it and so I decided to brush it off for the night and talk about it tomorrow or something. I was still mad though so I went to the washroom so I could have a breather and go pee, I was less than five minutes and when I came back I saw Ryan and Amy making out. Ryan knows that I hate cheating and think it's one of the worst things you can do (past stuff he knew about) so when I saw him kissing my girlfriend I lost my cool walked over to him and pushed him off my Amy. Once his eyes were open and he saw it was me I smoked him in the jaw causing him to fall over, I immediately jumped on him and could only get one more hit in before security grabbed me. Because I was sober I just explained what was happening and they just kicked me out for the rest of the night. As I was leaving Ryan asked me if he could please come with me and explain himself, I shoved him away and told him to f*ck off but he just kept trying to come with me to the point I told security not to let him follow me or I'll kick his ass outside where they can't stop me. After this one stayed behind to make sure he wasn't coming with me and the other guard, when I got outside I immediately drove home and texted Ryan saying 'great way to end a friendship' and since haven't heard from him. I've known Ryan half my life and have been closer with him than my family for the last 5 years and now it's all gone. Anytime I think about it my chest hurts and I feel sick to my stomach, and honestly I can't even believe what happened. I also then texted Amy 'we will be talking Monday and that what you did was beyond low' she has texted back apologizing but I haven't responded. I have blocked Ryan and plan to with Amy after Monday. The whole reason went to the club was because I was laid off last Tuesday and I just wanted to go out and relax with friends but instead I also lost both my best friend and gf. I hate this whole situation and dread waking up tomorrow. I wanna know what I did wrong or what I should've done because I think Ryan definitely deserved being punched in the face and if I could redo I'd do the same thing, so AITA? Edit: will update tomorrow after I talk with Ryan and Amy. Edit: Gonna explain some stuff more now that I'm awake and see people's comments. Thank you everyone for your support it made my morning. Woke up to so much great advice and corrections I could have done. I definitely wasn't trying to make excuses for Amy but I can see how I was kinda letting her off a bit because of the pills. But overall what Ryan did hurt me a lot more so the post was more focused on that. In the post, I've worded it like me and Amy are still dating but we are not, she knows how I feel about cheating so in my mind we are already over. I'm only meeting Amy today so I can get my PS4 and hoodies and after will be blocking her as well. I don't do hard drugs and don't drink often but I smoke every night to help sleep. I don't trust Amy enough anymore to be truthful about her using so I can't speak into that a ton but from what I know and see she does drink regularly and I know she's taken m0lly a few times. I am investing already and have an emergency fund set up. The industry I work in is begging for workers and I already have an interview lined up and will continue to apply. I wasn't depressed over being laid off it was just more a stressful situation that I was easily able to fix but it was originally the reason for going out. I have a PS5 and a PS4. Update will come out after I meet Amy today and speak with Ryan on the phone. (Update 1) - Amy's best friend contacted me and confirmed she had been cheating on me with multiple different guys. Last night apparently Amy and Ryan hung out with some other people at the bar and I'm assuming more went in after, as soon as I get my PS4 I will be cutting her off and I definitely won't be contacting Ryan. If I find more info I'll update you guys before I talk with her tomorrow.",
+      "likes":"18",
+      "comments":"7",
+      "time":"4 hr.",
+      "reason":"Popular on Sarakel now"
+    }
+  ]
+}
