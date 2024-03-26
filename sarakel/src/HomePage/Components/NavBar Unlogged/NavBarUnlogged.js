@@ -1,4 +1,3 @@
-// Import necessary dependencies
 import React, { useState } from 'react';
 import './NavBarUnlogged.css';
 import logo from "./pngwing.com.png";
@@ -6,18 +5,24 @@ import './bootstrap.min.css';
 import { IoSearchOutline } from "react-icons/io5";
 import LogIn from "../LogIn/LogIn";
 
-// Your components
 
 function NavBarUnlogged({ onLogin }) {
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLogin = () => {
-    setShowLogin(true);
+    // Toggle showLogin state
+    setShowLogin(!showLogin);
+  };
+
+  // Function to handle closing the login modal
+  const handleCloseModal = () => {
+    setShowLogin(false);
   };
 
   // After successful login, call onLogin function passed from parent component
   const handleSuccessfulLogin = () => {
     onLogin();
+    setShowLogin(false); // Close the modal after successful login
   };
 
   return (
@@ -52,7 +57,7 @@ function NavBarUnlogged({ onLogin }) {
       <hr className="m-0" />
 
       {/* Render login modal if showLogin is true */}
-      {showLogin && <LogIn onSuccessfulLogin={handleSuccessfulLogin} />}
+      {showLogin && <LogIn onSuccessfulLogin={handleSuccessfulLogin} onCloseModal={handleCloseModal} />}
     </div>
   );
 }
