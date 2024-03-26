@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import jsonData from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import jsonData from '../mock.json';
 import './content.css';
 import { BiUpvote, BiDownvote } from 'react-icons/bi';
 import { FaRegCommentAlt } from 'react-icons/fa';
@@ -49,12 +49,14 @@ const Content = () => {
               ...post,
               upvoted: !post.upvoted,
               downvoted: false,
-              likes: post.upvoted ? post.likes - 1 : post.likes + 1,
+              likes: post.upvoted ? parseInt(post.likes) - 1 : parseInt(post.likes) + 1, // Parse likes to integer
             }
           : post
       )
     );
   };
+  
+  
 
   const handleDownvoteClick = (postId) => {
     setPosts((prevPosts) =>
@@ -64,7 +66,7 @@ const Content = () => {
               ...post,
               upvoted: false,
               downvoted: !post.downvoted,
-              likes: post.downvoted ? post.likes + 1 : post.likes - 1,
+              likes: post.downvoted ? parseInt(post.likes) + 1 : parseInt(post.likes) - 1,
             }
           : post
       )
