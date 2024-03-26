@@ -2,29 +2,23 @@ import React, { useState } from 'react';
 import NavBar from './Components/NavBar/NavBar'
 import SideBar from './Components/SideBar/SideBar'
 import Content from './Components/content/content'
-import NavBarUnlogged from './Components/NavBar Unlogged/NavBarUnlogged';
-import mock from '../mock.json'
+import NavBarUnlogged from 'C:\\Users\\moham\\Desktop\\sarakel\\sarakel\\src\\HomePage\\Components\\NavBar Unlogged\\NavBarUnlogged';
+
 export default function HomePage(){
-          let Logged = false
-          let NotLogged = true
-          mock.users.map((user) => {
-            if(user.LoggedIn === 1){
-                Logged =true
-                NotLogged = false
-            }
-        })
-        const[Mainnav,setMainNav] = React.useState(Logged)
-        const[OutNav,setOutNav] = React.useState(NotLogged)
-        mock.users.map((user) => {
-          if(user.LoggedIn === 1){
-            Logged =true
-            NotLogged = false
-          }
-      })
+    
+        const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+        const handleLogin = () => {
+          setIsLoggedIn(true);
+        };
+
+        const handleLogout = () => {
+            setIsLoggedIn(false);
+          };
+      
         return (
           <div>
-            {Mainnav && (<NavBar />)}
-            {OutNav && (<NavBarUnlogged />)}
+            {isLoggedIn ? <NavBar onLogout={handleLogout} /> : <NavBarUnlogged onLogin={handleLogin} />}
             <SideBar />
             <Content />
         </div>

@@ -3,12 +3,13 @@ import './SignUpTwo.css';
 import SignUpOne from "./SignUpOne.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
-import jsonData from "../../../mock.json"; 
+import jsonData from "../mock.json"; 
 import { ToastContainer, toast } from "react-toastify";
 
 function SignUpTwo() {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(true);
 
   const handleContinueClick = () => {
     if (!recaptchaVerified) {
@@ -23,6 +24,7 @@ function SignUpTwo() {
       toast.error("Username already exists!");
     } else {
       toast.success("Account created!");
+      handleCloseModal();
     }
   };
 
@@ -35,13 +37,16 @@ function SignUpTwo() {
     setRecaptchaVerified(!!value);
   };
 
+  const handleCloseModal = () => {
+    setShowSignUpModal(false);
+  };
   // If showSignUpOne is true, render SignUpOne component
   if (showSignUpOne) {
     return <SignUpOne />;
   }
 
   // Otherwise, render SignUpTwo component
-  return (
+  return showSignUpModal ? (
     <div className="signuptwo-overlay">
       <div className="signuptwo-modal">
         <div className='signuptwo-content'>
@@ -65,7 +70,12 @@ function SignUpTwo() {
         </div>
       </div>
     </div>
-  );
+  ): null;
 }
 
 export default SignUpTwo;
+
+
+
+
+
