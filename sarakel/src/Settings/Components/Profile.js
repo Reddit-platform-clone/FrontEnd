@@ -7,6 +7,7 @@ import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.jso
 
 export default function Profile(){
     const [social, setSocial] = React.useState("None");
+    const [socialURL, setsocialURL] = React.useState(null)
     const link = "https://www.redditstatic.com/desktop2x/img/social-links/" + social.toLocaleLowerCase() + ".png"
     const placeholder = " " + social + " URL"
     const [value, setValue] = React.useState(1)
@@ -63,6 +64,32 @@ export default function Profile(){
     }
     const changeAbout = event =>{
         setAboutMe(event.target.value)
+    }
+    const changeURL = event =>{
+        setsocialURL(event.target.value)
+    }
+    const addURL = () =>{
+        
+        mock.users.map((user) => {
+            if(user.LoggedIn === 1){
+                if(user.SocialLinks.length === 5){
+                    alert("Maximum 5 links")
+                    console.log(55)
+                    return
+                }else if(socialURL === null){
+                    alert("please add an url")
+                    console.log(33)
+                    return
+                }
+                else{
+                    user.SocialLinks.push({platform:social.toLowerCase() ,url: socialURL })
+                    
+                    console.log(user)
+                }
+              
+            }
+        })
+        
     }
     return(
     <div className={`${classes.tab}`}>
@@ -218,7 +245,7 @@ export default function Profile(){
                                     Add Social Links
                                 </div>
                                 <div className={`${classes.SettingToggles}`}>
-                                <a href="#" className={`${classes.Change} ${classes.font}`}>Save</a>
+                                <a href="###" className={`${classes.Change} ${classes.font}`}  onClick={() =>{setToggle(!toggle) ; addURL()}}>Save</a>
                                 </div>
                             </header>
                             
@@ -229,7 +256,7 @@ export default function Profile(){
                             </li>
                             <div className={`${classes.BlockUserDiv}`}>
                                 <div className={`${classes.w100} ${classes.InputTextDiv}`}>
-                                    <input type="text" placeholder={placeholder}  className={`${classes.w100} ${classes.Inputbox}`}></input>
+                                    <input type="text" placeholder={placeholder} onChange={changeURL}  className={`${classes.w100} ${classes.Inputbox}`}></input>
                                 </div>
                             </div>
                             </div>

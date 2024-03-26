@@ -6,17 +6,19 @@ import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
 import jsonData from "../../../mock.json";
 import { ToastContainer, toast } from "react-toastify";
+import HomePage from "../../HomePage"
 import GoogleLogin from "react-google-login";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
 
-function LogIn({ onSuccessfulLogin }) {
+function LogIn() {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
   const [showUsername, setShowUsername] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(true);
-
+ const [goHome, setGoHome] = useState(false)
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
   };
@@ -37,8 +39,15 @@ function LogIn({ onSuccessfulLogin }) {
 
     if (user) {
       toast.success("Login successful!");
+      jsonData.users.map((user) => {
+        if(user.email === username){
+          user.LoggedIn = 1
+          setGoHome(true)
+          handleCloseModal()
+        }
+      })
+      
       // Call onSuccessfulLogin function passed from parent component
-      onSuccessfulLogin();
     } else {
       toast.error("Invalid username or password.");
     }
@@ -59,6 +68,9 @@ function LogIn({ onSuccessfulLogin }) {
 
   if (showPassword) {
     return <ForgotPassword />;
+  }
+  if (goHome) {
+    return <HomePage /> ;
   }
 
   return showLoginModal ? (
@@ -101,7 +113,7 @@ function LogIn({ onSuccessfulLogin }) {
           {/* Username and password inputs */}
           <div className="input-group">
             <label htmlFor="username"></label>
-            <input id="username" type="text" placeholder="Username*" required />
+            <input id="username" type="text" placeholder="Email*" required />
 
             <label htmlFor="password"></label>
             <input id="password" type="password" placeholder="Password*" required />
@@ -136,7 +148,7 @@ function LogIn({ onSuccessfulLogin }) {
           <button className="login-btn-final" onClick={handleLogin}>
             Log In
           </button>
-
+          
           {/* Toast notification container */}
           <ToastContainer />
         </div>

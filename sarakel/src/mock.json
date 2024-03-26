@@ -4,37 +4,49 @@
       "id": "1",
       "name": "os os bin laden",
       "description": "basketball",
-      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
+      "type":"public",
+      "adult":false
     },
     {
       "id": "2",
       "name": "AC Milan",
       "description": "football",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png",
+      "type":"public",
+      "adult":false
     },
     {
       "id": "3",
       "name": "Babatunde",
       "description": "Black lives matter",
-      "image": "https://i.ibb.co/ZHBsQ7s/joe.png"
+      "image": "https://i.ibb.co/ZHBsQ7s/joe.png",
+      "type":"public",
+      "adult":false
     },
     {
       "id": "5",
       "name": "batman",
       "description": "movie",
-      "image": "https://th.bing.com/th/id/R.893fce91a195f8c5cd77e60bcedc5b0f?rik=I0KTeJ5Fw2S6EA&pid=ImgRaw&r=0"
+      "image": "https://th.bing.com/th/id/R.893fce91a195f8c5cd77e60bcedc5b0f?rik=I0KTeJ5Fw2S6EA&pid=ImgRaw&r=0",
+      "type":"public",
+      "adult":false
     },
     {
       "id": "4",
       "name": "india",
       "description": "country",
-      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0"
+      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0",
+      "type":"public",
+      "adult":false
     },
     {
       "id": "6",
       "name": "love",
       "description": "topic",
-      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0"
+      "image": "https://th.bing.com/th/id/R.607b9f69862d76af04b474113c0c7ff5?rik=lfnOsbv7mhDNbQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fbc%2fFlag_of_India.png&ehk=Pk5lH0C%2fhstFahWfb15vLjtrJb3DslIU4%2fAQneo9IIM%3d&risl=&pid=ImgRaw&r=0",
+      "type":"public",
+      "adult":false
     }
   ],
   "users": [
@@ -43,7 +55,7 @@
       "name": "User 1",
       "email": "user1@domain.com",
       "pass": "123456789",
-      "LoggedIn": 1,
+      "LoggedIn": 0,
       "gender": "select",
       "google": 1,
       "Country":"Choose a Country...",
@@ -81,11 +93,12 @@
        "Posts":false,
        "EmailNewFollower":true,
        "EmailChatReq":false,
-       "Unsubscribe":false
+       "Unsubscribe":false,
+       "SocialLinks":[{"platform" :"" ,"url":""}]
     },
     {
       "id": "2",
-      "name": "User 2",
+      "name": "User2",
       "email": "user2@domain.com",
       "pass": "123456789",
       "LoggedIn": 0,
@@ -126,7 +139,8 @@
        "Posts":false,
        "EmailNewFollower":false,
        "EmailChatReq":false,
-       "Unsubscribe":false
+       "Unsubscribe":false,
+       "SocialLinks":{"platform" :"" ,"url":""}
     },
     {
       "id": "3",
@@ -171,7 +185,8 @@
        "Posts":false,
        "EmailNewFollower":false,
        "EmailChatReq":false,
-       "Unsubscribe":false
+       "Unsubscribe":false,
+       "SocialLinks":{"platform" :"" ,"url":""}
     },
     {
       "id": "2a0a",
@@ -216,7 +231,8 @@
         "Posts":false,
         "EmailNewFollower":false,
         "EmailChatReq":false,
-        "Unsubscribe":false
+        "Unsubscribe":false,
+        "SocialLinks":{"platform" :"" ,"url":""}
     }
   ],
   "posts":[
