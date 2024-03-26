@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import jsonData from '../mock.json';
+import jsonData from '../../../mock.json';
 import './content.css';
 import { BiUpvote, BiDownvote } from 'react-icons/bi';
 import { FaRegCommentAlt } from 'react-icons/fa';

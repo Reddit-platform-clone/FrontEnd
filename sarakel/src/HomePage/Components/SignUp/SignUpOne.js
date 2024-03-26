@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignUpTwo from "./SignUpTwo.js";
-import jsonData from "../mock.json";
+import jsonData from "../../../mock.json";
 import GoogleLogin from "react-google-login";
 import LogIn from "../LogIn/LogIn.js";
 

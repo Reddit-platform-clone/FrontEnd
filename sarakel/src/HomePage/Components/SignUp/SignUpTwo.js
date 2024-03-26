@@ -3,7 +3,7 @@ import './SignUpTwo.css';
 import SignUpOne from "./SignUpOne.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
-import jsonData from "../mock.json"; 
+import jsonData from "../../../mock.json"; 
 import { ToastContainer, toast } from "react-toastify";
 
 function SignUpTwo() {

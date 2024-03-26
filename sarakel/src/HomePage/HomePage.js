@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import NavBar from './Components/NavBar/NavBar'
 import SideBar from './Components/SideBar/SideBar'
 import Content from './Components/content/content'
-import NavBarUnlogged from 'C:\\Users\\moham\\Desktop\\sarakel\\sarakel\\src\\HomePage\\Components\\NavBar Unlogged\\NavBarUnlogged';
+import NavBarUnlogged from './Components/NavBar Unlogged/NavBarUnlogged';
 
 export default function HomePage(){
     
-        const [isLoggedIn, setIsLoggedIn] = useState(false);
+        // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-        const handleLogin = () => {
-          setIsLoggedIn(true);
-        };
+        // const handleLogin = () => {
+        //   setIsLoggedIn(true);
+        // };
 
-        const handleLogout = () => {
-            setIsLoggedIn(false);
-          };
+        // const handleLogout = () => {
+        //     setIsLoggedIn(false);
+        //   };
       
         return (
           <div>
-            {isLoggedIn ? <NavBar onLogout={handleLogout} /> : <NavBarUnlogged onLogin={handleLogin} />}
+            {/* {isLoggedIn ? <NavBar onLogout={handleLogout} /> : <NavBarUnlogged onLogin={handleLogin} />} */}
+            <NavBar />
             <SideBar />
             <Content />
         </div>
