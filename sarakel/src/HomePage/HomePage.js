@@ -11,10 +11,14 @@ export default function HomePage(){
         const handleLogin = () => {
           setIsLoggedIn(true);
         };
+
+        const handleLogout = () => {
+            setIsLoggedIn(false);
+          };
       
         return (
           <div>
-            {isLoggedIn ? <NavBar /> : <NavBarUnlogged onLogin={handleLogin} />}
+            {isLoggedIn ? <NavBar onLogout={handleLogout} /> : <NavBarUnlogged onLogin={handleLogin} />}
             <SideBar />
             <Content />
         </div>

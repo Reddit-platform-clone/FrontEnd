@@ -1,4 +1,3 @@
-// Import necessary dependencies
 import React, { useState } from "react";
 import "./LogIn.css";
 import { IoMdClose } from "react-icons/io";
