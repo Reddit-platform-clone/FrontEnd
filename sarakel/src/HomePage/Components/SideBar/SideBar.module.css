@@ -86,3 +86,11 @@ span {
 .rotate{
     transform: rotate(180deg);
 }
+
+
+@media screen and (max-width: 890px) {
+    .sidebar{
+        display: none;
+    }
+  }
+  

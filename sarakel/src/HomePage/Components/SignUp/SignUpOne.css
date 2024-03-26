@@ -118,3 +118,22 @@
 .login-privcy-plcy,.login-user-agremnt,.login-signup-text,.login-forgot-password,.login-forgot-username{
     text-decoration: none;
 }
+@media only screen and (max-width: 768px) {
+  .signup-content {
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+
+  .signup-modal,.signUpOne-google {
+      max-width: 90%;
+      max-height: 70%;
+  }
+
+  #signup-email {
+      width: 90%;
+  }
+
+  .signup-cntnu-btn {
+      width: 90%;
+  }
+}

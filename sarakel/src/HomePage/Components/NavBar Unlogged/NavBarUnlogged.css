@@ -145,52 +145,6 @@ input[type="text"]:focus {
   transition: visibility 0s, opacity 0.3s ease;
 }
 
-/* Show tooltip on hover
-.right-login-btn:hover::after {
-  visibility: visible;
-  opacity: 1;
-} */
-
-/* 
-.hamburger-menu {
-  font-size: 28px;
-  cursor: pointer;
-  margin-right: 20px; 
-  position: relative;
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  }
-
-  .hamburger-menu:hover:hover{
-    background-color: rgba(128, 128, 128, 1);
-  }
-
-  .hamburger-menu::after {
-    content: attr(data-title); 
-    position: absolute;
-    top: 100%; 
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 12px;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.3s ease;
-  }
-  
-  .hamburger-menu:hover::after {
-    visibility: visible;
-    opacity: 1;
-  } */
-
 
   #search-icon {
     font-size: 20px; /* Increase the size of the search icon */
@@ -224,3 +178,10 @@ input[type="text"]:focus {
     font-size: 25px; /* Increase the size of the close icon */
   }
   
+
+  @media screen and (max-width: 560px) {
+    .container-fluid {
+      height: 40%;
+      width: 40%;
+    }
+  }

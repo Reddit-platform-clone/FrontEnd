@@ -84,3 +84,21 @@
 .signuptwo-recaptcha{
   margin-top: 30px;
 }
+@media only screen and (max-width: 768px) {
+  .signuptwo-content {
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+
+  .signuptwo-modal {
+      max-width: 90%;
+      max-height: 70%;
+  }
+
+  #signuptwo-username,
+  #signuptwo-password,
+  .signuptwo-cntnu-btn {
+      width: 90%;
+      margin-top: 10px;
+  }
+}

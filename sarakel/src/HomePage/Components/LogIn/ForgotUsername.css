@@ -96,3 +96,23 @@
     text-decoration: none;
 }
 
+@media only screen and (max-width: 768px) {
+  .forget-username-content {
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+
+  .forget-username-modal {
+      max-width: 90%;
+      max-height: 70%;
+  }
+
+  #forget-username-email,
+  .forget-username-btn-final {
+      width: 90%;
+  }
+
+  .forget-username-btn-final{
+    margin-top: 50px;
+  }
+}
