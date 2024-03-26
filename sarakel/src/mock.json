@@ -55,10 +55,10 @@
       "name": "User 1",
       "email": "user1@domain.com",
       "pass": "123456789",
-      "LoggedIn": 1,
+      "LoggedIn": 0,
       "gender": "select",
       "google": 1,
-      "Country":"Choose a Country...",
+      "Country":"Choose",
       "NSFW":true,
       "AllowFollow":false,
       "ContentVisibility":false,
@@ -94,7 +94,9 @@
        "EmailNewFollower":true,
        "EmailChatReq":false,
        "Unsubscribe":false,
-       "SocialLinks":[{"platform" :"" ,"url":""}]
+       "SocialLinks":[],
+       "BlockedList":[],
+       "MuteList":[]
     },
     {
       "id": "2",
@@ -104,7 +106,7 @@
       "LoggedIn": 0,
       "gender": "select",
       "google": 0,
-      "Country":"Choose a Country...",
+      "Country":"Choose",
       "NSFW":false,
       "AllowFollow":false,
       "ContentVisibility":false,
@@ -140,7 +142,9 @@
        "EmailNewFollower":false,
        "EmailChatReq":false,
        "Unsubscribe":false,
-       "SocialLinks":{"platform" :"" ,"url":""}
+       "SocialLinks":[],
+       "BlockedList":[],
+       "MuteList":[]
     },
     {
       "id": "3",
@@ -150,7 +154,7 @@
       "LoggedIn": 0,
       "gender": "select",
       "google": 0,
-      "Country":"Choose a Country...",
+      "Country":"Choose",
       "NSFW":false,
       "AllowFollow":false,
       "ContentVisibility":false,
@@ -186,17 +190,20 @@
        "EmailNewFollower":false,
        "EmailChatReq":false,
        "Unsubscribe":false,
-       "SocialLinks":{"platform" :"" ,"url":""}
+       "SocialLinks":[],
+       "BlockedList":[],
+       "MuteList":[]
     },
     {
       "id": "2a0a",
+      "name":"khaled",
       "email": "bahy@gmail.com",
       "password": "987654321",
       "type": "User",
       "LoggedIn":0,
       "gender": "select",
       "google": 0,
-      "Country":"Choose a Country...",
+      "Country":"Choose",
       "NSFW":false,
       "AllowFollow":false,
       "ContentVisibility":false,
@@ -232,7 +239,9 @@
         "EmailNewFollower":false,
         "EmailChatReq":false,
         "Unsubscribe":false,
-        "SocialLinks":{"platform" :"" ,"url":""}
+        "SocialLinks":[],
+        "BlockedList":[],
+        "MuteList":[]
     }
   ],
   "posts":[

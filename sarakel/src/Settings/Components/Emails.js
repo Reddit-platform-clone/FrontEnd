@@ -31,7 +31,7 @@ export default function Emails(){
     }
     return(
         <div className={`${style.tab}`}>
-        <div >
+        <div className={`${style.w100}`}>
             <h2 className={`${style.header}`}>Manage Emails</h2>
             <h3 className={`${style.Subheaders}`}>MESSAGES<hr className='mt-2'></hr></h3>
             <div className={`${style.box}`}>

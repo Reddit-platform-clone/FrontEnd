@@ -3,7 +3,7 @@ import './SignUpTwo.css';
 import SignUpOne from "./SignUpOne.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
-import jsonData from "../mock.json"; 
+import jsonData from "../../../mock.json"; 
 import { ToastContainer, toast } from "react-toastify";
 
 function SignUpTwo() {
@@ -18,12 +18,59 @@ function SignUpTwo() {
     }
     
     const username = document.getElementById("signuptwo-username").value;
+    const pass = document.getElementById("signuptwo-password").value
     const user = jsonData.users.find(user => user.name === username);
 
     if (user) {
       toast.error("Username already exists!");
     } else {
       toast.success("Account created!");
+      jsonData.users.push({id: jsonData.users.length + 1,
+      name: username,
+      email: "user1@domain.com",
+      pass: pass,
+      LoggedIn: 1,
+      gender: "select",
+      google: 1,
+      Country:"Choose",
+      NSFW:true,
+      AllowFollow:false,
+      ContentVisibility:false,
+      CommunityVisibility: true,
+      DisplayName:"none",
+      AboutMe:"None",
+      SearchResault:false,
+      Personalized1:false,
+      Personalized2: false,
+      Alcohol : false,
+      Dating:false,
+      Gambling:true,
+      Pregnancy:false,
+      WeightLoss:true,
+      matureContent:false,
+      Blur:false,
+      recommendations:false,
+      Autoplay:false,
+      Reduce:false,
+      CommTheme:true,
+      CommSort: "Rising",
+      remember1:false,
+      ContentView:"Compact",
+      remember2:false,
+      NewTab:false,
+      Mentions:false,
+       Comments: false,
+       UpvotePost:false,
+       UpvoteComments:false,
+       Replies:false,
+       NewFollowers:false,
+       Posts:false,
+       EmailNewFollower:true,
+       EmailChatReq:false,
+       Unsubscribe:false,
+       SocialLinks:[],
+      BlockedList:[],
+       MuteList:[]})
       handleCloseModal();
     }
   };

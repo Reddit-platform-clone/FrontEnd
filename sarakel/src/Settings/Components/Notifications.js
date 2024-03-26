@@ -44,8 +44,8 @@ export default function Notifications(){
 
     return(
         <div className={`${classes.tab}`}>
-        <div >
-            <h2 className={`${classes.header}`}>Safety & Privacy</h2>
+        <div className={`${classes.w100}`}>
+            <h2 className={`${classes.header}`}>Notifications</h2>
             <h3 className={`${classes.Subheaders}`}>MESSAGES<hr className='mt-2'></hr></h3>
             <div className={`${classes.box}`}>
                 <div>

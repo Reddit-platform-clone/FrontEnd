@@ -7,10 +7,17 @@ import { FaPlus } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import mock from '../../../mock.json'
 
 function NavBar({ onLogout }) {
   const handleLogout = () => {
     // Call the onLogout callback function passed from the parent component
+    mock.users.map((user) => {
+      if(user.LoggedIn === 1){
+          user.LoggedIn = 0
+      }
+  })
+  console.log(mock.users)
     onLogout();
   };
 

@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
 import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
-import jsonData from "../mock.json";
+import jsonData from "../../../mock.json";
 import { ToastContainer, toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,6 +38,11 @@ function LogIn({ onSuccessfulLogin }) {
     if (user) {
       toast.success("Login successful!");
       // Call onSuccessfulLogin function passed from parent component
+      jsonData.users.map((user) => {
+        if(user.email=== username){
+          user.LoggedIn = 0
+        }
+    })
       onSuccessfulLogin();
     } else {
       toast.error("Invalid username or password.");

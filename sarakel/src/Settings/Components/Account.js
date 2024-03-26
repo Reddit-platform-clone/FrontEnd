@@ -99,7 +99,7 @@ mock.users.map((user) => {
     
     return(
         <div className={`${classes.tab}`}>
-            <div >
+            <div className={`${classes.w100}`}>
                 <h2 className={`${classes.header}`}>Account Settings</h2>
                 <h3 className={`${classes.Subheaders}`}>ACCOUNT PREFERENCES <hr className='mt-2'></hr></h3>
                 <div className={`${classes.box}`}>

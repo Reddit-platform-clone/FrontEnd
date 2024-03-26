@@ -191,7 +191,7 @@
     color: #0079d3;
     align-items: flex-end;
     display: flex;
-    width: 12rem;
+    width: 9rem;
     justify-content: flex-right;
     text-align: right;
     border-style:none;
@@ -561,7 +561,7 @@
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   max-width: 538px;
-  min-width: 410px;
+  width: 25rem;
 }
 .BackArrow{
   width: 20px;
@@ -582,8 +582,21 @@
   }
 
 }
-@media screen and(min-width:500px) and (max-width: 677){
+@media screen and(min-width:500px) and (max-width: 677px){
   .w100{
     width: 600px;
+  }
+}
+@media screen and (min-width:497px) and (max-width:770px)  {
+  .SocialInput{
+    width: 18rem;
+  }
+}
+@media screen and (min-width:426px) and (max-width:496px)  {
+  .SocialInput{
+    width: 15rem;
+  }
+  .w100{
+    width: 250px;
   }
 }

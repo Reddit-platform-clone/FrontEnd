@@ -2,6 +2,7 @@ import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import { ToastContainer, toast } from "react-toastify";
 
 export default function SafetyPrivacy() {
     let UserId
@@ -13,6 +14,7 @@ export default function SafetyPrivacy() {
     let Gambling
     let Pregnancy
     let Weight
+    let BlockArray = []
     mock.users.map((user) => {
         if(user.LoggedIn === 1){
             UserId = user.id
@@ -24,6 +26,7 @@ export default function SafetyPrivacy() {
             Gambling = user.Gambling
             Pregnancy = user.Pregnancy
             Weight = user.WeightLoss
+            BlockArray = user.BlockedList
         }
     })
     const [search,setSearch] = React.useState(searchResault)
@@ -34,6 +37,8 @@ export default function SafetyPrivacy() {
     const [gamble, setGambling] = React.useState(Gambling)
     const[pregnancy, setPregnancy] = React.useState(Pregnancy)
     const[weight,setWeight ] = React.useState(Weight)
+    const [block, setBlock] = React.useState(null)
+    const [mute, setMute] = React.useState(null)
     mock.users.map((user) => {
         if(user.LoggedIn === 1){
             user.SearchResault = search
@@ -47,6 +52,62 @@ export default function SafetyPrivacy() {
             return
         }
     })
+    const addBlocked = () =>{
+        if(block === null){
+            alert("Please enter a user first")
+            return
+        }
+        mock.users.map((user)=>
+        {   
+            if(user.name === block){
+                console.log("mama shebshebha da3")
+                mock.users.map((item) =>{
+                    if(item.LoggedIn === 1){
+                        if(item.BlockedList.find(person => person === block)){
+                            alert("Use already blocked")
+                        }else{
+                            console.log("marwan mousaa bta3i ana")
+                        item.BlockedList.push(block)
+                        console.log(item)
+                        return
+                        }
+                        
+                    }
+                })
+            }
+        })
+    }
+    const changeBlock = event =>{
+        setBlock(event.target.value)
+    }
+    const addCommunity = () =>{
+        if(mute === null){
+            alert("Please enter a community first")
+            return
+        }
+        mock.communities.map((group)=>
+        {   
+            if(group.name === mute){
+                console.log("mama shebshebha da3")
+                mock.users.map((item) =>{
+                    if(item.LoggedIn === 1){
+                        if(item.MuteList.find(person => person === mute)){
+                            alert("Community already been muted")
+                        }else{
+                            console.log("marwan mousaa bta3i ana")
+                        item.MuteList.push(mute)
+                        return
+                        }
+                        
+                    }
+                })
+            }
+        })
+
+    }
+    const changeCommunity = event =>{
+        setMute(event.target.value)
+    }
     return(
         <div className={`${classes.tab}`}>
             <div className=''>
@@ -60,13 +121,14 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.BlockUserDiv}`}>
                         <div className={`${classes.w80} ${classes.InputTextDiv}`}>
-                            <input type="text" placeholder=' Block New User'  className={`${classes.w100} ${classes.Inputbox}`}></input>
+                            <input type="text" placeholder=' Block New User' onChange={changeBlock} className={`${classes.w100} ${classes.Inputbox}`}></input>
                         </div>
                         <div className={`${classes.SettingToggles}`}>
-                            <button className={`${classes.Add}`}>ADD</button>
+                            <button className={`${classes.Add}`} onClick={()=>{addBlocked()}}>ADD</button>
                         </div>
                     </div>
                 </div>
+
                 <div className={`${classes.mb}`} >
                     <div  >
                         <h3 className={`${classes.SettingTopics} ${classes.font}`}>Communities You've Muted</h3>
@@ -74,11 +136,11 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.BlockUserDiv}`}>
                         <div className={`${classes.w80} ${classes.InputTextDiv}`}>
-                            <input type="text" placeholder=' MUTE NEW COMMUNITY'  className={`${classes.w100} ${classes.Inputbox}`}></input>
+                            <input type="text" placeholder=' MUTE NEW COMMUNITY' onChange={changeCommunity} className={`${classes.w100} ${classes.Inputbox}`}></input>
                             
                         </div>
                         <div className={`${classes.SettingToggles}`}>
-                            <button className={`${classes.Add}`}>ADD</button>
+                            <button className={`${classes.Add}`} onClick={()=>{addCommunity()}}>ADD</button>
                         </div>
                     </div>
                 </div>
