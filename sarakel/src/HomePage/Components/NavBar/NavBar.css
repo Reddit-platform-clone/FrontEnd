@@ -1,16 +1,11 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  border: rgb(184, 19, 184);
-  border-width: 20px;
+.container-fluid{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 
 .navbar {
-  position: sticky; /* Make the navbar fixed on the screen */
-  top: 0; /* Position it at the top of the screen */
-  width: 100%; /* Take up the full width of the screen */
-  z-index: 1000; /* Ensure it appears above other content */
-  background-color: #ffffff;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,13 +13,9 @@ body {
   border-bottom: rgb(190, 22, 190);
   box-shadow: rgb(153, 30, 153);
   border-width: 10px;
-}
-.NavContainer{
-  position: fixed;
-  top: 0;
-  z-index: 1001;
   width: 100%;
 }
+
 
 .left, .right {
   display: flex;

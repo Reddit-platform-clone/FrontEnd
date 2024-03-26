@@ -6,15 +6,14 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
-import { TbCirclesRelation } from "react-icons/tb";
-import { Outlet, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 
 
 
 function NavBar() {
   return (
       
-    <nav className='NavContainer'>
+    
       
     <div className='container-fluid'>
       <div className="navbar sticky-top">
@@ -62,7 +61,7 @@ function NavBar() {
       </div>
       <hr className="m-0" />
     </div>
-    </nav>
+    
   );
 }
 
