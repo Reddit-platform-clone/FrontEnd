@@ -20,7 +20,7 @@
     border-radius: 10px;
     padding: 50px;
     width: 640px;
-    height: 680px;
+    height: 690px;
     transition: box-shadow 0.3s ease;
     background-color: transparent;
     margin-top: 20px; /* Adjust margin between cards */
@@ -294,3 +294,62 @@
     background-color: rgba(128, 128, 128, 0.7);
 
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+      max-width: 100%;
+      margin-left: 0;
+      margin-top: 60px; 
+    }
+  
+    .post-list {
+      margin-top: -50px; 
+    }
+  
+    .post-card {
+      width: 100%; 
+      padding: 20px; 
+      height: auto; 
+    }
+  
+    .post-card.no-media {
+      height: auto; 
+      width: 100%;
+    }
+  
+    .post-image {
+      width: 100%; 
+      height: auto; 
+    }
+  
+    .post-video {
+      width: 100%; 
+      height: auto; 
+    }
+  
+    .post-info {
+      margin-top: -20px; 
+      font-size: 40%;
+
+    }
+  
+    .interaction {
+      margin-bottom: 10px; 
+    }
+  
+    .left-post,
+    .middle-post,
+    .right-post {
+      margin-right: 10px; 
+    }
+  
+    .post-header-left {
+      margin-bottom: -15px; 
+    }
+  
+    .hidden-post-card {
+      height: auto; 
+      margin-top: 10px; 
+    }
+  }
+  
