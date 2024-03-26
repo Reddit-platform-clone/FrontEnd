@@ -26,7 +26,7 @@ export default function Settings() {
     return(
         <div>
             <NavBar />
-            <div className='container'>
+            <div className='tabs container'>
                 <h3 className={`${style.SettingHeader}`}>User settings</h3>
                 <div className="container m-0" >
                     <a className={`${style.li}`} ><button type='button' className={actArray[0]} onClick={()=>{setValue(0)}}>Account</button></a>

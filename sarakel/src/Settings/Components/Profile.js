@@ -44,7 +44,7 @@ export default function Profile(){
                 user.CommunityVisibility = communityvisibility
                 user.DisplayName = DisplayName
                 user.AboutMe = aboutMe
-                console.log(user)
+                
                 return
             }
         })

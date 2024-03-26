@@ -1,10 +1,105 @@
 import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
-import icon from './google-logo-9808.png'
-import can from './red-trash-can-icon.png'
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 
 export default function FeedSettings() {
+    let UserId
+    let matureContent
+    let Blur
+    let Recommendations
+    let Autoplay
+    let Reduce
+    let CommTheme
+    let CommSort
+    let Remember1
+    let ContentView
+    let Remember2
+    let NewTab
+    let New
+    let Hot
+    let Top
+    let Rising
+    let Card
+    let Classic
+    let Compact
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            UserId = user.id
+            matureContent = user.matureContent
+            Blur = user.Blur
+            Recommendations = user.recommendations
+            Autoplay = user.Autoplay
+            Reduce = user.Reduce
+            CommTheme = user.CommTheme
+            CommSort = user.CommSort
+            Remember1 = user.remember1
+            ContentView = user.ContentView
+            Remember2 = user.remember2
+            NewTab = user.NewTab
+        }
+    })
+    const [mature, setMature] = React.useState(matureContent)
+    const [blur,setBlur] = React.useState(Blur)
+    const [recommendations, setRecommendation] = React.useState(Recommendations)
+    const [autoplay, setAutoplay] = React.useState(Autoplay)
+    const [reduce, setReduce] = React.useState(Reduce)
+    const [commtheme,setCommTheme] = React.useState(CommTheme)
+    const [commsort, setCommSort] = React.useState(CommSort)
+    const [remember1, setRemember1] = React.useState(Remember1)
+    const [contentview, setContentView ] = React.useState(ContentView)
+    const [remember2, setRemember2] = React.useState(Remember2)
+    const[newtab, setNewTab] = React.useState(NewTab)
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            user.matureContent = mature
+           user.Blur = blur 
+            user.recommendations = recommendations
+           user.Autoplay = autoplay 
+           user.Reduce =  reduce  
+           user.CommTheme = commtheme  
+           user.CommSort = commsort  
+           user.remember1 = remember1  
+           user.ContentView = contentview 
+           user.remember2 = remember2  
+           user.NewTab = newtab 
+        }
+    })
+    if(commsort === "New"){
+        New = true
+    }else{
+        New = false
+    }
+    if(commsort === "Hot"){
+        Hot = true
+    }else{
+        Hot = false
+    }
+    if(commsort === "Top"){
+        Top = true
+    }else{
+        Top = false
+    }
+    if(commsort === "Rising"){
+        Rising= true
+    }else{
+        Rising = false
+    }
+    if(contentview === "Card"){
+        Card= true
+    }else{
+        Card = false
+    }
+    if(contentview === "Compact"){
+        Compact = true
+    }else{
+        Compact = false
+    }
+    if(contentview === "Classic"){
+        Classic = true
+    }else{
+        Classic = false
+    }
     return(
         <div className={`${classes.tab}`}>
             <div className=''>
@@ -17,7 +112,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={matureContent} onClick={() => {setMature(!matureContent)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -29,7 +124,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={blur} onClick={() => {setBlur(!blur)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -41,7 +136,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={recommendations} onClick={() => {setRecommendation(!recommendations)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -53,7 +148,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={autoplay} onClick={() => {setAutoplay(!autoplay)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -65,7 +160,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={autoplay} onClick={() => {setReduce(!reduce)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -77,7 +172,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={commtheme} onClick={() => {setCommTheme(!commtheme)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -88,11 +183,11 @@ export default function FeedSettings() {
                     <p className={`${classes.Subtext} ${classes.font}`}>Choose how you would like content organized in communities you visit. This will not affect global feeds such as Home, or Popular.</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
-                        <select className={`${classes.ContentView} ${classes.Blue}`} selected="selected">
-                            <option className={`${classes.ContentViewOptions}`}>Hot</option> 
-                            <option className={`${classes.ContentViewOptions}`}>Top</option> 
-                            <option className={`${classes.ContentViewOptions}`}>New</option> 
-                            <option className={`${classes.ContentViewOptions}`}>Rising</option> 
+                        <select className={`${classes.ContentView} ${classes.Blue}`} >
+                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("Hot")}} selected={Hot}>Hot</option> 
+                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("Top")}} selected={Top}>Top</option> 
+                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("New")}} selected={New}>New</option> 
+                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("Rising")}} selected={Rising}>Rising</option> 
                         </select>
                     </div>
                 </div>
@@ -103,7 +198,6 @@ export default function FeedSettings() {
                         </div>
                         <div className={`${classes.SettingToggles}`}>
                             <label className={`${classes.switch}`}>
-                                <a type="checkbox" />
                                 <span className={`${classes.slider} ${classes.round}`}></span>
                             </label>
                         </div>
@@ -115,9 +209,9 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <select className={`${classes.ContentView} ${classes.Blue}`} selected="selected">
-                            <option className={`${classes.ContentViewOptions}`}>Card</option> 
-                            <option className={`${classes.ContentViewOptions}`}>Classic</option> 
-                            <option className={`${classes.ContentViewOptions}`}>Compact</option> 
+                            <option className={`${classes.ContentViewOptions}`}nClick={() => {setContentView("Card")}} selected={Card}>Card</option> 
+                            <option className={`${classes.ContentViewOptions}`} nClick={() => {setCommSort("Compact")}} selected={Classic}>Classic</option> 
+                            <option className={`${classes.ContentViewOptions}`}nClick={() => {setCommSort("Classic")}} selected={Compact}>Compact</option> 
                         </select>
                     </div>
                 </div>
@@ -140,7 +234,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" nClick={() => {setNewTab(!newtab)}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>

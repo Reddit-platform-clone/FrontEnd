@@ -1,8 +1,46 @@
 import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
-
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Notifications(){
+    let userId
+    let Mentions
+    let Comments
+    let UpvotePost
+    let UpvoteComments
+    let Replies
+    let NewFollowers
+    let Posts
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            userId = user.id
+            Mentions = user.Mentions
+            Comments = user.Comments
+            UpvotePost = user.UpvotePost
+            UpvoteComments = user.UpvoteComments
+            Replies = user.Replies
+            NewFollowers = user.NewFollowers
+            Posts = user.Posts
+        }
+    })  
+    const [mention ,setMention] = React.useState(Mentions)
+    const [comments, setComments] = React.useState(Comments)
+    const[upvotepost, setUpvotePost] = React.useState(UpvotePost)
+    const[upvotecomment, setUpvotecomment] = React.useState(UpvoteComments)
+    const [replies, setReplies] = React.useState(Replies)
+    const [newfollowers, setNewFollow] = React.useState(NewFollowers)
+    const [post, setPosts] = React.useState(Posts)
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+          user.Mentions  =  mention
+           user.Comments  = comments
+           user.UpvotePost  = upvotepost
+             user.UpvoteComments = upvotecomment
+            user.Replies = replies
+           user.NewFollowers =  newfollowers
+             user.Posts= post
+        }
+    }) 
 
     return(
         <div className={`${classes.tab}`}>
@@ -49,7 +87,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={mention} onClick={() => {setMention(!mention)}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -60,7 +98,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={comments} onClick={() => {setComments(!comments)}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -71,7 +109,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={upvotepost} onClick={() => {setUpvotePost(!UpvotePost)}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -82,7 +120,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={upvotecomment} onClick={() => {setUpvotecomment(!upvotecomment)}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -94,7 +132,7 @@ export default function Notifications(){
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
                         <input type="checkbox" />
-                        <span className={`${classes.slider} ${classes.round}`}></span>
+                        <span className={`${classes.slider} ${classes.round}`} checked={replies} onClick={() => {setReplies(!replies)}}></span>
                     </label>
                 </div>
             </div>           
@@ -126,7 +164,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={newfollowers} onClick={() => {setNewFollow(!newfollowers)}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -148,7 +186,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={post} onClick={() => {setPosts(!post)}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>

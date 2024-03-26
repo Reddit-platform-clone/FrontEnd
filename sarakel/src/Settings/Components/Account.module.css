@@ -1,5 +1,5 @@
 .tab{
-    max-width: 55%;
+    max-width: 60%;
     margin: 0 ;
     display: flex;
     padding: 0 16px;
@@ -575,4 +575,16 @@
 .show{
   visibility: visible;
   z-index: 3;
+}
+@media screen and (min-width:390px) and (max-width:500px){
+  .tab{
+    width: 390px;
+    background-color: #000000;
+  }
+  .holder{
+    width: 390px;
+  }
+}
+.holder{
+  width: 100px;
 }

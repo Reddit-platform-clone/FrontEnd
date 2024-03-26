@@ -1,8 +1,34 @@
 import React from 'react';
 import './bootstrap.min.css';
 import style from './Account.module.css' 
-
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Emails(){
+    let userId
+    let NewFollowers
+    let ChatRequest
+    let Unsubscribe
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+            userId = user.id
+            NewFollowers = user.EmailNewFollower
+            ChatRequest = user.EmailChatReq
+            Unsubscribe = user.Unsubscribe
+        }
+    }) 
+    const [newfollowers, setNewFollow] = React.useState(NewFollowers)
+    const [chatreq, setChatReq] = React.useState(ChatRequest)
+    const[unsub, setUnsub] = React.useState(Unsubscribe)
+    mock.users.map((user) => {
+        if(user.LoggedIn === 1){
+           user.EmailNewFollower =  newfollowers
+           user.EmailChatReq = chatreq
+           user.Unsubscribe = unsub
+        }
+    }) 
+    const setAllFalse = () =>{
+        setNewFollow(false)
+        setChatReq(false)
+    }
     return(
         <div className={`${style.tab}`}>
         <div className={`${style.w100}`}>
@@ -25,7 +51,7 @@ export default function Emails(){
                 </div>
                 <div className={`${style.SettingToggles}`}>
                     <label className={`${style.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={chatreq} onClick={() => {setChatReq(!chatreq); setUnsub(false)}}/>
                         <span className={`${style.slider} ${style.round}`}></span>
                     </label>
                 </div>
@@ -103,7 +129,7 @@ export default function Emails(){
                 </div>
                 <div className={`${style.SettingToggles} ${style.mb}`}>
                     <label className={`${style.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={newfollowers} onClick={() => {setNewFollow(!newfollowers);setUnsub(false)}}/>
                         <span className={`${style.slider} ${style.round}`}></span>
                     </label>
                 </div>
@@ -127,7 +153,7 @@ export default function Emails(){
                 </div>
                 <div className={`${style.SettingToggles}`}>
                     <label className={`${style.switch}`}>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={unsub} onClick={() => {setUnsub(!unsub); setAllFalse()}}/>
                         <span className={`${style.slider} ${style.round}`}></span>
                     </label>
                 </div>

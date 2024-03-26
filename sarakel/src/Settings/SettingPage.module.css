@@ -41,3 +41,6 @@
   visibility: visible;
   z-index: 3;
 }
+.tabs{
+  width: 100%;
+}
