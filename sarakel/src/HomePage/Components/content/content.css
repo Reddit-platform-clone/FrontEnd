@@ -3,7 +3,94 @@
     margin-left: 25px;
     margin-top: 90px;
 }
+.choice-above-posts {
+    padding: 50px;
+    background-color: transparent;
+    margin-top: -100px;
+    margin-left: 320px;
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 15px;
+  }
+  
 
+  .content-sort-type {
+    position: relative; /* Add this line */
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 70px;
+    height: 28px;
+  }
+  
+  .content-view-type {
+    position: relative; /* Add this line */
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 50px;
+    height: 24px;
+  }
+  
+  .content-sort-type:hover,.content-view-type:hover {
+    background-color: rgba(128, 128, 128, 0.4); 
+    border-radius: 50px;
+}
+  .content-sort-type p {
+    margin: 0;
+  }
+
+
+  .content-drop-down-list{
+    border: none;
+    background-color: transparent;
+  }
+  
+  .options-content-sort-drop-down-list {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 60px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 15px;
+    top: calc(100% + 5px); /* Position dropdown below its parent button */
+  }
+  
+  .options-content-view-drop-down-list {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 15px;
+    top: calc(100% + 5px); /* Position dropdown below its parent button */
+  }
+  
+  
+
+.options-content-sort-drop-down-list button ,.options-content-view-drop-down-list button{
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-decoration: none;
+    border: none;
+    background: none;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.options-content-sort-drop-down-list button:hover ,.options-content-view-drop-down-list button:hover{
+    background-color: #ddd;
+}
+
+
+
+   
+  
 .post-list {
     display: flex;
     flex-direction: column;
@@ -13,7 +100,6 @@
     align-items: center;
     width: 100%;
 }
-
 .post-card {
     position: relative;
     border: none;
@@ -56,10 +142,15 @@
     border-radius: 20px;
 }
 
-.post-video{
-    width: 540px ;
-    height: 500px ;
+
+.post-video {
+    width: 540px; /* Same width as the image */
+    height: 500px; /* Same height as the image */
+    object-fit: cover; /* Ensure the video covers the specified dimensions */
+    border-radius: 20px; /* Optional: Apply border radius */
 }
+
+
 .post-info {
     padding: 15px;
     margin-top: -32px;
@@ -352,4 +443,3 @@
       margin-top: 10px; 
     }
   }
-  

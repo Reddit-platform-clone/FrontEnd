@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import jsonData from '../../../mock.json';
+import jsonData from '../mock.json';
 import './content.css';
 import { BiUpvote, BiDownvote } from 'react-icons/bi';
 import { FaRegCommentAlt } from 'react-icons/fa';
@@ -7,6 +7,10 @@ import { IoShareOutline } from 'react-icons/io5';
 import { BiHide } from 'react-icons/bi';
 import { CiBookmark, CiFlag1 } from 'react-icons/ci';
 import ReactPlayer from "react-player";
+import { Carousel } from "react-responsive-carousel";
+import { BsViewList } from "react-icons/bs";
+import { BsViewStacked } from "react-icons/bs";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 const Content = () => {
   const [posts, setPosts] = useState([]);
@@ -14,6 +18,8 @@ const Content = () => {
   const [communities, setCommunities] = useState([]);
   const [joinStates, setJoinStates] = useState({});
   const [hiddenPosts, setHiddenPosts] = useState({});
+  const [showSortOptions, setShowSortOptions] = useState(false);
+  const [showViewOptions, setShowViewOptions] = useState(false);
 
   useEffect(() => {
     const fetchData = () => {
@@ -87,6 +93,16 @@ const Content = () => {
     }));
   };
 
+  const handleSortTypes = () => {
+    setShowSortOptions(!showSortOptions);
+    setShowViewOptions(false);
+  };
+
+  const handleViewTypes = () => {
+    setShowViewOptions(!showViewOptions);
+    setShowSortOptions(false);
+  };
+
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...'; // Add ellipsis if text is truncated
@@ -112,12 +128,13 @@ const Content = () => {
       return <img src={media[0]} alt={text} className="post-image" />;
     } else if (typeof media === 'string') {
       // If media is a string, check if it's a direct link to an image and render it
-      if (media.match(/\.(jpeg|jpg|gif|png|webp)$/) != null) {
+      if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
         return <img src={media} alt={text} className="post-image" />;
       } else {
         // If it's not an image URL, assume it's a video and render using React Player
-        return <ReactPlayer url={media} style={{ width: "540px", height: "500px" }} controls />;
-      }
+        return <ReactPlayer url={media} width="540px" height="500px" controls/>;
+        ;
+      } 
     } else {
       // If media is neither an array nor a string, return null or handle it according to your requirements
       return null;
@@ -126,6 +143,32 @@ const Content = () => {
 
   return (
     <div className="container">
+      <div className="choice-above-posts">
+        <div className='content-sort-type'>
+
+          <button className="content-drop-down-list" onClick={handleSortTypes}>Best <MdKeyboardArrowDown /></button>
+          {showSortOptions && (
+            <div className='options-content-sort-drop-down-list'>
+              <button>Hot</button>
+              <button>Rising</button>
+              <button>Top</button>
+              <button>New</button>
+            </div>
+          )}
+          
+        </div>
+
+        <div className='content-view-type'>
+
+          <button className='content-drop-down-list' onClick={handleViewTypes}><BsViewList /> <MdKeyboardArrowDown /></button>
+          {showViewOptions && (
+            <div className='options-content-view-drop-down-list'>
+              <button><BsViewStacked /> Card</button>
+            </div>
+          )}
+        </div>
+      </div>
+      
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -225,3 +268,4 @@ const Content = () => {
 };
 
 export default Content;
+
