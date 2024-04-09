@@ -1,0 +1,333 @@
+::-webkit-scrollbar{
+    width: 5px;
+    height: 100vh;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(99, 99, 99);
+    border-radius: 10px;
+}
+.sidebar{
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.scrollbox{
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+
+}
+.scrollboxInner p{
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+}
+.sidebarButtons{
+    color: #576f76;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+    min-height: 32px;
+    min-width: 100%;
+    padding: 4px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebarButtons:hover{
+    background-color: #eaedef !important;
+}
+.ModHeadContent {
+    padding-left: 2rem;
+    align-items: center;
+    display: flex;
+ 
+}
+
+.sideIcon{
+    width: 20px;
+    margin-right: 10px;
+
+    margin-top: 1px;
+}
+
+.sideArrow{
+    width: 14px;
+    margin-right: 10px;
+    padding-bottom: 5px;
+    margin-top: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FlexEnd{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    text-align: end;
+}
+.InnerResources{
+    padding-left: 0.5rem;
+    visibility: visible;
+}
+.hide{
+    visibility: collapse;
+}
+.rotate{
+    transform: rotate(180deg);
+}
+.mb75{
+    margin-bottom: 0.75rem;
+}
+
+.rotate90 {
+    rotate: 90deg;
+}
+
+.separator{
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    width: calc(100% - 80px);
+    height: 0px;
+    margin: 10px 40px 20px;
+}
+
+.SideGroups{
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 12px;
+    color: #576f76;
+    line-height: 1rem;
+}
+
+.ModHead{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 24px;
+    height: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    display: flex;
+    border-bottom-style: groove;
+    border-width: 1px;
+    margin-bottom: 12px;
+    z-index: 3;
+}
+.QueuesHeader{
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+.ModImg{
+    width: 24px;
+    border-radius: 50%;
+}
+.QueueButtons{
+    color: #576f76;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 2rem;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: unset;
+    text-transform: unset;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-weight: 400;
+    src: url('//unpkg.com/@ibm/plex/IBM-Plex-Sans/fonts/complete/woff2/IBMPlexSans-Regular.woff2')
+      format('woff2');
+  }
+  .font{
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+  }
+  .QueueButtonDiv{
+    background-color: transparent;
+    
+  }
+  .actMenu{
+    background-color: #d2dadd;
+    color: black;
+  }
+  #sort{
+    color: rgb(255, 255, 255);
+  }
+  .ModListBox{
+    border-style: groove;
+    border-width: 1px;
+    padding: 85px;
+    height: 100vh;
+  }
+  .ActionBar{
+    border-style: groove;
+    border-width: 1px;
+  }
+  .ActionBarDrpdwn{
+    border-right-style: groove;
+    border-right-width: 1px;
+  }
+  .SchedualeButton{
+    font-family: Noto Sans, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: unset;
+    line-height: 17px;
+    text-transform: unset;
+  }
+  .ScheduledHeader{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #1c1c1c;
+  }
+  .ScheduledList{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #878a8c;
+  }
+  .ScheduledListDiv{
+    height: 20rem;
+  }
+  .UserManagementHeader{
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  .Subheaders{
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--newCommunityTheme-line);
+    color: var(--newCommunityTheme-metaText);
+    color: #7c7c7c;
+    
+}
+.GeneralTitles{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.BlockUserDiv{
+    border: 1px solid;
+    display: flex;
+    border-style: groove;
+    border-radius: 5px;
+}
+.Inputbox{
+  border: none;
+  font-family: Noto Sans, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.BgTextBox{
+    background-color: var(--newCommunityTheme-body);
+    border: 1px solid var(--newCommunityTheme-line);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--newCommunityTheme-bodyText);
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border-style:groove;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    border-width: 1px;
+  }
+  .Subtext{
+    font-size: 12px;
+    line-height: 16px;
+    color: #7c7c7c;
+    font-weight: 500;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+  }
+  
+  .switch input { 
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e2e2 ;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(1rem);
+    -ms-transform: translateX(1rem);
+    transform: translateX(1.3rem);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 20px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .hide{
+    z-index: -1; 
+    visibility: collapse !important;
+    position: fixed;
+  }
+  .show{
+    visibility: visible;
+    z-index: 1;
+  }
