@@ -5,8 +5,29 @@
     border-radius: 30px;
     margin-top: 10px;
     cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    position: relative;
 }
+.compact-post-card::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%; /* Match the width of the post card */
+    height: 1px; /* Height of the dividing line */
+    background-color: #ddd; /* Color of the dividing line */
+  }
 
+  .compact-post-card:first-child::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Adjust this value to control the distance of the divider line from the post card */
+    left: 0;
+    width: 100%; /* Match the width of the post card */
+    height: 1px; /* Height of the dividing line */
+    background-color: #ddd; /* Color of the dividing line */
+  }
 .compact-post-card:hover{
 background-color: rgba(128, 128, 128, 0.1); ;
 }
