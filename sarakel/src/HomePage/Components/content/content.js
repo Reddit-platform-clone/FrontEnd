@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import jsonData from "/Users/muhamedabdelnaby/Desktop/sarakel/FrontEnd/sarakel/src/mock.json";
+import jsonData from "../mock.json";
 import "./content.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
@@ -8,8 +8,10 @@ import PostCard from "./postCard.js";
 import CompactPostCard from "./compactPostCard.js";
 import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
-import Slider from "react-slick";
-import ImageSlider from "./imageSlider"
+import ImageSlider from "./imageSlider";
+import { RiVideoFill } from "react-icons/ri";
+
+
 
 
 const Content = () => {
@@ -21,7 +23,6 @@ const Content = () => {
   const [viewType, setViewType] = useState("card");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchData = () => {
@@ -130,7 +131,7 @@ const Content = () => {
   const renderMedia = (media, text) => {
     if (Array.isArray(media)) {
       // If media is an array, assume it's a list of images and render the ImageSlider component
-      return <ImageSlider slides={media} />;
+      return <ImageSlider slides={media} viewType={viewType} />;
     } else if (typeof media === "string") {
       // If media is a string, check if it's a direct link to an image and render it
       if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
@@ -184,13 +185,15 @@ const Content = () => {
         );
       } else {
         // If it's not an image URL, assume it's a video and return CiViewList component
-        return <CiViewList className="compact-post-card-image-compensation" />;
+        return <RiVideoFill className="compact-post-card-image-compensation" />;
       }
     } else {
       // If media is neither an array nor a string, return CiViewList component
       return <CiViewList className="compact-post-card-image-compensation" />;
     }
   };
+
+  
 
   return (
     <div className="container">
@@ -262,6 +265,7 @@ const Content = () => {
                     getCommunityName={getCommunityName}
                     getCommunityImage={getCommunityImage}
                     renderMediaWithCount={renderMediaWithCount}
+                    renderMedia={renderMedia}
                   />
                 )
               ) : (
