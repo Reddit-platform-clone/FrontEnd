@@ -47,7 +47,10 @@
     font-size: 14px;
     margin-top: -10px;
 }
-
+.signuptwo-input-group input[type="text"],
+.signuptwo-input-group input[type="password"] {
+  padding-left: 20px; 
+}
   .signuptwo-input-group input::placeholder {
     color: rgba(128, 128, 128,1);
   }

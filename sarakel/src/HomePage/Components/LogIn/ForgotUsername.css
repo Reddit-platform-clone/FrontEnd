@@ -63,6 +63,10 @@
     background-color: rgba(128, 128, 128,0.3);
 }
 
+.forget-username-input-group input[type="text"] {
+  padding-left: 20px; 
+}
+
   .forget-username-input-group input::placeholder {
     color: rgba(128, 128, 128,1);
   }

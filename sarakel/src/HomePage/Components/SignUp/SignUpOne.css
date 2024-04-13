@@ -88,7 +88,9 @@
   #signup-email:hover{
     background-color: rgba(128, 128, 128,0.3);
 }
-
+.signup-input-group input[type="email"] {
+  padding-left: 20px; 
+}
   .signup-input-group input::placeholder {
     color: rgba(128, 128, 128,1);
   }

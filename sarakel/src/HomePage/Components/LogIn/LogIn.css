@@ -93,6 +93,12 @@
     background-color: rgba(128, 128, 128,0.3);
 }
 
+.input-group input[type="text"],
+.input-group input[type="password"] {
+  padding-left: 20px; 
+}
+
+
   .input-group input::placeholder {
     color: rgba(128, 128, 128,1);
   }
