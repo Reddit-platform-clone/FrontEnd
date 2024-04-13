@@ -3,80 +3,64 @@ import './SignUpTwo.css';
 import SignUpOne from "./SignUpOne.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
-import jsonData from "../../../mock.json"; 
 import { ToastContainer, toast } from "react-toastify";
 
-function SignUpTwo({email}) {
+function SignUpTwo({ email }) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
 
-  const handleContinueClick = () => {
+  const handleContinueClick = async () => {
     if (!recaptchaVerified) {
       toast.error("Please verify that you're not a robot.");
       return;
     }
-    
-    const username = document.getElementById("signuptwo-username").value;
-    const pass = document.getElementById("signuptwo-password").value
-    const user = jsonData.users.find(user => user.name === username);
-
-    if (user) {
-      toast.error("Username already exists!");
-    } else {
-      toast.success("Account created!");
-      jsonData.users.push({id: jsonData.users.length + 1,
-      name: username,
-      email: email,
-      pass: pass,
-      LoggedIn: 1,
-      gender: "select",
-      google: 1,
-      Country:"Choose",
-      NSFW:true,
-      AllowFollow:false,
-      ContentVisibility:false,
-      CommunityVisibility: true,
-      DisplayName:"none",
-      AboutMe:"None",
-      SearchResault:false,
-      Personalized1:false,
-      Personalized2: false,
-      Alcohol : false,
-      Dating:false,
-      Gambling:true,
-      Pregnancy:false,
-      WeightLoss:true,
-      matureContent:false,
-      Blur:false,
-      recommendations:false,
-      Autoplay:false,
-      Reduce:false,
-      CommTheme:true,
-      CommSort: "Rising",
-      remember1:false,
-      ContentView:"Compact",
-      remember2:false,
-      NewTab:false,
-      Mentions:false,
-       Comments: false,
-       UpvotePost:false,
-       UpvoteComments:false,
-       Replies:false,
-       NewFollowers:false,
-       Posts:false,
-       EmailNewFollower:true,
-       EmailChatReq:false,
-       Unsubscribe:false,
-       SocialLinks:[],
-      BlockedList:[],
-       MuteList:[]})
-      handleCloseModal();
+  
+    const usernameInput = document.getElementById("signuptwo-username");
+    const passwordInput = document.getElementById("signuptwo-password");
+  
+    if (!usernameInput || !passwordInput) {
+      toast.error("Username or password is missing.");
+      return;
+    }
+  
+    const username = usernameInput.value.trim(); // Trim whitespace 
+    const password = passwordInput.value.trim(); 
+  
+    if (!username || !password) {
+      toast.error("Username and password cannot be empty.");
+      return;
+    }
+  
+    if (!email || !password || !username) {
+      toast.error("Email, password, or username is missing.");
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password, username })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Account created!");
+        console.log("Token:", data.token);
+        handleCloseModal();
+      } else {
+        toast.error(data.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred while signing up');
     }
   };
+  
 
   const handleBackButtonClick = () => {
-    // Set the state to show the SignUpOne component
     setShowSignUpOne(true);
   };
 
@@ -87,12 +71,11 @@ function SignUpTwo({email}) {
   const handleCloseModal = () => {
     setShowSignUpModal(false);
   };
-  // If showSignUpOne is true, render SignUpOne component
+
   if (showSignUpOne) {
     return <SignUpOne />;
   }
 
-  // Otherwise, render SignUpTwo component
   return showSignUpModal ? (
     <div className="signuptwo-overlay">
       <div className="signuptwo-modal">
@@ -121,8 +104,3 @@ function SignUpTwo({email}) {
 }
 
 export default SignUpTwo;
-
-
-
-
-
