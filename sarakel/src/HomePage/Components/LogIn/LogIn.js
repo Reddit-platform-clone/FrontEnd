@@ -4,7 +4,6 @@ import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
 import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
-import jsonData from "../../../mock.json";
 import { ToastContainer, toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,26 +28,36 @@ function LogIn({ onSuccessfulLogin }) {
     setShowPassword(true);
   };
 
-  const handleLogin = () => {
-    const username = document.getElementById("username").value;
+  const handleLogin = async () => {
+    const emailOrUsername = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-
-    const user = jsonData.users.find(user => user.email === username && user.pass === password);
-
-    if (user) {
-      toast.success("Login successful!");
-      // Call onSuccessfulLogin function passed from parent component
-      jsonData.users.map((user) => {
-        if(user.email=== username){
-          user.LoggedIn = 0
+  
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        body: JSON.stringify({ emailOrUsername, password }), // Ensure both fields are included
+        headers: {
+          'Content-Type': 'application/json'
         }
-    })
-      onSuccessfulLogin();
-    } else {
-      toast.error("Invalid username or password.");
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        toast.success("Login successful!");
+        console.log(data.token)
+        // Call onSuccessfulLogin function passed from parent component with received token
+        onSuccessfulLogin();
+      } else {
+        const errorText = await response.text();
+        console.error('Server error:', errorText);
+        toast.error('Invalid username or password.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred while logging in. Please try again later.');
     }
   };
-
+  
   // Function to handle closing the login modal
   const handleCloseModal = () => {
     setShowLoginModal(false);
@@ -106,7 +115,7 @@ function LogIn({ onSuccessfulLogin }) {
           {/* Username and password inputs */}
           <div className="input-group">
             <label htmlFor="username"></label>
-            <input id="username" type="text" placeholder="Username*" required />
+            <input id="username" type="text" placeholder="Username or Email*" required />
 
             <label htmlFor="password"></label>
             <input id="password" type="password" placeholder="Password*" required />
