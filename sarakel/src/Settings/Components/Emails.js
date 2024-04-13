@@ -1,7 +1,7 @@
 import React from 'react';
 import './bootstrap.min.css';
 import style from './Account.module.css' 
-import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import mock from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
 export default function Emails(){
     let userId
     let NewFollowers

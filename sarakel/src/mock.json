@@ -52,9 +52,11 @@
   "users": [
     {
       "id": 1,
-      "name": "User 1",
+      "name": "User 123456",
+      "sarakelid":"U/user123456" ,
       "email": "user1@domain.com",
       "pass": "123456789",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "LoggedIn": 0,
       "gender": "select",
       "google": 1,
@@ -102,6 +104,7 @@
       "id": "2",
       "name": "User2",
       "email": "user2@domain.com",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "pass": "123456789",
       "LoggedIn": 0,
       "gender": "select",
@@ -150,6 +153,7 @@
       "id": "3",
       "name": "User 3",
       "email": "user3@domain.com",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "pass": "123456789",
       "LoggedIn": 0,
       "gender": "select",
@@ -199,6 +203,7 @@
       "name":"khaled",
       "email": "bahy@gmail.com",
       "password": "987654321",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "type": "User",
       "LoggedIn":0,
       "gender": "select",
@@ -244,53 +249,70 @@
         "MuteList":[]
     }
   ],
-  "posts":[
+  "posts": [
     {
       "id": "1",
-      "user_id": "1",
+      "user": {
+        "id": "1",
+        "name": "User 1",
+        "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      },
       "community_id": "1",
-      "title":"The good old days", 
+      "title": "The good old days", 
       "text": "hitler couldn't pull this off even if he wanted to, os os>>>>",
       "media": ["https://www.thoughtco.com/thmb/d0R4SEcyfQZ6V6CSVTzdODh1CmY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/911-WTC-1339505-crop-592232ea5f9b58f4c0f79be3.jpg"],
-      "likes":"18",
-      "comments":"7",
-      "time":"4 hr.",
-      "reason":"Popular on Sarakel now"
+      "likes": "18",
+      "comments": "7",
+      "time": "4 hr.",
+      "reason": "Popular on Sarakel now"
     },
     {
       "id": "2",
-      "user_id": "2",
+      "user": {
+        "id": "2",
+        "name": "User 2",
+        "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      },
       "community_id": "2",
-      "title":"New Signing",
+      "title": "New Signing",
       "text": "kalam kteer 3ala ad eh el player dah gamed",
       "media": ["https://i.ibb.co/Jr3FMy5/Screenshot-2024-03-21-154239.png"],
-      "likes":"1890",
-      "comments":"56",
-      "time":"15 hr.",
-      "reason":"Promoted"
+      "likes": "1890",
+      "comments": "56",
+      "time": "15 hr.",
+      "reason": "Promoted"
     },
     {
       "id": "3",
-      "user_id": "3",
+      "user": {
+        "id": "3",
+        "name": "User 3",
+        "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      },
       "community_id": "3",
-      "title":"in my true colors",
+      "title": "in my true colors",
       "text": "King of anemia",
       "media": "https://i.ibb.co/m6SrBJF/joe2.png",
-      "likes":"181",
-      "comments":"57",
-      "time":"1 day",
-      "reason":"interest in a similar community"
+      "likes": "181",
+      "comments": "57",
+      "time": "1 day",
+      "reason": "interest in a similar community"
     },
     {
       "id": "4",
-      "user_id": "4",
+      "user": {
+        "id": "4",
+        "name": "User 4",
+        "image": "https://www.egypttoday.com/siteimages/larg/52236.jpg"
+      },
       "community_id": "1",
-      "title":"Happiness", 
+      "title": "Happiness", 
       "text": "Have u ever wondered why the emergency hotline is 911?? Im changing the world fr",
-      "likes":"18",
-      "comments":"7",
-      "time":"4 hr.",
-      "reason":"Popular on Sarakel now"
+      "likes": "18",
+      "media":"https://th.bing.com/th/id/OIP.d_tb9vxSAeeo6E1wy5j2LgHaD4?rs=1&pid=ImgDetMain",
+      "comments": "7",
+      "time": "4 hr.",
+      "reason": "Popular on Sarakel now"
     }
-  ]
+]
 }

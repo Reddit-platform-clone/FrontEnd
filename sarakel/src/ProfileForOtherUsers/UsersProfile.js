@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import jsonData from '../mock.json';
+import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
 import './UsersProfile.css';
 import './bootstrap.min.css';
 import logo from './logo512.png';
+import { BiUpvote } from "react-icons/bi";
+import { BiDownvote } from "react-icons/bi";
+import { GoReply } from "react-icons/go";
+import { LuShare } from "react-icons/lu";
+
 
 function UsersProfile() {
     let userid;
     let username;
+    // const [posts, setPosts] = useState(jsonData.posts);
     
     let userimage;
     jsonData.users.map((user) => {
@@ -86,18 +92,23 @@ function UsersProfile() {
                 console.log(user.name,"has blocked" ,username ,"account",user.blockedacc)
                 user.followinglist.pop({ id: userid, name: username })
                 console.log(user.name,"Following List:", user.followinglist);
+
+                if (user.id === userid) {
+                    user.followerlist.pop({ id: user.id, name: user.name })
+                    console.log(username,"Follower List:", user.followerlist);   
+                }
                 
                 
             }
         });
         // Call GetLoggedIn function when blocking an account
         GetLoggedIn();
-        jsonData.users.map((user) => {
-            if (user.id === userid) {
-                user.followerlist.pop({ id: user.id, name: user.name })
-                console.log(username,"Follower List:", user.followerlist);   
-            }
-        });
+        // jsonData.users.map((user) => {
+        //     if (user.id === userid) {
+        //         user.followerlist.pop({ id: user.id, name: user.name })
+        //         console.log(username,"Follower List:", user.followerlist);   
+        //     }
+        // });
         
     };
   
@@ -115,30 +126,64 @@ function UsersProfile() {
 
     return (
         <>
-            <div>
-                <div className='logo'>
-                    <img src={userimage} alt='Logo' className='logo2' />
-                </div>
-                <div className='usersdata'>
-                    <h3 className='username'>{username}</h3>
-                </div>
+            <div className='user-data'>
+                <img src={jsonData.users[0].image} alt='User Avatar' className='logoup' />
+                <span className='username'>{jsonData.users[0].name}</span>
             </div>
 
             <div className='Contents'>
                 <a className='nav-link' href='#'>
-                    Overview
+                    <span>Overview</span>
                 </a>
                 <a className='nav-link' href='#'>
-                    Posts
+                    <span>Posts</span>
                 </a>
                 <a className='nav-link' href='#'>
-                    Comments
-                </a>
-                <hr className='border-0 border-b-sm border-solid border-b-neutral-border-weak'></hr>
+                    <span>Comments</span>
+                </a><br/>
+                <hr className="hr-solid1"></hr>
+            </div>
+
+
+            {/* Display posts */}
+            <div className='overview-post-comment'>
+            {jsonData.posts.map(post => {
+                    // const user = jsonData.users.find(user => user.id === post.user_id);
+                    // if (!user) return null; // If user does not exist, skip this post
+                    return (
+                        <div className='post' key={post.id}>
+                            <div className='post-header'>
+                                <img src={post.user.image} alt='User Avatar' className='logoup1' />
+                                <span className='username1'>{post.user.name}</span>
+                                <div className='posttime'>
+                                    <span className='posttime'>{post.time} ago</span>
+                                </div>
+                            </div>
+                            <div className='post-content'>
+                                <h3>{post.title}</h3>
+                                <p>{post.text}</p>
+                                {Array.isArray(post.media) ? (
+                                    post.media.map((media, index) => (
+                                        <img src={media} key={index} alt={`Media ${index}`} />
+                                    ))
+                                ) : (
+                                    <img src={post.media} alt='Media' />
+                                )}
+                            </div>
+                            <div className='post-actions'>
+                                <button><BiUpvote /> {post.likes}</button>
+                                <button><BiDownvote /> {post.comments}</button>
+                                <button><GoReply /> Reply</button>
+                                <button><LuShare /> Share</button>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
 
             <div className='container'>
                 <h6 className=''>{username}</h6>
+                <div className='button-container'>
 
                 <button className={`button ${isFollowing ? 'following' : ''}`} onClick={toggleFollow}>
                     {isFollowing ? '- Unfollow' : '→ Follow'}
@@ -162,6 +207,7 @@ function UsersProfile() {
                             </div>
                          )}
                 </div>
+                </div>
                 <br/>
 
                 <div className='usersdata'>
@@ -179,6 +225,8 @@ function UsersProfile() {
                     </div>
                 </div>
             </div>
+
+
         </>
     );
 }
