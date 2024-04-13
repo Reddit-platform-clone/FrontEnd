@@ -4,7 +4,10 @@ import  './ProfilePage.css'
 import logo from './logo512.png'
 import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json'
 import { CgAddR } from "react-icons/cg";
-
+import { BiUpvote } from "react-icons/bi";
+import { BiDownvote } from "react-icons/bi";
+import { GoReply } from "react-icons/go";
+import { LuShare } from "react-icons/lu";
 function ProfilePage(){
     let userid;
     let username;
@@ -59,23 +62,50 @@ function ProfilePage(){
                         <a className='nav-link' href='#'>
                             <span>Comments</span>
                         </a>
+                        
+                        
                         <a className='nav-link' href='#'>
-                            <span>Saved</span>
+                            <span>+ Create Post</span>
                         </a>
-                        <a className='nav-link' href='#'>
-                            <span>Hidden</span>
-                        </a>
-                        <a className='nav-link' href='#'>
-                            <span>Upvoted</span>
-                        </a>
-                        <a className='nav-link' href='#'>
-                            <span>DownVoted</span>
-                        </a>
-                        <a className='nav-link' href='#'>
-                            <span>Create Post</span>
-                        </a>
-                        <hr className="hr-solid1"></hr>
+                        
                 </div>
+                                    <hr className='linePP'/>
+
+
+                                    <div className='overview-post-comment1'>
+            {jsonData.posts.map(post => {
+                    // const user = jsonData.users.find(user => user.id === post.user_id);
+                    // if (!user) return null; // If user does not exist, skip this post
+                    return (
+                        <div className='post' key={post.id}>
+                            <div className='post-header'>
+                                <img src={post.user.image} alt='User Avatar' className='logoup1' />
+                                <span className='username1'>{post.user.name}</span>
+                                <div className='posttime'>
+                                    <span className='posttime'>{post.time} ago</span>
+                                </div>
+                            </div>
+                            <div className='post-content'>
+                                <h3>{post.title}</h3>
+                                <p>{post.text}</p>
+                                {Array.isArray(post.media) ? (
+                                    post.media.map((media, index) => (
+                                        <img src={media} key={index} alt={`Media ${index}`} />
+                                    ))
+                                ) : (
+                                    <img src={post.media} alt='Media' />
+                                )}
+                            </div>
+                            <div className='post-actions'>
+                                <button><BiUpvote /> {post.likes}</button>
+                                <button><BiDownvote /> {post.comments}</button>
+                                <button><GoReply /> Reply</button>
+                                <button><LuShare /> Share</button>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
                 
             
 
@@ -88,17 +118,26 @@ function ProfilePage(){
 
                                             <a href="">
                                                 <button className='add-banner-btn'>
-                                                    <CgAddR/>
+                                                    <CgAddR className='add-icon'/>
                                                </button>
                                             </a>
+                                            <br/>
                                                
                                                 <div className="username-container">
                                                     {/* Background image */}
                                                     
                                                     {/* Username */}
-                                                    <h2 className="text-lg font-bold">{jsonData.users[0].name}</h2>
+                                                    <h2 className="text-lg font-bold">{jsonData.users[0].name}</h2><br/>
                                                 </div>
-                                            <button className='share'>Share</button>
+                                                <button className="sharebtn">
+                                                    <span className="flex mr-xs">
+                                                        <svg fill="currentColor" height="16" icon-name="share-outline" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M18.942 7.058 12.8.912l-.883.883 5.079 5.08h-2.871A13.189 13.189 0 0 0 1.067 18h1.267a11.94 11.94 0 0 1 11.791-9.875h2.866l-5.079 5.08.883.883 6.147-6.146a.624.624 0 0 0 0-.884Z"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Share
+                                                </button>
+
                                         </div>
                                         <hr/>
 
@@ -112,7 +151,9 @@ function ProfilePage(){
                                                             <span className='bold-text'>Profile</span>
                                                             <span className='description11'>Customize your profile</span>
                                                         </div>
-                                                        <button className='edit-profile-btn'>Edit Profile</button>
+                                                        <button className='edit-profile-btn'>
+                                                            <span>Edit Profile</span>
+                                                        </button>
                                             </div>
 
                                                 <div className='edit-avatar'>
@@ -121,7 +162,9 @@ function ProfilePage(){
                                                         <span className='bold-text'>Avatar</span>
                                                         <span className='description11'>Customize and style</span>
                                                     </div>
-                                                        <button className='edit-avatar-btn'>Avatar</button>
+                                                        <button className='edit-avatar-btn'>
+                                                            <span>Style Avatar</span>
+                                                        </button>
 
                                                 </div>
                                                 <div className='mod-settings'>
@@ -131,7 +174,9 @@ function ProfilePage(){
                                                         <span className='bold-text'>Moderation</span>
                                                         <span className='description11'>Moderation Tools</span>
                                                    </div>
-                                                    <button className='mod-settings-btn'>Mod settings</button>
+                                                    <button className='mod-settings-btn'>
+                                                        <span className='modsettxt'>Mod settings</span>
+                                                    </button>
 
                                                 </div>
                                                 

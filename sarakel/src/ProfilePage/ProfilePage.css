@@ -97,6 +97,9 @@ body{
     flex-direction: column;
     margin-left: auto;
     width: 320px; /* Adjust width as needed */
+    position: absolute;
+    top: 60px;
+    right: 20px;
 }
 
 
@@ -107,23 +110,29 @@ body{
 }
 
 
-.right-side  button {
-    background-color: #EAEDEF;
-    color: black;
+
+
+.sharebtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    background-color: #ccd1d6; /* Example background color */
+    color: black; /* Example text color */
     border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-left: 10px;
+    border-radius: 0.25rem; /* Adjust border radius as needed */
     cursor: pointer;
 }
 
-.right-side  button.share {
-    background-color: #EAEDEF;
-    color: black;
+.sharebtn svg {
+    margin-right: 0.5rem; /* Adjust margin between icon and text */
 }
+
+
+.sharebtn:hover {
+    text-decoration: underline;
+}
+
 
 /* Style the settings and links sections */
 
@@ -215,8 +224,9 @@ body{
      border-radius: 10px;
 }
 
-.edit-profile-button {
+.edit-profile-btn {
     margin-left: 15px !important;
+    white-space:nowrap;
 }
 .edit-profile-btn:hover {
     text-decoration: underline;
@@ -227,6 +237,8 @@ body{
     display: flex;
     align-items: center; /* Align items vertically */
     padding: 5px;
+    white-space: nowrap;
+    
 }
 
 .edit-avatar  .avatar-info {
@@ -241,8 +253,10 @@ body{
      border-radius: 15px;
 }
 
-.edit-avatar-button {
-    margin-left: 10px; /* Add spacing between text and button */
+.edit-avatar-btn {
+    margin-left: 17px; /* Add spacing between text and button */
+    text-align: center;
+    
 }
 .edit-avatar-btn:hover {
     text-decoration: underline;
@@ -253,6 +267,7 @@ body{
     display: flex;
     align-items: center; /* Align items vertically */
     padding: 5px;
+    text-align: center;
 }
 
 .mod-settings  .mod-info {
@@ -267,8 +282,10 @@ body{
      border-radius: 15px;
 }
 
-.mod-settings-button {
+.mod-settings-btn {
     margin-left: 10px; /* Add spacing between text and button */
+   
+    width: 30px;
 }
 .mod-settings-btn:hover {
    text-decoration: underline;
@@ -303,7 +320,29 @@ body{
     border-radius: 20px;
 }
 
-.add-banner-btn{
-    border-radius: 20px;
+.add-banner-btn {
+    border-radius: 130px;
     background-color: #EAEDEF;
+    position: absolute;
+    right: 10px;
+    top: 170px;
+    padding: -10px; /* Adjust the padding as needed */
+    font-size: 25px; /* Adjust the font size of the icon */
+    width: 32px;
+    height: 32px;
+}
+
+.add-icon {
+    font-size: 15px; /* Adjust the font size as needed */
+    position: absolute;
+    top: 8px;
+    right: 6px;
+}
+
+.linePP{
+    position: relative;
+    top: 100px;
+    left: 210px;
+    width: 870px;
+
 }

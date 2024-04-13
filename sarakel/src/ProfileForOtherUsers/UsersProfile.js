@@ -146,7 +146,7 @@ function UsersProfile() {
 
 
             {/* Display posts */}
-            <div className='overview-post-comment'>
+            <div className='overview-post-comment1'>
             {jsonData.posts.map(post => {
                     // const user = jsonData.users.find(user => user.id === post.user_id);
                     // if (!user) return null; // If user does not exist, skip this post
