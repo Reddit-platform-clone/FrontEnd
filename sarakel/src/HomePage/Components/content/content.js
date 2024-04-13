@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import jsonData from "../mock.json";
+import jsonData from "/Users/muhamedabdelnaby/Desktop/sarakel/FrontEnd/sarakel/src/mock.json";
 import "./content.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
@@ -8,6 +8,9 @@ import PostCard from "./postCard.js";
 import CompactPostCard from "./compactPostCard.js";
 import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
+import Slider from "react-slick";
+import ImageSlider from "./imageSlider"
+
 
 const Content = () => {
   const [posts, setPosts] = useState([]);
@@ -18,6 +21,7 @@ const Content = () => {
   const [viewType, setViewType] = useState("card");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchData = () => {
@@ -50,13 +54,13 @@ const Content = () => {
       prevPosts.map((post) =>
         post.id === postId
           ? {
-              ...post,
-              upvoted: !post.upvoted,
-              downvoted: false,
-              likes: post.upvoted
-                ? parseInt(post.likes) - 1
-                : parseInt(post.likes) + 1, // Parse likes to integer
-            }
+            ...post,
+            upvoted: !post.upvoted,
+            downvoted: false,
+            likes: post.upvoted
+              ? parseInt(post.likes) - 1
+              : parseInt(post.likes) + 1, // Parse likes to integer
+          }
           : post
       )
     );
@@ -67,13 +71,13 @@ const Content = () => {
       prevPosts.map((post) =>
         post.id === postId
           ? {
-              ...post,
-              upvoted: false,
-              downvoted: !post.downvoted,
-              likes: post.downvoted
-                ? parseInt(post.likes) + 1
-                : parseInt(post.likes) - 1,
-            }
+            ...post,
+            upvoted: false,
+            downvoted: !post.downvoted,
+            likes: post.downvoted
+              ? parseInt(post.likes) + 1
+              : parseInt(post.likes) - 1,
+          }
           : post
       )
     );
@@ -100,8 +104,9 @@ const Content = () => {
 
   const handleViewTypes = () => {
     setShowViewOptions(!showViewOptions);
-    setShowSortOptions(false);
+    setShowSortOptions(false); // Close the sort options dropdown
   };
+
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -124,8 +129,8 @@ const Content = () => {
 
   const renderMedia = (media, text) => {
     if (Array.isArray(media)) {
-      // If media is an array, assume it's a list of images and render the first one
-      return <img src={media[0]} alt={text} className="post-image" />;
+      // If media is an array, assume it's a list of images and render the ImageSlider component
+      return <ImageSlider slides={media} />;
     } else if (typeof media === "string") {
       // If media is a string, check if it's a direct link to an image and render it
       if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
@@ -141,6 +146,7 @@ const Content = () => {
       return null;
     }
   };
+  
 
   const renderMediaWithCount = (media, text) => {
     if (!media) {
@@ -210,10 +216,10 @@ const Content = () => {
           </button>
           {showViewOptions && (
             <div className="options-content-view-drop-down-list">
-              <button onClick={() => setViewType("card")}>
+              <button onClick={() => { setViewType("card"); setShowViewOptions(false); }}>
                 <BsViewStacked />
               </button>
-              <button onClick={() => setViewType("compact")}>
+              <button onClick={() => { setViewType("compact"); setShowViewOptions(false); }}>
                 <BsViewList />
               </button>
             </div>
