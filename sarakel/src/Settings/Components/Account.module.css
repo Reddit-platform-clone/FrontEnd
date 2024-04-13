@@ -293,7 +293,7 @@
   .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
+    height: 23px;
     width: 22px;
     left: 1px;
     bottom: 1px;
@@ -313,7 +313,7 @@
   input:checked + .slider:before {
     -webkit-transform: translateX(1rem);
     -ms-transform: translateX(1rem);
-    transform: translateX(1.3rem);
+    transform: translateX(1.325rem);
   }
 
   /* Rounded sliders */

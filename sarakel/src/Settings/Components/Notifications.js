@@ -1,47 +1,75 @@
 import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
+import axios from 'axios';
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Notifications(){
-    let userId
-    let Mentions
-    let Comments
-    let UpvotePost
-    let UpvoteComments
-    let Replies
-    let NewFollowers
-    let Posts
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            userId = user.id
-            Mentions = user.Mentions
-            Comments = user.Comments
-            UpvotePost = user.UpvotePost
-            UpvoteComments = user.UpvoteComments
-            Replies = user.Replies
-            NewFollowers = user.NewFollowers
-            Posts = user.Posts
-        }
-    })  
-    const [mention ,setMention] = React.useState(Mentions)
-    const [comments, setComments] = React.useState(Comments)
-    const[upvotepost, setUpvotePost] = React.useState(UpvotePost)
-    const[upvotecomment, setUpvotecomment] = React.useState(UpvoteComments)
-    const [replies, setReplies] = React.useState(Replies)
-    const [newfollowers, setNewFollow] = React.useState(NewFollowers)
-    const [post, setPosts] = React.useState(Posts)
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-          user.Mentions  =  mention
-           user.Comments  = comments
-           user.UpvotePost  = upvotepost
-             user.UpvoteComments = upvotecomment
-            user.Replies = replies
-           user.NewFollowers =  newfollowers
-             user.Posts= post
-        }
-    }) 
+    const [mention ,setMention] = React.useState()
+    const [comments, setComments] = React.useState()
+    const[upvotepost, setUpvotePost] = React.useState()
+    const[upvotecomment, setUpvotecomment] = React.useState()
+    const [replies, setReplies] = React.useState()
+    const [newfollowers, setNewFollow] = React.useState()
+    const [postsFollowed, setPostsFollowed] = React.useState()
 
+    function handleMentions(){
+        setMention(!mention);
+        sendInfo({mentionsOfUsername: !mention});
+       
+    }
+    function handleComments(){
+        setComments(!comments);
+        sendInfo({commentsOnPosts: !comments});
+       
+    }
+    function handleUpvotesPosts(){
+        setUpvotePost(!upvotepost);
+        sendInfo({upvotesOnPosts: !upvotepost});
+    }
+    function handleUpvoteComments(){
+        setUpvotecomment(!upvotecomment);
+        sendInfo({upvotesOnComments: !upvotecomment});
+    }
+    function handleReplies(){
+        setReplies(!replies);
+        sendInfo({repliesToComments: !replies});
+    }
+    function handleNewFollowers(){
+        setNewFollow(!newfollowers);
+        sendInfo({newFollowers: !newfollowers});
+    }
+    function handlePostsFollowed(){
+        setPostsFollowed(!postsFollowed);
+        sendInfo({postsFollowed: !postsFollowed});
+    }
+    async function sendInfo(data){
+            const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
+                headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+            });
+            return promise;
+    }
+    async function GetInfo(){
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
+            headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+        });
+        return promise.data;
+    }
+    React.useEffect(() =>{
+        async function GetandApply(){
+            const data = await GetInfo()
+            if(data){
+                setMention(data.settings.mentionsOfUsername)
+                setComments(data.settings.commentsOnPosts)
+                setUpvotePost(data.settings.upvotesOnPosts)
+                setUpvotecomment(data.settings.upvotesOnComments)
+                setReplies(data.settings.repliesToComments)
+                setNewFollow(data.settings.newFollowers)
+                setPostsFollowed(data.settings.postsFollowed)
+            }
+        }
+        
+        GetandApply()
+    },[])
     return(
         <div className={`${classes.tab}`}>
         <div className={`${classes.w100}`}>
@@ -87,7 +115,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" checked={mention} onClick={() => {setMention(!mention)}}/>
+                        <input type="checkbox" checked={mention} onChange={() => {handleMentions()}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -98,7 +126,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" checked={comments} onClick={() => {setComments(!comments)}}/>
+                        <input type="checkbox" checked={comments} onChange={() => {handleComments()}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -109,7 +137,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" checked={upvotepost} onClick={() => {setUpvotePost(!UpvotePost)}}/>
+                        <input type="checkbox" checked={upvotepost} onChange={() => {handleUpvotesPosts()}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -120,7 +148,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" checked={upvotecomment} onClick={() => {setUpvotecomment(!upvotecomment)}}/>
+                        <input type="checkbox" checked={upvotecomment} onChange={() => {handleUpvoteComments()}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -132,7 +160,7 @@ export default function Notifications(){
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
                         <input type="checkbox" />
-                        <span className={`${classes.slider} ${classes.round}`} checked={replies} onClick={() => {setReplies(!replies)}}></span>
+                        <span className={`${classes.slider} ${classes.round}`} checked={replies} onChange={() => {handleReplies()}}></span>
                     </label>
                 </div>
             </div>           
@@ -164,7 +192,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" checked={newfollowers} onClick={() => {setNewFollow(!newfollowers)}}/>
+                        <input type="checkbox" checked={newfollowers} onChange={() => {handleNewFollowers()}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>
@@ -186,7 +214,7 @@ export default function Notifications(){
                 </div>
                 <div className={`${classes.SettingToggles}`}>
                     <label className={`${classes.switch}`}>
-                        <input type="checkbox" checked={post} onClick={() => {setPosts(!post)}}/>
+                        <input type="checkbox" checked={postsFollowed} onChange={() => {handlePostsFollowed()}}/>
                         <span className={`${classes.slider} ${classes.round}`}></span>
                     </label>
                 </div>

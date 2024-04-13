@@ -1,10 +1,34 @@
 import React from 'react';
 import './bootstrap.min.css';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import classes from './Account.module.css' 
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Account() {
+    let mail
+    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'; // The JWT token you received when the user logged in
+
+    // const decodedToken = jwt_decode(token); // Decoding the token to get user details
+    
+    // console.log(decodedToken);
+    
+    // axios.get('http://localhost:5000/api/v1/me', {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`
+    //   }
+    // })
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
+
+
+/////////////////////////////////////////////
     let Google
     let UserId 
     let SavedGender
@@ -28,12 +52,11 @@ export default function Account() {
     }
 
 
+
 mock.users.map((user) => {
     if(user.LoggedIn === 1){
         UserId = user.id
         SavedGender = user.gender
-        Google = user.google
-        UserEmail = user.email
         Country = user.Country
         Pass = user.pass
         return
@@ -42,7 +65,7 @@ mock.users.map((user) => {
     const [Password, setPass] = React.useState(`${Pass}`)
     const [gender, setGender] = React.useState(SavedGender)
     const [value, setValue] = React.useState(Google)
-    const [Email, setEmail] = React.useState(`${UserEmail}`)
+    const [Email, setEmail] = React.useState()
     const GenderHandler = (g) =>{
         mock.users.map((user) =>{
             if(user.id === UserId ){
@@ -60,6 +83,16 @@ mock.users.map((user) => {
         })
         
     }
+    fetch('http://localhost:5000/api/v1/me',{
+        headers: {
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        setEmail(data.user.email)
+
+    })
     const secArray = []
     for(let i=0;i<2;i++){
         if (i===value){
@@ -71,12 +104,8 @@ mock.users.map((user) => {
     }
 
     const AddEmail = () => {
-        mock.users.map((user) =>{
-            if(user.id === UserId ){
-                user.email = Email
-                return
-            }
-        })
+        
+        fetch('http://localhost:5000/api/v1/me')
     }
     const changeEmail = event =>{
         setEmail(event.target.value)
@@ -95,7 +124,7 @@ mock.users.map((user) => {
         setPass(event.target.value)
 
     }
-       
+
     
     return(
         <div className={`${classes.tab}`}>
@@ -105,7 +134,7 @@ mock.users.map((user) => {
                 <div className={`${classes.box}`}>
                     <div >
                         <h3 className={`${classes.SettingTopics} ${classes.font}`}>Email address</h3>
-                        <p className={`${classes.Subtext}`}>{UserEmail}</p>
+                        <p className={`${classes.Subtext}`}>{Email}</p>
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                     <a href="#" className={`${classes.Change} ${classes.font}`} onClick={() => {setToggle1(!toggle1); AddEmail()}} >{saveEmail}</a>
@@ -114,7 +143,7 @@ mock.users.map((user) => {
                 {toggle1 &&(<div className={`${classes.mb}`} >
                     <div className={`${classes.BlockUserDiv}`}>
                         <div className={`${classes.w80} ${classes.InputTextDiv}`}>
-                            <input type="text"  placeholder={UserEmail}  className={`${classes.w100} ${classes.Inputbox}`} onChange={changeEmail}></input>
+                            <input type="text"  placeholder={Email}  className={`${classes.w100} ${classes.Inputbox}`} onChange={changeEmail}></input>
                         </div>
                     </div>
                 </div>)}

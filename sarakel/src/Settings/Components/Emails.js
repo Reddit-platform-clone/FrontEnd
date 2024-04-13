@@ -1,34 +1,49 @@
 import React from 'react';
 import './bootstrap.min.css';
-import style from './Account.module.css' 
+import style from './Account.module.css'
+import axios from 'axios'; 
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 export default function Emails(){
-    let userId
-    let NewFollowers
-    let ChatRequest
-    let Unsubscribe
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            userId = user.id
-            NewFollowers = user.EmailNewFollower
-            ChatRequest = user.EmailChatReq
-            Unsubscribe = user.Unsubscribe
-        }
-    }) 
-    const [newfollowers, setNewFollow] = React.useState(NewFollowers)
-    const [chatreq, setChatReq] = React.useState(ChatRequest)
-    const[unsub, setUnsub] = React.useState(Unsubscribe)
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-           user.EmailNewFollower =  newfollowers
-           user.EmailChatReq = chatreq
-           user.Unsubscribe = unsub
-        }
-    }) 
-    const setAllFalse = () =>{
-        setNewFollow(false)
-        setChatReq(false)
+    const [newfollowers, setNewFollow] = React.useState()
+    const [chatreq, setChatReq] = React.useState()
+    const [unsub, setUnsub] = React.useState()
+    function handleNewFollowers(){
+        setNewFollow(!newfollowers);
+        sendInfo({newFollowersEmail: !newfollowers});
     }
+    function handleChatRequest(){
+        setChatReq(!chatreq);
+        sendInfo({chatRequesetsEmail: !chatreq});
+    }
+    function handleUnSub(){
+        setUnsub(!unsub);
+        sendInfo({unsubscribeFromAllEmails: !unsub});
+    }
+    async function sendInfo(data){
+            const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
+                headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+            });
+            return promise;
+    }
+    async function GetInfo(){
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
+            headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+        });
+        return promise.data;
+    }
+    React.useEffect(() =>{
+        async function GetandApply(){
+            const data = await GetInfo()
+            if(data){
+                setNewFollow(data.settings.newFollowersEmail)
+                setChatReq(data.settings.chatRequesetsEmail)
+                setUnsub(data.settings.unsubscribeFromAllEmails)
+                
+            }
+        }
+        
+        GetandApply()
+    },[])
     return(
         <div className={`${style.tab}`}>
         <div className={`${style.w100}`}>
@@ -51,7 +66,7 @@ export default function Emails(){
                 </div>
                 <div className={`${style.SettingToggles}`}>
                     <label className={`${style.switch}`}>
-                        <input type="checkbox" checked={chatreq} onClick={() => {setChatReq(!chatreq); setUnsub(false)}}/>
+                        <input type="checkbox" checked={chatreq} onChange={() => {handleChatRequest()}}/>
                         <span className={`${style.slider} ${style.round}`}></span>
                     </label>
                 </div>
@@ -129,7 +144,7 @@ export default function Emails(){
                 </div>
                 <div className={`${style.SettingToggles} ${style.mb}`}>
                     <label className={`${style.switch}`}>
-                        <input type="checkbox" checked={newfollowers} onClick={() => {setNewFollow(!newfollowers);setUnsub(false)}}/>
+                        <input type="checkbox" checked={newfollowers} onChange={() => {handleNewFollowers()}}/>
                         <span className={`${style.slider} ${style.round}`}></span>
                     </label>
                 </div>
@@ -153,7 +168,7 @@ export default function Emails(){
                 </div>
                 <div className={`${style.SettingToggles}`}>
                     <label className={`${style.switch}`}>
-                        <input type="checkbox" checked={unsub} onClick={() => {setUnsub(!unsub); setAllFalse()}}/>
+                        <input type="checkbox" checked={unsub} onChange={() => {handleUnSub()}}/>
                         <span className={`${style.slider} ${style.round}`}></span>
                     </label>
                 </div>

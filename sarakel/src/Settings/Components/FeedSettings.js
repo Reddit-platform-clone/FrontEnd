@@ -1,21 +1,10 @@
 import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
+import axios from 'axios';
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
 
 export default function FeedSettings() {
-    let UserId
-    let matureContent
-    let Blur
-    let Recommendations
-    let Autoplay
-    let Reduce
-    let CommTheme
-    let CommSort
-    let Remember1
-    let ContentView
-    let Remember2
-    let NewTab
     let New
     let Hot
     let Top
@@ -23,83 +12,91 @@ export default function FeedSettings() {
     let Card
     let Classic
     let Compact
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            UserId = user.id
-            matureContent = user.matureContent
-            Blur = user.Blur
-            Recommendations = user.recommendations
-            Autoplay = user.Autoplay
-            Reduce = user.Reduce
-            CommTheme = user.CommTheme
-            CommSort = user.CommSort
-            Remember1 = user.remember1
-            ContentView = user.ContentView
-            Remember2 = user.remember2
-            NewTab = user.NewTab
+    const [mature, setMature] = React.useState()
+    const [blur,setBlur] = React.useState()
+    const [recommendations, setRecommendation] = React.useState()
+    const [autoplay, setAutoplay] = React.useState()
+    const [reduce, setReduce] = React.useState()
+    const [commtheme,setCommTheme] = React.useState()
+    const [commsort, setCommSort] = React.useState()
+    const [remember1, setRemember1] = React.useState()
+    const [contentview, setContentView ] = React.useState()
+    const [remember2, setRemember2] = React.useState()
+    const [newtab, setNewTab] = React.useState()
+    const [MarkDown, setMarkDown] = React.useState()
+    
+    function handleMature(){
+        setMature(!mature)
+        sendInfo({showMatureContent: !mature})
+    }
+    function handleBlur(){
+        setBlur(!blur)
+        sendInfo({blurMatureContent: !blur})
+    }
+    function handleRecommendation(){
+        setRecommendation(!recommendations)
+        sendInfo({enableHomeFeedRecs: !recommendations})
+    }
+    function handleAutoPlay(){
+        setAutoplay(!autoplay)
+        sendInfo({autoPlay: !autoplay})
+    }
+    function handleReduce(){
+        setReduce(!reduce)
+        sendInfo({reduceAnimations: !reduce})
+    }
+    function handleCommunityThemes(){
+        setCommTheme(!commtheme)
+        sendInfo({communityThemes: !commtheme})
+    }
+    function handleRemember1(){
+        setRemember1(!remember1)
+        sendInfo({rememberPerCommunity: !remember1})
+    }
+    function handleRemember2(){
+        setRemember1(!remember2)
+        sendInfo({rememberPerCommunityView: !remember2})
+    }
+    function handleOpenNewTab(){
+        setNewTab(!newtab)
+        sendInfo({openPostsInNewWindow: !newtab})
+    }
+    function handleMarkDown(){
+        setMarkDown(!MarkDown)
+        sendInfo({defaultToMarkdown: !MarkDown})
+    }
+    async function sendInfo(data){
+            const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
+                headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+            });
+            return promise;
+    }
+    async function GetInfo(){
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
+            headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+        });
+        return promise.data;
+    }
+    React.useEffect(() =>{
+        async function GetandApply(){
+            const data = await GetInfo()
+            if(data){
+                setMature(data.settings.showMatureContent)
+                setBlur(data.settings.blurMatureContent)
+                setRecommendation(data.settings.enableHomeFeedRecs)
+                setAutoplay(data.settings.autoPlay)
+                setReduce(data.settings.reduceAnimations)
+                setCommTheme(data.settings.communityThemes)
+                setRemember1(data.settings.rememberPerCommunity)
+                setRemember2(data.settings.rememberPerCommunityView)
+                setNewTab(data.settings.openPostsInNewWindow)
+                setMarkDown(data.settings.defaultToMarkdown)
+            }
         }
-    })
-    const [mature, setMature] = React.useState(matureContent)
-    const [blur,setBlur] = React.useState(Blur)
-    const [recommendations, setRecommendation] = React.useState(Recommendations)
-    const [autoplay, setAutoplay] = React.useState(Autoplay)
-    const [reduce, setReduce] = React.useState(Reduce)
-    const [commtheme,setCommTheme] = React.useState(CommTheme)
-    const [commsort, setCommSort] = React.useState(CommSort)
-    const [remember1, setRemember1] = React.useState(Remember1)
-    const [contentview, setContentView ] = React.useState(ContentView)
-    const [remember2, setRemember2] = React.useState(Remember2)
-    const[newtab, setNewTab] = React.useState(NewTab)
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            user.matureContent = mature
-           user.Blur = blur 
-            user.recommendations = recommendations
-           user.Autoplay = autoplay 
-           user.Reduce =  reduce  
-           user.CommTheme = commtheme  
-           user.CommSort = commsort  
-           user.remember1 = remember1  
-           user.ContentView = contentview 
-           user.remember2 = remember2  
-           user.NewTab = newtab 
-        }
-    })
-    if(commsort === "New"){
-        New = true
-    }else{
-        New = false
-    }
-    if(commsort === "Hot"){
-        Hot = true
-    }else{
-        Hot = false
-    }
-    if(commsort === "Top"){
-        Top = true
-    }else{
-        Top = false
-    }
-    if(commsort === "Rising"){
-        Rising= true
-    }else{
-        Rising = false
-    }
-    if(contentview === "Card"){
-        Card= true
-    }else{
-        Card = false
-    }
-    if(contentview === "Compact"){
-        Compact = true
-    }else{
-        Compact = false
-    }
-    if(contentview === "Classic"){
-        Classic = true
-    }else{
-        Classic = false
-    }
+        
+        GetandApply()
+    },[])
+
     return(
         <div className={`${classes.tab}`}>
             <div className=''>
@@ -112,7 +109,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={matureContent} onClick={() => {setMature(!matureContent)}}/>
+                            <input type="checkbox" checked={mature} onChange={() => {handleMature()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -124,7 +121,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={blur} onClick={() => {setBlur(!blur)}}/>
+                            <input type="checkbox" checked={blur} onChange={() => {handleBlur()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -136,7 +133,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={recommendations} onClick={() => {setRecommendation(!recommendations)}}/>
+                            <input type="checkbox" checked={recommendations} onChange={() => {handleRecommendation()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -148,7 +145,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={autoplay} onClick={() => {setAutoplay(!autoplay)}}/>
+                            <input type="checkbox" checked={autoplay} onChange={() => {handleAutoPlay()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -160,7 +157,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={autoplay} onClick={() => {setReduce(!reduce)}}/>
+                            <input type="checkbox" checked={reduce} onChange={() => {handleReduce()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -172,7 +169,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={commtheme} onClick={() => {setCommTheme(!commtheme)}}/>
+                            <input type="checkbox" checked={commtheme} onChange={() => {handleCommunityThemes()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -184,10 +181,10 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <select className={`${classes.ContentView} ${classes.Blue}`} >
-                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("Hot")}} selected={Hot}>Hot</option> 
-                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("Top")}} selected={Top}>Top</option> 
-                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("New")}} selected={New}>New</option> 
-                            <option className={`${classes.ContentViewOptions}`} onClick={() => {setCommSort("Rising")}} selected={Rising}>Rising</option> 
+                            <option className={`${classes.ContentViewOptions}`} onChange={() => {setCommSort("Hot")}} selected={Hot}>Hot</option> 
+                            <option className={`${classes.ContentViewOptions}`} onChange={() => {setCommSort("Top")}} selected={Top}>Top</option> 
+                            <option className={`${classes.ContentViewOptions}`} onChange={() => {setCommSort("New")}} selected={New}>New</option> 
+                            <option className={`${classes.ContentViewOptions}`} onChange={() => {setCommSort("Rising")}} selected={Rising}>Rising</option> 
                         </select>
                     </div>
                 </div>
@@ -234,7 +231,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" nClick={() => {setNewTab(!newtab)}}/>
+                            <input type="checkbox" checked={newtab} onChange={() => {handleOpenNewTab()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -247,7 +244,7 @@ export default function FeedSettings() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={MarkDown} onChange={()=>{handleMarkDown()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>

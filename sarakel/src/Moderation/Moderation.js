@@ -8,7 +8,7 @@ import ScheduledPosts from './Components/ScheduledPosts';
 import UserManagement from './Components/UserManagement';
 import RulesAndRemoval from './Components/Rules&Removal';
 import GeneralSettings from './Components/GeneralSettings';
-export default function ModSide({CommunityId}) {
+export default function Moderation({CommunityId}) {
     const [value, setValue] = React.useState(0)
     const actArray = []
     for(let i=0;i<5;i++){

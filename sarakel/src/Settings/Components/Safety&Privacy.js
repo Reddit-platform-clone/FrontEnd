@@ -1,57 +1,94 @@
 import React from 'react';
+import axios from 'axios';
+import { Switch, Flex, Spacer, Box, use } from '@chakra-ui/react'
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
-import { ToastContainer, toast } from "react-toastify";
+
+
+
 
 export default function SafetyPrivacy() {
-    let UserId
-    let searchResault
-    let Personalized1
-    let Personalized2
-    let Alcohol
-    let Dating
-    let Gambling
-    let Pregnancy
-    let Weight
-    let BlockArray = []
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            UserId = user.id
-            searchResault = user.SearchResault
-            Personalized1 = user.Personalized1
-            Personalized2 = user.Personalized2
-            Alcohol = user.Alcohol
-            Dating = user.Dating
-            Gambling = user.Gambling
-            Pregnancy = user.Pregnancy
-            Weight = user.WeightLoss
-            BlockArray = user.BlockedList
-        }
-    })
-    const [search,setSearch] = React.useState(searchResault)
-    const [personal1, setPersonal1] = React.useState(Personalized1)
-    const [personal2,setPersonal2] = React.useState(Personalized2)
-    const [alcohol, setAlcohol] = React.useState(Alcohol)
-    const[date, setDate] = React.useState(Dating)
-    const [gamble, setGambling] = React.useState(Gambling)
-    const[pregnancy, setPregnancy] = React.useState(Pregnancy)
-    const[weight,setWeight ] = React.useState(Weight)
+    
+    const [search, setSearch] = React.useState()
+    const [personal1, setPersonal1] = React.useState()
+    const [alcohol, setAlcohol] = React.useState()
+    const[date, setDate] = React.useState()
+    const [gamble, setGambling] = React.useState()
+    const[pregnancy, setPregnancy] = React.useState()
+    const[weight,setWeight ] = React.useState()
+    const[twofactor, setTwoFactor] = React.useState()
     const [block, setBlock] = React.useState(null)
     const [mute, setMute] = React.useState(null)
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            user.SearchResault = search
-            user.Personalized1 = personal1
-            user.Personalized2 = personal2
-            user.Alcohol = alcohol
-            user.Dating = date
-            user.Gambling = gamble
-            user.Pregnancy = pregnancy
-            user.WeightLoss = weight
-            return
+
+    function handleSearch(){
+        setSearch(!search);
+        sendInfo({showInSearch: !search});
+       
+    }
+    function handlePersonalied(){
+        setPersonal1(!personal1);
+        sendInfo({personalizeAds: !personal1});
+ 
+    }
+    function handleAlcohol(){
+        setAlcohol(!alcohol);
+        sendInfo({alcohol: !alcohol});
+    }
+    function handleDating(){
+        setDate(!date);
+        sendInfo({dating: !date});
+
+    }
+    function handleGambling(){
+        setGambling(!gamble);
+        sendInfo({gambling: !gamble});
+       
+    }
+    function handlePregnancy(){
+        setPregnancy(!pregnancy);
+        sendInfo({pregnancyAndParenting: !pregnancy});
+       
+    }
+    function handleWeight(){
+        setWeight(!weight);
+        sendInfo({weightLoss: !weight});
+       
+    }
+    function handleTwoFactor(){
+        setTwoFactor(!twofactor);
+        sendInfo({twoFactorAuthentication: !twofactor});
+    }
+    async function sendInfo(data){
+            const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
+                headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+            });
+            return promise;
+    }
+    async function GetInfo(){
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
+            headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+        });
+        return promise.data;
+    }
+    React.useEffect(() =>{
+        async function GetandApply(){
+            const data = await GetInfo()
+            if(data){
+                
+                setSearch(data.settings.showInSearch)
+                setPersonal1(data.settings.personalizeAds)
+                setAlcohol(data.settings.alcohol)
+                setDate(data.settings.dating)
+                setGambling(data.settings.gambling)
+                setPregnancy(data.settings.pregnancyAndParenting)
+                setWeight(data.settings.weightLoss)
+                setTwoFactor(data.settings.twoFactorAuthentication)
+            }
         }
-    })
+        
+        GetandApply()
+    },[])
     const addBlocked = () =>{
         if(block === null){
             alert("Please enter a user first")
@@ -116,7 +153,7 @@ export default function SafetyPrivacy() {
                 <h3 className={`${classes.Subheaders}`}>SAFETY<hr className='mt-2'></hr></h3>
                 <div className={`${classes.mb}`} >
                     <div  >
-                        <h3 className={`${classes.SettingTopics} ${classes.font}`}>People You’ve Blocked</h3>
+                        <h3 className={`${classes.SettingTopics} ${classes.font}`} on>People You’ve Blocked</h3>
                         <p className={`${classes.Subtext}`}>Blocked people can’t send you chat requests or private messages.</p>
                     </div>
                     <div className={`${classes.BlockUserDiv}`}>
@@ -124,7 +161,7 @@ export default function SafetyPrivacy() {
                             <input type="text" placeholder=' Block New User' onChange={changeBlock} className={`${classes.w100} ${classes.Inputbox}`}></input>
                         </div>
                         <div className={`${classes.SettingToggles}`}>
-                            <button className={`${classes.Add}`} onClick={()=>{addBlocked()}}>ADD</button>
+                            <button className={`${classes.Add}`}  onClick={()=>{addBlocked()}}>ADD</button>
                         </div>
                     </div>
                 </div>
@@ -144,6 +181,7 @@ export default function SafetyPrivacy() {
                         </div>
                     </div>
                 </div>
+                
                 <h3 className={`${classes.Subheaders}`}>PRIVACY<hr className='mt-2'></hr> </h3>
                 <div className={`${classes.box}`}>
                     <div>
@@ -152,7 +190,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {search} onClick={() => {setSearch(!search)}}/>
+                            <input type="checkbox" checked={search} onChange={()=>{handleSearch()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -164,7 +202,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {personal1} onClick={() => {setPersonal1(!personal1)}}/>
+                            <input type="checkbox" checked={personal1} onChange={()=>{handlePersonalied()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -176,7 +214,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {personal2} onClick={() => {setPersonal2(!personal2)}}/>
+                            <input type="checkbox" />
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -190,7 +228,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {alcohol} onClick={() => {setAlcohol(!alcohol)}}/>
+                            <input type="checkbox" checked={alcohol} onChange={()=>{handleAlcohol()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -202,7 +240,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {date} onClick={() => {setDate(!date)}}/>
+                            <input type="checkbox" checked={date} onChange={()=>{handleDating()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -214,7 +252,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {gamble} onClick={() => {setGambling(!gamble)}}/>
+                            <input type="checkbox" checked={gamble} onChange={()=>{handleGambling()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -226,7 +264,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked ={pregnancy} onClick={() => {setPregnancy(!pregnancy)}}/>
+                            <input type="checkbox" checked={pregnancy} onChange={()=>{handlePregnancy()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -238,7 +276,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked = {weight} onClick={() => {setWeight(!weight)}}/>
+                            <input type="checkbox" checked={weight} onChange={()=>{handleWeight()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
@@ -251,7 +289,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={twofactor} onChange={()=>{handleTwoFactor()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>
