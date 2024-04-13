@@ -151,6 +151,7 @@ font-size: 13px;
 
 .compact-post-card-interaction{
     display: flex;
+    margin: 10px;
 }
 .compact-post-card-interaction-voting p{
     margin-top: 3px;

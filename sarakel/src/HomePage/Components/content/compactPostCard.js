@@ -15,6 +15,7 @@ const CompactPostCard = ({
   getCommunityName,
   getCommunityImage,
   renderMediaWithCount,
+  renderMedia
 }) => {
   const [expanded, setExpanded] = useState(false);
   const postRef = useRef(null);
@@ -73,62 +74,63 @@ const CompactPostCard = ({
         </div>
 
         <div className="compact-post-card-right">
-          <div className="compact-post-card-right-header">
-            <img
-              src={getCommunityImage(post.community_id)}
-              className="compact-post-card-profile-photo"
-              alt={post.text}
-            />
-            <p>r/{getCommunityName(post.community_id)}</p>
-            <button
-              className="compact-post-card-join-btn"
-              onClick={() => handleJoinClick(post.id)}
-            >
-              {joinStates[post.id] ? "Leave" : "Join"}
-            </button>
-            <p>{post.time} ago</p>
-          </div>
-          <p>
-            <b>{post.title}</b>
-          </p>
+  <div className="compact-post-card-right-header">
+    <img
+      src={getCommunityImage(post.community_id)}
+      className="compact-post-card-profile-photo"
+      alt={post.text}
+    />
+    <p>r/{getCommunityName(post.community_id)}</p>
+    <button
+      className="compact-post-card-join-btn"
+      onClick={() => handleJoinClick(post.id)}
+    >
+      {joinStates[post.id] ? "Leave" : "Join"}
+    </button>
+    <p>{post.time} ago</p>
+  </div>
+  <p>
+    <b>{post.title}</b>
+  </p>
 
-          {expanded && <p>{post.text}</p>}
+  {expanded && (!post.text ? renderMedia(post.media) : <p>{post.text}</p>)}
 
-          <div className="compact-post-card-interaction">
-            <button
-              className="compact-post-card-interaction-expand"
-              onClick={handleExpandClick}
-            >
-              <FaExpandAlt />
-            </button>
+  <div className="compact-post-card-interaction">
+    <button
+      className="compact-post-card-interaction-expand"
+      onClick={handleExpandClick}
+    >
+      <FaExpandAlt />
+    </button>
 
-            <div className="compact-post-card-interaction-voting">
-              <button
-                onClick={() => handleUpvoteClick(post.id)}
-                className={post.upvoted ? "upvoted" : ""}
-              >
-                <BiUpvote />
-              </button>
-              <p>{post.likes}</p>
-              <button
-                onClick={() => handleDownvoteClick(post.id)}
-                className={post.downvoted ? "downvoted" : ""}
-              >
-                <BiDownvote />
-              </button>
-            </div>
+    <div className="compact-post-card-interaction-voting">
+      <button
+        onClick={() => handleUpvoteClick(post.id)}
+        className={post.upvoted ? "upvoted" : ""}
+      >
+        <BiUpvote />
+      </button>
+      <p>{post.likes}</p>
+      <button
+        onClick={() => handleDownvoteClick(post.id)}
+        className={post.downvoted ? "downvoted" : ""}
+      >
+        <BiDownvote />
+      </button>
+    </div>
 
-            <div className="compact-post-card-interaction-text-buttons">
-              <button className="compact-post-card-interaction-comments-button">
-                {post.comments} comments
-              </button>
-              <button>Share</button>
-              <button>Save</button>
-              <button onClick={() => handleHideClick(post.id)}>Hide</button>
-              <button>Report</button>
-            </div>
-          </div>
-        </div>
+    <div className="compact-post-card-interaction-text-buttons">
+      <button className="compact-post-card-interaction-comments-button">
+        {post.comments} comments
+      </button>
+      <button>Share</button>
+      <button>Save</button>
+      <button onClick={() => handleHideClick(post.id)}>Hide</button>
+      <button>Report</button>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   );
