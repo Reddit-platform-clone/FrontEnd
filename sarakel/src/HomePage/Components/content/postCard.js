@@ -62,8 +62,7 @@ const postCard = ({
       <p className="post-title">
         <b>{post.title}</b>
       </p>
-      <p>{post.text}</p>
-      {renderMediaOrTruncateText(post.media, post.text)}
+      {renderMediaOrTruncateText(post.media, post.text, false)}
     </div>
     <div className="interaction-container">
       <div className="interaction">

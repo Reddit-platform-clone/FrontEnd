@@ -105,13 +105,13 @@ const Content = () => {
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "..."; // Add ellipsis if text is truncated
+      return text.substring(0, maxLength) + "....."; // Add ellipsis if text is truncated
     }
     return text;
   };
 
   const renderMediaOrTruncateText = (media, text) => {
-    const maxTextLength = 400; // Define the maximum length for text display
+    const maxTextLength = 450; // Define the maximum length for text display
 
     if (media) {
       // If media is present, call renderMedia function
