@@ -106,17 +106,19 @@ border: none;
 font-size: 25px;
 }
 
-.create-button {
-border-radius: 50%;
-width: fit-content;
-height: 40px;
-background-color: transparent;
-border: none;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-transition: box-shadow 0.3s ease;
+.create-button{
+  border: none;
+  cursor: pointer;
+  width: auto ;
+  height: 35px ;
+  border-radius: 25px ; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+  padding: 0 15px ; 
+  font-size: 15px ;
+  background-color: transparent;
 }
 .create-button span {
 font-size: 13px; 
@@ -135,7 +137,7 @@ margin-right: 5px;
 .create-button:hover,
 .user-button:hover {
   background-color: rgba(128, 128, 128, 0.3); /* Semi-transparent grey background on hover */
-  transform: translateY(2px); /* Move the button down slightly on hover */
+  transform: translateY(0px); /* Move the button down slightly on hover */
   margin-top: -4px;
 }
 
@@ -251,4 +253,7 @@ margin-right: 5px;
 .userImage{
   width: 32px;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
