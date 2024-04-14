@@ -10,7 +10,7 @@ import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
 import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
-import { useAuth } from '../AuthContext.js';
+import { useAuth } from '../AuthContext.js';//import
 
 
 
@@ -24,7 +24,7 @@ const Content = () => {
   const [viewType, setViewType] = useState("card");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
-  const { token } = useAuth();
+  const { token } = useAuth();//init
 
 
   useEffect(() => {
@@ -116,6 +116,7 @@ const Content = () => {
   const handleViewTypes = () => {
     setShowViewOptions(!showViewOptions);
     setShowSortOptions(false); // Close the sort options dropdown
+    console.log(token);
   };
 
 
@@ -306,3 +307,5 @@ const Content = () => {
 };
 
 export default Content;
+
+
