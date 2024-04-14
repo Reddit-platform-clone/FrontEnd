@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
 import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
-import { useAuth } from "../AuthContext";
+import  {useAuth}  from "../../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
 import "react-toastify/dist/ReactToastify.css";

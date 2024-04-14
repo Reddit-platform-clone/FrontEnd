@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignUpTwo.css";
 import SignUpOne from "./SignUpOne.js";
-import { useAuth } from "../AuthContext";
+import  {useAuth}  from "../../AuthContext";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from "react-toastify";

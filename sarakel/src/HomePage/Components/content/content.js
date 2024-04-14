@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import jsonData from "../mock.json";
+import jsonData from "../../../mock.json";
 import "./content.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
@@ -10,7 +10,7 @@ import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
 import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
-import { useAuth } from '../AuthContext.js';
+import  {useAuth}  from '../../AuthContext.js';
 
 
 
