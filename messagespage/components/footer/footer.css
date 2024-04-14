@@ -1,0 +1,55 @@
+.footer {
+  display: flex;
+  padding: 20px;
+  height: fit-content;
+  width: 100%;
+  background-color: rgb(235, 235, 235);
+  margin-top: max;
+  text-align: center;
+
+}
+
+.column {
+  flex: 1;
+  padding: 5px;
+  /* text-align: left; */
+  width: fit-content;
+  
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  font: 12px ;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+li {
+  margin-bottom: 0px;
+  color: #0079d3;
+  font: 12px ;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/* Copyright text */
+p {
+  font-size: 12px;
+  color: #777;
+}
+
+.copyrighttxt{
+margin-top: max;
+
+}
+
+.footertitle{
+  font-family: Arial, Helvetica, sans-serif;
+    color: #777;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+
+
