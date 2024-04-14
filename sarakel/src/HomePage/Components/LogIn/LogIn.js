@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "./LogIn.css";
 import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
 import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
+import { useAuth } from "../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +16,7 @@ function LogIn({ onSuccessfulLogin }) {
   const [showUsername, setShowUsername] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(true);
+  const { setToken } = useAuth();
 
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
@@ -44,8 +46,12 @@ function LogIn({ onSuccessfulLogin }) {
       if (response.ok) {
         const data = await response.json();
         toast.success("Login successful!");
-        console.log(data.token)
-        // Call onSuccessfulLogin function passed from parent component with received token
+        console.log(data.token);
+        console.log("before setting token");
+
+          setToken(data.token);
+          console.log("after setting token")
+        // Call onSuccessfulLogin function passed from parent component
         onSuccessfulLogin();
       } else {
         const errorText = await response.text();
