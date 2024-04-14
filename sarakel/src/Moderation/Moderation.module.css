@@ -177,8 +177,7 @@
   .ModListBox{
     border-style: groove;
     border-width: 1px;
-    padding: 85px;
-    height: 100vh;
+
   }
   .ActionBar{
     border-style: groove;
@@ -331,3 +330,18 @@
     visibility: visible;
     z-index: 1;
   }
+  .checkBox{
+    width: 50px;
+  }
+  .content{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #9b9b9b;
+  }
+  .color{
+    color: #878a8c;
+  }
+.ModBanner{
+  background-color: rgba(255, 69, 0, .2);
+}

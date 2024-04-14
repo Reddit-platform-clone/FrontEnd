@@ -1,21 +1,27 @@
-import React, { } from 'react';
+
 import '../../bootstrap.min.css'
 import classes from '../Moderation.module.css'
+import jsonData from '../../mock.json';
 import mock from '../../mock.json'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import React, { useState, useEffect } from 'react';
+import ReactPlayer from "react-player";
+import Listing from './listing';
+
 export default function Queues(){
 
-    let ModImg
-    const [Sort1, setSort1] = React.useState("Newest first")
-    const [Sort2, setSort2] = React.useState("Posts and comments")
+    let img
     mock.users.map((user) => {
         if(user.LoggedIn === 1){
-            ModImg = user.image
+            img = user.image
             return
         }
     }) 
+    const [Sort1, setSort1] = React.useState("Newest first")
+    const [Sort2, setSort2] = React.useState("Posts and comments")
+    
 
     return(
 
@@ -24,9 +30,9 @@ export default function Queues(){
                 <div className='col-8  '>
                     <div className='container-md'>
                         <div className='row'>
-                            <div className='col d-flex'>
-                                <span className={`${classes.QueuesHeader}`}>Queues</span>
-                            	<img src={ModImg} className={`${classes.ModImg}`}></img>
+                            <div className='col  d-flex'>
+                                <span className={`  ${classes.QueuesHeader}`}>Queues</span>
+                            	<img src={img} className={`${classes.ModImg}`}></img>
                             </div>
                         </div>
                         <div className='row mt-3 '>
@@ -46,7 +52,7 @@ export default function Queues(){
                                 <button className={`${classes.QueueButtons}`}><span>Unmoderated</span></button>
                             </div>
                         </div>
-                        <div className='row justify-content mt-5'>
+                        <div className='row justify-content mt-3'>
                             <div className='col-auto'>
                                 <div class="dropdown">
                                     <button className='btn  dropdown-toggle' type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,9 +97,9 @@ export default function Queues(){
                                 </div>
                             </div>
                         </div>
-                        <div className={`row justify-content-center align-items-center mt-1 ${classes.ModListBox}`}>
-                            <h1 className='row justify-content-center'>Empty</h1>
-                        </div>
+
+                        <Listing />
+                        
                     </div>
                 </div>
                 <div className='col-3 bg-dark'>
