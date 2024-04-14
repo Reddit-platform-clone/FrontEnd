@@ -8,7 +8,9 @@ import { CiBookmark, CiFlag1 } from "react-icons/ci";
 const postCard = ({
   post,
   joinStates,
+  saveStates,
   handleJoinClick,
+  handleSaveClick,
   handleHideClick,
   handleUpvoteClick,
   handleDownvoteClick,
@@ -46,8 +48,8 @@ const postCard = ({
               <a href="#">
                 <BiHide /> show fewer posts like this
               </a>
-              <a href="#">
-                <CiBookmark /> save
+              <a href="#" onClick={() => handleSaveClick(post.id)}>
+                <CiBookmark /> {saveStates[post.id] ? "Unsave" : "save"}
               </a>
               <a href="#">
                 <CiFlag1 /> report

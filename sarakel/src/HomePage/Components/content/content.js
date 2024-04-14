@@ -10,7 +10,7 @@ import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
 import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
-
+import { useAuth } from '../AuthContext.js';
 
 
 
@@ -20,9 +20,12 @@ const Content = () => {
   const [communities, setCommunities] = useState([]);
   const [hiddenPosts, setHiddenPosts] = useState({});
   const [joinStates, setJoinStates] = useState({});
+  const[saveStates, setSaveStates]= useState({});
   const [viewType, setViewType] = useState("card");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
+  const { token } = useAuth();
+
 
   useEffect(() => {
     const fetchData = () => {
@@ -86,6 +89,13 @@ const Content = () => {
 
   const handleJoinClick = (postId) => {
     setJoinStates((prevState) => ({
+      ...prevState,
+      [postId]: !prevState[postId],
+    }));
+  };
+
+  const handleSaveClick = (postId) => {
+    setSaveStates((prevState) => ({
       ...prevState,
       [postId]: !prevState[postId],
     }));
@@ -245,7 +255,9 @@ const Content = () => {
                     key={post.id}
                     post={post}
                     joinStates={joinStates}
+                    saveStates={saveStates}
                     handleJoinClick={handleJoinClick}
+                    handleSaveClick={handleSaveClick}
                     handleHideClick={handleHideClick}
                     handleUpvoteClick={handleUpvoteClick}
                     handleDownvoteClick={handleDownvoteClick}
@@ -258,7 +270,9 @@ const Content = () => {
                     key={post.id}
                     post={post}
                     joinStates={joinStates}
+                    saveStates={saveStates}
                     handleJoinClick={handleJoinClick}
+                    handleSaveClick={handleSaveClick}
                     handleHideClick={handleHideClick}
                     handleUpvoteClick={handleUpvoteClick}
                     handleDownvoteClick={handleDownvoteClick}

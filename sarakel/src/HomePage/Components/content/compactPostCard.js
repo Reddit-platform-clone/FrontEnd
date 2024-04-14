@@ -8,7 +8,9 @@ import { FaExpandAlt } from "react-icons/fa";
 const CompactPostCard = ({
   post,
   joinStates,
+  saveStates,
   handleJoinClick,
+  handleSaveClick,
   handleHideClick,
   handleUpvoteClick,
   handleDownvoteClick,
@@ -124,7 +126,11 @@ const CompactPostCard = ({
         {post.comments} comments
       </button>
       <button>Share</button>
-      <button>Save</button>
+      <button
+      onClick={() => handleSaveClick(post.id)}
+    >
+      {saveStates[post.id] ? "Unsave" : "Save"}
+    </button>
       <button onClick={() => handleHideClick(post.id)}>Hide</button>
       <button>Report</button>
     </div>
