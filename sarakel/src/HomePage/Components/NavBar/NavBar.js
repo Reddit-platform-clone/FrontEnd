@@ -42,9 +42,11 @@ function NavBar({ onLogout }) {
             <IoIosNotificationsOutline />
           </button>
 
-          <button className="button chat-button" data-title="Open chat">
-            <IoChatbubbleEllipsesOutline />
-          </button>
+          <Link to='/MessagesPage'>
+            <button className="button chat-button" data-title="Open chat">
+              <IoChatbubbleEllipsesOutline />
+            </button>
+          </Link>
 
           <button className="button create-button" data-title="Create post">
             <FaPlus />
