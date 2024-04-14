@@ -1,0 +1,201 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+.navbar_jo{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background-color: white; 
+                                           
+}
+
+.TopBar {
+  background: rgb(68, 82, 185);
+  padding: 20px 0;
+  display: flex; /* Use flexbox to align items in a row */
+  position: fixed; /* Add this line */
+  width: 100%; /* Ensure it spans the full width */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  z-index: 1000; /* Ensure it stays on top of other */
+  margin-top: 30px;
+}
+
+.menu-button {
+  margin: 0 0px;
+  color: rgba(255, 255, 255, 0.707);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 80px;
+  padding: 0%;
+  font-size: 15px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight: 700;
+}
+
+.TopBar2{
+  background: rgb(68, 82, 185);
+  padding: 20px 0;
+  display: flex; /* Use flexbox to align items in a row */
+  position: fixed; /* Add this line */
+  width: 100%; /* Ensure it spans the full width */
+  top: 40px;
+  left: 0; /* Align to the left */
+}
+
+.menu-button2 {
+  margin: 0 0px;
+  color: rgba(255, 255, 255, 0.707);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 80px;
+  padding: 0%;
+  font-size: 13px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+
+.menu-button:hover {
+  opacity: 0.8;
+}
+
+.MainWindow {
+  display: flex; /* Establishes a flex container */
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically */
+  height: 100%; /* Set to desired height */
+  width: 100%; /* Set to desired width or 100% for full width */
+  /* Add any additional styling such as padding or background color */
+  background: rgb(235, 235, 235);
+}
+
+.MainWindow1{
+  background: rgb(255, 255, 255);
+  /* margin-top: 200px; */
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.MainWindow2{
+  background: rgb(255, 255, 255);
+  margin-top: 15px;
+  display: none;
+
+}
+
+.MainWindow3{
+  background: rgb(255, 255, 255);
+  margin-top: 15px;
+  display: none;
+
+}
+.txt1{
+  font-size: 30px;
+}
+
+.towindow{
+  margin-top: 15px;
+margin-left: 18px;
+}
+
+.tobox{
+width: 500px;
+height: 30px;
+margin-right: 600px;
+
+}
+
+.subwindow{
+  margin-top: 15px;
+margin-left: 18px;
+
+}
+.subbox{
+  width: 500px;
+  height: 30px;
+  margin-right: 400px;
+}
+.to{
+  font-size: larger;
+}
+/* .txtt{
+display: flex;
+
+} */
+.subject{
+  font-size: larger;
+}
+
+.Msgbox{
+  margin-top: 15px;
+  margin-left: 18px;
+  
+}
+
+.msgboxx{
+  width: 500px;
+  height: 90px;
+  margin-right: 400px;
+  margin-bottom: 15px;
+}
+
+.message{
+font-size: larger;
+}
+
+.Sendbutton{
+  padding: 8px 20px;
+  background: rgb(68, 82, 185);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 0px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  margin-top: 9px;
+}
+
+
+.active-content{
+  display: block;
+}
+
+.footer{
+  height:5px;
+  width: fit-content;
+  background-color:  rgb(235, 235, 235);;
+}
+
+.nocontmsg{
+  border-radius: 5px;
+  
+}
+
+.errmsg{
+  display: flex;
+  margin-left: 5px;
+  margin-right: 100px;
+  top: 800px
+}
+
+.robotchk{
+  margin-left: 18px;
+}
+
+.tab2-1{
+  display: none;
+  margin-top: 500px;
+
+}
+
+.active{
+  display: block;
+}
+

@@ -1,0 +1,81 @@
+/* Navigation Bar Styles */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Top Communities Styles */
+  .top-communities {
+    padding: 1rem;
+    background-color: #f7f7f7;
+  }
+  
+  .top-communities h1 {
+    margin-bottom: 1rem;
+  }
+  
+  /* Community Card Styles */
+  .community-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .community-card .community-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .community-card .community-info img {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+    border-radius: 50%;
+  }
+  
+  .community-card .join-btn {
+    padding: 0.5rem 1rem;
+    background-color: #0079d3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .community-card .join-btn:hover {
+    background-color: #005999;
+  }
+  
+  /* Pagination Styles */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .pagination button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    background-color: #0079d3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination button:hover {
+    background-color: #005999;
+  }
+  
+  .pagination .active {
+    background-color: #005999;
+  }
+  
