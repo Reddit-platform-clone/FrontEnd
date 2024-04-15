@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Switch, Flex, Spacer, Box, use } from '@chakra-ui/react'
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
-import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json'
+import {useAuth} from '../../HomePage/AuthContext.js';
+import { getToken } from '../../HomePage/token.js';
 
 
 
@@ -20,7 +22,7 @@ export default function SafetyPrivacy() {
     const[twofactor, setTwoFactor] = React.useState()
     const [block, setBlock] = React.useState(null)
     const [mute, setMute] = React.useState(null)
-
+    let token = getToken()
     function handleSearch(){
         setSearch(!search);
         sendInfo({showInSearch: !search});
@@ -61,13 +63,13 @@ export default function SafetyPrivacy() {
     }
     async function sendInfo(data){
             const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
-                headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+                headers:{Authorization: `Bearer ${token} `}
             });
             return promise;
     }
     async function GetInfo(){
         const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
-            headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
+            headers:{Authorization: `Bearer ${token}`}
         });
         return promise.data;
     }

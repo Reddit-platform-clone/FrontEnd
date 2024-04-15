@@ -345,3 +345,6 @@
 .ModBanner{
   background-color: rgba(255, 69, 0, .2);
 }
+.BannedImg{
+  width: 40px;
+}

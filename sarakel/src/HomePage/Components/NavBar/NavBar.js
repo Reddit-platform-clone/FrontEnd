@@ -60,6 +60,7 @@ function NavBar({ onLogout }) {
             <div className='dropdownContent'>
               <a>User profile</a>
               <Link to='/settings'>User Settings</Link>
+              <Link to='/Moderation'> Mod Tools</Link>
               <a onClick={handleLogout}>Log out</a>
             </div>
           </div>

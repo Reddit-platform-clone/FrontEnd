@@ -1,6 +1,8 @@
 import React, { } from 'react';
 import classes from './Moderation.module.css'
 import '../bootstrap.min.css'
+import NavBar from '../HomePage/Components/NavBar/NavBar';
+import { Link } from 'react-router-dom';
 import Queues from './Components/Queues'
 import sarakel from './WhatsApp Image 2024-03-18 at 12.02.45 AM.jpeg'
 import CreateCommunity from '../CreateCommunity/CreateCommunity'
@@ -19,6 +21,8 @@ export default function Moderation({CommunityId}) {
         }
     }
     return(
+        <div>
+            <NavBar />
         <div className={`${classes.font}`}>
             <div className='container-fluid'>
                 <div className='row  sticky-top'>
@@ -33,10 +37,11 @@ export default function Moderation({CommunityId}) {
                     <div className='col-2 '>
                         <nav className={` ${classes.sidebar}`}>
                 <div className={` ${classes.scrollbox} `}>
-                <button className={`${classes.sidebarButtons}`}>
-                <svg rpl="" className={`${classes.sideIcon} ${classes.rotate90}`}xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" icon-name="down-arrow-outline" fill="currentColor"><g clip-path="url(#clip0_4084_297)"><path d="M10.442 19.442l9-9-.884-.884-7.933 7.933V1h-1.25v16.491L1.442 9.558l-.884.884 9 9a.624.624 0 00.884 0z"></path></g><defs><clipPath id="clip0_4084_297"><path d="M0 0h20v20H0z" transform="rotate(90 10 10)"></path></clipPath></defs></svg>
+                    <Link to='/'><button className={`${classes.sidebarButtons}`}>
+                                <svg rpl="" className={`${classes.sideIcon} ${classes.rotate90}`}xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" icon-name="down-arrow-outline" fill="currentColor"><g clip-path="url(#clip0_4084_297)"><path d="M10.442 19.442l9-9-.884-.884-7.933 7.933V1h-1.25v16.491L1.442 9.558l-.884.884 9 9a.624.624 0 00.884 0z"></path></g><defs><clipPath id="clip0_4084_297"><path d="M0 0h20v20H0z" transform="rotate(90 10 10)"></path></clipPath></defs></svg>
                             <span>Exit Mod tools</span>
-                        </button>
+                        </button></Link>
+                
                         <hr className={`${classes.separator}`}></hr>
                         <a className={`${classes.SideGroups} ${classes.mb75}`}>OVERVIEW</a>
                         <button className={`${classes.sidebarButtons} ${classes.mb75}`} onClick={()=>{setValue(0)}}>
@@ -185,6 +190,7 @@ export default function Moderation({CommunityId}) {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

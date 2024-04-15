@@ -11,24 +11,20 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 //import { Route } from 'react-router-dom';
 //import NavBar from './HomePage/Components/NavBar/NavBar.js'
 function App() {
-  return (
-    // <div className="App">
-    //   {/* <Social /> */}
-    //   {/* <SideBar /> */}
-    //   {/* <Settings /> */}
-      
+  return (      
     <AuthProvider>
         <BrowserRouter>
         <Routes>
           <Route index  element={<HomePage />} />
           <Route path='settings' element={<Settings />} />
           <Route  path = 'MessagesPage' element={<MessagesPage />}></Route>
+          <Route path ='Moderation' element={<Moderation />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
 
       
-
+    
   );
 }
 

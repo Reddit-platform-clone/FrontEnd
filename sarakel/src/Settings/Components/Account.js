@@ -6,8 +6,10 @@ import classes from './Account.module.css'
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import { getToken } from '../../HomePage/token';
 export default function Account() {
     let mail
+    console.log(getToken())
     // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'; // The JWT token you received when the user logged in
 
     // const decodedToken = jwt_decode(token); // Decoding the token to get user details

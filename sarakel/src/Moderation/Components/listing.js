@@ -58,7 +58,7 @@ export default function Listing(){
 
   
     return (
-        <div className={`row  mt-1 ${classes.ModListBox}`}>
+        <div >
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -68,6 +68,7 @@ export default function Listing(){
             ) : (
               posts.ModQueue.map((item) => (
                 !hiddenPosts[item.id] ? (
+                  <div className={`row  mt-1 ${classes.ModListBox}`}>
                     <div className='row '>
                     <div className='col-1'>
                         <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
@@ -101,10 +102,16 @@ export default function Listing(){
                                 <div className='row '><a>u/MemoNar</a></div>
                             </div>
                         </div>
-                        <div className='row mt-3'>
-
+                        <div className='row mt-3 '>
+                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
+                            </div>
+                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
+                            </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 ) : (
                   <div  className="hidden-post-card">

@@ -3,10 +3,12 @@ import './bootstrap.min.css';
 import style from './Account.module.css'
 import axios from 'axios'; 
 import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import { getToken } from '../../HomePage/token';
 export default function Emails(){
     const [newfollowers, setNewFollow] = React.useState()
     const [chatreq, setChatReq] = React.useState()
     const [unsub, setUnsub] = React.useState()
+    let token = getToken()
     function handleNewFollowers(){
         setNewFollow(!newfollowers);
         sendInfo({newFollowersEmail: !newfollowers});
@@ -21,14 +23,12 @@ export default function Emails(){
     }
     async function sendInfo(data){
             const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
-                headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
-            });
+                headers:{Authorization: `Bearer ${token} `}     });
             return promise;
     }
     async function GetInfo(){
         const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
-            headers:{Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'}
-        });
+            headers:{Authorization: `Bearer ${token} `}        });
         return promise.data;
     }
     React.useEffect(() =>{

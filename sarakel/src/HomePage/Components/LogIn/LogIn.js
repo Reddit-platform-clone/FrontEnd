@@ -7,6 +7,7 @@ import ForgotPassword from "./ForgotPassword";
 import  {useAuth}  from "../../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
+import { setJWT } from "../../token";
 import "react-toastify/dist/ReactToastify.css";
 
 const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
@@ -50,6 +51,7 @@ function LogIn({ onSuccessfulLogin }) {
         console.log("before setting token");
 
           setToken(data.token);
+          setJWT(data.token)
           console.log("after setting token")
         // Call onSuccessfulLogin function passed from parent component
         onSuccessfulLogin();
