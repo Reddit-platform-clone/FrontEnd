@@ -10,23 +10,6 @@ import { getToken } from '../../HomePage/token';
 export default function Account() {
     let mail
     console.log(getToken())
-    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'; // The JWT token you received when the user logged in
-
-    // const decodedToken = jwt_decode(token); // Decoding the token to get user details
-    
-    // console.log(decodedToken);
-    
-    // axios.get('http://localhost:5000/api/v1/me', {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`
-    //   }
-    // })
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
 
 
 
