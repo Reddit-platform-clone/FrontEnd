@@ -57,7 +57,7 @@
       "email": "user1@domain.com",
       "pass": "123456789",
       "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
-      "LoggedIn": 0,
+      "LoggedIn": 1,
       "gender": "select",
       "google": 1,
       "Country":"Choose",
@@ -66,7 +66,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": true,
       "DisplayName":"none",
-      "AboutMe":"None",
+      "AboutMe":"How do you get through tough days?",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -103,6 +103,7 @@
     {
       "id": "2",
       "name": "User2",
+      "sarakelid":"U/user2" ,
       "email": "user2@domain.com",
       "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "pass": "123456789",
@@ -115,7 +116,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None",
+      "AboutMe":"Another Day, Another Opportunity💯 🤫",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -152,6 +153,7 @@
     {
       "id": "3",
       "name": "User 3",
+      "sarakelid":"U/user3" ,
       "email": "user3@domain.com",
       "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "pass": "123456789",
@@ -164,7 +166,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None",
+      "AboutMe":"Nothing to see here",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -201,6 +203,7 @@
     {
       "id": "2a0a",
       "name":"khaled",
+      "sarakelid":"U/khaled" ,
       "email": "bahy@gmail.com",
       "password": "987654321",
       "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
@@ -214,7 +217,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None",
+      "AboutMe":"Just a random dude doing random things",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -262,7 +265,11 @@
       "text": "hitler couldn't pull this off even if he wanted to, os os>>>>",
       "media": ["https://www.thoughtco.com/thmb/d0R4SEcyfQZ6V6CSVTzdODh1CmY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/911-WTC-1339505-crop-592232ea5f9b58f4c0f79be3.jpg"],
       "likes": "18",
-      "comments": "7",
+      "comments": [
+        "Wow, that's a bold statement! 😳",
+        "The imagery here is powerful! 🌟",
+        "Let's keep the comparisons respectful, though. 🙏"
+      ],
       "time": "4 hr.",
       "reason": "Popular on Sarakel now"
     },
@@ -278,7 +285,11 @@
       "text": "kalam kteer 3ala ad eh el player dah gamed",
       "media": ["https://i.ibb.co/Jr3FMy5/Screenshot-2024-03-21-154239.png"],
       "likes": "1890",
-      "comments": "56",
+      "comments": [
+        "Exciting news! Can't wait to see them in action. ⚽",
+        "This player looks like a real game-changer! 💪",
+        "Great signing! Hoping for a successful season ahead. 🏆"
+      ],
       "time": "15 hr.",
       "reason": "Promoted"
     },
@@ -294,7 +305,11 @@
       "text": "King of anemia",
       "media": "https://i.ibb.co/m6SrBJF/joe2.png",
       "likes": "181",
-      "comments": "57",
+      "comments": [
+        "Love the colors! 💙💜",
+        "Such a striking image! 🔥",
+        "Feeling the vibe! 🌈"
+      ],
       "time": "1 day",
       "reason": "interest in a similar community"
     },
@@ -310,9 +325,13 @@
       "text": "Have u ever wondered why the emergency hotline is 911?? Im changing the world fr",
       "likes": "18",
       "media":"https://th.bing.com/th/id/OIP.d_tb9vxSAeeo6E1wy5j2LgHaD4?rs=1&pid=ImgDetMain",
-      "comments": "7",
+      "comments": [
+        "Mind-blowing thought! Never realized that. 🤯",
+        "You're onto something! Keep changing the world. 👏",
+        "Interesting observation! Keep sharing your ideas. 🌟"
+      ],
       "time": "4 hr.",
       "reason": "Popular on Sarakel now"
     }
-]
+  ]
 }

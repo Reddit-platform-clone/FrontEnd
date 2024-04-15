@@ -8,6 +8,8 @@ import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
 import { GoReply } from "react-icons/go";
 import { LuShare } from "react-icons/lu";
+import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged';
+import SideBar from '../HomePage/Components/SideBar/SideBar';
 function ProfilePage(){
     let userid;
     let username;
@@ -38,6 +40,9 @@ function ProfilePage(){
     };
     return(
         <>
+        <NavBarUnlogged/>
+        <SideBar/>
+
         <div className='container1'>
             
 

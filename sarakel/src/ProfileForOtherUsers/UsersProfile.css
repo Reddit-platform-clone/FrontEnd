@@ -66,7 +66,7 @@ body .username {
 }
 
 /* Main content container styling */
-body .container {
+body .container123 {
     max-width: 300px !important; /* Adjusted max-width for smaller container */
     margin: 0; /* Center container horizontally and remove space around it */
     padding: 2px; /* Reduced padding */
@@ -80,7 +80,7 @@ body .container {
 
 
 /* Buttons container */
-.button-container {
+.button-container123 {
     display: flex;
     justify-content: space-between;
     align-items: center;

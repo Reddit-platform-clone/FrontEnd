@@ -1,0 +1,65 @@
+.Community-search-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    top: 220px;
+    left: 220px;
+}
+
+.Community-search-data {
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+    padding: 10px; /* Add padding for spacing */
+    border-radius: 8px; /* Add rounded corners */
+    background-color: #f7f7f7; /* Set default background color */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+    transition: background-color 0.3s ease; /* Add transition for smooth color change */
+    width: 800px; /* Increase the width */
+    position: relative; /* Add relative positioning */
+}
+
+
+.Community-search-data:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+
+.Community-avatar {
+    width: 60px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.Community-details {
+    flex-grow: 1;
+}
+
+.Communityname3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.Communityid2 {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+.description {
+    font-size: 13px;
+    color: #555;
+    margin: 10px 0 0;
+    line-height: 1.5;
+}
+
+
+.Community-type {
+    position: absolute;
+    top: 60%;
+    left: 720px;
+    transform: translateY(-50%);
+}
