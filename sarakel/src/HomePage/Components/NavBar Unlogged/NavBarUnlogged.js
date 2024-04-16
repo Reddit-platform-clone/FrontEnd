@@ -6,22 +6,18 @@ import { IoSearchOutline } from "react-icons/io5";
 import LogIn from "../LogIn/LogIn";
 
 
-function NavBarUnlogged({ onLogin }) {
+function NavBarUnlogged() {
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLogin = () => {
-    // Toggle showLogin state
     setShowLogin(!showLogin);
   };
 
-  // Function to handle closing the login modal
   const handleCloseModal = () => {
     setShowLogin(false);
   };
 
-  // After successful login, call onLogin function passed from parent component
   const handleSuccessfulLogin = () => {
-    onLogin();
     setShowLogin(false); // Close the modal after successful login
   };
 
