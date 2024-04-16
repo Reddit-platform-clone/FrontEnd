@@ -7,18 +7,13 @@ import { FaPlus } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import mock from '../../../mock.json'
+import { useAuth } from "../AuthContext"; // Import useAuth hook
 
-function NavBar({ onLogout }) {
+function NavBar() {
+  const { logout } = useAuth(); // Use the logout function from the authentication context
+
   const handleLogout = () => {
-    // Call the onLogout callback function passed from the parent component
-    mock.users.map((user) => {
-      if(user.LoggedIn === 1){
-          user.LoggedIn = 0
-      }
-  })
-  console.log(mock.users)
-    onLogout();
+    logout(); // Call the logout function when the user clicks on logout button
   };
 
   return (
@@ -58,7 +53,7 @@ function NavBar({ onLogout }) {
             <div className='dropdownContent'>
               <a>User profile</a>
               <Link to='/settings'>User Settings</Link>
-              <a onClick={handleLogout}>Log out</a>
+              <a onClick={handleLogout}>Log out</a> {/* Call handleLogout function on click */}
             </div>
           </div>
         </div>
