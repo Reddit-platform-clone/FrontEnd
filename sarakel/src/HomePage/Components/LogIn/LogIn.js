@@ -4,10 +4,9 @@ import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
 import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
-import  {useAuth}  from "../../AuthContext";
+import { useAuth } from "../AuthContext"; //import
 import { ToastContainer, toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
-import { setJWT } from "../../token";
 import "react-toastify/dist/ReactToastify.css";
 
 const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
@@ -31,6 +30,13 @@ function LogIn({ onSuccessfulLogin }) {
     setShowPassword(true);
   };
 
+  const onSuccess=(res)=>{
+    console.log("login success ! current user :",res.profileObj)
+  };
+
+  const onFailure=(res)=>{
+    console.log("login failed ! res :",res)
+  }
   const handleLogin = async () => {
     const emailOrUsername = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -48,11 +54,8 @@ function LogIn({ onSuccessfulLogin }) {
         const data = await response.json();
         toast.success("Login successful!");
         console.log(data.token);
-        console.log("before setting token");
 
           setToken(data.token);
-          setJWT(data.token)
-          console.log("after setting token")
         // Call onSuccessfulLogin function passed from parent component
         onSuccessfulLogin();
       } else {
@@ -109,7 +112,10 @@ function LogIn({ onSuccessfulLogin }) {
           <GoogleLogin
             clientId={ClientID}
             buttonText="Continue with Google"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
             cookiePolicy="single_host_origin"
+            isSignedIn={true}
             className="login-google-oauth"
           />
 

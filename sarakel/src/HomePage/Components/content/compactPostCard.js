@@ -14,8 +14,6 @@ const CompactPostCard = ({
   handleHideClick,
   handleUpvoteClick,
   handleDownvoteClick,
-  getCommunityName,
-  getCommunityImage,
   renderMediaWithCount,
   renderMedia
 }) => {
@@ -78,16 +76,16 @@ const CompactPostCard = ({
         <div className="compact-post-card-right">
   <div className="compact-post-card-right-header">
     <img
-      src={getCommunityImage(post.community_id)}
+      src={post.image}
       className="compact-post-card-profile-photo"
-      alt={post.text}
+      alt={post.content}
     />
-    <p>r/{getCommunityName(post.community_id)}</p>
+    <p>r/{post.name}</p>
     <button
       className="compact-post-card-join-btn"
-      onClick={() => handleJoinClick(post.id)}
+      onClick={() => handleJoinClick(post.postId)}
     >
-      {joinStates[post.id] ? "Leave" : "Join"}
+      {joinStates[post.postId] ? "Leave" : "Join"}
     </button>
     <p>{post.time} ago</p>
   </div>
@@ -95,7 +93,7 @@ const CompactPostCard = ({
     <b>{post.title}</b>
   </p>
 
-  {expanded && (!post.text ? renderMedia(post.media) : <p>{post.text}</p>)}
+  {expanded && (!post.content ? renderMedia(post.media) : <p>{post.content}</p>)}
 
   <div className="compact-post-card-interaction">
     <button
@@ -107,14 +105,14 @@ const CompactPostCard = ({
 
     <div className="compact-post-card-interaction-voting">
       <button
-        onClick={() => handleUpvoteClick(post.id)}
+        onClick={() => handleUpvoteClick(post.id,1)}
         className={post.upvoted ? "upvoted" : ""}
       >
         <BiUpvote />
       </button>
       <p>{post.likes}</p>
       <button
-        onClick={() => handleDownvoteClick(post.id)}
+        onClick={() => handleDownvoteClick(post.id,-1)}
         className={post.downvoted ? "downvoted" : ""}
       >
         <BiDownvote />
@@ -127,11 +125,11 @@ const CompactPostCard = ({
       </button>
       <button>Share</button>
       <button
-      onClick={() => handleSaveClick(post.id)}
+      onClick={() => handleSaveClick(post.postId)}
     >
-      {saveStates[post.id] ? "Unsave" : "Save"}
+      {saveStates[post.postId] ? "Unsave" : "Save"}
     </button>
-      <button onClick={() => handleHideClick(post.id)}>Hide</button>
+      <button onClick={() => handleHideClick(post.postId)}>Hide</button>
       <button>Report</button>
     </div>
   </div>

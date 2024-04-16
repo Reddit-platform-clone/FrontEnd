@@ -7,18 +7,13 @@ import { FaPlus } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import mock from '../../../mock.json'
+import { useAuth } from "../AuthContext"; // Import useAuth hook
 
-function NavBar({ onLogout }) {
+function NavBar() {
+  const { logout } = useAuth(); // Use the logout function from the authentication context
+
   const handleLogout = () => {
-    // Call the onLogout callback function passed from the parent component
-    mock.users.map((user) => {
-      if(user.LoggedIn === 1){
-          user.LoggedIn = 0
-      }
-  })
-  console.log(mock.users)
-    onLogout();
+    logout(); // Call the logout function when the user clicks on logout button
   };
 
   return (
@@ -42,34 +37,23 @@ function NavBar({ onLogout }) {
             <IoIosNotificationsOutline />
           </button>
 
-          <Link to='/Search'>
-          <button className="button notification-button" data-title="Search">
-          <IoSearchOutline id="search-icon" />
+          <button className="button chat-button" data-title="Open chat">
+            <IoChatbubbleEllipsesOutline />
           </button>
-          </Link>
 
-          <Link to='/MessagesPage'>
-            <button className="button chat-button" data-title="Open chat">
-              <IoChatbubbleEllipsesOutline />
-            </button>
-          </Link>
-
-          <Link to='/CreatePost'>
           <button className="button create-button" data-title="Create post">
             <FaPlus />
             <span>Create</span>
-          </button> 
-          </Link> 
+          </button>  
 
           <div className='dropdown'>
             <button className='dropbtn user-button'>
               <span><img className='userImage' src='https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png' alt="User avatar" /></span>
             </button>
             <div className='dropdownContent'>
-              <Link to='/ProfilePage'><a>User profile</a></Link>
+              <a>User profile</a>
               <Link to='/settings'>User Settings</Link>
-              <Link to='/Moderation'> Mod Tools</Link>
-              <a onClick={handleLogout}>Log out</a>
+              <a onClick={handleLogout}>Log out</a> {/* Call handleLogout function on click */}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import SignUpOne from "../SignUp/SignUpOne";
 import LogIn from "./LogIn.js";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import jsonData from "../../../mock.json"; // Import JSON data
+import jsonData from "../mock.json"; // Import JSON data
 import { ToastContainer, toast } from "react-toastify";
 
 
@@ -26,16 +26,31 @@ function ForgotUsername() {
     setBackButton(true);
   };
 
-  const handleEmailMeClick = () => {
-    const email = document.getElementById("forget-username-email").value;
-    const userExists = jsonData.users.some((user) => user.email === email);
-
-    if (userExists) {
-      toast.success("Email sent!");
-    } else {
-      toast.error("This Email doesn't exist");
+  const handleEmailMeClick = async () => {
+    const emailOrUsername = document.getElementById("forget-username-email").value;
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/login/forget_password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ emailOrUsername })
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        toast.success(data.message);
+      } else {
+        toast.error("Email is not registered");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred while processing your request.');
     }
   };
+  
 
   const handleCloseModal = () => {
     setShowModal(false);
