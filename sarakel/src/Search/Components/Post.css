@@ -1,0 +1,34 @@
+.posts-container {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    height: auto;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.post {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    width: 800px; /* Adjusted width to fill the container */
+    margin-bottom: 20px; /* Increased margin to create space between posts */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+.post-content h3 {
+    margin-bottom: 10px;
+}
+
+.post-content p {
+    margin-bottom: 15px;
+}
