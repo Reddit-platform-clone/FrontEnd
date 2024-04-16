@@ -14,6 +14,7 @@ import Search from './Search/Search.js'
 //import { Route } from 'react-router-dom';
 //import NavBar from './HomePage/Components/NavBar/NavBar.js'
 function App() {
+<<<<<<< HEAD
   return (      
     <AuthProvider>
         <BrowserRouter>
@@ -28,6 +29,24 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+=======
+  return (
+    // <div className="App">
+    //   {/* <Social /> */}
+    //   {/* <SideBar /> */}
+    //   {/* <Settings /> */}
+      
+    //</div>
+    //  <BrowserRouter>
+    // <Routes>
+    //    <Route index  element={<HomePage />} />
+    //      <Route path='settings' element={<Settings />} />
+    //    </Routes>
+    //  </BrowserRouter>
+        <>
+         <UsersProfile/>
+        </>
+>>>>>>> origin/Ahmed-Tarek
 
 
     

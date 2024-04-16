@@ -7,15 +7,15 @@ export default function Comments(){
     return(
         <>
         
-        <div className='comments-container'>
+        <div className='comments-container54321'>
     {/* Display comments */}
     {jsonData.Comments.map(comment => (
-        <div className='comment' key={comment.comment_id}>
+        <div className='comment54321' key={comment.comment_id}>
             {/* Render each comment */}
-            <div className='comment-header'>
+            <div className='comment-header54321'>
                 {/* <span className='username'>{comment.comment_id}</span> */}
             </div>
-            <div className='comment-content'>
+            <div className='comment-content54321'>
                 <p>{comment.text}</p>
             </div>
             <div className='comment-time'>

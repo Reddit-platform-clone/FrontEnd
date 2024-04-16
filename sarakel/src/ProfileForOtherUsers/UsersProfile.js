@@ -197,21 +197,21 @@ function UsersProfile() {
             <div className='containerUP'>
                 <h6 className=''>{jsonData.users[0].name}</h6>
                 <div className='button-container'>
-                    <button className={`button ${isFollowing ? 'following' : ''}`} onClick={toggleFollow}>
+                    <button className={`button123456 ${isFollowing ? 'following' : ''}`} onClick={toggleFollow}>
                         {isFollowing ? '- Unfollow' : '→ Follow'}
                     </button>
-                    <button className='button'>Chat</button>
+                    <button className='button123456'>Chat</button>
                     <div>
-                        <button className='button' onClick={() => setShowList(!showList)}>
+                        <button className='button123456' onClick={() => setShowList(!showList)}>
                             {showList ? 'Close' : 'Options'}
                         </button>
                         {showList && (
                             <div>
                                 <ul>
-                                    <button className='button'>Share</button><br/>
-                                    <button className='button' >Send a message</button>
-                                    <button className='button' onClick={handleBlockAccount}>Block account</button>
-                                    <button className='button' onClick={handleReportAccount}>Report account</button>
+                                    <button className='button123456'>Share</button><br/>
+                                    <button className='button123456' >Send a message</button>
+                                    <button className='button123456' onClick={handleBlockAccount}>Block account</button>
+                                    <button className='button123456' onClick={handleReportAccount}>Report account</button>
                                 </ul>
                             </div>
                         )}
