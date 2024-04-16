@@ -1,9 +1,9 @@
 import React from 'react';
 import './bootstrap.min.css';
-import classes from './Account.module.css' 
+import classes from './Tabs.module.css' 
 import plus from './plus-sign.png'
 import arrow from './arrow-left-solid.svg'
-import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import mock from '../../mock.json';
 
 export default function Profile(){
     const [social, setSocial] = React.useState("None");

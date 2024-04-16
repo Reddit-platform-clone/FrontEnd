@@ -1,8 +1,8 @@
 import React from 'react';
 import './bootstrap.min.css';
-import style from './Account.module.css'
+import style from './Tabs.module.css'
 import axios from 'axios'; 
-import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import mock from '../../mock.json';
 import { getToken } from '../../HomePage/token';
 export default function Emails(){
     const [newfollowers, setNewFollow] = React.useState()

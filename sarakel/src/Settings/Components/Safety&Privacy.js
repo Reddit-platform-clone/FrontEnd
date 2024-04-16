@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { Switch, Flex, Spacer, Box, use } from '@chakra-ui/react'
 import './bootstrap.min.css';
-import classes from './Account.module.css' 
-import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json'
+import classes from './Tabs.module.css' 
+import mock from '../../mock.json'
 import {useAuth} from '../../HomePage/AuthContext.js';
 import { getToken } from '../../HomePage/token.js';
 

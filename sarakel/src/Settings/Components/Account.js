@@ -2,10 +2,10 @@ import React from 'react';
 import './bootstrap.min.css';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import classes from './Account.module.css' 
+import classes from './Tabs.module.css' 
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
-import mock from 'C:/Users/Khaled/Documents/GitHub/FrontEnd/sarakel/src/mock.json';
+import mock from '../../mock.json';
 import { getToken } from '../../HomePage/token';
 export default function Account() {
     let mail
@@ -44,12 +44,13 @@ mock.users.map((user) => {
         SavedGender = user.gender
         Country = user.Country
         Pass = user.pass
+        
         return
     }
 })  
     const [Password, setPass] = React.useState(`${Pass}`)
     const [gender, setGender] = React.useState(SavedGender)
-    const [value, setValue] = React.useState(Google)
+    const [value, setValue] = React.useState(0)
     const [Email, setEmail] = React.useState()
     const GenderHandler = (g) =>{
         mock.users.map((user) =>{
@@ -68,16 +69,6 @@ mock.users.map((user) => {
         })
         
     }
-    fetch('http://localhost:5000/api/v1/me',{
-        headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        setEmail(data.user.email)
-
-    })
     const secArray = []
     for(let i=0;i<2;i++){
         if (i===value){

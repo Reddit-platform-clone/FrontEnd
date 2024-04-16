@@ -1,6 +1,6 @@
 import React from 'react';
 import './bootstrap.min.css';
-import classes from './Account.module.css' 
+import classes from './Tabs.module.css' 
 
 export default function ChatsMessaging(){
     return(
