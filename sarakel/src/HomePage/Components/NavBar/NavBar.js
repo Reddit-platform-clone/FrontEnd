@@ -48,10 +48,12 @@ function NavBar({ onLogout }) {
             </button>
           </Link>
 
+          <Link to='/CreatePost'>
           <button className="button create-button" data-title="Create post">
             <FaPlus />
             <span>Create</span>
-          </button>  
+          </button> 
+          </Link> 
 
           <div className='dropdown'>
             <button className='dropbtn user-button'>

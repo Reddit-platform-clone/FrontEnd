@@ -2,6 +2,9 @@ import React, { } from 'react';
 import classes from './SideBar.module.css'
 import sarakel from './WhatsApp Image 2024-03-18 at 12.02.45 AM.jpeg'
 import CreateCommunity from '../../../CreateCommunity/CreateCommunity'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 export default function SideBar() {
     const [toggle, setToggle] = React.useState(true)
     const{toggle1, setToggle1} = React.useState(false)

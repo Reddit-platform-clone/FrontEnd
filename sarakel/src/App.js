@@ -5,6 +5,7 @@ import Moderation from './Moderation/Moderation.js'
 import { AuthProvider } from './HomePage/AuthContext.js';
 import  {useAuth}  from "./HomePage/AuthContext.js";
 import MessagesPage from './messagespage/messagespage.js';
+import CreatePost from './CreatePost/CreatePost.js';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
@@ -19,6 +20,7 @@ function App() {
           <Route path='settings' element={<Settings />} />
           <Route  path = 'MessagesPage' element={<MessagesPage />}></Route>
           <Route path ='Moderation' element={<Moderation />}></Route>
+          <Route path = 'CreatePost' element={<CreatePost />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

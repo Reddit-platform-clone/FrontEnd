@@ -1,8 +1,8 @@
-import React , { useState ,useRef }  from 'react';
-import ReactDOM from 'react-dom/client'
+import React  from 'react';
+
 
 export default function ImageVideo() {
-    const [content, setContent] = useState('');
+    const content=''
 
     const handleChange = (e) => {
         // Prevent users from typing in the textarea

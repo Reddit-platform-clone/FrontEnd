@@ -86,6 +86,9 @@
     background: rgb(255, 255, 255);
     margin-top: 0px;
     display: none;
+    height: 600px;
+    overflow: scroll;
+  
   }
 
   .txt1{
@@ -240,4 +243,74 @@ height: fit-content;
     margin-top: 2px;
     margin-left: 2px;
     font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* .themessage{
+    height: 500px;
+    width: 500px;
+  } */
+
+  .msgcontent{
+    font-size: 21.9231;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: #878a8c;
+    color: #373c3f;
+    font-weight: 200;
+
+  }
+  .message-container{
+    /* margin-bottom: 50px; */
+    background-color:#fff;
+    margin-top: 10px;
+    width: 500px;
+    overflow: hidden;
+    margin-right: 400px;
+    margin-left: 20px;
+   border-style: groove; 
+   border-width: 1px;
+  }
+
+  .txttitle{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+
+  .belowtitle{
+    margin-left: 50px;
+  }
+
+  .topmsg{
+    display: flex;
+    margin-left: 5px;
+  }
+
+  .contmsg{
+    display: flex;
+ 
+  }
+
+  .Permalink{
+    background: transparent;
+    text-decoration: underline;
+    color: #888888;
+    border-style: hidden;
+    font-size: small;  
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+  }
+
+  .msgbody{
+    margin-left: 5p0x;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .reciever{
+    color: #0079d3;
+font-size: 11px;
+margin-left: 2px;
+margin-top: 1px;
+font-family: Arial, Helvetica, sans-serif;
+margin-right: 5px;
   }

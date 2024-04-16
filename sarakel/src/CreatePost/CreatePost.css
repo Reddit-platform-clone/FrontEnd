@@ -19,11 +19,15 @@
   .post-editor-container {
     width: 100%;
     padding: 0px;
+   
   }
   
   .post-editor-toolbar {
     display: flex;
     margin-bottom: 0px;
+    margin-left:10px;
+  
+    
   }
   
   .post-button {
@@ -32,7 +36,7 @@
     z-index: 8;
     -ms-flex-align: center;
     align-items: center;
-    background-color:white ;
+    background-color:rgba(232, 224, 224, 0.723); ;
     border-color:white;
     border-style: solid;
     border-width: 0;
@@ -45,6 +49,7 @@
     margin-left:0px; 
     color: gray;
     padding:10px; 
+    
   }
   
   .post-button.active {
@@ -111,8 +116,75 @@
   
   
   }
+  
+  /*css for link*/
+   .link-textarea{
+  
+    width: 95%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left:10px;
+   }
            
-           
+    /* css for poll*/ 
+    
+    .poll{
+     
+      margin-bottom: 20px;
+  
+    }
+  
+    .pollinputs{
+      flex-grow: 1;
+      width: 50%;
+      padding: 10px;
+      margin-left:10px ;
+      margin-bottom:5px ;
+  
+  
+    }
+  
+  
+    .polladd{
+      color:#0079d3;
+      background-color: white;
+      border: none;
+      padding:20px;
+      font-size: large;
+      font-weight: bold;
+  
+    }
+  
+    .pollduration{
+      font-size: 13px;
+      line-height: 20px;
+      margin-right: 10px;
+      color: gray;
+      position: relative;
+  }
+  
+    .poll2{
+     
+      align-items: center;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+      flex-direction: row;
+  
+      margin-top: 8px;
+      padding-right: 20px;
+  
+    }
+  
+  
+  
+  
+  
+  
+  
            
    /*css for create post the toolbar containing 'post' 'image' 'link' 'poll'*/   
         
@@ -120,8 +192,8 @@
     margin-top: 20px; /* Adjust the margin as needed */
   }
   
-  .toolbar {    display: flex;
-  
+  .toolbar {    
+    display: flex;
     -ms-flex-direction: row;
     flex-direction: row;
     -ms-flex-align: stretch;
@@ -190,9 +262,7 @@
   
   
   /*css for createcommunity*/
-  .container{
-    width: 20px;
-  }
+  
   h3 {
     font-size: 10px;
     
@@ -303,42 +373,68 @@
     width:90%;  
      
   }
-  .w00{
-    width: 300px;
-    border: groove 1px #a0a0a0;
-    border-style: groove;
-    margin-right: 10px;
-    border-radius: 10px;
-    margin-top: 5px;
-    padding-left: 3px;
-    padding-bottom: 2px;
-    padding-right: 2px;
+  
+  
+  /* notifications*/
+  .notifications{
+  
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: none;
+  font-size: larger;
+  
   }
-  .sidebarButtons{
-    color: #000000;
-    text-decoration: none;
-    background-color: transparent;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-    font-weight: 200;
-    letter-spacing: unset;
-    line-height: 17px;
-    text-transform: unset;
-    min-height: 32px;
-    min-width: 100%;
-    padding: 4px 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sidebarButtons:hover{
-    background-color: #eaedef;
-}
-.sideIcon{
-  width: 20px;
-  margin-right: 10px;
-
-  margin-top: 1px;
-}
+  
+  .notif{background-color: rgba(36, 160, 237, .1);
+  
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      gap: .5rem;
+      grid-template-columns: 2rem 1fr 2rem;
+        align-items: flex-start;
+        display: block;
+        unicode-bidi: isolate;
+        cursor: pointer;
+        font-size: inherit;
+        line-height: inherit;
+        margin-top: 5px;
+    
+    }
+  
+    .notifimage{
+      border-radius: 624.9375rem;
+        width: 2rem;
+        height: 2rem;
+        display: inline-block;
+        position: relative;
+      padding-right: 10px;
+      margin-right: 5px;
+      margin-top: 5px;
+      }
+  
+      .sender{
+        color: var(--color-secondary-plain);
+      font-weight: 600;
+      padding-right: 10px;
+      width: 100%;
+      display: block;
+      unicode-bidi: isolate;
+      }
+  
+      .reciever{
+  
+        color: var(--color-neutral-content-weak);
+  
+  
+  
+      font-weight: 400;
+  
+      grid-column-start: 2;
+  
+      display: block;
+      unicode-bidi: isolate;
+  }
+      
