@@ -1,7 +1,7 @@
 import React from 'react';
 import './bootstrap.min.css';
 import classes from './Account.module.css' 
-import mock from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
+import mock from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json';
 export default function Notifications(){
     let userId
     let Mentions

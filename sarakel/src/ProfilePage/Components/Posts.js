@@ -1,4 +1,4 @@
-import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json'
+import jsonData from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json'
 import { CgAddR } from "react-icons/cg";
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";

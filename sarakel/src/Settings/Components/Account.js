@@ -3,7 +3,7 @@ import './bootstrap.min.css';
 import classes from './Account.module.css' 
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
-import mock from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
+import mock from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json';
 export default function Account() {
     let Google
     let UserId 

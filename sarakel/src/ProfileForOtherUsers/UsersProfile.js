@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
+import jsonData from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json';
 import './UsersProfile.css';
 import './bootstrap.min.css';
 import logo from './logo512.png';
@@ -114,30 +114,42 @@ function UsersProfile() {
     const handleBlockAccount = () => {
         jsonData.users.map((user) => {
             if (user.id === x) {
-                user.blockedacc.push({ name: username})
-                console.log(user.name,"has blocked" ,username ,"account",user.blockedacc)
-                user.followinglist.pop({ id: userid, name: username })
-                console.log(user.name,"Following List:", user.followinglist);
-
+                // Initialize blockedacc as an array if it's undefined
+                if (!user.blockedacc) {
+                    user.blockedacc = [];
+                }
+                user.blockedacc.push({ name: username });
+                console.log(user.name, "has blocked", username, "account", user.blockedacc);
+    
+                // Filter out the user from followinglist
+                user.followinglist = user.followinglist.filter((item) => item.id !== userid);
+                console.log(user.name, "Following List:", user.followinglist);
+    
+                // If the user is the same as the one being blocked, remove from followerlist
                 if (user.id === userid) {
-                    user.followerlist.pop({ id: user.id, name: user.name })
-                    console.log(username,"Follower List:", user.followerlist);   
-                }    
+                    user.followerlist = user.followerlist.filter((item) => item.id !== user.id);
+                    console.log(username, "Follower List:", user.followerlist);
+                }
             }
         });
         GetLoggedIn();
     };
+    
   
     const handleReportAccount = () => {
         jsonData.users.map((user) => {
             if (user.id === x) {
-                user.reportedacc.push({name:username , id:userid})
-                console.log(user.name,"has reported" ,username, "account",user.reportedacc)
+                // Check if reportedacc is undefined, if so, initialize it as an empty array
+                if (!user.reportedacc) {
+                    user.reportedacc = [];
+                }
+                user.reportedacc.push({ name: username, id: userid });
+                console.log(user.name, "has reported", username, "account", user.reportedacc);
             }
         });
         GetLoggedIn();
     };
-
+    
     return (
         <>
             <NavBarUnlogged />

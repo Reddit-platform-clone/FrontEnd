@@ -2,7 +2,7 @@ import './bootstrap.min.css'
 import React, { useState } from 'react';
 import './ProfilePage.css'
 import logo from './logo512.png'
-import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json'
+import jsonData from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json'
 import { CgAddR } from "react-icons/cg";
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
@@ -12,6 +12,7 @@ import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogge
 import SideBar from '../HomePage/Components/SideBar/SideBar';
 import Overview from './Components/Overview';
 import Posts from './Components/Posts'
+import Comments from './Components/Comments';
 
 function ProfilePage() {
     const [activeTab, setActiveTab] = useState(0);
@@ -42,6 +43,18 @@ function ProfilePage() {
                     <a className={`nav-link ${activeTab === 2 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(2)}>
                         <span>Comments</span>
                     </a>
+                    <a className={`nav-link ${activeTab === 3 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(3)}>
+                        <span>Saved</span>
+                    </a>
+                    <a className={`nav-link ${activeTab === 4 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(4)}>
+                        <span>Hidden</span>
+                    </a>
+                    <a className={`nav-link ${activeTab === 5 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(5)}>
+                        <span>Upvoted</span>
+                    </a>
+                    <a className={`nav-link ${activeTab === 6 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(6)}>
+                        <span>Downvoted</span>
+                    </a>
 
                     <a className='nav-link' href='#'>
                         <span>+ Create Post</span>
@@ -67,7 +80,7 @@ function ProfilePage() {
                     {activeTab === 2 && (
                         /* Render content for Comments tab */
                         <div>
-                            {/* Comments content */}
+                            <Comments/>
                         </div>
                     )}
                 </div>

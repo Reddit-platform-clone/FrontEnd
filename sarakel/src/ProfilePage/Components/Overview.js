@@ -3,7 +3,7 @@ import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
 import { GoReply } from "react-icons/go";
 import { LuShare } from "react-icons/lu";
-import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json'
+import jsonData from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json'
 
 
 function Overview (){

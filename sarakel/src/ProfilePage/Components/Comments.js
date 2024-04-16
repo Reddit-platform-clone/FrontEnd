@@ -1,5 +1,4 @@
-import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
-
+import jsonData from 'F:/Cairo university/CMPS203/software-project/FrontEnd/sarakel/src/mock.json';
 import './Comments2.css'
 
 
@@ -7,7 +6,7 @@ export default function Comments(){
     return(
         <>
         
-        <div className='comments-container'>
+        <div className='comments-container1'>
     {/* Display comments */}
     {jsonData.Comments.map(comment => (
         <div className='comment' key={comment.comment_id}>
