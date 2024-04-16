@@ -166,7 +166,8 @@
   "users": [
     {
       "id": 1,
-      "name": "User 1",
+      "name": "User 123456",
+      "sarakelid":"U/user123456" ,
       "email": "user1@domain.com",
       "image": "https://www.redditstatic.com/avatars/defaults/v2/avatar_default_4.png",
       "pass": "123456789",
@@ -179,7 +180,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": true,
       "DisplayName":"none",
-      "AboutMe":"None",
+      "AboutMe":"How do you get through tough days?",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -216,7 +217,9 @@
     {
       "id": "2",
       "name": "User2",
+      "sarakelid":"U/user2" ,
       "email": "user2@domain.com",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "pass": "123456789",
       "image": "https://www.redditstatic.com/avatars/defaults/v2/avatar_default_4.png",
       "LoggedIn": 0,
@@ -228,7 +231,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None",
+      "AboutMe":"Another Day, Another Opportunity💯 🤫",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -265,7 +268,9 @@
     {
       "id": "3",
       "name": "User 3",
+      "sarakelid":"U/user3" ,
       "email": "user3@domain.com",
+      "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp",
       "pass": "123456789",
       "image": "https://www.redditstatic.com/avatars/defaults/v2/avatar_default_4.png",
       "LoggedIn": 0,
@@ -277,7 +282,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None",
+      "AboutMe":"Nothing to see here",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -314,6 +319,7 @@
     {
       "id": "2a0a",
       "name":"khaled",
+      "sarakelid":"U/khaled" ,
       "email": "bahy@gmail.com",
       "password": "987654321",
       "image": "https://www.redditstatic.com/avatars/defaults/v2/avatar_default_4.png",
@@ -327,7 +333,7 @@
       "ContentVisibility":false,
       "CommunityVisibility": false,
       "DisplayName":"None",
-      "AboutMe":"None",
+      "AboutMe":"Just a random dude doing random things",
       "SearchResault":false,
       "Personalized1":false,
       "Personalized2": false,
@@ -362,53 +368,121 @@
         "MuteList":[]
     }
   ],
-  "posts":[
+  "posts": [
     {
       "id": "1",
-      "user_id": "1",
+      "user": {
+        "id": "1",
+        "name": "User 1",
+        "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      },
       "community_id": "1",
-      "title":"The good old days", 
+      "title": "The good old days", 
       "text": "hitler couldn't pull this off even if he wanted to, os os>>>>",
       "media": ["https://www.thoughtco.com/thmb/d0R4SEcyfQZ6V6CSVTzdODh1CmY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/911-WTC-1339505-crop-592232ea5f9b58f4c0f79be3.jpg"],
-      "likes":"18",
-      "comments":"7",
-      "time":"4 hr.",
-      "reason":"Popular on Sarakel now"
+      "likes": "18",
+      
+      "time": "4 hr.",
+      "reason": "Popular on Sarakel now"
     },
     {
       "id": "2",
-      "user_id": "2",
+      "user": {
+        "id": "2",
+        "name": "User 2",
+        "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      },
       "community_id": "2",
-      "title":"New Signing",
+      "title": "New Signing",
       "text": "kalam kteer 3ala ad eh el player dah gamed",
       "media": ["https://i.ibb.co/Jr3FMy5/Screenshot-2024-03-21-154239.png"],
-      "likes":"1890",
-      "comments":"56",
-      "time":"15 hr.",
-      "reason":"Promoted"
+      "likes": "1890",
+      "time": "15 hr.",
+      "reason": "Promoted"
     },
     {
       "id": "3",
-      "user_id": "3",
+      "user": {
+        "id": "3",
+        "name": "User 3",
+        "image": "https://www.jacksonville.com/gcdn/authoring/2012/05/03/NFTU/ghows-LK-8229a1e2-2480-4391-86df-0ee2bed1e308-00abd984.jpeg?width=660&height=851&fit=crop&format=pjpg&auto=webp"
+      },
       "community_id": "3",
-      "title":"in my true colors",
+      "title": "in my true colors",
       "text": "King of anemia",
       "media": "https://i.ibb.co/m6SrBJF/joe2.png",
-      "likes":"181",
-      "comments":"57",
-      "time":"1 day",
-      "reason":"interest in a similar community"
+      "likes": "181",
+      "time": "1 day",
+      "reason": "interest in a similar community"
     },
     {
       "id": "4",
-      "user_id": "4",
+      "user": {
+        "id": "4",
+        "name": "User 4",
+        "image": "https://www.egypttoday.com/siteimages/larg/52236.jpg"
+      },
       "community_id": "1",
-      "title":"Happiness", 
+      "title": "Happiness", 
       "text": "Have u ever wondered why the emergency hotline is 911?? Im changing the world fr",
-      "likes":"18",
-      "comments":"7",
-      "time":"4 hr.",
-      "reason":"Popular on Sarakel now"
+      "likes": "18",
+      "media":"https://th.bing.com/th/id/OIP.d_tb9vxSAeeo6E1wy5j2LgHaD4?rs=1&pid=ImgDetMain",
+      "time": "4 hr.",
+      "reason": "Popular on Sarakel now"
     }
-  ]
+  ],
+  "Comments": [
+    {
+        "comment_id": 2,
+        "text": "This piece really resonated with me. The emotions portrayed are so raw and authentic. Thank you for sharing your talent!",
+        "time": "3 hours ago"
+    },
+    {
+        "comment_id": 3,
+        "text": "I'm blown away by your writing style! The way you craft each sentence is like poetry. I can't wait to read more from you.",
+        "time": "12 hours ago"
+    },
+    {
+        "comment_id": 4,
+        "text": "Your storytelling abilities are truly captivating. You have a gift for drawing readers into your world and keeping them hooked until the very end.",
+        "time": "1 day ago"
+    },
+    {
+        "comment_id": 5,
+        "text": "I admire your dedication to your craft. It's evident that you put a lot of time and effort into perfecting your work. Keep chasing your dreams!",
+        "time": "3 days ago"
+    },
+    {
+        "comment_id": 6,
+        "text": "This is such an important topic to explore, and you've done it justice with your thoughtful approach. Thank you for shedding light on this issue.",
+        "time": "1 week ago"
+    },
+    {
+        "comment_id": 7,
+        "text": "Your writing always manages to evoke such strong emotions in me. You have a rare talent for connecting with your audience on a deep level.",
+        "time": "2 weeks ago"
+    },
+    {
+        "comment_id": 8,
+        "text": "I'm continually impressed by your ability to create vivid imagery with your words. You have a way of painting pictures in the minds of your readers.",
+        "time": "1 month ago"
+    },
+    {
+        "comment_id": 9,
+        "text": "I appreciate how you're not afraid to tackle complex themes and challenge societal norms in your writing. Keep pushing boundaries and sparking conversations!",
+        "time": "2 months ago"
+    },
+    {
+        "comment_id": 10,
+        "text": "Your attention to detail sets you apart as a writer. Every scene feels meticulously crafted, making the reading experience all the more immersive.",
+        "time": "6 months ago"
+    },
+    {
+        "comment_id": 11,
+        "text": "I'm in awe of your ability to create such relatable characters. They feel like real people with their own hopes, fears, and flaws.",
+        "time": "1 year ago"
+    }
+]
+
 }
+

@@ -20,12 +20,14 @@ body{
     margin-bottom: 20px; /* Add space between top section and profile content */
 }
 
-.username {
+.username2 {
     font-size: 14px;
     font-weight: bold;
     color: #333;
     margin-right: 10px;
-    
+    position: absolute;
+    top: 100px;
+    left: 320px;
 }
 
 .sarakelid {
@@ -33,6 +35,9 @@ body{
     color: #777;
     margin-top: 5px;
     margin-right: 10px;
+    position: absolute;
+    top: 120px;
+    left: 320px;
 }
 
 .logo1 {
@@ -41,43 +46,111 @@ body{
     border-radius: 50%;
     border: 2px ;
     object-fit: cover;
-}
-
-
-.profilecontents {
-    font-size: 14px;
-    font-style: italic;
-}
-
-.profilecontents a {
-    display: inline-block;
-    padding: 8px 16px;
-    margin-right: 10px;
-    margin-bottom: 0px;
-    background-color: #000;/* Set background color to transparent */
-    color: #fff; /* Set text color to white */
-    border-radius: 5px;
-    
-    transition: all 0.3s ease;
-}
-
-.profilecontents a:hover {
-    background-color: #ff7f50; /* Set hover background color to orange */
-    color: #000; /* Change text color to black on hover */
-    transform: translateY(-3px);
-}
-
-.rightside {
     position: absolute;
-    top: 70%;
-    right: 50px; /* Adjust the distance from the right side */
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    max-width: 300px; /* Adjust the maximum width as needed */
-    width: 100%;
+    top: 80px;
+    left: 210px;
 }
+
+
+.Contents1 {
+    display: flex;
+    position: relative;
+    right: 100px;
+    top: 80px;
+    flex-wrap: wrap; /* Allow content links to wrap to the next line if necessary */
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Modified to set margin to 0 */
+}
+
+.Contents1 a {
+    display: inline-block;
+    padding: 0px 14px;
+    margin: 2px; /* Modified to set margin to 0 */
+    
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+    background-color: #00000000;
+}
+
+.Contents1 a:hover {
+    background-color: #423c33;
+    color: #fff;
+}
+
+/* Container for the right side */
+.right-side-container {
+    display: flex;
+}
+
+/* Style the right-side div */
+
+/* Style the header */
+.right-side {
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    width: 320px; /* Adjust width as needed */
+    position: absolute;
+    top: 60px;
+    right: 20px;
+}
+
+
+.right-side h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+
+
+.sharebtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    background-color: #ccd1d6; /* Example background color */
+    color: black; /* Example text color */
+    border: none;
+    border-radius: 0.25rem; /* Adjust border radius as needed */
+    cursor: pointer;
+}
+
+.sharebtn svg {
+    margin-right: 0.5rem; /* Adjust margin between icon and text */
+}
+
+
+.sharebtn:hover {
+    text-decoration: underline;
+}
+
+
+/* Style the settings and links sections */
+
+
+.right-side .section h3 {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #777;
+    text-align: center;
+}
+
+
+.right-side .section button.add-social-link {
+    background-color: #2196F3;
+    color: white;
+}
+
 
 .p-4 {
     padding: 14px;
@@ -92,7 +165,7 @@ body{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.button {
+.button1 {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -103,8 +176,173 @@ body{
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.button1:hover {
     background-color: #0056b3;
 }
 
+/* Style the Settings buttons */
+.Settings-buttons {
+    display: flex;
+    flex-direction: column; /* Display buttons vertically */
+}
 
+.Settings-buttons button {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 90px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+/* Style the Add Social Link button */
+.Social-link button {
+    background-color: #EAEDEF;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.edit-profile {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.edit-profile .profile-info {
+    display: flex;
+    flex-direction: column; /* Align items in column */
+    margin-right: 10px; /* Add spacing between image and text */
+    font-size: 13px;
+}
+
+.edit-profile img {
+     margin-right: 10px;  /* Removed to align image with text */
+     border-radius: 10px;
+}
+
+.edit-profile-btn {
+    margin-left: 15px !important;
+    white-space:nowrap;
+}
+.edit-profile-btn:hover {
+    text-decoration: underline;
+}
+
+
+.edit-avatar {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    padding: 5px;
+    white-space: nowrap;
+    
+}
+
+.edit-avatar  .avatar-info {
+    display: flex;
+    flex-direction: column; /* Align items in column */
+    margin-right: 10px; /* Add spacing between image and text */
+    font-size: 15px;
+}
+
+.edit-avatar img {
+     margin-right: 10px;  /* Removed to align image with text */
+     border-radius: 15px;
+}
+
+.edit-avatar-btn {
+    margin-left: 17px; /* Add spacing between text and button */
+    text-align: center;
+    
+}
+.edit-avatar-btn:hover {
+    text-decoration: underline;
+}
+
+
+.mod-settings {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    padding: 5px;
+    text-align: center;
+}
+
+.mod-settings  .mod-info {
+    display: flex;
+    flex-direction: column; /* Align items in column */
+    margin-right: 10px; /* Add spacing between image and text */
+    font-size: 15px;
+}
+
+.mod-settings img {
+     margin-right: 10px;  /* Removed to align image with text */
+     border-radius: 15px;
+}
+
+.mod-settings-btn {
+    margin-left: 10px; /* Add spacing between text and button */
+   
+    width: 30px;
+}
+.mod-settings-btn:hover {
+   text-decoration: underline;
+}
+
+.bold-text {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.description11{
+    font-size: 12px;
+
+}
+
+.add-social-link:hover span {
+    text-decoration: underline;
+}
+
+
+.username-container {
+    position: relative;
+}
+
+.background-image {
+    width: 300px;
+    height: 200px;
+    background-color: #0045ac; /* Default background color */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+.add-banner-btn {
+    border-radius: 130px;
+    background-color: #EAEDEF;
+    position: absolute;
+    right: 10px;
+    top: 170px;
+    padding: -10px; /* Adjust the padding as needed */
+    font-size: 25px; /* Adjust the font size of the icon */
+    width: 32px;
+    height: 32px;
+}
+
+.add-icon {
+    font-size: 15px; /* Adjust the font size as needed */
+    position: absolute;
+    top: 8px;
+    right: 6px;
+}
+
+.linePP{
+    position: relative;
+    top: 100px;
+    left: 210px;
+    width: 870px;
+
+}

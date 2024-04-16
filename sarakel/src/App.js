@@ -6,9 +6,11 @@ import { AuthProvider } from './HomePage/AuthContext.js';
 import  {useAuth}  from "./HomePage/AuthContext.js";
 import MessagesPage from './messagespage/messagespage.js';
 import CreatePost from './CreatePost/CreatePost.js';
+import ProfilePage from './ProfilePage/ProfilePage.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import Search from './Search/Search.js'
 //import { Route } from 'react-router-dom';
 //import NavBar from './HomePage/Components/NavBar/NavBar.js'
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route  path = 'MessagesPage' element={<MessagesPage />}></Route>
           <Route path ='Moderation' element={<Moderation />}></Route>
           <Route path = 'CreatePost' element={<CreatePost />}></Route>
+          <Route path = 'ProfilePage' element={<ProfilePage />}></Route>
+          <Route path='Search' element={<Search />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
