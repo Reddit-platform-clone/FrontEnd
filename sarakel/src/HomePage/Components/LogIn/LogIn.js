@@ -30,12 +30,19 @@ function LogIn({ onSuccessfulLogin }) {
     setShowPassword(true);
   };
 
+  const onSuccess=(res)=>{
+    console.log("login success ! current user :",res.profileObj)
+  };
+
+  const onFailure=(res)=>{
+    console.log("login failed ! res :",res)
+  }
   const handleLogin = async () => {
     const emailOrUsername = document.getElementById("username").value;
     const password = document.getElementById("password").value;
   
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
         body: JSON.stringify({ emailOrUsername, password }), // Ensure both fields are included
         headers: {
@@ -47,10 +54,8 @@ function LogIn({ onSuccessfulLogin }) {
         const data = await response.json();
         toast.success("Login successful!");
         console.log(data.token);
-        console.log("before setting token");
 
           setToken(data.token);
-          console.log("after setting token")
         // Call onSuccessfulLogin function passed from parent component
         onSuccessfulLogin();
       } else {
@@ -107,7 +112,10 @@ function LogIn({ onSuccessfulLogin }) {
           <GoogleLogin
             clientId={ClientID}
             buttonText="Continue with Google"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
             cookiePolicy="single_host_origin"
+            isSignedIn={true}
             className="login-google-oauth"
           />
 
