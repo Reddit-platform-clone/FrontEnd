@@ -7,35 +7,40 @@ import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
 import { GoReply } from "react-icons/go";
 import { LuShare } from "react-icons/lu";
+import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged';
+import SideBar from '../HomePage/Components/SideBar/SideBar';
+import Overview from './Components/Overview';
+import Posts from './Components/Posts';
+import Comments from './Components/Comments';
 
 
 function UsersProfile() {
+    const [activeTab, setActiveTab] = useState(0);
+
+    const handleTabClick = (index) => {
+        setActiveTab(index);
+    };
+
     let userid;
     let username;
-    // const [posts, setPosts] = useState(jsonData.posts);
-    
     let userimage;
     jsonData.users.map((user) => {
         if (user.LoggedIn !== 1) {
             userid = user.id;
-           
             username = user.name;
-            
             userimage = user.image;
             return;
         }
     });
-    const [isFollowing, setIsFollowing] = useState(false);
 
+    const [isFollowing, setIsFollowing] = useState(false);
     const toggleFollow = () => {
         setIsFollowing(!isFollowing);
-        // Call GetLoggedIn and Followerlist1 functions if user follows
         if (!isFollowing) {
             GetLoggedIn();
             Followerlist1();
         }
         if (isFollowing) {
-            // Call Clearfollowlist function if user unfollows
             Clearfollowlist();
         }
     };
@@ -54,14 +59,23 @@ function UsersProfile() {
     };
 
     const Followerlist1 = () => {
-        jsonData.users.map((user) => {
+        jsonData.users.forEach((user) => {
             if (user.id === x) {
+                // Check if followinglist exists, if not initialize it as an empty array
+                if (!user.followinglist) {
+                    user.followinglist = [];
+                }
                 user.followinglist.push({ id: userid, name: username });
                 console.log(user.name,"Following List:", user.followinglist);
             }
         });
-        jsonData.users.map((user) => {
+    
+        jsonData.users.forEach((user) => {
             if (user.id === userid) {
+                // Check if followerlist exists, if not initialize it as an empty array
+                if (!user.followerlist) {
+                    user.followerlist = [];
+                }
                 user.followerlist.push({ id: x, name: y });
                 console.log(user.name,"Follower List:", user.followerlist);
             }
@@ -69,22 +83,34 @@ function UsersProfile() {
     };
 
     const Clearfollowlist = () => {
-        jsonData.users.map((user) => {
+        jsonData.users.forEach((user) => {
             if (user.id === x) {
-               user.followinglist.splice({ id: userid, name: username })
-                console.log(user.name,"Following List:", user.followinglist);
+                // Check if followinglist exists before attempting to splice
+                if (user.followinglist) {
+                    const index = user.followinglist.findIndex(item => item.id === userid);
+                    if (index !== -1) {
+                        user.followinglist.splice(index, 1);
+                    }
+                    console.log(user.name,"Following List:", user.followinglist);
+                }
             }
         });
-        jsonData.users.map((user) => {
+    
+        jsonData.users.forEach((user) => {
             if (user.id === userid) {
-               user.followerlist.splice({ id: user.id, name: user.name })
-                console.log(username,"Follower List:", user.followerlist);
+                // Check if followerlist exists before attempting to splice
+                if (user.followerlist) {
+                    const index = user.followerlist.findIndex(item => item.id === user.id);
+                    if (index !== -1) {
+                        user.followerlist.splice(index, 1);
+                    }
+                    console.log(username,"Follower List:", user.followerlist);
+                }
             }
         });
     };
-    
-    const [showList, setShowList] = useState(false);
 
+    const [showList, setShowList] = useState(false);
     const handleBlockAccount = () => {
         jsonData.users.map((user) => {
             if (user.id === x) {
@@ -96,20 +122,10 @@ function UsersProfile() {
                 if (user.id === userid) {
                     user.followerlist.pop({ id: user.id, name: user.name })
                     console.log(username,"Follower List:", user.followerlist);   
-                }
-                
-                
+                }    
             }
         });
-        // Call GetLoggedIn function when blocking an account
         GetLoggedIn();
-        // jsonData.users.map((user) => {
-        //     if (user.id === userid) {
-        //         user.followerlist.pop({ id: user.id, name: user.name })
-        //         console.log(username,"Follower List:", user.followerlist);   
-        //     }
-        // });
-        
     };
   
     const handleReportAccount = () => {
@@ -119,83 +135,64 @@ function UsersProfile() {
                 console.log(user.name,"has reported" ,username, "account",user.reportedacc)
             }
         });
-        // Call GetLoggedIn function when blocking an account
         GetLoggedIn();
     };
-   
 
     return (
         <>
+            <NavBarUnlogged />
+            <SideBar />
             <div className='user-data'>
                 <img src={jsonData.users[0].image} alt='User Avatar' className='logoup' />
                 <span className='username'>{jsonData.users[0].name}</span>
             </div>
 
             <div className='Contents'>
-                <a className='nav-link' href='#'>
+                <a className={`nav-link ${activeTab === 0 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(0)}>
                     <span>Overview</span>
                 </a>
-                <a className='nav-link' href='#'>
+                <a className={`nav-link ${activeTab === 1 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(1)}>
                     <span>Posts</span>
                 </a>
-                <a className='nav-link' href='#'>
+                <a className={`nav-link ${activeTab === 2 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(2)}>
                     <span>Comments</span>
-                </a><br/>
+                </a>
+                <br/>
                 <hr className="hr-solid1"></hr>
             </div>
 
-
-            {/* Display posts */}
             <div className='overview-post-comment1'>
-            {jsonData.posts.map(post => {
-                    // const user = jsonData.users.find(user => user.id === post.user_id);
-                    // if (!user) return null; // If user does not exist, skip this post
-                    return (
-                        <div className='post' key={post.id}>
-                            <div className='post-header'>
-                                <img src={post.user.image} alt='User Avatar' className='logoup1' />
-                                <span className='username1'>{post.user.name}</span>
-                                <div className='posttime'>
-                                    <span className='posttime'>{post.time} ago</span>
-                                </div>
-                            </div>
-                            <div className='post-content'>
-                                <h3>{post.title}</h3>
-                                <p>{post.text}</p>
-                                {Array.isArray(post.media) ? (
-                                    post.media.map((media, index) => (
-                                        <img src={media} key={index} alt={`Media ${index}`} />
-                                    ))
-                                ) : (
-                                    <img src={post.media} alt='Media' />
-                                )}
-                            </div>
-                            <div className='post-actions'>
-                                <button><BiUpvote /> {post.likes}</button>
-                                <button><BiDownvote /> {post.comments}</button>
-                                <button><GoReply /> Reply</button>
-                                <button><LuShare /> Share</button>
-                            </div>
-                        </div>
-                    );
-                })}
+                {activeTab === 0 && (
+                    /* Render content for Overview tab */
+                    <div>
+                        <Overview/>
+                    </div>
+                )}
+                {activeTab === 1 && (
+                    <div>
+                        <Posts/>
+                    </div>
+                    
+                )}
+                {activeTab === 2 && (
+                    /* Render content for Comments tab */
+                    <div>
+                        <Comments/>
+                    </div>
+                )}
             </div>
 
-            <div className='container123'>
-                <h6 className=''>{username}</h6>
+            <div className='containerUP'>
+                <h6 className=''>{jsonData.users[0].name}</h6>
                 <div className='button-container'>
-
-                <button className={`button ${isFollowing ? 'following' : ''}`} onClick={toggleFollow}>
-                    {isFollowing ? '- Unfollow' : '→ Follow'}
-                </button>
-                <button className='button'>Chat</button>
-                
-                
-                
-                <div>
-                            <button className='button' onClick={() => setShowList(!showList)}>
-                                {showList ? 'Close' : 'Options'}
-                            </button>
+                    <button className={`button ${isFollowing ? 'following' : ''}`} onClick={toggleFollow}>
+                        {isFollowing ? '- Unfollow' : '→ Follow'}
+                    </button>
+                    <button className='button'>Chat</button>
+                    <div>
+                        <button className='button' onClick={() => setShowList(!showList)}>
+                            {showList ? 'Close' : 'Options'}
+                        </button>
                         {showList && (
                             <div>
                                 <ul>
@@ -205,11 +202,10 @@ function UsersProfile() {
                                     <button className='button' onClick={handleReportAccount}>Report account</button>
                                 </ul>
                             </div>
-                         )}
-                </div>
+                        )}
+                    </div>
                 </div>
                 <br/>
-
                 <div className='usersdata'>
                     <div className='horizontalali'>
                         <p className='text-sm text-gray-500'>Post Karma</p>
@@ -225,8 +221,6 @@ function UsersProfile() {
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 }

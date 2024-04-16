@@ -1,6 +1,6 @@
 import './bootstrap.min.css'
 import React, { useState } from 'react';
-import  './ProfilePage.css'
+import './ProfilePage.css'
 import logo from './logo512.png'
 import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json'
 import { CgAddR } from "react-icons/cg";
@@ -10,111 +10,70 @@ import { GoReply } from "react-icons/go";
 import { LuShare } from "react-icons/lu";
 import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged';
 import SideBar from '../HomePage/Components/SideBar/SideBar';
-function ProfilePage(){
-    let userid;
-    let username;
-    let userimage;
-    jsonData.users.map((user) => {
-        if (user.LoggedIn !== 1) {
-            userid = user.id;
-           
-            username = user.name;
-            
-            userimage = user.image;
-            return;
-        }
-    });
-    
+import Overview from './Components/Overview';
+import Posts from './Components/Posts'
 
-    let x;
-    let y;
+function ProfilePage() {
+    const [activeTab, setActiveTab] = useState(0);
 
-    const GetLoggedIn = () => {
-        jsonData.users.map((user) => {
-            if (user.LoggedIn === 1) {
-                x = user.id;
-                y = user.name
-                return JSON.stringify(user.id);
-            }
-        });
+    const handleTabClick = (index) => {
+        setActiveTab(index);
     };
-    return(
+
+    return (
         <>
-        <NavBarUnlogged/>
-        <SideBar/>
+            <NavBarUnlogged />
+            <SideBar />
 
-        <div className='container1'>
-            
-
-            
+            <div className='container1'>
+                {/* Profile header section */}
                 <div className='top-section'>
-                        <img src={jsonData.users[0].image} alt='Logo' className='logo1' />
-                        <div>
-                            <h3 className='username2'>{jsonData.users[0].name}</h3>
-                            <h6 className='sarakelid'>{jsonData.users[0].sarakelid}</h6>
-                    
-                        </div>
+                    {/* Your profile header content */}
                 </div>
-                
 
+                {/* Navigation links */}
                 <div className='Contents1'>
-                        <a className='nav-link' href='#'>
-                            <span>Overview</span>
-                        </a>
-                        <a className='nav-link' href='#'>
-                            <span>Posts</span>
-                        </a>
-                        <a className='nav-link' href='#'>
-                            <span>Comments</span>
-                        </a>
-                        
-                        
-                        <a className='nav-link' href='#'>
-                            <span>+ Create Post</span>
-                        </a>
-                        
+                    <a className={`nav-link ${activeTab === 0 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(0)}>
+                        <span>Overview</span>
+                    </a>
+                    <a className={`nav-link ${activeTab === 1 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(1)}>
+                        <span>Posts</span>
+                    </a>
+                    <a className={`nav-link ${activeTab === 2 ? 'active' : ''}`} href='#' onClick={() => handleTabClick(2)}>
+                        <span>Comments</span>
+                    </a>
+
+                    <a className='nav-link' href='#'>
+                        <span>+ Create Post</span>
+                    </a>
                 </div>
-                                    <hr className='linePP'/>
+                <hr className='linePP' />
 
-
-                                    <div className='overview-post-comment1'>
-            {jsonData.posts.map(post => {
-                    // const user = jsonData.users.find(user => user.id === post.user_id);
-                    // if (!user) return null; // If user does not exist, skip this post
-                    return (
-                        <div className='post' key={post.id}>
-                            <div className='post-header'>
-                                <img src={post.user.image} alt='User Avatar' className='logoup1' />
-                                <span className='username1'>{post.user.name}</span>
-                                <div className='posttime'>
-                                    <span className='posttime'>{post.time} ago</span>
-                                </div>
-                            </div>
-                            <div className='post-content'>
-                                <h3>{post.title}</h3>
-                                <p>{post.text}</p>
-                                {Array.isArray(post.media) ? (
-                                    post.media.map((media, index) => (
-                                        <img src={media} key={index} alt={`Media ${index}`} />
-                                    ))
-                                ) : (
-                                    <img src={post.media} alt='Media' />
-                                )}
-                            </div>
-                            <div className='post-actions'>
-                                <button><BiUpvote /> {post.likes}</button>
-                                <button><BiDownvote /> {post.comments}</button>
-                                <button><GoReply /> Reply</button>
-                                <button><LuShare /> Share</button>
-                            </div>
+                {/* Content section */}
+                <div className='overview-post-comment1'>
+                    {activeTab === 0 && (
+                        /* Render content for Overview tab */
+                        <div>
+                           <Overview/>
                         </div>
-                    );
-                })}
-            </div>
-                
-            
+                    )}
+                    {activeTab === 1 && (
+                        /* Render content for Posts tab */
+                        <div>
+                            <Posts/>
+                            
+                        </div>
+                    )}
+                    {activeTab === 2 && (
+                        /* Render content for Comments tab */
+                        <div>
+                            {/* Comments content */}
+                        </div>
+                    )}
+                </div>
 
-                                <div className="right-side-container">
+                {/* Right side container */}
+                <div className="right-side-container">
                                     {/* Other content */}
                                     <div className="right-side">
                                         {/* Content of right side */}
@@ -201,19 +160,9 @@ function ProfilePage(){
 
                                     </div>
                                 </div>
-
-
-            
-        </div>
-  
-        
-
-                            
+            </div>
         </>
-        
-        
     );
-
-
 }
-export default ProfilePage
+
+export default ProfilePage;

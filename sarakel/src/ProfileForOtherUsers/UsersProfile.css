@@ -66,8 +66,8 @@ body .username {
 }
 
 /* Main content container styling */
-body .container123 {
-    max-width: 300px !important; /* Adjusted max-width for smaller container */
+body .containerUP {
+    width: 300px !important; /* Adjusted max-width for smaller container */
     margin: 0; /* Center container horizontally and remove space around it */
     padding: 2px; /* Reduced padding */
     border: 1px solid #ddd; /* Lighter border color for separation */
@@ -80,7 +80,7 @@ body .container123 {
 
 
 /* Buttons container */
-.button-container123 {
+.button-containerUP {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,8 +106,8 @@ body .container123 {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    background-color: #331192;
-    color: #fff;
+    background-color: #eaeaea;
+    color: black;
     transition: background-color 0.3s ease;
     padding: 8px 16px; /* Reduced padding for smaller buttons */
     margin: 0; /* Modified to set margin to 0 */
@@ -190,8 +190,8 @@ body .container123 {
 
 .post-actions button {
     margin-right: 10px;
-    background-color: #007bff;
-    color: white;
+    background-color: #eaeaea;
+    color: black;
     border: none;
     padding: 5px 10px;
     border-radius: 3px;

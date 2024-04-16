@@ -1,5 +1,6 @@
 import jsonData from 'F:/Cairo university/CMPS203, Software Engineering/software-project/FrontEnd/sarakel/src/mock.json';
-import './Comment.css'
+
+import './Comments2.css'
 
 
 export default function Comments(){

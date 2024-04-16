@@ -265,11 +265,7 @@
       "text": "hitler couldn't pull this off even if he wanted to, os os>>>>",
       "media": ["https://www.thoughtco.com/thmb/d0R4SEcyfQZ6V6CSVTzdODh1CmY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/911-WTC-1339505-crop-592232ea5f9b58f4c0f79be3.jpg"],
       "likes": "18",
-      "comments": [
-        "Wow, that's a bold statement! 😳",
-        "The imagery here is powerful! 🌟",
-        "Let's keep the comparisons respectful, though. 🙏"
-      ],
+      
       "time": "4 hr.",
       "reason": "Popular on Sarakel now"
     },
@@ -285,11 +281,6 @@
       "text": "kalam kteer 3ala ad eh el player dah gamed",
       "media": ["https://i.ibb.co/Jr3FMy5/Screenshot-2024-03-21-154239.png"],
       "likes": "1890",
-      "comments": [
-        "Exciting news! Can't wait to see them in action. ⚽",
-        "This player looks like a real game-changer! 💪",
-        "Great signing! Hoping for a successful season ahead. 🏆"
-      ],
       "time": "15 hr.",
       "reason": "Promoted"
     },
@@ -305,11 +296,6 @@
       "text": "King of anemia",
       "media": "https://i.ibb.co/m6SrBJF/joe2.png",
       "likes": "181",
-      "comments": [
-        "Love the colors! 💙💜",
-        "Such a striking image! 🔥",
-        "Feeling the vibe! 🌈"
-      ],
       "time": "1 day",
       "reason": "interest in a similar community"
     },
@@ -325,13 +311,62 @@
       "text": "Have u ever wondered why the emergency hotline is 911?? Im changing the world fr",
       "likes": "18",
       "media":"https://th.bing.com/th/id/OIP.d_tb9vxSAeeo6E1wy5j2LgHaD4?rs=1&pid=ImgDetMain",
-      "comments": [
-        "Mind-blowing thought! Never realized that. 🤯",
-        "You're onto something! Keep changing the world. 👏",
-        "Interesting observation! Keep sharing your ideas. 🌟"
-      ],
       "time": "4 hr.",
       "reason": "Popular on Sarakel now"
     }
-  ]
+  ],
+  "Comments": [
+    {
+        "comment_id": 2,
+        "text": "This piece really resonated with me. The emotions portrayed are so raw and authentic. Thank you for sharing your talent!",
+        "time": "3 hours ago"
+    },
+    {
+        "comment_id": 3,
+        "text": "I'm blown away by your writing style! The way you craft each sentence is like poetry. I can't wait to read more from you.",
+        "time": "12 hours ago"
+    },
+    {
+        "comment_id": 4,
+        "text": "Your storytelling abilities are truly captivating. You have a gift for drawing readers into your world and keeping them hooked until the very end.",
+        "time": "1 day ago"
+    },
+    {
+        "comment_id": 5,
+        "text": "I admire your dedication to your craft. It's evident that you put a lot of time and effort into perfecting your work. Keep chasing your dreams!",
+        "time": "3 days ago"
+    },
+    {
+        "comment_id": 6,
+        "text": "This is such an important topic to explore, and you've done it justice with your thoughtful approach. Thank you for shedding light on this issue.",
+        "time": "1 week ago"
+    },
+    {
+        "comment_id": 7,
+        "text": "Your writing always manages to evoke such strong emotions in me. You have a rare talent for connecting with your audience on a deep level.",
+        "time": "2 weeks ago"
+    },
+    {
+        "comment_id": 8,
+        "text": "I'm continually impressed by your ability to create vivid imagery with your words. You have a way of painting pictures in the minds of your readers.",
+        "time": "1 month ago"
+    },
+    {
+        "comment_id": 9,
+        "text": "I appreciate how you're not afraid to tackle complex themes and challenge societal norms in your writing. Keep pushing boundaries and sparking conversations!",
+        "time": "2 months ago"
+    },
+    {
+        "comment_id": 10,
+        "text": "Your attention to detail sets you apart as a writer. Every scene feels meticulously crafted, making the reading experience all the more immersive.",
+        "time": "6 months ago"
+    },
+    {
+        "comment_id": 11,
+        "text": "I'm in awe of your ability to create such relatable characters. They feel like real people with their own hopes, fears, and flaws.",
+        "time": "1 year ago"
+    }
+]
+
 }
+
