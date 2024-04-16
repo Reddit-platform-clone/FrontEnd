@@ -3,20 +3,20 @@ import "./SignUpTwo.css";
 import SignUpOne from "./SignUpOne.js";
 import { useAuth } from "../AuthContext";
 import { FaArrowLeft } from "react-icons/fa6";
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from "react-toastify";
 
 function SignUpTwo({ email }) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
-  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
+  // const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
   const { setToken } = useAuth();
-
+ 
   const handleContinueClick = async () => {
-    if (!recaptchaVerified) {
-      toast.error("Please verify that you're not a robot.");
-      return;
-    }
+    // if (!recaptchaVerified) {
+    //   toast.error("Please verify that you're not a robot.");
+    //   return;
+    // }
 
     const usernameInput = document.getElementById("signuptwo-username");
     const passwordInput = document.getElementById("signuptwo-password");
@@ -34,41 +34,54 @@ function SignUpTwo({ email }) {
       return;
     }
 
-    if (!email || !password || !username) {
-      toast.error("Email, password, or username is missing.");
-      return;
-    }
-
     try {
-      const response = await fetch("http://localhost:5000/signup", {
+      // Check if the username is available
+      const availabilityResponse = await fetch(`http://localhost:5000/api/username_available/${username}`);
+      const availabilityData = await availabilityResponse.json();
+      
+      // if (!availabilityResponse.ok) {
+      //   toast.error("An error occurred while checking username availability");
+      //   return;
+      // }
+      console.log(availabilityData)
+
+      if (availabilityData.message === 'Username is not available') {
+        toast.error("Username is not available.");
+        return;
+      }
+
+      // Proceed with signup if the username is available
+      const signupResponse = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password, username }),
       });
-      const data = await response.json();
-      if (response.ok) {
+      const signupData = await signupResponse.json();
+      
+      if (signupResponse.ok) {
         toast.success("Account created!");
-        console.log("Token:", data.token);
-        setToken(data.token);
+        console.log("Token:", signupData.token);
+        setToken(signupData.token);
         handleCloseModal();
       } else {
-        toast.error(data.error);
+        toast.error(signupData.error);
       }
     } catch (error) {
       console.error("Error:", error);
       toast.error("An error occurred while signing up");
     }
   };
+  
 
   const handleBackButtonClick = () => {
     setShowSignUpOne(true);
   };
 
-  const handleRecaptchaChange = (value) => {
-    setRecaptchaVerified(!!value);
-  };
+  // const handleRecaptchaChange = (value) => {
+  //   setRecaptchaVerified(!!value);
+  // };
 
   const handleCloseModal = () => {
     setShowSignUpModal(false);
@@ -113,11 +126,11 @@ function SignUpTwo({ email }) {
             />
 
             <br></br>
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               sitekey="6LfKJ54pAAAAAKOVJdj7SYP5-xuXU8-YNqAQ0E2t"
               onChange={handleRecaptchaChange}
               className="signuptwo-recaptcha"
-            />
+            /> */}
 
             <button
               className="signuptwo-cntnu-btn"
