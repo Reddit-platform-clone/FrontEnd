@@ -5,7 +5,7 @@ import LogIn from "./LogIn.js";
 import ForgotUsername from "./ForgotUsername.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
-import jsonData from "../mock.json"; // Import JSON data
+import jsonData from "../../../mock.json"; // Import JSON data
 import { ToastContainer, toast } from "react-toastify";
 
 function ForgotPassword() {

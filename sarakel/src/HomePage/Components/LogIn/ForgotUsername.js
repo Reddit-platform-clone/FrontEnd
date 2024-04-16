@@ -4,7 +4,7 @@ import SignUpOne from "../SignUp/SignUpOne";
 import LogIn from "./LogIn.js";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import jsonData from "../mock.json"; // Import JSON data
+import jsonData from "../../../mock.json"; // Import JSON data
 import { ToastContainer, toast } from "react-toastify";
 
 

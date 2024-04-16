@@ -16,7 +16,7 @@ function LogIn({ onSuccessfulLogin }) {
   const [showUsername, setShowUsername] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(true);
-  const { setToken } = useAuth();
+  const { setToken } = useAuth('');
 
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);

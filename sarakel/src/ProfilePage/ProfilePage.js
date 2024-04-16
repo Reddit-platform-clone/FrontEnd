@@ -1,6 +1,7 @@
 import './bootstrap.min.css'
 import React, { useState } from 'react';
 import './ProfilePage.css'
+import '../ProfileForOtherUsers/UsersProfile.css'
 import logo from './logo512.png'
 import jsonData from '../mock.json'
 import { CgAddR } from "react-icons/cg";

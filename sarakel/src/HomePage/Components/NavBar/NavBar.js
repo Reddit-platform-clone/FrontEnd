@@ -37,6 +37,11 @@ function NavBar() {
             <IoIosNotificationsOutline />
           </button>
 
+          <Link to='/Search'>
+          <button className="button notification-button" data-title="Open inbox">
+            <IoSearchOutline id="search-icon" />
+          </button>
+          </Link>
           <button className="button chat-button" data-title="Open chat">
             <IoChatbubbleEllipsesOutline />
           </button>
@@ -51,8 +56,10 @@ function NavBar() {
               <span><img className='userImage' src='https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png' alt="User avatar" /></span>
             </button>
             <div className='dropdownContent'>
-              <a>User profile</a>
-              <Link to='/settings'>User Settings</Link>
+              
+              <Link to='/ProfilePage'><a>User profile</a></Link>
+              <Link to='/settings'><a>User Settings</a></Link>
+              <Link to='/Moderation'><a>Mod tool</a></Link>
               <a onClick={handleLogout}>Log out</a> {/* Call handleLogout function on click */}
             </div>
           </div>

@@ -1,4 +1,5 @@
 import jsonData from '../../mock.json'
+import '../ProfilePage.css'
 import { CgAddR } from "react-icons/cg";
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";

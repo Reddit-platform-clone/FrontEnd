@@ -6,7 +6,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-//import {MDBFooter,MDBContainer,MDBCol,MDBRow} from 'mdb-react-ui-kit';
 
 import axios from 'axios';
 
@@ -32,9 +31,9 @@ function Chats() {
 
      useEffect(() => {
        if (toggle === 3) {
-         const promise = getSentMessages()
-         console.log(promise.data)
-          setSentMessages(promise)
+         getSentMessages()
+           .then(messages => setSentMessages(messages))
+           .catch(error => console.error(error));
        }
      }, [toggle]);
 
@@ -136,10 +135,21 @@ function removeDeletedMessageFromUI(messageId) {
 
 async function getSentMessages() {
   const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-  const promise = await axios.get('http://localhost:5000/api/message/sent',{
-            headers:{Authorization: token}
-    })
-    return promise.data;
+  const response = await fetch('http://localhost:5000/message/sent', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+  });
+
+  const responseData = await response.json();
+
+  if (response.ok) {
+    return responseData;
+  } else {
+    throw new Error(responseData.error || 'Failed to get sent messages');
+  }
 }
 
 async function getInboxMessages(username) {

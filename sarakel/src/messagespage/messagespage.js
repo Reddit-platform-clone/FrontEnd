@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 // import comboBoxIcon from './comboBoxIcon.svg'; // Import the icon for the button
 import NavBar from '../HomePage/Components/NavBar/NavBar.js'
 import ReCAPTCHA from 'react-google-recaptcha';
+
 //import {MDBFooter,MDBContainer,MDBCol,MDBRow} from 'mdb-react-ui-kit';
 import Footer from './components/footer/footer.js'
 import Chats from './components/chats.js'
