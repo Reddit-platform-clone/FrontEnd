@@ -5,7 +5,7 @@ import LogIn from "./LogIn.js";
 import ForgotUsername from "./ForgotUsername.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
-import jsonData from '../../../mock.json';
+import jsonData from "../mock.json"; // Import JSON data
 import { ToastContainer, toast } from "react-toastify";
 
 function ForgotPassword() {
@@ -15,16 +15,28 @@ function ForgotPassword() {
   const [showBackButton, setBackButton] = useState(false);
   const [showModal, setShowModal] = useState(true); // State for modal visibility
 
-  const handleResetPasswordClick = () => {
+  const handleResetPasswordClick = async () => {
     const username = document.getElementById("forget-password-username").value;
-    const password = document.getElementById("forget-password-pass").value;
 
-    const user = jsonData.users.find(user => user.email === username && user.pass === password);
+    try {
+      const response = await fetch('http://localhost:5000/api/login/forget_password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ emailOrUsername: username })
+      });
 
-    if (user) {
-      toast.success("Password reset successfully!");
-    } else {
-      toast.error("Invalid username or password.");
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred while processing your request.');
     }
   };
 
@@ -94,13 +106,13 @@ function ForgotPassword() {
                   required
                 />
 
-                <label htmlFor="password"></label>
+                {/* <label htmlFor="password"></label>
                 <input
                   id="forget-password-pass"
                   type="text"
                   placeholder="Password*"
                   required
-                />
+                /> */}
               </div>
               <br></br>
 
