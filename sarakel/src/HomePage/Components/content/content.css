@@ -2,6 +2,7 @@
     max-width: 720px;
     margin-left: 0px;
     margin-top: 90px;
+
 }
 .choice-above-posts {
     padding: 50px;
@@ -9,7 +10,7 @@
     margin-top: -110px;
     margin-left: 260px;
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center; 
     margin-bottom: 25px;
   }
   
@@ -89,8 +90,6 @@
 
 
 
-   
-  
 .post-list {
     display: flex;
     flex-direction: column;
@@ -99,6 +98,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    
 }
 .post-card {
     position: relative;
@@ -110,9 +110,11 @@
     transition: box-shadow 0.3s ease;
     background-color: transparent;
     margin-top: 20px; /* Adjust margin between cards */
+    margin-left: -50px;
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;
+
 }
 
 .post-card.no-media {
@@ -175,6 +177,7 @@
 .post-info {
     padding: 15px;
     margin-top: -32px;
+    min-height: 200px;
 }
 
 .post-info p {
