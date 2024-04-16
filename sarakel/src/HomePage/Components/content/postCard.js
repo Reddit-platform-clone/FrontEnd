@@ -11,11 +11,10 @@ const postCard = ({
   saveStates,
   handleJoinClick,
   handleSaveClick,
+  handleReportClick,
   handleHideClick,
   handleUpvoteClick,
   handleDownvoteClick,
-  getCommunityName,
-  getCommunityImage,
   renderMediaOrTruncateText,
 }) => (
   <div className={`post-card ${!post.media ? "no-media" : ""}`}>
@@ -23,12 +22,12 @@ const postCard = ({
       <div className="post-header">
         <div className="post-header-left">
           <img
-            src={getCommunityImage(post.community_id)}
+            src={post.image}
             className="profile-photo"
-            alt={post.text}
+            alt={post.title}
           />
           <p>
-            <b>r/{getCommunityName(post.community_id)}</b>
+            <b>r/{post.name}</b>
           </p>
           <p>.</p>
           <p>{post.time} ago</p>
@@ -38,9 +37,9 @@ const postCard = ({
         <div className="post-header-right">
           <button
             className="join-btn-post"
-            onClick={() => handleJoinClick(post.id)}
+            onClick={() => handleJoinClick(post.postId)}
           >
-            {joinStates[post.id] ? "Leave" : "Join"}
+            {joinStates[post.postId] ? "Leave" : "Join"}
           </button>
           <div className="dropdown-post">
             <button className="dropbtn-post">&#8226;&#8226;&#8226;</button>
@@ -48,13 +47,13 @@ const postCard = ({
               <a href="#">
                 <BiHide /> show fewer posts like this
               </a>
-              <a href="#" onClick={() => handleSaveClick(post.id)}>
-                <CiBookmark /> {saveStates[post.id] ? "Unsave" : "save"}
+              <a href="#" onClick={() => handleSaveClick(post.postId)}>
+                <CiBookmark /> {saveStates[post.postId] ? "Unsave" : "save"}
               </a>
-              <a href="#">
+              <a href="#" onClick={()=>handleReportClick(post.postId,post.userId)}>
                 <CiFlag1 /> report
               </a>
-              <a href="#" onClick={() => handleHideClick(post.id)}>
+              <a href="#" onClick={() => handleHideClick(post.postId)}>
                 <BiHide /> hide
               </a>
             </div>
@@ -64,20 +63,20 @@ const postCard = ({
       <p className="post-title">
         <b>{post.title}</b>
       </p>
-      {renderMediaOrTruncateText(post.media, post.text, false)}
+      {renderMediaOrTruncateText(post.media, post.content, false)}
     </div>
     <div className="interaction-container">
       <div className="interaction">
         <div className="left-post">
           <button
-            onClick={() => handleUpvoteClick(post.id)}
+            onClick={() => handleUpvoteClick(post.postId,1)}
             className={post.upvoted ? "upvoted" : ""}
           >
             <BiUpvote />
           </button>
           <p>{post.likes}</p>
           <button
-            onClick={() => handleDownvoteClick(post.id)}
+            onClick={() => handleDownvoteClick(post.postId,-1)}
             className={post.downvoted ? "downvoted" : ""}
           >
             <BiDownvote />
