@@ -1,6 +1,7 @@
 import React  from 'react';
 import ReactDOM from 'react-dom/client';
 import mock from '../mock.json';
+import { useAuth } from '../HomePage/Components/AuthContext';
 import axios from 'axios';
 import './CreateCommunity.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,7 +12,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 
 export default function Community ()
 {
-    
+const {token} = useAuth()
 let name
 let type = "public"
 let adult=false
@@ -98,7 +99,7 @@ async function CreateCommunity() {
 async function sendInfo(data){
     const promise = await axios.post('http://localhost:5000/api/site_admin', data, {
         headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'
+            Authorization: `Bearer ${token}`
         }
     });
     return promise;

@@ -113,9 +113,7 @@ body .containerUP {
     margin: 0; /* Modified to set margin to 0 */
 }
 
-.button:hover {
-    background-color: #35312b; /* Darker hover color */
-}
+
 
 /* Footer styling */
 .footer {

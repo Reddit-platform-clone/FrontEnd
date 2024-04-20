@@ -5,6 +5,7 @@ import Post from './components/Post.js';
 import ImageVideo from './components/ImageVideo.js';
 import Link from './components/Link.js';
 import Poll from './components/poll.js';
+import { useAuth } from '../HomePage/Components/AuthContext.js';
 import './CreatePost.css'
 import NavBar from '../HomePage/Components/NavBar/NavBar.js';
 import { faImage , faLink , faSquarePollHorizontal ,faFileLines ,faPlus,faTag} from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +14,7 @@ import axios from 'axios';
 
 
 export default function CreatePost() {
-
+    const {token} = useAuth()
     
     const[postTitle, setPostTitle] = useState('');
     const[postBody, setPostBody] = useState('');
@@ -39,7 +40,7 @@ console.log( newPost);
 async function sendInfo(data){
     const promise = await axios.post('http://localhost:5000/createPost/create', data, {
         headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'
+            Authorization:`Bearer ${token}`
         }
     });
     return promise;

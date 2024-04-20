@@ -4,8 +4,8 @@ import { Switch, Flex, Spacer, Box, use } from '@chakra-ui/react'
 import './bootstrap.min.css';
 import classes from './Tabs.module.css' 
 import mock from '../../mock.json'
-import {useAuth} from '../../HomePage/AuthContext.js';
-import { getToken } from '../../HomePage/token.js';
+import { useAuth } from '../../HomePage/Components/AuthContext.js';
+
 
 
 
@@ -22,7 +22,8 @@ export default function SafetyPrivacy() {
     const[twofactor, setTwoFactor] = React.useState()
     const [block, setBlock] = React.useState(null)
     const [mute, setMute] = React.useState(null)
-    let token = getToken()
+    const { token } = useAuth()
+    let auth =  ' Bearer ' + token
     function handleSearch(){
         setSearch(!search);
         sendInfo({showInSearch: !search});

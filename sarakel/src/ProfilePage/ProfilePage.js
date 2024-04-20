@@ -9,7 +9,7 @@ import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
 import { GoReply } from "react-icons/go";
 import { LuShare } from "react-icons/lu";
-import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged';
+import NavBar from '../HomePage/Components/NavBar/NavBar';
 import SideBar from '../HomePage/Components/SideBar/SideBar';
 import Overview from './Components/Overview';
 import Posts from './Components/Posts'
@@ -24,7 +24,7 @@ function ProfilePage() {
 
     return (
         <>
-            <NavBarUnlogged />
+            <NavBar />
             <SideBar />
 
             <div className='container1'>

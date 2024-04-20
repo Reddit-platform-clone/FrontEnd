@@ -33,23 +33,32 @@ function NavBar() {
         </div>
 
         <div className="right">
-          <button className="button notification-button" data-title="Open inbox">
-            <IoIosNotificationsOutline />
-          </button>
+          
+            <Link to='/Notifications'>
+              <button className="button notification-button" data-title="Open inbox">
+                <IoIosNotificationsOutline />
+              </button>
+            </Link>
+        
 
           <Link to='/Search'>
-          <button className="button notification-button" data-title="Open inbox">
+          <button className="button notification-button" data-title="Search">
             <IoSearchOutline id="search-icon" />
           </button>
           </Link>
-          <button className="button chat-button" data-title="Open chat">
-            <IoChatbubbleEllipsesOutline />
-          </button>
 
-          <button className="button create-button" data-title="Create post">
-            <FaPlus />
-            <span>Create</span>
-          </button>  
+          <Link to='/MessagesPage'>
+            <button className="button chat-button" data-title="Open chat">
+              <IoChatbubbleEllipsesOutline />
+            </button>
+          </Link>
+
+          <Link to='/CreatePost'>
+            <button className="button create-button" data-title="Create post">
+              <FaPlus />
+              <span>Create</span>
+            </button>  
+          </Link>
 
           <div className='dropdown'>
             <button className='dropbtn user-button'>

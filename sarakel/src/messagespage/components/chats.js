@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './chats.css'; // Import your CSS file for styling
+import { useAuth } from '../../HomePage/Components/AuthContext';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 // import logo_2d from './logo_2d.png'
 // import comboBoxIcon from './comboBoxIcon.svg'; // Import the icon for the button
-
 import ReCAPTCHA from 'react-google-recaptcha';
 
+//import {MDBFooter,MDBContainer,MDBCol,MDBRow} from 'mdb-react-ui-kit';
 
 import axios from 'axios';
 
 function Chats() {
+  const { token } = useAuth()
     const onChange = (value) => {
         console.log("Captcha value:", value);
     }
-    const [toggle, setToggle] = useState(1);
+    const [toggle, setToggle] = useState(3);
     const [toggle2, setToggle2] = useState(1);
     const toggleTab = (index) => {
       setToggle(index);
@@ -46,12 +48,11 @@ function Chats() {
     }
      async function getUnreadMessages(username) {
       try {
-        const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-        const response = await fetch(`http://localhost:5000/message/get_unread_messages`, {
+        const response = await fetch(`http://localhost:5000/api/message/unread`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
           },
           body: JSON.stringify({ username }),
         });
@@ -72,18 +73,18 @@ async function sendMessage() {
   const recipient = document.getElementById('tobox').value;
   const title = document.getElementById('subbox').value;
   const content = document.getElementById('msgboxx').value;
-
+  
   const messageData = {
-    recipient,
-    title,
-    content
+    username: "hafez",
+    recipient: recipient,
+    title: title,
+    content: content
   };
-  const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-  const response = await fetch('http://localhost:5000/message/compose', {
+  const response = await fetch('http://localhost:5000/api/message/compose', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(messageData)
   });
@@ -101,12 +102,11 @@ async function sendMessage() {
 
 async function deleteMessage(userID, messageId) {
   try {
-    const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-    const response = await fetch(`http://localhost:5000/message/del_msg`, {
+    const response = await fetch(`http://localhost:5000/api/message/del_msg`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization':`Bearer ${token}`
       },
       body: JSON.stringify({ userID, messageId }),
     });
@@ -134,12 +134,11 @@ function removeDeletedMessageFromUI(messageId) {
 }
 
 async function getSentMessages() {
-  const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-  const response = await fetch('http://localhost:5000/message/sent', {
+  const response = await fetch('http://localhost:5000/api/message/sent', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token
+      'Authorization': `Bearer ${token}`
     }
   });
 
@@ -154,12 +153,11 @@ async function getSentMessages() {
 
 async function getInboxMessages(username) {
   try {
-    const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-    const response = await fetch('http://localhost:5000/message/inbox', {
+    const response = await fetch('http://localhost:5000/api/message/inbox', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ username }),
     });
@@ -210,8 +208,7 @@ return (
           <p className='titlebox'>message</p>
           <input id='msgboxx' className='msgboxx'rows="1" cols="1" type="text" />
         </div>
-        <div className='robotchk'>
-          <ReCAPTCHA sitekey="YOUR_SITE_KEY" onChange={onChange}/>            
+        <div className='robotchk'>           
           <button id='sendbtn' className='Sendbutton' onClick={sendMessage}>SEND</button>
         </div>
       </div>

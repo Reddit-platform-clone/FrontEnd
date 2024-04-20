@@ -3,12 +3,13 @@ import './bootstrap.min.css';
 import style from './Tabs.module.css'
 import axios from 'axios'; 
 import mock from '../../mock.json';
-import { getToken } from '../../HomePage/token';
+import { useAuth } from '../../HomePage/Components/AuthContext';
 export default function Emails(){
     const [newfollowers, setNewFollow] = React.useState()
     const [chatreq, setChatReq] = React.useState()
     const [unsub, setUnsub] = React.useState()
-    let token = getToken()
+    const { token } = useAuth()
+    let auth =  ' Bearer ' + token
     function handleNewFollowers(){
         setNewFollow(!newfollowers);
         sendInfo({newFollowersEmail: !newfollowers});
@@ -23,12 +24,12 @@ export default function Emails(){
     }
     async function sendInfo(data){
             const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
-                headers:{Authorization: `Bearer ${token} `}     });
+                headers:{Authorization: `Bearer ${token}`}     });
             return promise;
     }
     async function GetInfo(){
         const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
-            headers:{Authorization: `Bearer ${token} `}        });
+            headers:{Authorization: `Bearer ${token}`}        });
         return promise.data;
     }
     React.useEffect(() =>{

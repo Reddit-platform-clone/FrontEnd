@@ -81,7 +81,7 @@ mock.users.map((user) => {
 
     const AddEmail = () => {
         
-        fetch('http://localhost:5000/api/v1/me')
+        
     }
     const changeEmail = event =>{
         setEmail(event.target.value)
