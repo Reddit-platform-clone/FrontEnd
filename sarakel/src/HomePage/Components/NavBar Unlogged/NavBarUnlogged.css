@@ -43,7 +43,7 @@
 }
 
 
-.search {
+input[type="text"] {
   flex-grow: 1; /* Allow the search input to expand and fill the available space */
   padding: 6px;
   background-color: #ddd;

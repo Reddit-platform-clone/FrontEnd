@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./LogIn.css";
 import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
@@ -6,17 +6,19 @@ import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
 import { useAuth } from "../AuthContext"; //import
 import { ToastContainer, toast } from "react-toastify";
-import GoogleLogin from "react-google-login";
+// import GoogleLogin from "react-google-login";
 import "react-toastify/dist/ReactToastify.css";
+import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
+const ClientID ="1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
 
 function LogIn({ onSuccessfulLogin }) {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
   const [showUsername, setShowUsername] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(true);
-  const { setToken } = useAuth('');
+  const { setToken } = useAuth();
 
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
@@ -30,45 +32,47 @@ function LogIn({ onSuccessfulLogin }) {
     setShowPassword(true);
   };
 
-  const onSuccess=(res)=>{
-    console.log("login success ! current user :",res.profileObj)
+  const onSuccess = (res) => {
+    console.log("login success ! current user :", res.profileObj);
   };
 
-  const onFailure=(res)=>{
-    console.log("login failed ! res :",res)
-  }
+  const onFailure = (res) => {
+    console.log("login failed ! res :", res);
+  };
   const handleLogin = async () => {
     const emailOrUsername = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-  
+
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
+      const response = await fetch("/api/login", {
+        method: "POST",
         body: JSON.stringify({ emailOrUsername, password }), // Ensure both fields are included
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         toast.success("Login successful!");
         console.log(data.token);
 
-          setToken(data.token);
+        setToken(data.token);
         // Call onSuccessfulLogin function passed from parent component
         onSuccessfulLogin();
       } else {
         const errorText = await response.text();
-        console.error('Server error:', errorText);
-        toast.error('Invalid username or password.');
+        console.error("Server error:", errorText);
+        toast.error("Invalid username or password.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      toast.error('An error occurred while logging in. Please try again later.');
+      console.error("Error:", error);
+      toast.error(
+        "An error occurred while logging in. Please try again later."
+      );
     }
   };
-  
+
   // Function to handle closing the login modal
   const handleCloseModal = () => {
     setShowLoginModal(false);
@@ -109,7 +113,7 @@ function LogIn({ onSuccessfulLogin }) {
           </p>
 
           {/* Google login button */}
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId={ClientID}
             buttonText="Continue with Google"
             onSuccess={onSuccess}
@@ -117,8 +121,18 @@ function LogIn({ onSuccessfulLogin }) {
             cookiePolicy="single_host_origin"
             isSignedIn={true}
             className="login-google-oauth"
-          />
-
+          /> */}
+          <GoogleOAuthProvider className="login-google-oauth" clientId="27236872151-niqa2g4m3e6cduab5fig8c2u7mkpnc4g.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </GoogleOAuthProvider>
+          
           {/* Divider */}
           <div className="login-divider">
             <div className="login-divider-line"></div>
@@ -129,21 +143,39 @@ function LogIn({ onSuccessfulLogin }) {
           {/* Username and password inputs */}
           <div className="input-group">
             <label htmlFor="username"></label>
-            <input id="username" type="text" placeholder="Username or Email*" required />
+            <input
+              id="username"
+              type="text"
+              placeholder="Username or Email*"
+              required
+            />
 
             <label htmlFor="password"></label>
-            <input id="password" type="password" placeholder="Password*" required />
+            <input
+              id="password"
+              type="password"
+              placeholder="Password*"
+              required
+            />
           </div>
 
           {/* Forgot username and password links */}
           <div className="login-forgot-text">
             <p>
               Forgot your{" "}
-              <a href="#" className="login-forgot-username" onClick={handleUsernameClick}>
+              <a
+                href="#"
+                className="login-forgot-username"
+                onClick={handleUsernameClick}
+              >
                 username
               </a>{" "}
               or{" "}
-              <a href="#" className="login-forgot-password" onClick={handlePasswordClick}>
+              <a
+                href="#"
+                className="login-forgot-password"
+                onClick={handlePasswordClick}
+              >
                 password
               </a>
               ?
@@ -154,7 +186,11 @@ function LogIn({ onSuccessfulLogin }) {
           <div className="login-new-text">
             <p>
               New to Sarakel?{" "}
-              <a href="#" className="login-signup-text" onClick={handleSignUpClick}>
+              <a
+                href="#"
+                className="login-signup-text"
+                onClick={handleSignUpClick}
+              >
                 Sign Up
               </a>
             </p>

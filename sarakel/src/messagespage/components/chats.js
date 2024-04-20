@@ -48,7 +48,7 @@ function Chats() {
     }
      async function getUnreadMessages(username) {
       try {
-        const response = await fetch(`http://localhost:5000/api/message/unread`, {
+        const response = await fetch(`/api/message/unread`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ async function sendMessage() {
     title: title,
     content: content
   };
-  const response = await fetch('http://localhost:5000/api/message/compose', {
+  const response = await fetch('/api/message/compose', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ async function sendMessage() {
 
 async function deleteMessage(userID, messageId) {
   try {
-    const response = await fetch(`http://localhost:5000/api/message/del_msg`, {
+    const response = await fetch(`/api/message/del_msg`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ function removeDeletedMessageFromUI(messageId) {
 }
 
 async function getSentMessages() {
-  const response = await fetch('http://localhost:5000/api/message/sent', {
+  const response = await fetch('/api/message/sent', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ async function getSentMessages() {
 
 async function getInboxMessages(username) {
   try {
-    const response = await fetch('http://localhost:5000/api/message/inbox', {
+    const response = await fetch('/api/message/inbox', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

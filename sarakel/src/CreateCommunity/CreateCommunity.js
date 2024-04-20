@@ -97,7 +97,7 @@ async function CreateCommunity() {
 
 
 async function sendInfo(data){
-    const promise = await axios.post('http://localhost:5000/api/site_admin', data, {
+    const promise = await axios.post('/api/site_admin', data, {
         headers: {
             Authorization: `Bearer ${token}`
         }

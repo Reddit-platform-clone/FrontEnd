@@ -29,7 +29,7 @@ const Content = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/subreddit/get${
+          `/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
           }`
         );
@@ -102,6 +102,10 @@ const Content = () => {
   
   
   const handleUpvoteClick = (postId) => {
+    if (!token) {
+      toast.error("You need to Login first");
+      return;
+    }
     console.log("upvote")
     console.log("post id : ",postId)
     setPosts((prevPosts) =>
@@ -121,6 +125,10 @@ const Content = () => {
   };
 
   const handleDownvoteClick = (postId) => {
+    if (!token) {
+      toast.error("You need to Login first");
+      return;
+    }
     setPosts((prevPosts) =>
       prevPosts.map((post) =>
         post.postId === postId
@@ -151,7 +159,7 @@ const Content = () => {
       const { name, userId } = getPostInfo(postId);
       const isJoining = !joinStates[postId];
       const response = await fetch(
-        `http://localhost:5000/api/community/${
+        `/api/community/${
           isJoining ? "join" : "leave"
         }`,
         {
@@ -192,7 +200,7 @@ const Content = () => {
     const isSaved = saveStates[postId];
   
     try {
-      const response = await fetch(`http://localhost:5000/api/${isSaved ? 'unsave' : 'save'}`, {
+      const response = await fetch(`/api/${isSaved ? 'unsave' : 'save'}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -226,7 +234,7 @@ const Content = () => {
     }
   
     try {
-      const response = await fetch("http://localhost:5000/api/report", {
+      const response = await fetch("/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

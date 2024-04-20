@@ -110,7 +110,6 @@
     transition: box-shadow 0.3s ease;
     background-color: transparent;
     margin-top: 20px; /* Adjust margin between cards */
-    margin-left: -50px;
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;

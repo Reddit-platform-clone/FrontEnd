@@ -6,10 +6,9 @@ import classes from './Tabs.module.css'
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
 import mock from '../../mock.json';
-import { getToken } from '../../HomePage/token';
 export default function Account() {
     let mail
-    console.log(getToken())
+
 
 
 

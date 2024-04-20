@@ -4,7 +4,6 @@ import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignUpTwo from "./SignUpTwo.js";
-import jsonData from "../../../mock.json";
 import GoogleLogin from "react-google-login";
 import LogIn from "../LogIn/LogIn.js";
 
@@ -23,15 +22,15 @@ function SignUpOne() {
       toast.error("Please enter a valid email");
       return;
     }
-
+    setShowSignUpTwo(true)
     // Check if the entered email exists in the users section of the JSON data
-    const userExists = jsonData.users.some((user) => user.email === email);
+    //const userExists = jsonData.users.some((user) => user.email === email);
 
-    if (userExists) {
-      toast.error("Email already exists");
-    } else {
-      setShowSignUpTwo(true);
-    }
+    // if (userExists) {
+    //   toast.error("Email already exists");
+    // } else {
+    //   setShowSignUpTwo(true);
+    // }
   };
 
   const validateEmail = (email) => {

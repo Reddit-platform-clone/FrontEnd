@@ -5,7 +5,6 @@ import LogIn from "./LogIn.js";
 import ForgotUsername from "./ForgotUsername.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
-import jsonData from "../../../mock.json"; // Import JSON data
 import { ToastContainer, toast } from "react-toastify";
 
 function ForgotPassword() {
@@ -19,14 +18,14 @@ function ForgotPassword() {
     const username = document.getElementById("forget-password-username").value;
 
     try {
-      const response = await fetch('http://localhost:5000/api/login/forget_password', {
+      const response = await fetch('/api/login/forget_password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ emailOrUsername: username })
       });
-      
+
       const data = await response.json();
 
       if (response.ok) {
