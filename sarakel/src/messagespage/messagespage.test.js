@@ -1,67 +1,150 @@
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import Chats from './Chats';
+import { renderHook, act } from '@testing-library/react-hooks';
+import Chats from './components/chats';
+import { render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 
-describe('Chats component', () => {
-  test('renders all three tabs with correct content', () => {
-    render(<Chats />);
+describe('Chats Component Logic', () => {
+  it('should handle state changes for toggles', () => {
+    const { result } = renderHook(() => useChats());
 
-    // Verify the presence of all three tabs
-    const sendTab = screen.getByText('Send A Private Message');
-    const inboxTab = screen.getByText('Inbox');
-    const sentTab = screen.getByText('Sent');
-    expect(sendTab).toBeInTheDocument();
-    expect(inboxTab).toBeInTheDocument();
-    expect(sentTab).toBeInTheDocument();
+    // Initial state for toggle
+    expect(result.current.toggle).toBe(1);
+    expect(result.current.toggle2).toBe(1);
 
-    // By default, the "Send A Private Message" tab should be active
-    expect(sendTab).toHaveClass('active');
+    // Simulate changing toggle
+    act(() => {
+      result.current.toggleTab(2);
+    });
+    expect(result.current.toggle).toBe(2);
+
+    // Simulate changing toggle2
+    act(() => {
+      result.current.toggleTab2(2);
+    });
+    expect(result.current.toggle2).toBe(2);
   });
 
-  test('switches tabs when clicked', () => {
-    render(<Chats />);
+  it('should fetch sent messages when toggle is 3', async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useChats());
 
-    // Verify initial tab state
-    expect(screen.getByText('Send A Private Message')).toHaveClass('active');
-    expect(screen.queryByText('Unread')).not.toBeInTheDocument();
+    // Change toggle to 3 to fetch sent messages
+    act(() => {
+      result.current.toggleTab(3);
+    });
 
-    // Click on the "Inbox" tab
-    userEvent.click(screen.getByText('Inbox'));
+    await waitForNextUpdate();
 
-    // Verify tab switch
-    expect(screen.queryByText('Send A Private Message')).not.toHaveClass('active');
-    expect(screen.getByText('Inbox')).toHaveClass('active');
-
-    // Click on the "Sent" tab
-    userEvent.click(screen.getByText('Sent'));
-
-    // Verify tab switch
-    expect(screen.queryByText('Inbox')).not.toHaveClass('active');
-    expect(screen.getByText('Sent')).toHaveClass('active');
+    // Assuming getSentMessages is mocked and resolves to an array
+    expect(result.current.sentMessages).toEqual(expect.any(Array));
   });
 
-  test('sends a private message', async () => {
-    render(<Chats />);
+  it('should handle sending messages', async () => {
+    const { result } = renderHook(() => useChats());
+    const messageData = {
+      recipient: 'testuser',
+      title: 'Test Message',
+      content: 'This is a test message'
+    };
 
-    // Click on the "Send A Private Message" tab
-    userEvent.click(screen.getByText('Send A Private Message'));
-
-    // Enter message details
-    userEvent.type(screen.getByPlaceholderText('Recipient'), 'exampleUser');
-    userEvent.type(screen.getByPlaceholderText('Subject'), 'Test Subject');
-    userEvent.type(screen.getByPlaceholderText('Message'), 'Test Message');
-
-    // Mock the fetch call
+    // Mock sendMessage to resolve successfully
     global.fetch = jest.fn(() =>
       Promise.resolve({
-        json: () => Promise.resolve({ success: true, message: 'Message sent successfully.' }),
+        json: () => Promise.resolve({ message: "Message sent successfully." })
       })
     );
 
-   userEvent.click(screen.getByText('SEND'));
+    await act(async () => {
+      await result.current.sendMessage(messageData.recipient, messageData.title, messageData.content);
+    });
 
-    await waitFor(() => expect(screen.getByText('Message sent successfully.')).toBeInTheDocument());
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(global.fetch).toHaveBeenCalledWith(expect.any(String), expect.any(Object));
   });
 
+  test('renders the component', () => {
+    const { getByText } = render(<Chats />);
+    const sendButton = getByText('SEND');
+    expect(sendButton).toBeInTheDocument();
+  });
+
+  test('switches tabs correctly', () => {
+    const { getByText, getByTestId } = render(<Chats />);
+    const inboxTab = getByText('Inbox');
+    fireEvent.click(inboxTab);
+    const inboxTabContent = getByTestId('inbox-tab-content');
+    expect(inboxTabContent).toBeInTheDocument();
+  });
+
+  test('sends a message when send button is clicked', async () => {
+    const { getByText, getByTestId } = render(<Chats />);
+    const sendButton = getByText('SEND');
+    fireEvent.click(sendButton);
+    // Simulate inputting values in the textboxes
+    const toBox = getByTestId('to-box');
+    const subjectBox = getByTestId('subject-box');
+    const messageBox = getByTestId('message-box');
+    fireEvent.change(toBox, { target: { value: 'recipient' } });
+    fireEvent.change(subjectBox, { target: { value: 'Test Subject' } });
+    fireEvent.change(messageBox, { target: { value: 'Test Message' } });
+    // Wait for asynchronous operations to complete
+    await waitFor(() => {
+      fireEvent.click(sendButton);
+    });
+    // Assert that message sent successfully alert is shown
+    expect(window.alert).toHaveBeenCalledWith('Message sent successfully.');
+  });
+
+  test('displays error when sending message fails', async () => {
+    const { getByText, getByTestId } = render(<Chats />);
+    const sendButton = getByText('SEND');
+    fireEvent.click(sendButton);
+    // Simulate inputting values in the textboxes
+    const toBox = getByTestId('to-box');
+    const subjectBox = getByTestId('subject-box');
+    const messageBox = getByTestId('message-box');
+    fireEvent.change(toBox, { target: { value: 'recipient' } });
+    fireEvent.change(subjectBox, { target: { value: 'Test Subject' } });
+    fireEvent.change(messageBox, { target: { value: 'Test Message' } });
+    // Mock the fetch function to simulate a failed request
+    jest.spyOn(window, 'fetch').mockImplementationOnce(() => Promise.reject(new Error('Sending failed')));
+    // Wait for asynchronous operations to complete
+    await waitFor(() => {
+      fireEvent.click(sendButton);
+    });
+    // Assert that error alert is shown
+    expect(window.alert).toHaveBeenCalledWith('Failed to send message: Sending failed');
+  });
+
+  test('renders the component', () => {
+    const { getByText } = render(<Chats />);
+    const sendButton = getByText('SEND');
+    expect(sendButton).toBeInTheDocument();
+  });
+
+  // test('switches tabs correctly', () => {
+  //   const { getByText, getByTestId } = render(<Chats />);
+  //   const inboxTab = getByText('Inbox');
+  //   fireEvent.click(inboxTab);
+  //   const inboxTabContent = getByTestId('inbox-tab-content');
+  //   expect(inboxTabContent).toBeInTheDocument();
+  // });
+
+  test('sends a message when send button is clicked', async () => {
+    const { getByText, getByTestId } = render(<Chats />);
+    const sendButton = getByText('SEND');
+    fireEvent.click(sendButton);
+    // Simulate inputting values in the textboxes
+    const toBox = getByTestId('to-box');
+    const subjectBox = getByTestId('subject-box');
+    const messageBox = getByTestId('message-box');
+    fireEvent.change(toBox, { target: { value: 'recipient' } });
+    fireEvent.change(subjectBox, { target: { value: 'Test Subject' } });
+    fireEvent.change(messageBox, { target: { value: 'Test Message' } });
+    // Wait for asynchronous operations to complete
+    await waitFor(() => {
+      fireEvent.click(sendButton);
+    });
+    // Assert that message sent successfully alert is shown
+    expect(window.alert).toHaveBeenCalledWith('Message sent successfully.');
+  });
 });

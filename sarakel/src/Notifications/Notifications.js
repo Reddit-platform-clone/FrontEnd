@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../HomePage/Components/NavBar/NavBar';
 import ReactDOM from 'react-dom/client';
 import mock from '../mock.json';
 import './Notifications.css'
+
+
+
 
 function Notify(){
   return(
@@ -35,9 +38,9 @@ export default function Notifications()
 
 <div >
 <NavBar></NavBar>
- <button className='notifications' onClick={() => ReactDOM.createRoot(document.getElementById("pop-page")).render(<Notify/>)}>  Notifications</button>
+ <button className='notifications' >  Notifications</button>
             <div id="pop-page"></div>
-
+              <Notify />
             </div>
  )
 

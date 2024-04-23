@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './chats.css'; // Import your CSS file for styling
 import { useAuth } from '../../HomePage/Components/AuthContext';
+
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 // import logo_2d from './logo_2d.png'
 // import comboBoxIcon from './comboBoxIcon.svg'; // Import the icon for the button
@@ -11,6 +12,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 
 function Chats() {
+
   const { token } = useAuth()
     const onChange = (value) => {
         console.log("Captcha value:", value);
@@ -256,7 +258,7 @@ return (
       <div className={toggle === 3 ? "MainWindow3 active-content" : "MainWindow3"}>
   <div className='themessage'>
     {sentMessages.length > 0 ? (
-      sentMessages.map(message => (
+      sentMessages.map((message) => (
         <div key={message._id} className='message-container'>
           <div className='topmsg'>
             <h4 className='txttitle'>{message.title}</h4>
@@ -281,6 +283,7 @@ return (
         <p className='errmsg'>There doesn't seem to be anything here</p>
       </div>
     )}
+    
   </div>
 </div>
     </div>

@@ -63,13 +63,13 @@ export default function SafetyPrivacy() {
         sendInfo({twoFactorAuthentication: !twofactor});
     }
     async function sendInfo(data){
-            const promise = await axios.patch('/api/v1/me/prefs',data,{
+            const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
                 headers:{Authorization: `Bearer ${token} `}
             });
             return promise;
     }
     async function GetInfo(){
-        const promise = await axios.get('/api/v1/me/prefs',{
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
             headers:{Authorization: `Bearer ${token}`}
         });
         return promise.data;
@@ -77,8 +77,7 @@ export default function SafetyPrivacy() {
     React.useEffect(() =>{
         async function GetandApply(){
             const data = await GetInfo()
-            if(data){
-                
+            if(data){+
                 setSearch(data.settings.showInSearch)
                 setPersonal1(data.settings.personalizeAds)
                 setAlcohol(data.settings.alcohol)
@@ -89,7 +88,6 @@ export default function SafetyPrivacy() {
                 setTwoFactor(data.settings.twoFactorAuthentication)
             }
         }
-        
         GetandApply()
     },[])
     const addBlocked = () =>{
@@ -231,7 +229,7 @@ export default function SafetyPrivacy() {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <label className={`${classes.switch}`}>
-                            <input type="checkbox" checked={alcohol} onChange={()=>{handleAlcohol()}}/>
+                            <input type="checkbox" data-testid="toggle" checked={alcohol} onChange={()=>{handleAlcohol()}}/>
                             <span className={`${classes.slider} ${classes.round}`}></span>
                         </label>
                     </div>

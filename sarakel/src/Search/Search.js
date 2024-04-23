@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged.js';
 import SideBar from '../HomePage/Components/SideBar/SideBar.js';
 import './Search.css';
+import NavBar from '../HomePage/Components/NavBar/NavBar.js'
 import Users from './Components/Users';
 import Post from './Components/Post.js';
 import Community from './Components/Community.js';
@@ -48,8 +49,8 @@ function Search() {
     };
 
     return (
-        <>
-            <NavBarUnlogged />
+        <div>
+            <NavBar />
             <SideBar />
             <div className='search-title'>
                 <span>Search-results</span>
@@ -161,7 +162,8 @@ function Search() {
                     </div>
                 )}
             </div>
-        </>
+            </div>
+        
     );
 }
 

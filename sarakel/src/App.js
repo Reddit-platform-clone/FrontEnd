@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route index  element={<HomePage />} />
           <Route path='settings' element={<Settings />} />
-          <Route  path = 'MessagesPage' element={<MessagesPage />}></Route>
+          <Route path = 'MessagesPage' element={<MessagesPage />}></Route>
           <Route path ='Moderation' element={<Moderation />}></Route>
           <Route path = 'CreatePost' element={<CreatePost />}></Route>
           <Route path = 'ProfilePage' element={<ProfilePage />}></Route>
