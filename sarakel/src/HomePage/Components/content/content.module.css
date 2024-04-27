@@ -1,6 +1,6 @@
 .container {
     max-width: 720px;
-    margin-left: 0px;
+    margin-left: 350px;
     margin-top: 90px;
   }
   
@@ -8,10 +8,10 @@
     padding: 50px;
     background-color: transparent;
     margin-top: -110px;
-    margin-left: 260px;
+    margin-left: 0px;
     display: flex;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: -70px;
   }
   
   .content-sort-type {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './NavBar.css';
+import styles from './NavBar.module.css';
 import logo from "./pngwing.com.png";
 import './bootstrap.min.css';
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
@@ -17,64 +17,48 @@ function NavBar() {
   };
 
   return (
-    <div className='container-fluid'>
-      <div className="navbar sticky-top">
-        <Link to='/' className="left textStyle">
-          <img src={logo} className="img" alt="Logo" />
-          <a className="logo" >Sarakel</a>
+    <div className={styles["container-fluid"]}>
+      <div className={styles["navbar"] + " " + styles["sticky-top"]}>
+        <Link to='/' className={styles["left"] + " " + styles["textStyle"]}>
+          <img src={logo} className={styles["img"]} alt="Logo" />
+          <a className={styles["logo"]} >Sarakel</a>
         </Link>
 
-        <div className="center">
-          <label htmlFor="search" className="search-label" data-title="Search Sarakel"></label>
-          <div className="search-icon-container">
-            <IoSearchOutline id="search-icon" />
+        <div className={styles["center"]}>
+          <label htmlFor="search" className={styles["search-label"]} data-title="Search Sarakel"></label>
+          <div className={styles["search-icon-container"]}>
+            <IoSearchOutline id={styles["search-icon"]} />
           </div>
-          <input type="text" id="search" placeholder="search sarakel" className="search" />
+          <input type="text" id="search" placeholder="search sarakel" className={styles["search"]} />
         </div>
 
-        <div className="right">
-          
-            <Link to='/Notifications'>
-              <button className="button notification-button" data-title="Open inbox">
-                <IoIosNotificationsOutline />
-              </button>
-            </Link>
-        
-
-          <Link to='/Search'>
-          <button className="button notification-button" data-title="Search">
-            <IoSearchOutline id="search-icon" />
+        <div className={styles["right"]}>
+          <button className={styles["button"] + " " + styles["notification-button"]} data-title="Open inbox">
+            <IoIosNotificationsOutline />
           </button>
-          </Link>
 
-          <Link to='/MessagesPage'>
-            <button className="button chat-button" data-title="Open chat">
-              <IoChatbubbleEllipsesOutline />
+          <button className={styles["button"] + " " + styles["chat-button"]} data-title="Open chat">
+            <IoChatbubbleEllipsesOutline />
+          </button>
+
+          <button className={styles["button"] + " " + styles["create-button"]} data-title="Create post">
+            <FaPlus />
+            <span>Create</span>
+          </button>  
+
+          <div className={styles['dropdown']}>
+            <button className={styles['dropbtn'] + " " + styles['user-button']}>
+              <span><img className={styles['userImage']} src='https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png' alt="User avatar" /></span>
             </button>
-          </Link>
-
-          <Link to='/CreatePost'>
-            <button className="button create-button" data-title="Create post">
-              <FaPlus />
-              <span>Create</span>
-            </button>  
-          </Link>
-
-          <div className='dropdown'>
-            <button className='dropbtn user-button'>
-              <span><img className='userImage' src='https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png' alt="User avatar" /></span>
-            </button>
-            <div className='dropdownContent'>
-              
-              <Link to='/ProfilePage'><a>User profile</a></Link>
-              <Link to='/settings'><a>User Settings</a></Link>
-              <Link to='/Moderation'><a>Mod tool</a></Link>
+            <div className={styles['dropdownContent']}>
+              <a>User profile</a>
+              <Link to='/settings'>User Settings</Link>
               <a onClick={handleLogout}>Log out</a> {/* Call handleLogout function on click */}
             </div>
           </div>
         </div>
       </div>
-      <hr className="m-0" />
+      <hr className={styles["m-0"]} />
     </div>
   );
 }

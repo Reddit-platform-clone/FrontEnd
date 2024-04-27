@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import "./LogIn.css";
+import styles from "./LogIn.module.css";
 import { IoMdClose } from "react-icons/io";
 import SignUpOne from "../SignUp/SignUpOne";
 import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
-import { useAuth } from "../AuthContext"; //import
+import { useAuth } from "../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-// import GoogleLogin from "react-google-login";
-import "react-toastify/dist/ReactToastify.css";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const ClientID ="1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
+const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
 
 function LogIn({ onSuccessfulLogin }) {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
@@ -33,20 +31,21 @@ function LogIn({ onSuccessfulLogin }) {
   };
 
   const onSuccess = (res) => {
-    console.log("login success ! current user :", res.profileObj);
+    console.log("login success! current user:", res.profileObj);
   };
 
   const onFailure = (res) => {
-    console.log("login failed ! res :", res);
+    console.log("login failed! res:", res);
   };
+
   const handleLogin = async () => {
-    const emailOrUsername = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const emailOrUsername = document.getElementById(styles.username).value;
+    const password = document.getElementById(styles.password).value;
 
     try {
       const response = await fetch("http://localhost:5000/api/login", {
         method: "POST",
-        body: JSON.stringify({ emailOrUsername, password }), // Ensure both fields are included
+        body: JSON.stringify({ emailOrUsername, password }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,7 +57,6 @@ function LogIn({ onSuccessfulLogin }) {
         console.log(data.token);
 
         setToken(data.token);
-        // Call onSuccessfulLogin function passed from parent component
         onSuccessfulLogin();
       } else {
         const errorText = await response.text();
@@ -67,13 +65,10 @@ function LogIn({ onSuccessfulLogin }) {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(
-        "An error occurred while logging in. Please try again later."
-      );
+      toast.error("An error occurred while logging in. Please try again later.");
     }
   };
 
-  // Function to handle closing the login modal
   const handleCloseModal = () => {
     setShowLoginModal(false);
   };
@@ -91,10 +86,10 @@ function LogIn({ onSuccessfulLogin }) {
   }
 
   return showLoginModal ? (
-    <div className="login-overlay">
-      <div className="login-modal">
-        <div className="login-content">
-          <button className="login-close-btn" onClick={handleCloseModal}>
+    <div className={styles["login-overlay"]}>
+      <div className={styles["login-modal"]}>
+        <div className={styles["login-content"]}>
+          <button className={styles["login-close-btn"]} onClick={handleCloseModal}>
             {" "}
             <IoMdClose />{" "}
           </button>
@@ -102,27 +97,17 @@ function LogIn({ onSuccessfulLogin }) {
           <h2>Log In</h2>
           <p>
             By continuing, you agree to our{" "}
-            <a href="#" className="login-user-agremnt">
+            <a href="#" className={styles["login-user-agreement"]}>
               User Agreement
             </a>{" "}
             and acknowledge that you understand the{" "}
-            <a href="#" className="login-privcy-plcy">
+            <a href="#" className={styles["login-privacy-policy"]}>
               Privacy Policy
             </a>
             .
           </p>
 
-          {/* Google login button */}
-          {/* <GoogleLogin
-            clientId={ClientID}
-            buttonText="Continue with Google"
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy="single_host_origin"
-            isSignedIn={true}
-            className="login-google-oauth"
-          /> */}
-          <GoogleOAuthProvider className="login-google-oauth" clientId="27236872151-niqa2g4m3e6cduab5fig8c2u7mkpnc4g.apps.googleusercontent.com">
+          <GoogleOAuthProvider className={styles["login-google-oauth"]} clientId={ClientID}>
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
@@ -132,19 +117,17 @@ function LogIn({ onSuccessfulLogin }) {
               }}
             />
           </GoogleOAuthProvider>
-          
-          {/* Divider */}
-          <div className="login-divider">
-            <div className="login-divider-line"></div>
-            <div className="login-divider-text">OR</div>
-            <div className="login-divider-line"></div>
+
+          <div className={styles["login-divider"]}>
+            <div className={styles["login-divider-line"]}></div>
+            <div className={styles["login-divider-text"]}>OR</div>
+            <div className={styles["login-divider-line"]}></div>
           </div>
 
-          {/* Username and password inputs */}
-          <div className="input-group">
+          <div className={styles["input-group"]}>
             <label htmlFor="username"></label>
             <input
-              id="username"
+              id={styles["username"]}
               type="text"
               placeholder="Username or Email*"
               required
@@ -152,20 +135,19 @@ function LogIn({ onSuccessfulLogin }) {
 
             <label htmlFor="password"></label>
             <input
-              id="password"
+              id={styles["password"]}
               type="password"
               placeholder="Password*"
               required
             />
           </div>
 
-          {/* Forgot username and password links */}
-          <div className="login-forgot-text">
+          <div className={styles["login-forgot-text"]}>
             <p>
               Forgot your{" "}
               <a
                 href="#"
-                className="login-forgot-username"
+                className={styles["login-forgot-username"]}
                 onClick={handleUsernameClick}
               >
                 username
@@ -173,7 +155,7 @@ function LogIn({ onSuccessfulLogin }) {
               or{" "}
               <a
                 href="#"
-                className="login-forgot-password"
+                className={styles["login-forgot-password"]}
                 onClick={handlePasswordClick}
               >
                 password
@@ -182,13 +164,12 @@ function LogIn({ onSuccessfulLogin }) {
             </p>
           </div>
 
-          {/* New to Sarakel? Sign up link */}
-          <div className="login-new-text">
+          <div className={styles["login-new-text"]}>
             <p>
               New to Sarakel?{" "}
               <a
                 href="#"
-                className="login-signup-text"
+                className={styles["login-signup-text"]}
                 onClick={handleSignUpClick}
               >
                 Sign Up
@@ -196,12 +177,10 @@ function LogIn({ onSuccessfulLogin }) {
             </p>
           </div>
 
-          {/* Login button */}
-          <button className="login-btn-final" onClick={handleLogin}>
+          <button className={styles["login-btn-final"]} onClick={handleLogin}>
             Log In
           </button>
 
-          {/* Toast notification container */}
           <ToastContainer />
         </div>
       </div>

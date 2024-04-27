@@ -136,7 +136,7 @@ margin-right: 5px;
 .notification-button:hover,
 .create-button:hover,
 .user-button:hover {
-  background-color: rgba(241, 238, 238, 0.3); /* Semi-transparent grey background on hover */
+  background-color: rgba(128, 128, 128, 0.3); /* Semi-transparent grey background on hover */
   transform: translateY(0px); /* Move the button down slightly on hover */
   margin-top: -4px;
 }

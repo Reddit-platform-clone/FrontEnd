@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUpTwo.css";
+import styles from "./SignUpTwo.module.css";
 import SignUpOne from "./SignUpOne.js";
 import { useAuth } from "../AuthContext";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -92,11 +92,11 @@ function SignUpTwo({ email }) {
   }
 
   return showSignUpModal ? (
-    <div className="signuptwo-overlay">
-      <div className="signuptwo-modal">
-        <div className="signuptwo-content">
+    <div className={styles["signuptwo-overlay"]}>
+      <div className={styles["signuptwo-modal"]}>
+        <div className={styles["signuptwo-content"]}>
           <button
-            className="signuptwo-back-btn"
+            className={styles["signuptwo-back-btn"]}
             onClick={handleBackButtonClick}
           >
             {" "}
@@ -108,7 +108,7 @@ function SignUpTwo({ email }) {
             Choose wisely—because once you get a name, you can’t change it.
           </p>
 
-          <div className="signuptwo-input-group">
+          <div className={styles["signuptwo-input-group"]}>
             <label htmlFor="username"></label>
             <input
               id="signuptwo-username"
@@ -129,11 +129,11 @@ function SignUpTwo({ email }) {
             {/* <ReCAPTCHA
               sitekey="6LfKJ54pAAAAAKOVJdj7SYP5-xuXU8-YNqAQ0E2t"
               onChange={handleRecaptchaChange}
-              className="signuptwo-recaptcha"
+              className={styles["signuptwo-recaptcha"]}
             /> */}
 
             <button
-              className="signuptwo-cntnu-btn"
+              className={styles["signuptwo-cntnu-btn"]}
               onClick={handleContinueClick}
             >
               Continue

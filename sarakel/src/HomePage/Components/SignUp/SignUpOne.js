@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUpOne.css";
+import styles from "./SignUpOne.module.css";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,16 +22,16 @@ function SignUpOne() {
       toast.error("Please enter a valid email");
       return;
     }
-    setShowSignUpTwo(true)
+
     // Check if the entered email exists in the users section of the JSON data
     //const userExists = jsonData.users.some((user) => user.email === email);
 
-    // if (userExists) {
-    //   toast.error("Email already exists");
-    // } else {
-    //   setShowSignUpTwo(true);
-    // }
-  };
+  //   if (userExists) {
+  //     toast.error("Email already exists");
+  //   } else {
+  //     setShowSignUpTwo(true);
+  //   }
+   };
 
   const validateEmail = (email) => {
     // Regular expression for email validation
@@ -54,29 +54,32 @@ function SignUpOne() {
 
   // If showSignUpTwo is true, render SignUpTwo component
   if (showSignUpTwo) {
-    return<SignUpTwo email={email} />;
+    return <SignUpTwo email={email} />;
   }
 
   // Otherwise, render SignUpOne component
   return (
     <>
       {showModal && (
-        <div className="signup-overlay">
-          <div className="signup-modal">
+        <div className={styles["signup-overlay"]}>
+          <div className={styles["signup-modal"]}>
             <ToastContainer />
-            <div className="signup-content">
-              <button className="signup-close-btn" onClick={handleCloseModal}>
+            <div className={styles["signup-content"]}>
+              <button
+                className={styles["signup-close-btn"]}
+                onClick={handleCloseModal}
+              >
                 {" "}
                 <IoMdClose />{" "}
               </button>
               <h2>Sign Up</h2>
               <p>
                 By continuing, you agree to our{" "}
-                <a href="#" className="login-user-agremnt">
+                <a href="#" className={styles["login-user-agremnt"]}>
                   User Agreement
                 </a>{" "}
                 and acknowledge that you understand the{" "}
-                <a href="#" className="login-privcy-plcy">
+                <a href="#" className={styles["login-privcy-plcy"]}>
                   Privacy Policy
                 </a>
                 .
@@ -86,18 +89,18 @@ function SignUpOne() {
                 clientId={ClientID}
                 buttonText="Continue with google"
                 cookiePolicy="single_host_origin"
-                className="signUpOne-google"
+                className={styles["signUpOne-google"]}
               />
               <br></br>
               {/* <button className='signup-apple'><FaApple />Continue with Apple</button> */}
 
-              <div className="signUpOne-divider">
-                <div className="SignUpOne-divider-line"></div>
-                <div className="SignUpOne-divider-text">OR</div>
-                <div className="SignUpOne-divider-line"></div>
+              <div className={styles["signUpOne-divider"]}>
+                <div className={styles["SignUpOne-divider-line"]}></div>
+                <div className={styles["SignUpOne-divider-text"]}>OR</div>
+                <div className={styles["SignUpOne-divider-line"]}></div>
               </div>
 
-              <div className="signup-input-group">
+              <div className={styles["signup-input-group"]}>
                 <label htmlFor="Email"></label>
                 <input
                   id="signup-email"
@@ -108,12 +111,12 @@ function SignUpOne() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <br></br>
-                <div className="signup-login-text">
+                <div className={styles["signup-login-text"]}>
                   <p>
                     Already in sarakel?{" "}
                     <a
                       href="#"
-                      className="login-forgot-username"
+                      className={styles["login-forgot-username"]}
                       onClick={handleLoginClick}
                     >
                       Log In
@@ -121,7 +124,7 @@ function SignUpOne() {
                   </p>
                 </div>
                 <button
-                  className="signup-cntnu-btn"
+                  className={styles["signup-cntnu-btn"]}
                   onClick={handleContinueButtonClick}
                 >
                   Continue

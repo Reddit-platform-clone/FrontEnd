@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ForgotPassword.css";
+import styles from "./ForgotPassword.module.css";
 import SignUpOne from "../SignUp/SignUpOne";
 import LogIn from "./LogIn.js";
 import ForgotUsername from "./ForgotUsername.js";
@@ -15,7 +15,7 @@ function ForgotPassword() {
   const [showModal, setShowModal] = useState(true); // State for modal visibility
 
   const handleResetPasswordClick = async () => {
-    const username = document.getElementById("forget-password-username").value;
+    const username = document.getElementById(styles["forget-password-username"]).value;
 
     try {
       const response = await fetch('http://localhost:5000/api/login/forget_password', {
@@ -74,17 +74,17 @@ function ForgotPassword() {
   return (
     <>
       {showModal && (
-        <div className="forget-password-overlay">
-          <div className="forget-password-modal">
-            <div className="forget-password-content">
+        <div className={styles["forget-password-overlay"]}>
+          <div className={styles["forget-password-modal"]}>
+            <div className={styles["forget-password-content"]}>
               <button
-                className="forget-password-back-btn"
+                className={styles["forget-password-back-btn"]}
                 onClick={handleBackButtonClick}
               >
                 {" "}
                 <FaArrowLeft />{" "}
               </button>
-              <button className="forget-password-close-btn" onClick={handleCloseModal}>
+              <button className={styles["forget-password-close-btn"]} onClick={handleCloseModal}>
                 {" "}
                 <IoMdClose />{" "}
               </button>
@@ -96,10 +96,10 @@ function ForgotPassword() {
                 password.
               </p>
 
-              <div className="forget-password-input-group">
+              <div className={styles["forget-password-input-group"]}>
                 <label htmlFor="username"></label>
                 <input
-                  id="forget-password-username"
+                  id={styles["forget-password-username"]}
                   type="text"
                   placeholder="Username*"
                   required
@@ -115,21 +115,21 @@ function ForgotPassword() {
               </div>
               <br></br>
 
-              <div className="forget-password-forgot-text">
+              <div className={styles["forget-password-forgot-text"]}>
                 <p>
                   Don't have an email or need assistance logging in?{" "}
-                  <a href="#" className="forget-password-get-help">
+                  <a href="#" className={styles["forget-password-get-help"]}>
                     Get help
                   </a>
                 </p>
               </div>
 
-              <div className="forget-password-forgot-text">
+              <div className={styles["forget-password-forgot-text"]}>
                 <p>
                   Forgot your{" "}
                   <a
                     href="#"
-                    className="forget-password-username"
+                    className={styles["forget-password-username"]}
                     onClick={handleUseranmeClick}
                   >
                     username
@@ -138,11 +138,11 @@ function ForgotPassword() {
                 </p>
               </div>
 
-              <div className="forget-password-new-text">
+              <div className={styles["forget-password-new-text"]}>
                 <p>
                   <a
                     href="#"
-                    className="forget-password-signup-text"
+                    className={styles["forget-password-signup-text"]}
                     onClick={handleSignUpClick}
                   >
                     Sign Up
@@ -150,7 +150,7 @@ function ForgotPassword() {
                   .{" "}
                   <a
                     href="#"
-                    className="forget-password-login-text"
+                    className={styles["forget-password-login-text"]}
                     onClick={handleLoginClick}
                   >
                     Login
@@ -158,7 +158,7 @@ function ForgotPassword() {
                 </p>
               </div>
 
-              <button className="forget-password-btn-final" onClick={handleResetPasswordClick}>Reset passsword</button>
+              <button className={styles["forget-password-btn-final"]} onClick={handleResetPasswordClick}>Reset passsword</button>
 
               <ToastContainer />
             </div>

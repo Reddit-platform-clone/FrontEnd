@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./content.css";
+import styles from "./content.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
 import ReactPlayer from "react-player";
@@ -340,7 +340,7 @@ const Content = () => {
       return <ImageSlider slides={media} viewType={viewType} />;
     } else if (typeof media === "string") {
       if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-        return <img src={media} alt={text} className="post-image" />;
+        return <img src={media} alt={text} className={styles["post-image"]} />;
       } else {
         return (
           <ReactPlayer url={media} width="540px" height="500px" controls />
@@ -353,11 +353,11 @@ const Content = () => {
 
   const renderMediaWithCount = (media, text) => {
     if (!media) {
-      return <CiViewList className="compact-post-card-image-compensation" />;
+      return <CiViewList className={styles["compact-post-card-image-compensation"]} />;
     } else if (Array.isArray(media)) {
       if (media.length === 1) {
         return (
-          <img src={media[0]} alt={text} className="compact-post-card-image" />
+          <img src={media[0]} alt={text} className={styles["compact-post-card-image"]} />
         );
       } else {
         return (
@@ -365,9 +365,9 @@ const Content = () => {
             <img
               src={media[0]}
               alt={text}
-              className="compact-post-card-image"
+              className={styles["compact-post-card-image"]}
             />
-            <span className="compact-post-card-image-count">
+            <span className={styles["compact-post-card-image-count"]}>
               <AiOutlinePicture />
               {media.length}
             </span>
@@ -377,28 +377,28 @@ const Content = () => {
     } else if (typeof media === "string") {
       if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
         return (
-          <img src={media} alt={text} className="compact-post-card-image" />
+          <img src={media} alt={text} className={styles["compact-post-card-image"]} />
         );
       } else {
-        return <RiVideoFill className="compact-post-card-image-compensation" />;
+        return <RiVideoFill className={styles["compact-post-card-image-compensation"]} />;
       }
     } else {
-      return <CiViewList className="compact-post-card-image-compensation" />;
+      return <CiViewList className={styles["compact-post-card-image-compensation"]} />;
     }
   };
 
   return (
-    <div className="container">
+    <div className={styles["container"]}>
       <ToastContainer />
 
-      <div className="choice-above-posts">
-        <div className="content-sort-type">
-          <button className="content-drop-down-list" onClick={handleSortTypes}>
+      <div className={styles["choice-above-posts"]}>
+        <div className={styles["content-sort-type"]}>
+          <button className={styles["content-drop-down-list"]} onClick={handleSortTypes}>
             {sortingType.charAt(0).toUpperCase() + sortingType.slice(1)}{" "}
             <MdKeyboardArrowDown />
           </button>
           {showSortOptions && (
-            <div className="options-content-sort-drop-down-list">
+            <div className={styles["options-content-sort-drop-down-list"]}>
               <button onClick={() => handleSortingOption("Best")}>Best</button>
               <button onClick={() => handleSortingOption("Hot")}>Hot</button>
               <button onClick={() => handleSortingOption("Top")}>Top</button>
@@ -407,13 +407,13 @@ const Content = () => {
           )}
         </div>
 
-        <div className="content-view-type">
-          <button className="content-drop-down-list" onClick={handleViewTypes}>
+        <div className={styles["content-view-type"]}>
+          <button className={styles["content-drop-down-list"]} onClick={handleViewTypes}>
             {viewType === "card" ? <BsViewStacked /> : <BsViewList />}{" "}
             <MdKeyboardArrowDown />
           </button>
           {showViewOptions && (
-            <div className="options-content-view-drop-down-list">
+            <div className={styles["options-content-view-drop-down-list"]}>
               <button
                 onClick={() => {
                   setViewType("card");
@@ -438,7 +438,7 @@ const Content = () => {
       {loading ? (
   <p>Loading...</p>
 ) : (
-  <div className="post-list">
+  <div className={styles["post-list"]}>
     {posts.length === 0 ? (
       <p>No posts to display.</p>
     ) : (
@@ -476,7 +476,7 @@ const Content = () => {
             />
           )
         ) : (
-          <div key={post._id} className="hidden-post-card">
+          <div key={post._id} className={styles["hidden-post-card"]}>
             <p>Post hidden</p>
             <button
               onClick={() =>
