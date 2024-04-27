@@ -4,6 +4,8 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import { IoShareOutline } from "react-icons/io5";
 import { BiHide } from "react-icons/bi";
 import { CiBookmark, CiFlag1 } from "react-icons/ci";
+import { HiMiniUserGroup } from "react-icons/hi2";
+import "./postCard.css";
 
 const postCard = ({
   post,
@@ -16,30 +18,35 @@ const postCard = ({
   handleUpvoteClick,
   handleDownvoteClick,
   renderMediaOrTruncateText,
+  calculateTimeSinceCreation,
 }) => (
   <div className={`post-card ${!post.media ? "no-media" : ""}`}>
     <div className="post-info">
       <div className="post-header">
         <div className="post-header-left">
-          <img
-            src={post.image}
-            className="profile-photo"
-            alt={post.title}
-          />
+          {post.image ? (
+            <img
+              src={post.image}
+              className="profile-photo"
+              alt={post.title}
+            />
+          ) : (
+            <HiMiniUserGroup className="profile-photo" />
+          )}
           <p>
-            <b>r/{post.name}</b>
+            <b>r/{post.username}</b>
           </p>
           <p>.</p>
-          <p>{post.time} ago</p>
-          <p>.</p>
+          <p>{calculateTimeSinceCreation(post.createdAt)}</p>
+          {/* <p>.</p> */}
           <p>{post.reason}</p>
         </div>
         <div className="post-header-right">
           <button
             className="join-btn-post"
-            onClick={() => handleJoinClick(post.postId)}
+            onClick={() => handleJoinClick(post._id)}
           >
-            {joinStates[post.postId] ? "Leave" : "Join"}
+            {joinStates[post._id] ? "Leave" : "Join"}
           </button>
           <div className="dropdown-post">
             <button className="dropbtn-post">&#8226;&#8226;&#8226;</button>
@@ -47,13 +54,13 @@ const postCard = ({
               <a href="#">
                 <BiHide /> show fewer posts like this
               </a>
-              <a href="#" onClick={() => handleSaveClick(post.postId)}>
-                <CiBookmark /> {saveStates[post.postId] ? "Unsave" : "save"}
+              <a href="#" onClick={() => handleSaveClick(post._id)}>
+                <CiBookmark /> {saveStates[post._id] ? "Unsave" : "save"}
               </a>
-              <a href="#" onClick={()=>handleReportClick(post.postId,post.userId)}>
+              <a href="#" onClick={()=>handleReportClick(post._id,post.username)}>
                 <CiFlag1 /> report
               </a>
-              <a href="#" onClick={() => handleHideClick(post.postId)}>
+              <a href="#" onClick={() => handleHideClick(post._id)}>
                 <BiHide /> hide
               </a>
             </div>
@@ -69,14 +76,14 @@ const postCard = ({
       <div className="interaction">
         <div className="left-post">
           <button
-            onClick={() => handleUpvoteClick(post.postId,1)}
+            onClick={() => handleUpvoteClick(post._id,1)}
             className={post.upvoted ? "upvoted" : ""}
           >
             <BiUpvote />
           </button>
-          <p>{post.likes}</p>
+          <p>{post.upvotes - post.downvotes}</p>
           <button
-            onClick={() => handleDownvoteClick(post.postId,-1)}
+            onClick={() => handleDownvoteClick(post._id,-1)}
             className={post.downvoted ? "downvoted" : ""}
           >
             <BiDownvote />

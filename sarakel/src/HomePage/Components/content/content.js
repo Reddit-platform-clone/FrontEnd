@@ -28,32 +28,52 @@ const Content = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `/api/subreddit/get${
+        let url;
+        if (token) {
+          // If user is logged in (token exists)
+          url = `http://localhost:5000/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
-          }`
-        );
+          }`;
+        } else {
+          // If user is not logged in (token is null)
+          url = `http://localhost:5000/api/subreddit/getRandom`;
+        }
+  
+        const response = await fetch(url, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        });
         const responseData = await response.json();
+        console.log("Response data:", responseData.data); // For debugging
         if (response.ok) {
-          setPosts(responseData.data);
+          if (Array.isArray(responseData.data)) {
+            // If responseData.data is an array, set posts directly
+            setPosts(responseData.data);
+          } else {
+            // If responseData.data is a single post object, wrap it in an array
+            setPosts([responseData.data]);
+          }
           setLoading(false);
         } else {
-          throw new Error(
-            responseData.message || "Failed to fetch posts"
-          );
+          throw new Error(responseData.message || "Failed to fetch posts");
         }
       } catch (error) {
         console.error("Error fetching posts:", error);
+        setPosts([]); // Set posts to empty array if fetching fails
         setLoading(false);
       }
     };
-
+  
     fetchData();
-
+  
     return () => {
       // Cleanup tasks if needed
     };
-  }, [sortingType]); // Refetch posts when sortingType changes
+  }, [sortingType, token]);
+    
+  
 
   const handleSortTypes = () => {
     setShowSortOptions(!showSortOptions);
@@ -101,16 +121,16 @@ const Content = () => {
   
   
   
-  const handleUpvoteClick = (postId) => {
+  const handleUpvoteClick = (_id) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     console.log("upvote")
-    console.log("post id : ",postId)
+    console.log("post id : ",_id)
     setPosts((prevPosts) =>
       prevPosts.map((post) =>
-        post.postId === postId
+        post._id === _id
           ? {
               ...post,
               upvoted: !post.upvoted,
@@ -124,14 +144,14 @@ const Content = () => {
     );
   };
 
-  const handleDownvoteClick = (postId) => {
+  const handleDownvoteClick = (_id) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     setPosts((prevPosts) =>
       prevPosts.map((post) =>
-        post.postId === postId
+        post._id === _id
           ? {
               ...post,
               upvoted: false,
@@ -145,21 +165,21 @@ const Content = () => {
     );
   };
 
-  const getPostInfo = (postId) => {
-    const post = posts.find((post) => post.postId === postId);
+  const getPostInfo = (_id) => {
+    const post = posts.find((post) => post._id === _id);
     return post ? { name: post.name, userId: post.userId } : null;
   };
 
-  const handleJoinClick = async (postId) => {
+  const handleJoinClick = async (_id) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     try {
-      const { name, userId } = getPostInfo(postId);
-      const isJoining = !joinStates[postId];
+      const { name, userId } = getPostInfo(_id);
+      const isJoining = !joinStates[_id];
       const response = await fetch(
-        `/api/community/${
+        `http://localhost:5000/api/community/${
           isJoining ? "join" : "leave"
         }`,
         {
@@ -173,12 +193,13 @@ const Content = () => {
           }),
         }
       );
+      console.log("response : ",response)
       const responseData = await response.json();
       if (response.ok) {
         console.log(responseData.message);
         setJoinStates((prevState) => ({
           ...prevState,
-          [postId]: isJoining,
+          [_id]: isJoining,
         }));
       } else {
         throw new Error(
@@ -190,17 +211,17 @@ const Content = () => {
     }
   };
 
-  const handleSaveClick = async (postId) => {
+  const handleSaveClick = async (_id) => {
 
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     // Check if the post is already saved
-    const isSaved = saveStates[postId];
+    const isSaved = saveStates[_id];
   
     try {
-      const response = await fetch(`/api/${isSaved ? 'unsave' : 'save'}`, {
+      const response = await fetch(`http://localhost:5000/api/${isSaved ? 'unsave' : 'save'}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -208,16 +229,19 @@ const Content = () => {
         },
         body: JSON.stringify({
           type: "post",
-          entityId: postId,
+          entityId: _id,
         }),
       });
       const responseData = await response.json();
+      console.log('catch')
+        console.log(responseData.message);
       if (response.ok) {
+        console.log('catch')
         console.log(responseData.message);
         // Toggle the save state for the post
         setSaveStates((prevState) => ({
           ...prevState,
-          [postId]: !isSaved,
+          [_id]: !isSaved,
         }));
       } else {
         throw new Error(responseData.message || "Failed to save/unsave post");
@@ -227,14 +251,14 @@ const Content = () => {
     }
   };
   
-  const handleReportClick = async (postId, userId) => {
+  const handleReportClick = async (_id, userId) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
   
     try {
-      const response = await fetch("/api/report", {
+      const response = await fetch("http://localhost:5000/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -243,7 +267,7 @@ const Content = () => {
         body: JSON.stringify({
           reason: "dummy",
           type: "post",
-          entityId: postId,
+          entityId: _id,
           reportedUsername: userId,
         }),
       });
@@ -260,11 +284,11 @@ const Content = () => {
   };
   
 
-  const handleHideClick = (postId) => {
+  const handleHideClick = (_id) => {
     console.log(posts)
     setHiddenPosts((prevHiddenPosts) => ({
       ...prevHiddenPosts,
-      [postId]: true,
+      [_id]: true,
     }));
   };
 
@@ -272,6 +296,28 @@ const Content = () => {
     setShowViewOptions(!showViewOptions);
     setShowSortOptions(false); // Close the sort options dropdown
   };
+
+  const calculateTimeSinceCreation = (createdAt) => {
+    const currentTime = new Date();
+    const postTime = new Date(createdAt);
+    const timeDifference = currentTime - postTime;
+  
+    // Convert milliseconds to seconds
+    const seconds = Math.floor(timeDifference / 1000);
+  
+    if (seconds < 60) {
+      return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
+    } else if (seconds < 3600) {
+      const minutes = Math.floor(seconds / 60);
+      return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+    } else if (seconds < 86400) {
+      const hours = Math.floor(seconds / 3600);
+      return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    } else {
+      const days = Math.floor(seconds / 86400);
+      return `${days} day${days !== 1 ? 's' : ''} ago`;
+    }
+  }
 
   const truncateText = (text, maxLength) => {
     if (text && text.length > maxLength) {
@@ -390,73 +436,65 @@ const Content = () => {
       </div>
 
       {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="post-list">
-          {posts.length === 0 ? (
-            <p>No posts to display.</p>
+  <p>Loading...</p>
+) : (
+  <div className="post-list">
+    {posts.length === 0 ? (
+      <p>No posts to display.</p>
+    ) : (
+      posts.map((post) => (
+        !hiddenPosts[post._id] ? (
+          viewType === "card" ? (
+            <PostCard
+              key={post._id}
+              post={post}
+              joinStates={joinStates}
+              saveStates={saveStates}
+              handleJoinClick={handleJoinClick}
+              handleSaveClick={handleSaveClick}
+              handleReportClick={handleReportClick}
+              handleHideClick={handleHideClick}
+              handleUpvoteClick={handleUpvoteClick}
+              handleDownvoteClick={handleDownvoteClick}
+              renderMediaOrTruncateText={renderMediaOrTruncateText}
+              calculateTimeSinceCreation={calculateTimeSinceCreation}
+            />
           ) : (
-            posts.map((post) =>
-              post.postId &&
-              post.name &&
-              post.image &&
-              post.title &&
-              (post.media || post.content) &&
-              post.likes &&
-              post.comments &&
-              post.time &&
-              post.reason ? (
-                !hiddenPosts[post.postId] ? (
-                  viewType === "card" ? (
-                    <PostCard
-                      key={post.postId}
-                      post={post}
-                      joinStates={joinStates}
-                      saveStates={saveStates}
-                      handleJoinClick={handleJoinClick}
-                      handleSaveClick={handleSaveClick}
-                      handleReportClick={handleReportClick}
-                      handleHideClick={handleHideClick}
-                      handleUpvoteClick={handleUpvoteClick}
-                      handleDownvoteClick={handleDownvoteClick}
-                      renderMediaOrTruncateText={renderMediaOrTruncateText}
-                    />
-                  ) : (
-                    <CompactPostCard
-                      key={post.id}
-                      post={post}
-                      joinStates={joinStates}
-                      saveStates={saveStates}
-                      handleJoinClick={handleJoinClick}
-                      handleSaveClick={handleSaveClick}
-                      handleReportClick={handleReportClick}
-                      handleHideClick={handleHideClick}
-                      handleUpvoteClick={handleUpvoteClick}
-                      handleDownvoteClick={handleDownvoteClick}
-                      renderMediaWithCount={renderMediaWithCount}
-                      renderMedia={renderMedia}
-                    />
-                  )
-                ) : (
-                  <div key={post.postId} className="hidden-post-card">
-                    <p>Post hidden</p>
-                    <button
-                      onClick={() =>
-                        setHiddenPosts((prevHiddenPosts) => ({
-                          ...prevHiddenPosts,
-                          [post.postId]: false,
-                        }))
-                      }
-                    >
-                      Undo
-                    </button>
-                  </div>
-                )
-              ) : null
-            )
-          )}
-        </div>
-      )}
+            <CompactPostCard
+              key={post.id}
+              post={post}
+              joinStates={joinStates}
+              saveStates={saveStates}
+              handleJoinClick={handleJoinClick}
+              handleSaveClick={handleSaveClick}
+              handleReportClick={handleReportClick}
+              handleHideClick={handleHideClick}
+              handleUpvoteClick={handleUpvoteClick}
+              handleDownvoteClick={handleDownvoteClick}
+              renderMediaWithCount={renderMediaWithCount}
+              renderMedia={renderMedia}
+            />
+          )
+        ) : (
+          <div key={post._id} className="hidden-post-card">
+            <p>Post hidden</p>
+            <button
+              onClick={() =>
+                setHiddenPosts((prevHiddenPosts) => ({
+                  ...prevHiddenPosts,
+                  [post._id]: false,
+                }))
+              }
+            >
+              Undo
+            </button>
+          </div>
+        )
+      ))
+    )}
+  </div>
+)}
+
     </div>
   );
 };
