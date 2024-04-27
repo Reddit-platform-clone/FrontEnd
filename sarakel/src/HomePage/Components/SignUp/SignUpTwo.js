@@ -10,7 +10,7 @@ function SignUpTwo({ email }) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
   // const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
-  const { setToken } = useAuth();
+  //const { setToken } = useAuth();
  
   const handleContinueClick = async () => {
     // if (!recaptchaVerified) {
@@ -36,7 +36,7 @@ function SignUpTwo({ email }) {
 
     try {
       // Check if the username is available
-      const availabilityResponse = await fetch(`/api/username_available/${username}`);
+      const availabilityResponse = await fetch(`http://localhost:5000/api/username_available/${username}`);
       const availabilityData = await availabilityResponse.json();
       
       // if (!availabilityResponse.ok) {
@@ -51,7 +51,7 @@ function SignUpTwo({ email }) {
       }
 
       // Proceed with signup if the username is available
-      const signupResponse = await fetch("/api/signup", {
+      const signupResponse = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function SignUpTwo({ email }) {
       if (signupResponse.ok) {
         toast.success("Account created!");
         console.log("Token:", signupData.token);
-        setToken(signupData.token);
+        //setToken(signupData.token);
         handleCloseModal();
       } else {
         toast.error(signupData.error);
