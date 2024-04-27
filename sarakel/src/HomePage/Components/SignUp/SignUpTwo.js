@@ -1,23 +1,14 @@
 import React, { useState } from "react";
 import styles from "./SignUpTwo.module.css";
 import SignUpOne from "./SignUpOne.js";
-import { useAuth } from "../AuthContext";
 import { FaArrowLeft } from "react-icons/fa6";
-// import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from "react-toastify";
 
 function SignUpTwo({ email }) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
-  // const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
-  //const { setToken } = useAuth();
- 
-  const handleContinueClick = async () => {
-    // if (!recaptchaVerified) {
-    //   toast.error("Please verify that you're not a robot.");
-    //   return;
-    // }
 
+  const handleContinueClick = async () => {
     const usernameInput = document.getElementById("signuptwo-username");
     const passwordInput = document.getElementById("signuptwo-password");
 
@@ -39,12 +30,6 @@ function SignUpTwo({ email }) {
       const availabilityResponse = await fetch(`http://localhost:5000/api/username_available/${username}`);
       const availabilityData = await availabilityResponse.json();
       
-      // if (!availabilityResponse.ok) {
-      //   toast.error("An error occurred while checking username availability");
-      //   return;
-      // }
-      console.log(availabilityData)
-
       if (availabilityData.message === 'Username is not available') {
         toast.error("Username is not available.");
         return;
@@ -62,8 +47,10 @@ function SignUpTwo({ email }) {
       
       if (signupResponse.ok) {
         toast.success("Account created!");
-        console.log("Token:", signupData.token);
-        //setToken(signupData.token);
+        
+        // Save token in sessionStorage
+        sessionStorage.setItem('token', signupData.token);
+
         handleCloseModal();
       } else {
         toast.error(signupData.error);
@@ -74,14 +61,9 @@ function SignUpTwo({ email }) {
     }
   };
   
-
   const handleBackButtonClick = () => {
     setShowSignUpOne(true);
   };
-
-  // const handleRecaptchaChange = (value) => {
-  //   setRecaptchaVerified(!!value);
-  // };
 
   const handleCloseModal = () => {
     setShowSignUpModal(false);
@@ -126,11 +108,6 @@ function SignUpTwo({ email }) {
             />
 
             <br></br>
-            {/* <ReCAPTCHA
-              sitekey="6LfKJ54pAAAAAKOVJdj7SYP5-xuXU8-YNqAQ0E2t"
-              onChange={handleRecaptchaChange}
-              className={styles["signuptwo-recaptcha"]}
-            /> */}
 
             <button
               className={styles["signuptwo-cntnu-btn"]}

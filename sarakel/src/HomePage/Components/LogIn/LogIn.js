@@ -9,7 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const ClientID = "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
+const ClientID =
+  "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
 
 function LogIn({ onSuccessfulLogin }) {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
@@ -55,7 +56,10 @@ function LogIn({ onSuccessfulLogin }) {
         const data = await response.json();
         toast.success("Login successful!");
         console.log(data.token);
-
+    
+        // Save token in sessionStorage
+        sessionStorage.setItem('token', data.token);
+    
         setToken(data.token);
         onSuccessfulLogin();
       } else {
@@ -65,7 +69,9 @@ function LogIn({ onSuccessfulLogin }) {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error("An error occurred while logging in. Please try again later.");
+      toast.error(
+        "An error occurred while logging in. Please try again later."
+      );
     }
   };
 
@@ -89,7 +95,10 @@ function LogIn({ onSuccessfulLogin }) {
     <div className={styles["login-overlay"]}>
       <div className={styles["login-modal"]}>
         <div className={styles["login-content"]}>
-          <button className={styles["login-close-btn"]} onClick={handleCloseModal}>
+          <button
+            className={styles["login-close-btn"]}
+            onClick={handleCloseModal}
+          >
             {" "}
             <IoMdClose />{" "}
           </button>
@@ -107,7 +116,10 @@ function LogIn({ onSuccessfulLogin }) {
             .
           </p>
 
-          <GoogleOAuthProvider className={styles["login-google-oauth"]} clientId={ClientID}>
+          <GoogleOAuthProvider
+            className={styles["login-google-oauth"]}
+            clientId={ClientID}
+          >
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
