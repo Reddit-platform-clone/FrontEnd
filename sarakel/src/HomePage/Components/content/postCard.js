@@ -15,6 +15,7 @@ const PostCard = ({
   handleSaveClick,
   handleReportClick,
   handleHideClick,
+  handleVoteClick,
   handleUpvoteClick,
   handleDownvoteClick,
   renderMediaOrTruncateText,
@@ -76,14 +77,14 @@ const PostCard = ({
       <div className={classes["interaction"]}>
         <div className={classes["left-post"]}>
           <button
-            onClick={() => handleUpvoteClick(post._id,1)}
+            onClick={() => handleVoteClick(post._id,1)}
             className={post.upvoted ? classes["upvoted"] : ""}
           >
             <BiUpvote />
           </button>
           <p>{post.upvotes - post.downvotes}</p>
           <button
-            onClick={() => handleDownvoteClick(post._id,-1)}
+            onClick={() => handleVoteClick(post._id,-1)}
             className={post.downvoted ? classes["downvoted"] : ""}
           >
             <BiDownvote />
