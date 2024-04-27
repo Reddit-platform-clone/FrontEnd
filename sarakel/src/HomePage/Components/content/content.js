@@ -86,38 +86,38 @@ const Content = () => {
   };
 
 
-  const handleVoteClick = async (_id, rank) => {
-    if (!token) {
-      toast.error("You need to Login first");
-      return;
-    }
-    try {
-      const response = await fetch("http://localhost:5000/api/vote", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          rank: rank, // Rank can be 1 for upvote, 0 to clear vote, or -1 for downvote
-          type: "post",
-          entityId: _id,
-        }),
-      });
-      console.log("post id is :",_id)
-      console.log("response : ",response)
+  // const handleVoteClick = async (postId, rank) => {
+  //   if (!token) {
+  //     toast.error("You need to Login first");
+  //     return;
+  //   }
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/vote", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         rank: rank, // Rank can be 1 for upvote, 0 to clear vote, or -1 for downvote
+  //         type: "post",
+  //         entityId: "661d88eff83edb1b16c0c394",
+  //       }),
+  //     });
+  //     console.log("post id is :",postId)
+  //     console.log("response : ",response)
   
-      // Check for the status code
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+  //     // Check for the status code
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
   
-      const responseData = await response.json();
-      console.log(responseData.message);
-    } catch (error) {
-      console.error("Error voting:", error);
-    }
-  };
+  //     const responseData = await response.json();
+  //     console.log(responseData.message);
+  //   } catch (error) {
+  //     console.error("Error voting:", error);
+  //   }
+  // };
   
   
   
@@ -454,7 +454,6 @@ const Content = () => {
               handleSaveClick={handleSaveClick}
               handleReportClick={handleReportClick}
               handleHideClick={handleHideClick}
-              handleVoteClick={handleVoteClick}
               handleUpvoteClick={handleUpvoteClick}
               handleDownvoteClick={handleDownvoteClick}
               renderMediaOrTruncateText={renderMediaOrTruncateText}
