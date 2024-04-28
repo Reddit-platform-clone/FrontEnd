@@ -1,0 +1,86 @@
+/* Community.module.css */
+
+/* CommunitySearchDataContainer */
+.CommunitySearchDataContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    width: 900px;
+}
+
+/* CommunitySearchData */
+.CommunitySearchData {
+    display: flex;
+    align-items: center;
+    margin: 0; /* Reset margin */
+    padding: 20px; /* Increase padding for better spacing */
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 80%; /* Adjust width to be responsive */
+    max-width: 800px; /* Set maximum width */
+    position: relative;
+}
+
+.CommunitySearchData:hover {
+    background-color: #e0e0e0;
+}
+
+/* CommunityAvatar */
+.CommunityAvatar {
+    width: 60px;
+    height: 60px; /* Adjust height for better proportions */
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+/* CommunityName */
+.CommunityName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Description */
+.Description {
+    font-size: 14px; /* Increase font size for better readability */
+    color: #555;
+    margin: 0; /* Reset margin */
+    line-height: 1.5;
+}
+
+/* CommunityType */
+.CommunityType,
+.NSFWIndicator {
+    position: absolute;
+    top: 10px; /* Adjust position from top */
+    left: 410px; /* Adjust position from right */
+    font-size: 12px; /* Adjust font size */
+    display: flex; /* Set display to flex */
+    flex-direction: column; /* Arrange items in column */
+}
+
+/* NSFWIndicator */
+.NSFWIndicator {
+    color: red; /* Set color to red for visibility */
+    top: 30px; /* Adjust position from top */
+}
+
+@media (max-width: 768px) {
+    .CommunitySearchDataContainer {
+        padding-top: 20px; /* Decrease padding on smaller screens */
+    }
+
+    .CommunitySearchData {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .CommunityAvatar {
+        width: 50px; /* Adjust avatar size */
+        height: 50px;
+    }
+}

@@ -1,22 +1,44 @@
-import './Community.css'
-import jsonData from '../../mock.json';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styles from './Community.module.css'; // Import CSS module
 
-function Community(){
+function Community() {
+    const [communities, setCommunities] = useState([]);
+    const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmlvciIsImlhdCI6MTcxMzg1MzAxOX0.x3EN0N2FMiRvLZen6Ro1nuVc4JJYcU88XCYtI2N510g';
+
+    useEffect(() => {
+        async function fetchCommunities() {
+            try {
+                const response = await axios.post('http://localhost:5000/SearchBy/communities', { keyword: "batates" }, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`
+                    }
+                });
+                const communitiesData = response.data.communitiesResults; // Set communities to communitiesResults array
+                setCommunities(communitiesData);
+            } catch (error) {
+                console.error('Error fetching communities:', error);
+            }
+        }
+        
+        fetchCommunities();
+    }, [authToken]);
+
     return (
-<div className='Community-search-data-container'>
-    {jsonData.communities.map(Community => (
-        <div key={Community.id} className='Community-search-data'>
-            <img src={Community.image} alt='Profile' className='Community-avatar' />
-            <div>
-                <h3 className='Communityname3'>{Community.name}</h3>
-                {/* <h6 className='communityid2'>{Community.id}</h6> */}
-                <span className='description'>{Community.description}</span>
-            </div>
-            <span className='Community-type'>{Community.type}</span>
+        <div className={styles.CommunitySearchDataContainer}>
+            {Array.isArray(communities) && communities.map((community, index) => (
+                <div key={index} className={styles.CommunitySearchData}>
+                    <img src={community.displayPic} alt='Profile' className={styles.CommunityAvatar} />
+                    <div>
+                        <h3 className={styles.CommunityName}>{community.communityName}</h3>
+                        <span className={styles.Description}>{community.description}</span>
+                    </div>
+                    <span className={styles.CommunityType}>{community.type}</span>
+                    {community.isNSFW && <span className={styles.NSFWIndicator}>NSFW</span>}
+                </div>
+            ))}
         </div>
-    ))}
-</div>
     );
 }
 
-export default Community
+export default Community;

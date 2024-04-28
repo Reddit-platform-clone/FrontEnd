@@ -1,0 +1,99 @@
+/* UsersProfile.module.css */
+
+/* Logo styling */
+.logoup {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid black;
+    object-fit: cover;
+    margin: 0;
+    position: absolute;
+    left: 200px;
+    top: 80px;
+}
+
+/* Username and user info styling */
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    width: 200px;
+    height: min-content;
+    position: absolute;
+    left: 310px;
+    top:110px;
+}
+
+.sarakelid {
+    font-size: 15px;
+    color: #777;
+    margin: 0;
+}
+
+/* Content links styling */
+.Contents {
+    display: flex;
+    position: relative;
+    right: 350px;
+    top: 120px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.Contents a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0;
+    background-color:white;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.Contents a:hover {
+    background-color: #423c33;
+    color: #fff;
+}
+
+/* Main content container styling */
+.containerUP {
+    width: 300px !important;
+    margin: 0;
+    padding: 2px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+}
+
+/* Button styling */
+.button123456 {
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #eaeaea;
+    color: black;
+    transition: background-color 0.3s ease;
+    padding: 8px 16px;
+    margin: 0;
+}
+
+/* User data section styling */
+.horizontalali {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.usersdata p {
+    margin: 0;
+}

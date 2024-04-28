@@ -1,0 +1,93 @@
+.overviewPostComment1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 120px;
+    
+  }
+  .logoup1 {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid black;
+    object-fit: cover;
+    margin: 0;
+    position: relative;
+    left: 10px;
+    
+}
+
+/* Username and user info styling */
+.username2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    width: 200px;
+    height: min-content;
+    position: relative;
+    left: 10px;
+    
+}
+
+
+.post {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    right: 80px;
+  }
+
+  .postheader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .postheader img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  
+
+.posttime {
+    margin-left: auto;
+  }
+
+  .postcontent h3 {
+    margin-bottom: 10px;
+  }
+  
+  .postcontent p {
+    margin-bottom: 15px;
+  }
+  
+  .postcontent img {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .postactions {
+    display: flex;
+  }
+  
+  .postactions button {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .postactions button svg {
+    margin-right: 5px;
+  }

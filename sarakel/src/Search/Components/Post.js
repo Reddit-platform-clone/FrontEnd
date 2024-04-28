@@ -1,39 +1,61 @@
-import './Post.css'
-import jsonData from '../../mock.json'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styles from './Post.module.css'; // Import CSS module
 
-function Post(){
-    return(
-       <><div className='overview-post-comment1'>
-       {jsonData.posts.map(post => {
-               // const user = jsonData.users.find(user => user.id === post.user_id);
-               // if (!user) return null; // If user does not exist, skip this post
-               return (
-                   <div className='post' key={post.id}>
-                       <div className='post-header'>
-                           <img src={post.user.image} alt='User Avatar' className='logoup1' />
-                           <span className='username1'>{post.user.name}</span>
-                           <div className='posttime'>
-                               <span className='posttime'>{post.time} ago</span>
-                           </div>
-                       </div>
-                       <div className='post-content'>
-                           <h3>{post.title}</h3>
-                           <p>{post.text}</p>
-                           {Array.isArray(post.media) ? (
-                               post.media.map((media, index) => (
-                                   <img src={media} key={index} alt={`Media ${index}`} />
-                               ))
-                           ) : (
-                               <img src={post.media} alt='Media' />
-                           )}
-                       </div>
-                       
-                   </div>
-               );
-           })}
-       </div>
-       </>
+function Post() {
+    const [posts, setPosts] = useState([]);
+    const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmlvciIsImlhdCI6MTcxMzg1MzAxOX0.x3EN0N2FMiRvLZen6Ro1nuVc4JJYcU88XCYtI2N510g'; // Replace 'YOUR_AUTH_TOKEN' with your actual auth token
+
+    useEffect(() => {
+        async function fetchPosts() {
+            try {
+                const response = await axios.post('http://localhost:5000/searchBy/posts', { keyword: "first" }, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`
+                    }
+                });
+                const postsData = response.data.postsResults;
+                setPosts(postsData);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        }
+        
+        fetchPosts();
+    }, [authToken]);
+
+    return (
+        <div className={styles.PostsContainer}>
+            {posts.map(post => (
+                <div className={`${styles.Post} ${post.isLocked ? styles.LockedPost : ''}`} key={post.postId}>
+                    <div className={styles.PostHeader}>
+                        <img src={post.user.image} alt='User Avatar' className={styles.LogoUp1} />
+                        <span className={styles.Username1}>{post.user.name}</span>
+                        <div className={styles.PostTime}>
+                            <span className={styles.PostTime}>{post.time} ago</span>
+                        </div>
+                    </div>
+                    <div className={styles.PostContent}>
+                        <h3>{post.title}</h3>
+                        <p>{post.text}</p>
+                        {Array.isArray(post.media) ? (
+                            post.media.map((media, index) => (
+                                <img src={media} key={index} alt={`Media ${index}`} />
+                            ))
+                        ) : (
+                            <img src={post.media} alt='Media' />
+                        )}
+                    </div>
+                    <div className={styles.PostFooter}>
+                        <span className={styles.Votes}>Upvotes: {post.upvotes}</span>
+                        <span className={styles.Votes}>Downvotes: {post.downvotes}</span>
+                        <span className={styles.Comments}>Comments: {post.numComments}</span>
+                        <span className={styles.Views}>Views: {post.numViews}</span>
+                    </div>
+                </div>
+            ))}
+        </div>
     );
 }
 
-export default Post
+export default Post;
