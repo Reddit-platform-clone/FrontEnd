@@ -7,6 +7,7 @@ import Users from './Components/Users';
 import Post from './Components/Post.js';
 import Community from './Components/Community.js';
 import Comment from './Components/Comment.js';
+import HashTags from './Components/HashTags.js';
 import { AiOutlineRocket } from "react-icons/ai";
 import { FaCalendarWeek } from "react-icons/fa";
 import { PiFireSimple } from "react-icons/pi";
@@ -21,7 +22,7 @@ function Search() {
     const [selectedOption, setSelectedOption] = useState({ text: "Relevance", icon: <AiOutlineRocket /> });
     const [selectedTimeOption, setSelectedTimeOption] = useState("All Time");
 
-    const tabLabels = ["Users", "Posts", "Comments", "Communities"];
+    const tabLabels = ["Users", "Posts", "Comments", "Communities" , "HashTags"];
 
     const handleTabClick = (index) => {
         setRelevanceOpen(false);
@@ -158,6 +159,12 @@ function Search() {
                 {activeTab === 3 && (
                     <div className={styles.CommunityContent}>
                         <Community/>
+                        
+                    </div>
+                )}
+                {activeTab === 4 && (
+                    <div className={styles.CommunityContent}>
+                        <HashTags/>
                         
                     </div>
                 )}

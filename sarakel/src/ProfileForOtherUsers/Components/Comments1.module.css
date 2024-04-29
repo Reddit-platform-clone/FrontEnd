@@ -1,4 +1,4 @@
-.comments-container54321 {
+.commentscontainer54321 {
     width: 900px;
     margin: 20px auto;
     padding: 20px;
@@ -21,19 +21,19 @@
     margin-bottom: 20px;
 }
 
-.comment-header54321 {
+.commentheader54321 {
     display: flex;
     align-items: center;
 }
 
-.comment-content54321 {
+.commentcontent54321 {
     margin-top: 10px;
 }
 
-.comment-content h3 {
+.commentcontent54321 h3 {
     margin-bottom: 10px;
 }
 
-.comment-content p {
+.commencontent54321 p {
     margin-bottom: 15px;
 }

@@ -1,23 +1,23 @@
 import jsonData from '../../mock.json';
-import './Comments2.css'
+import style from './Comments2.module.css'
 
 
 export default function Comments(){
     return(
         <>
         
-        <div className='comments-container1'>
+<div className={style.commentscontainer1}>
     {/* Display comments */}
     {jsonData.Comments.map(comment => (
-        <div className='comment1233' key={comment.comment_id}>
+        <div className={style.comment1233} key={comment.comment_id}>
             {/* Render each comment */}
-            <div className='comment-header11'>
+            <div className={style.commentheader11}>
                 {/* <span className='username'>{comment.comment_id}</span> */}
             </div>
-            <div className='comment-content12'>
+            <div className={style.commentcontent12}>
                 <p>{comment.text}</p>
             </div>
-            <div className='comment-time'>
+            <div className={style.commenttime}>
                     <span>{comment.time}</span>
                 </div>
         </div>
