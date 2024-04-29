@@ -8,6 +8,7 @@ import CreatePost from './CreatePost/CreatePost.js';
 import ProfilePage from './ProfilePage/ProfilePage.js';
 import Search from './Search/Search.js';
 import ResetPasswordModal from './HomePage/Components/Reset/ResetPassword.js'; // Import the ResetPasswordModal component
+import ResetUsernameModal from './HomePage/Components/Reset/ResetUsername.js'; // Import the ResetUsernameModal component
 import { AuthProvider } from './HomePage/Components/AuthContext.js';
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
           <Route path="profilepage" element={<ProfilePage />} />
           <Route path="search" element={<Search />} />
           <Route path="notifications" element={<Notifications />} />
-          <Route path="login/reset_password/:token" element={<ResetPasswordModal />} /> 
+          <Route path="login/reset_password/:token" element={<ResetPasswordModal />} />
+          <Route path="login/reset_username/:token" element={<ResetUsernameModal />} /> 
         </Routes>
       </BrowserRouter>
     </AuthProvider>
