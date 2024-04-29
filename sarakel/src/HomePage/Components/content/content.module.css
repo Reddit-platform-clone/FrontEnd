@@ -4,6 +4,11 @@
     margin-top: 90px;
   }
   
+.loading-posts{
+  margin-top: 200px;
+  margin-left: 300px;
+  font-size: 20px;
+}
   .choice-above-posts {
     padding: 50px;
     background-color: transparent;
@@ -54,7 +59,7 @@
   .options-content-view-drop-down-list {
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 60px;
+    min-width: 40px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 15px;
