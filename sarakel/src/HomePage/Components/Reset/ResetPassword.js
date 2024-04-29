@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import styles from "./ResetPassword.module.css";
+import HomePage from "../../HomePage";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios"; // Import axios for making HTTP requests
+import { useParams } from "react-router-dom"; // Import useParams and Redirect
 
 function ResetPassword() {
+  const { token } = useParams(); // Retrieve the token from URL parameters
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [redirect, setRedirect] = useState(false); // State to handle redirection
 
   const handleSubmit = () => {
+    console.log("token : ", token);
     if (password.length < 8) {
-      toast.error("Password must be atleast 8 characters long");
+      toast.error("Password must be at least 8 characters long");
       return;
     }
 
@@ -17,10 +24,28 @@ function ResetPassword() {
       return;
     }
 
-    // Proceed with password reset logic
-    // For now, just logging the password to console
-    console.log("Password reset successful:", password);
+    axios
+      .patch(`http://localhost:5000/api/login/reset_password/${token}`, { password: password })
+      .then((response) => {
+        // Handle successful response
+        console.log("Password reset successful:", response.data);
+        toast.success("Password reset successful, Redirecting to Homepage...");
+        // Set redirect to true after a 2-second delay
+        setTimeout(() => {
+          setRedirect(true);
+        }, 2000);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error resetting password:", error);
+        toast.error("Failed to reset password. Please try again.");
+      });
   };
+
+  // Redirect to "/login" route after successful password reset
+  if (redirect) {
+    return <HomePage />;
+  }
 
   return (
     <div className={styles["login-overlay"]}>
@@ -45,7 +70,10 @@ function ResetPassword() {
               required
             />
           </div>
-          <button className={styles["login-btn-final"]} onClick={handleSubmit}>
+          <button
+            className={styles["login-btn-final"]}
+            onClick={handleSubmit}
+          >
             Submit
           </button>
           <ToastContainer />
