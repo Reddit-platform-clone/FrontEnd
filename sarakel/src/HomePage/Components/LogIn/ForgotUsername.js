@@ -7,6 +7,8 @@ import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 
 
+
+
 function ForgotUsername() {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -26,19 +28,19 @@ function ForgotUsername() {
   };
 
   const handleEmailMeClick = async () => {
-    const emailOrUsername = document.getElementById(styles["forget-username-email"]).value;
+    const email = document.getElementById(styles["forget-username-email"]).value;
   
     try {
-      const response = await fetch('http://localhost:5000/api/login/forget_password', {
+      const response = await fetch('http://localhost:5000/api/login/forget_username', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ emailOrUsername })
+        body: JSON.stringify({ email })
       });
   
       const data = await response.json();
-  
+      console.log(data);
       if (response.ok) {
         toast.success(data.message);
       } else {
