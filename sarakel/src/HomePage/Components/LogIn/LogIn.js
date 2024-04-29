@@ -6,11 +6,6 @@ import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
 import { useAuth } from "../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-import { GoogleLogin } from "@react-oauth/google";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-
-const ClientID =
-  "1098296945879-b02a0lauc8d73hld7t59oji2bgi7vtga.apps.googleusercontent.com";
 
 function LogIn({ onSuccessfulLogin }) {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
@@ -19,6 +14,19 @@ function LogIn({ onSuccessfulLogin }) {
   const [showLoginModal, setShowLoginModal] = useState(true);
   const { setToken } = useAuth();
 
+  function handleCallbackResponse(response) {
+    console.log("Encoded JWT ID token : "+response.credential )
+  }
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({ 
+      client_id: '579900774553-gv8jas84grhmnqfqq6k0otb7tod7f8nq.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    });
+    google.accounts.id.renderButton(document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+  )
+  }, []);
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
   };
@@ -116,7 +124,7 @@ function LogIn({ onSuccessfulLogin }) {
             .
           </p>
 
-          <GoogleOAuthProvider
+          {/* <GoogleOAuthProvider
             className={styles["login-google-oauth"]}
             clientId={ClientID}
           >
@@ -128,7 +136,10 @@ function LogIn({ onSuccessfulLogin }) {
                 console.log("Login Failed");
               }}
             />
-          </GoogleOAuthProvider>
+          </GoogleOAuthProvider> */}
+          <div id="signInDiv" className={styles["notyet"]}>
+
+          </div>
 
           <div className={styles["login-divider"]}>
             <div className={styles["login-divider-line"]}></div>
