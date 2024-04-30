@@ -11,6 +11,7 @@ function SignUpTwo({ email }) {
   const handleContinueClick = async () => {
     const usernameInput = document.getElementById("signuptwo-username");
     const passwordInput = document.getElementById("signuptwo-password");
+    
 
     if (!usernameInput || !passwordInput) {
       toast.error("Username or password is missing.");
@@ -72,7 +73,7 @@ function SignUpTwo({ email }) {
   if (showSignUpOne) {
     return <SignUpOne />;
   }
-
+  
   return showSignUpModal ? (
     <div className={styles["signuptwo-overlay"]}>
       <div className={styles["signuptwo-modal"]}>
@@ -93,7 +94,7 @@ function SignUpTwo({ email }) {
           <div className={styles["signuptwo-input-group"]}>
             <label htmlFor="username"></label>
             <input
-              id="signuptwo-username"
+              id={styles["signuptwo-username"]}
               type="text"
               placeholder="Username*"
               required
@@ -101,7 +102,7 @@ function SignUpTwo({ email }) {
 
             <label htmlFor="password"></label>
             <input
-              id="signuptwo-password"
+              id={styles["signuptwo-password"]}
               type="password"
               placeholder="Password*"
               required

@@ -134,8 +134,7 @@ margin-right: 5px;
 
 .chat-button:hover,
 .notification-button:hover,
-.create-button:hover,
-.user-button:hover {
+.create-button:hover{
   background-color: rgba(128, 128, 128, 0.3); /* Semi-transparent grey background on hover */
   transform: translateY(0px); /* Move the button down slightly on hover */
   margin-top: -4px;
@@ -253,7 +252,9 @@ margin-right: 5px;
 .userImage{
   width: 32px;
   border-radius: 20px;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
+
+

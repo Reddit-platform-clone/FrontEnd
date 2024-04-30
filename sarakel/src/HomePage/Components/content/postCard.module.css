@@ -10,7 +10,6 @@
   
   .post-card {
     position: relative;
-    border: none;
     border-radius: 10px;
     padding: 50px;
     width: 640px;
@@ -51,29 +50,7 @@
     border-radius: 20px;
   }
   
-  .compact-post-card-image {
-    height: 100px;
-    width: 90px;
-    border-radius: 15px;
-  }
   
-  .compact-post-card-image-count {
-    margin-left: -55px;
-    margin-top: 70px;
-    color: white;
-    width: auto;
-    height: 20px;
-    border-radius: 25px;
-    padding: 0 15px;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(128, 128, 128, 0.7);
-  }
-  
-  .compact-post-card-image-compensation {
-    width: 30px;
-    height: 30px;
-  }
   
   .post-video {
     width: 540px;
@@ -109,17 +86,39 @@
     border-radius: 37.5px;
   }
   
+.downvote-button:hover {
+  color: blue;
+}
+.upvote-button:hover {
+  color: red;
+}
   .left-post,
-  .middle-post,
-  .right-post {
+  .middle-post{
+    cursor: pointer;
+    border: none;
+    width: auto;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 20px;
-    border-radius: 100%;
-    padding: -15px;
+    border-radius: 25px;
+    padding: 0 0px;
+    background-color: rgba(128, 128, 128, 0.1);
   }
-  
+  .right-post {
+    cursor: pointer;
+    border: none;
+    width: auto;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 25px;
+    padding: 0 5px;
+    background-color: rgba(128, 128, 128, 0.1);
+  } 
   .left-post button,
   .middle-post button,
   .right-post button {
@@ -134,11 +133,13 @@
     align-items: center;
   }
   
-  .left-post button:hover,
+  /* .left-post button:hover,
   .middle-post button:hover,
   .right-post button:hover {
     background-color: rgba(128, 128, 128, 0.3);
-  }
+  } */
+
+  /* .left-post:hover,.middle-post:hover,.right-post:hover { background-color: rgba(128, 128, 128, 0.3); } */
   .left-post p,
   .middle-post p {
     margin-right: 2px;
@@ -150,6 +151,7 @@
   .right-post p {
     font-size: 13px;
     margin-top: 19px;
+    margin-left: -4px;
   }
   
   .interaction-container {
@@ -172,6 +174,8 @@
     border-radius: 50px;
     margin-right: 5px;
   }
+
+  /* .post-header {margin-top: -10px;} */
   
   .post-header-right {
     display: flex;
@@ -264,6 +268,47 @@
     margin-right: 5px;
   }
   
+
+  /* postCard.module.css
+.post-header-left {
+  position: relative; 
+}
+
+.post-header-left::before {
+  content: "Hello, world"; 
+  display: none; 
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  top: calc(100% + 5px);  left: 50%; 
+  transform: translateX(-50%); 
+  white-space: nowrap;
+}
+.post-header-left:hover::before {
+  display: block; 
+} */
+
+.post-card-hovered-community{
+  position: absolute;
+  top: 100%; /* Position directly beneath the text */
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1;
+  margin-top: -200px;
+  margin-left: 70px;
+  border-radius: 20px;
+}
+.post-card-hovered-community-background-photo{
+  width: 100%;
+  height: 100%;
+  max-height: 100px;
+  max-width: 190px;
+}
   @media screen and (max-width: 600px) {
     .container {
       max-width: 100%;

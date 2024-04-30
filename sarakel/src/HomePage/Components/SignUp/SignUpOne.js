@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styles from "./SignUpOne.module.css";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,6 +16,21 @@ function SignUpOne() {
   const [redirectToLogin, setRedirectToLogin] = useState(false);
   const [showModal, setShowModal] = useState(true); // State for modal visibility
 
+  function handleCallbackResponse(response) {
+    console.log("Encoded JWT ID token : "+response.credential )
+  }
+  
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({ 
+      client_id: '579900774553-gv8jas84grhmnqfqq6k0otb7tod7f8nq.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    });
+    google.accounts.id.renderButton(document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+  )
+  }, []);
+
   const handleContinueButtonClick = () => {
     // Check if email is empty or not in a valid format
     if (!email || !validateEmail(email)) {
@@ -29,7 +44,7 @@ function SignUpOne() {
   //   if (userExists) {
   //     toast.error("Email already exists");
   //   } else {
-  //     setShowSignUpTwo(true);
+       setShowSignUpTwo(true);
   //   }
    };
 
@@ -85,12 +100,13 @@ function SignUpOne() {
                 .
               </p>
               {/* <button className='signup-google'><FcGoogle />Continue with Google</button> */}
-              <GoogleLogin
+              {/* <GoogleLogin
                 clientId={ClientID}
                 buttonText="Continue with google"
                 cookiePolicy="single_host_origin"
                 className={styles["signUpOne-google"]}
-              />
+              /> */}
+              <div id="signInDiv" className={styles["notyet"]}></div>
               <br></br>
               {/* <button className='signup-apple'><FaApple />Continue with Apple</button> */}
 
@@ -103,7 +119,7 @@ function SignUpOne() {
               <div className={styles["signup-input-group"]}>
                 <label htmlFor="Email"></label>
                 <input
-                  id="signup-email"
+                  id={styles["signup-email"]}
                   type="email"
                   placeholder="Email*"
                   required

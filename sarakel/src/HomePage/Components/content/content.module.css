@@ -128,3 +128,27 @@
   .hidden-post-card button:hover {
     background-color: rgba(128, 128, 128, 0.7);
   }
+
+  .compact-post-card-image {
+    height: 100px;
+    width: 90px;
+    border-radius: 15px;
+  }
+  
+  .compact-post-card-image-count {
+    margin-left: -55px;
+    margin-top: 70px;
+    color: white;
+    width: auto;
+    height: 20px;
+    border-radius: 25px;
+    padding: 0 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.7);
+  }
+  
+  .compact-post-card-image-compensation {
+    width: 30px;
+    height: 30px;
+  }

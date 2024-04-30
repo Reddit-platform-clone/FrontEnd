@@ -27,6 +27,7 @@ function LogIn({ onSuccessfulLogin }) {
       { theme: "outline", size: "large" }
   )
   }, []);
+  
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
   };
