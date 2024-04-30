@@ -1,9 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BiHide } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import { BiUpvote, BiDownvote } from "react-icons/bi";
+import {BiSolidUpvote, BiSolidDownvote, BiUpvote, BiDownvote } from "react-icons/bi";
 import { FaExpandAlt } from "react-icons/fa";
+import { HiMiniUserGroup } from "react-icons/hi2";
 import styles from "./compactPostCard.module.css";
+import { useAuth } from "../AuthContext.js"; //import
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const CompactPostCard = ({
   post,
@@ -11,13 +16,17 @@ const CompactPostCard = ({
   saveStates,
   handleJoinClick,
   handleSaveClick,
+  handleReportClick,
   handleHideClick,
-  handleUpvoteClick,
-  handleDownvoteClick,
+  handleVoteClick,
+  renderMediaOrTruncateText,
+  calculateTimeSinceCreation,
   renderMediaWithCount,
   renderMedia
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const [voteStatus, setVoteStatus] = useState(null);
+  const { token } = useAuth(); //init
   const postRef = useRef(null);
 
   useEffect(() => {
@@ -28,6 +37,20 @@ const CompactPostCard = ({
     }
   }, [expanded, post.text]);
 
+  const toggleVote = (rank) => {
+    if (!token) {
+      toast.error("You need to Login first");
+      return;
+    }
+    // If the user is canceling their vote
+    if (voteStatus === rank) {
+      setVoteStatus(null); // Clear the vote
+      handleVoteClick(post._id, 0); // Send rank 0 to clear the vote
+    } else {
+      setVoteStatus(rank); // Set the vote status
+      handleVoteClick(post._id, rank); // Send the selected rank
+    }
+  };
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -75,19 +98,19 @@ const CompactPostCard = ({
 
         <div className={styles["compact-post-card-right"]}>
           <div className={styles["compact-post-card-right-header"]}>
-            <img
-              src={post.image}
-              className={styles["compact-post-card-profile-photo"]}
-              alt={post.content}
-            />
-            <p>r/{post.name}</p>
+            {post.image ? (
+              <img src={post.image} className={styles["compact-post-card-profile-photo"]} alt={post.title} />
+            ) : (
+              <HiMiniUserGroup className={styles["compact-post-card-profile-photo"]} />
+            )}
+            <p>r/{post.communityId}</p>
             <button
               className={styles["compact-post-card-join-btn"]}
-              onClick={() => handleJoinClick(post.postId)}
+              onClick={() => handleJoinClick(post._id,post.communityId)}
             >
-              {joinStates[post.postId] ? "Leave" : "Join"}
+              {joinStates[post._id] ? "Leave" : "Join"}
             </button>
-            <p>{post.time} ago</p>
+            <p>{calculateTimeSinceCreation(post.createdAt)}</p>
           </div>
           <p>
             <b>{post.title}</b>
@@ -104,19 +127,33 @@ const CompactPostCard = ({
             </button>
 
             <div className={styles["compact-post-card-interaction-voting"]}>
-              <button
-                onClick={() => handleUpvoteClick(post.id, 1)}
+              {/* <button
+                onClick={() => handleVoteClick(post.id, 1)}
                 className={post.upvoted ? styles["upvoted"] : ""}
               >
                 <BiUpvote />
-              </button>
-              <p>{post.likes}</p>
+              </button> */}
               <button
-                onClick={() => handleDownvoteClick(post.id, -1)}
+              onClick={() => toggleVote(1)}
+              className={styles["upvote-button"]}
+              style={{ backgroundColor: voteStatus === 1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
+            >
+              {voteStatus === 1 ? <BiSolidUpvote color="red" /> : <BiUpvote />}
+            </button>
+              <p>{post.upvotes - post.downvotes + (voteStatus ? voteStatus : 0)}</p>
+            <button
+              onClick={() => toggleVote(-1)}
+              className={styles["downvote-button"]}
+              style={{ backgroundColor: voteStatus === -1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
+            >
+              {voteStatus === -1 ? <BiSolidDownvote color="blue" /> : <BiDownvote />}
+            </button>
+              {/* <button
+                onClick={() => handleVoteClick(post.id, -1)}
                 className={post.downvoted ? styles["downvoted"] : ""}
               >
                 <BiDownvote />
-              </button>
+              </button> */}
             </div>
 
             <div className={styles["compact-post-card-interaction-text-buttons"]}>
@@ -129,7 +166,7 @@ const CompactPostCard = ({
               >
                 {saveStates[post._id] ? "Unsave" : "Save"}
               </button>
-              <button onClick={() => handleHideClick(post.postId)}>Hide</button>
+              <button onClick={() => handleHideClick(post._id)}>Hide</button>
               <button>Report</button>
             </div>
           </div>
