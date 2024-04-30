@@ -47,24 +47,14 @@ const Content = () => {
           },
         });
         const responseData = await response.json();
-        console.log("Response data:", responseData); // For debugging
+        console.log("Response data:", responseData.data); // For debugging
         if (response.ok) {
           if (Array.isArray(responseData.data)) {
-            // If responseData.data is an array of posts
-            const formattedPosts = responseData.data.map((item) => ({
-              ...item.post,
-              communityDesc: item.communityDesc,
-              numberOfComments: item.numberOfComments,
-            }));
-            setPosts(formattedPosts);
+            // If responseData.data is an array, set posts directly
+            setPosts(responseData.data);
           } else {
             // If responseData.data is a single post object, wrap it in an array
-            const formattedPost = {
-              ...responseData.data.post,
-              numberOfComments: responseData.data.numberOfComments,
-              communityDesc: responseData.data.communityDesc,
-            };
-            setPosts([formattedPost]);
+            setPosts([responseData.data]);
           }
           setLoading(false);
         } else {
@@ -99,10 +89,7 @@ const Content = () => {
   };
 
   const handleVoteClick = async (_id, rank) => {
-    if (!token) {
-      toast.error("You need to Login first");
-      return;
-    }
+    
     try {
       const response = await fetch("http://localhost:5000/api/vote", {
         method: "POST",
@@ -128,63 +115,18 @@ const Content = () => {
       console.error("Error voting:", error);
     }
   };
-
-  const handleUpvoteClick = (_id) => {
-    if (!token) {
-      toast.error("You need to Login first");
-      return;
-    }
-    console.log("upvote");
-    console.log("post id : ", _id);
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post._id === _id
-          ? {
-              ...post,
-              upvoted: !post.upvoted,
-              downvoted: false,
-              likes: post.upvoted
-                ? parseInt(post.likes) - 1
-                : parseInt(post.likes) + 1,
-            }
-          : post
-      )
-    );
-  };
-
-  const handleDownvoteClick = (_id) => {
-    if (!token) {
-      toast.error("You need to Login first");
-      return;
-    }
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post._id === _id
-          ? {
-              ...post,
-              upvoted: false,
-              downvoted: !post.downvoted,
-              likes: post.downvoted
-                ? parseInt(post.likes) + 1
-                : parseInt(post.likes) - 1,
-            }
-          : post
-      )
-    );
-  };
-
   const getPostInfo = (_id) => {
     const post = posts.find((post) => post._id === _id);
     return post ? { name: post.name, userId: post.userId } : null;
   };
 
-  const handleJoinClick = async (_id) => {
+  const handleJoinClick = async (_id,name) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     try {
-      const { name, userId } = getPostInfo(_id);
+     // const { name, userId } = getPostInfo(_id);
       const isJoining = !joinStates[_id];
       const response = await fetch(
         `http://localhost:5000/api/community/${isJoining ? "join" : "leave"}`,
@@ -203,6 +145,7 @@ const Content = () => {
       const responseData = await response.json();
       if (response.ok) {
         console.log(responseData.message);
+        toast.success(responseData.message);
         setJoinStates((prevState) => ({
           ...prevState,
           [_id]: isJoining,
@@ -244,9 +187,9 @@ const Content = () => {
       console.log("catch");
       console.log(responseData.message);
       if (response.ok) {
+        toast.success(responseData.message);
         console.log("catch");
         console.log(responseData.message);
-        // Toggle the save state for the post
         setSaveStates((prevState) => ({
           ...prevState,
           [_id]: !isSaved,
@@ -286,8 +229,10 @@ const Content = () => {
 
       const responseData = await response.json();
       console.log(responseData.message);
+      toast.success(responseData.message);
     } catch (error) {
       console.error("Error reporting post:", error);
+      toast.error("Failed to report post");
     }
   };
 
@@ -486,32 +431,29 @@ const Content = () => {
                     post={post}
                     joinStates={joinStates}
                     saveStates={saveStates}
-                    // communityDesc={post.communityDesc}
-                    // numberOfComments={post.numberOfComments}
                     handleJoinClick={handleJoinClick}
                     handleSaveClick={handleSaveClick}
                     handleReportClick={handleReportClick}
                     handleHideClick={handleHideClick}
                     handleVoteClick={handleVoteClick}
-                    handleUpvoteClick={handleUpvoteClick}
-                    handleDownvoteClick={handleDownvoteClick}
                     renderMediaOrTruncateText={renderMediaOrTruncateText}
                     calculateTimeSinceCreation={calculateTimeSinceCreation}
                   />
                 ) : (
                   <CompactPostCard
-                    key={post._id}
-                    post={post}
-                    joinStates={joinStates}
-                    saveStates={saveStates}
-                    handleJoinClick={handleJoinClick}
-                    handleSaveClick={handleSaveClick}
-                    handleReportClick={handleReportClick}
-                    handleHideClick={handleHideClick}
-                    handleUpvoteClick={handleUpvoteClick}
-                    handleDownvoteClick={handleDownvoteClick}
-                    renderMediaWithCount={renderMediaWithCount}
-                    renderMedia={renderMedia}
+                  key={post._id}
+                  post={post}
+                  joinStates={joinStates}
+                  saveStates={saveStates}
+                  handleJoinClick={handleJoinClick}
+                  handleSaveClick={handleSaveClick}
+                  handleReportClick={handleReportClick}
+                  handleHideClick={handleHideClick}
+                  handleVoteClick={handleVoteClick}
+                  renderMediaOrTruncateText={renderMediaOrTruncateText}
+                  calculateTimeSinceCreation={calculateTimeSinceCreation}
+                  renderMediaWithCount={renderMediaWithCount}
+                  renderMedia={renderMedia}
                   />
                 )
               ) : (
