@@ -1,0 +1,51 @@
+.BackButton{
+    border: none;
+    border-radius: 45%;
+    height: 2.2rem;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.UserImage{
+    border-radius: 45%;
+    height: 2.2rem;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.UserName{
+    color: #576f76;
+    font-size: 12px;
+    text-decoration: none;
+}
+.CommunityName{
+    color: #2a3c42;
+    text-decoration: none;
+}
+.PostImg{
+
+    height: 350px;
+}
+.RightSide{
+    background-color: #f3f3f3;
+}
+.QueueButtons{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0045AC;
+    border-radius: 2rem;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: unset;
+    text-transform: unset;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}

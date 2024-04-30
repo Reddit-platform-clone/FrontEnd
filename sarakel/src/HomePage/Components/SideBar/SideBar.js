@@ -16,12 +16,12 @@ export default function SideBar() {
     return(
        <nav className={`${classes.sidebar}`}>
            <div className={`${classes.scrollbox}`}>
-                <Link to='/'>
+                
                 <button className={`${classes.sidebarButtons}`}>
                     <svg rpl="" className={`${classes.sideIcon}`} fill="currentColor" height="20" icon-name="home-fill" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"> <path d="m19.724 6.765-9.08-6.11A1.115 1.115 0 0 0 9.368.647L.276 6.765a.623.623 0 0 0 .35 1.141h.444v10.001c.001.278.113.544.31.74.196.195.462.304.739.303h5.16a.704.704 0 0 0 .706-.707v-4.507c0-.76 1.138-1.475 2.02-1.475.882 0 2.02.715 2.02 1.475v4.507a.71.71 0 0 0 .707.707h5.16c.274-.001.538-.112.732-.307.195-.195.305-.46.306-.736v-10h.445a.618.618 0 0 0 .598-.44.625.625 0 0 0-.25-.702Z"></path></svg>
                     <span>Home</span>
                 </button>
-                </Link>
+                
                 <button className={`${classes.sidebarButtons}`}>
                 <svg rpl="" className={`${classes.sideIcon}`} fill="currentColor" height="20" icon-name="popular-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"> <path d="M10 0a10 10 0 1 0 10 10A10.01 10.01 0 0 0 10 0Zm0 18.75a8.7 8.7 0 0 1-5.721-2.145l8.471-8.471v4.148H14V6.638A.647.647 0 0 0 13.362 6H7.718v1.25h4.148L3.4 15.721A8.739 8.739 0 1 1 10 18.75Z"></path></svg>
                 <span>Popular</span>
@@ -40,7 +40,7 @@ export default function SideBar() {
                         </span>
                 </button>
                 <hr></hr>
-                <CreateCommunity className={`${classes.w00}`}/>
+                {/* <CreateCommunity className={`${classes.w00}`}/> */}
                 <button className={`${classes.sidebarButtons}`}>
                     <span>COMMUNITIES</span> 
                     <span className={`${classes.FlexEnd}`}>
