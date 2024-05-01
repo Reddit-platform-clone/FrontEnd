@@ -7,7 +7,7 @@ import { HiMiniUserGroup } from "react-icons/hi2";
 import styles from "./compactPostCard.module.css";
 import { useAuth } from "../AuthContext.js"; //import
 import {  toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; 
 
 
 const CompactPostCard = ({
@@ -26,7 +26,7 @@ const CompactPostCard = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const [voteStatus, setVoteStatus] = useState(null);
-  const { token } = useAuth(); //init
+  const { token } = useAuth(); //ini
   const postRef = useRef(null);
 
   useEffect(() => {

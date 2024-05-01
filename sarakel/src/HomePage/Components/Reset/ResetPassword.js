@@ -3,7 +3,7 @@ import styles from "./ResetPassword.module.css";
 import HomePage from "../../HomePage";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios"; // Import axios for making HTTP requests
-import { useParams } from "react-router-dom"; // Import useParams and Redirect
+import { useParams } from "react-router-dom"; // Import usePara
 
 function ResetPassword() {
   const { token } = useParams(); // Retrieve the token from URL parameters
@@ -13,7 +13,6 @@ function ResetPassword() {
   const [redirect, setRedirect] = useState(false); // State to handle redirection
 
   const handleSubmit = () => {
-    console.log("token : ", token);
     if (password.length < 8) {
       toast.error("Password must be at least 8 characters long");
       return;

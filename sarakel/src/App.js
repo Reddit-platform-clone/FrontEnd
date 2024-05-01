@@ -7,9 +7,11 @@ import MessagesPage from './messagespage/messagespage.js';
 import CreatePost from './CreatePost/CreatePost.js';
 import ProfilePage from './ProfilePage/ProfilePage.js';
 import Search from './Search/Search.js';
-import ResetPasswordModal from './HomePage/Components/Reset/ResetPassword.js'; // Import the ResetPasswordModal component
-import ResetUsernameModal from './HomePage/Components/Reset/ResetUsername.js'; // Import the ResetUsernameModal component
+import ResetPasswordModal from './HomePage/Components/Reset/ResetPassword.js'; 
+import ResetUsernameModal from './HomePage/Components/Reset/ResetUsername.js'; 
 import { AuthProvider } from './HomePage/Components/AuthContext.js';
+import PostPage from "./HomePage/Components/PostPage/PostPage/PostPage.js"
+
 
 function App() {
   return (      
@@ -24,6 +26,7 @@ function App() {
           <Route path="profilepage" element={<ProfilePage />} />
           <Route path="search" element={<Search />} />
           <Route path="notifications" element={<Notifications />} />
+          <Route path="/post/:postId" element={<PostPage />} />
           <Route path="login/reset_password/:token" element={<ResetPasswordModal />} />
           <Route path="login/reset_username/:token" element={<ResetUsernameModal />} /> 
         </Routes>

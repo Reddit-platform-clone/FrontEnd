@@ -10,6 +10,8 @@ import { AiOutlinePicture } from "react-icons/ai";
 import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
 import { useAuth } from "../AuthContext.js"; //import
+import PostPage from "../PostPage/PostPage/PostPage.js";
+import  { Navigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,6 +26,7 @@ const Content = () => {
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [sortingType, setSortingType] = useState("best");
   const [showViewOptions, setShowViewOptions] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
   const { token } = useAuth(); //init
 
   useEffect(() => {
@@ -89,7 +92,6 @@ const Content = () => {
   };
 
   const handleVoteClick = async (_id, rank) => {
-    
     try {
       const response = await fetch("http://localhost:5000/api/vote", {
         method: "POST",
@@ -110,23 +112,19 @@ const Content = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const responseData = await response.json()
+      const responseData = await response.json();
     } catch (error) {
       console.error("Error voting:", error);
     }
   };
-  const getPostInfo = (_id) => {
-    const post = posts.find((post) => post._id === _id);
-    return post ? { name: post.name, userId: post.userId } : null;
-  };
 
-  const handleJoinClick = async (_id,name) => {
+  const handleJoinClick = async (_id, name) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     try {
-     // const { name, userId } = getPostInfo(_id);
+      // const { name, userId } = getPostInfo(_id);
       const isJoining = !joinStates[_id];
       const response = await fetch(
         `http://localhost:5000/api/community/${isJoining ? "join" : "leave"}`,
@@ -303,6 +301,22 @@ const Content = () => {
     }
   };
 
+  const handlePostClick = (passedId) => {
+    if (!passedId) {
+      return;
+    }
+    console.log("Post clicked with ID:", passedId);
+    setSelectedPostId(passedId);
+  };
+
+  useEffect(() => {
+    console.log("selectedPostId updated:", selectedPostId);
+  }, [selectedPostId]);
+
+  const handleBackButtonClick = () => {
+    setSelectedPostId(null);
+  };
+
   const renderMediaWithCount = (media, text) => {
     if (!media) {
       return (
@@ -363,6 +377,7 @@ const Content = () => {
     <div className={styles["container"]}>
       <ToastContainer />
 
+      {!selectedPostId && (
       <div className={styles["choice-above-posts"]}>
         <div className={styles["content-sort-type"]}>
           <button
@@ -412,71 +427,88 @@ const Content = () => {
           )}
         </div>
       </div>
+    )}
 
-      {loading ? (
-        <div className={styles["loading-posts"]}>
-          <p>Loading...</p>
-          <SyncLoader color="black" />
-        </div>
-      ) : (
-        <div className={styles["post-list"]}>
-          {posts.length === 0 ? (
-            <p>No posts to display.</p>
-          ) : (
-            posts.map((post) =>
-              !hiddenPosts[post._id] ? (
-                viewType === "card" ? (
-                  <PostCard
-                    key={post._id}
-                    post={post}
-                    joinStates={joinStates}
-                    saveStates={saveStates}
-                    handleJoinClick={handleJoinClick}
-                    handleSaveClick={handleSaveClick}
-                    handleReportClick={handleReportClick}
-                    handleHideClick={handleHideClick}
-                    handleVoteClick={handleVoteClick}
-                    renderMediaOrTruncateText={renderMediaOrTruncateText}
-                    calculateTimeSinceCreation={calculateTimeSinceCreation}
-                  />
-                ) : (
-                  <CompactPostCard
-                  key={post._id}
-                  post={post}
-                  joinStates={joinStates}
-                  saveStates={saveStates}
-                  handleJoinClick={handleJoinClick}
-                  handleSaveClick={handleSaveClick}
-                  handleReportClick={handleReportClick}
-                  handleHideClick={handleHideClick}
-                  handleVoteClick={handleVoteClick}
-                  renderMediaOrTruncateText={renderMediaOrTruncateText}
-                  calculateTimeSinceCreation={calculateTimeSinceCreation}
-                  renderMediaWithCount={renderMediaWithCount}
-                  renderMedia={renderMedia}
-                  />
-                )
-              ) : (
-                <div key={post._id} className={styles["hidden-post-card"]}>
-                  <p>Post hidden</p>
-                  <button
-                    onClick={() =>
-                      setHiddenPosts((prevHiddenPosts) => ({
-                        ...prevHiddenPosts,
-                        [post._id]: false,
-                      }))
-                    }
-                  >
-                    Undo
-                  </button>
-                </div>
-              )
-            )
-          )}
-        </div>
-      )}
-    </div>
-  );
+{selectedPostId && <Navigate to={`/post/${selectedPostId}`} />}
+
+      {!selectedPostId && (
+      <div className={styles["post-list"]}>
+        {loading ? (
+          // Loading Indicator
+          <div className={styles["loading-posts"]}>
+            <p>Loading...</p>
+            <SyncLoader color="black" />
+          </div>
+        ) : (
+          <>
+            {/* Render Posts */}
+            {posts.length === 0 ? (
+              // No Posts Message
+              <p>No posts to display.</p>
+            ) : (
+              posts.map((post) => {
+                if (!hiddenPosts[post._id]) {
+                  return (
+                    // Conditional Rendering of Post Card or Compact Post Card
+                    viewType === "card" ? (
+                      <PostCard
+                        key={post._id}
+                        post={post}
+                        joinStates={joinStates}
+                        saveStates={saveStates}
+                        handleJoinClick={handleJoinClick}
+                        handleSaveClick={handleSaveClick}
+                        handleReportClick={handleReportClick}
+                        handleHideClick={handleHideClick}
+                        handleVoteClick={handleVoteClick}
+                        renderMediaOrTruncateText={renderMediaOrTruncateText}
+                        calculateTimeSinceCreation={calculateTimeSinceCreation}
+                        handlePostClick={handlePostClick}
+                      />
+                    ) : (
+                      <CompactPostCard
+                        key={post._id}
+                        post={post}
+                        joinStates={joinStates}
+                        saveStates={saveStates}
+                        handleJoinClick={handleJoinClick}
+                        handleSaveClick={handleSaveClick}
+                        handleReportClick={handleReportClick}
+                        handleHideClick={handleHideClick}
+                        handleVoteClick={handleVoteClick}
+                        renderMediaOrTruncateText={renderMediaOrTruncateText}
+                        calculateTimeSinceCreation={calculateTimeSinceCreation}
+                        renderMediaWithCount={renderMediaWithCount}
+                        renderMedia={renderMedia}
+                      />
+                    )
+                  );
+                } else {
+                  return (
+                    // Hidden Post Message
+                    <div key={post._id} className={styles["hidden-post-card"]}>
+                      <p>Post hidden</p>
+                      <button
+                        onClick={() =>
+                          setHiddenPosts((prevHiddenPosts) => ({
+                            ...prevHiddenPosts,
+                            [post._id]: false,
+                          }))
+                        }
+                      >
+                        Undo
+                      </button>
+                    </div>
+                  );
+                }
+              })
+            )}
+          </>
+        )}
+      </div>
+    )}
+  </div>
+);
 };
 
 export default Content;

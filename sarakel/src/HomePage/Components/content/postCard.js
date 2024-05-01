@@ -6,10 +6,9 @@ import { BiHide } from "react-icons/bi";
 import { CiBookmark, CiFlag1 } from "react-icons/ci";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { useAuth } from "../AuthContext.js"; //import
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./postCard.module.css";
-
 
 const PostCard = ({
   post,
@@ -22,13 +21,12 @@ const PostCard = ({
   handleVoteClick,
   renderMediaOrTruncateText,
   calculateTimeSinceCreation,
+  handlePostClick,
 }) => {
   const [voteStatus, setVoteStatus] = useState(null);
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
-
-  
 
   useEffect(() => {
     // Function to fetch community info based on _id
@@ -53,9 +51,11 @@ const PostCard = ({
     setIsHovering(true);
   };
 
+
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+
   const toggleVote = (rank) => {
     if (!token) {
       toast.error("You need to Login first");
@@ -71,8 +71,9 @@ const PostCard = ({
     }
   };
 
+
   return (
-    <div className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
+    <div onClick={() => handlePostClick(post._id)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
       <div className={classes["post-info"]}>
         <div className={classes["post-header"]}>
           <div className={classes["post-header-left"]} onMouseOver={handleMouseOver}
