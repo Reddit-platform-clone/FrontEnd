@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from "../HomePage/Components/AuthContext.js"
 import style from './ProfilePage.module.css'
@@ -59,7 +59,7 @@ function ProfilePage() {
                 <div className={style.usernameContainer}>
                     {userData && (
                         <>
-                            <img src={userData.ProfilePicture} alt="Profile Picture" className={style.profilePicture} />
+                            <img src={userData.profilepicture} alt="Profile Picture" className={style.profilePicture} />
                             <h2 className={`${style.username} text-lg font-bold`}>{userData.username}</h2>
                         </>
                     )}
@@ -90,9 +90,10 @@ function ProfilePage() {
                         <span>Downvoted</span>
                     </a>
 
-                    <a className='nav-link' href='#'>
+                    <Link to="/CreatePost" className='nav-link'>
                         <span>+ Create Post</span>
-                    </a>
+                    </Link>
+
                 </div>
                 <hr className={style.linePP} />
 
@@ -151,11 +152,11 @@ function ProfilePage() {
                         <div className="flex items-center justify-between">
                             <div className={style.backgroundimage}></div>
 
-                            <a href="">
+                            <Link to="/Settings">
                                 <button className={style.addbannerbtn}>
                                     <CgAddR className={style.usersettings} />
                                 </button>
-                            </a>
+                            </Link>
                             <br />
 
                             <div className={style.usernamecontainer}>
