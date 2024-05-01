@@ -7,28 +7,6 @@
     top: 120px;
 }
 
-.logoup1 {
-    width: 12vw; /* Adjust based on your design */
-    height: 12vw; /* Adjust based on your design */
-    border-radius: 50%;
-    border: 2px solid black;
-    object-fit: cover;
-    margin: 0;
-    position: relative;
-    left: 10px;
-}
-
-.username1 {
-    font-size: 2vw; /* Adjust based on your design */
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-    width: 20vw; /* Adjust based on your design */
-    height: min-content;
-    position: relative;
-    left: 10px;
-}
-
 .post {
     margin-bottom: 4vw; /* Adjust based on your design */
     padding: 4vw; /* Adjust based on your design */
@@ -41,59 +19,41 @@
     left: -11vw; /* Adjust based on your design */
 }
 
-.postheader {
+.postTitle {
+    font-size: 2.5vw; /* Adjust based on your design */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5vw; /* Adjust based on your design */
+}
+
+.postContent {
+    font-size: 1.8vw; /* Adjust based on your design */
+    color: #555;
+    margin-bottom: 1vw; /* Adjust based on your design */
+}
+
+.postActions {
     display: flex;
-    align-items: center;
-    margin-bottom: 2vw; /* Adjust based on your design */
+    justify-content: space-between;
+    margin-top: 2vw; /* Adjust based on your design */
 }
 
-.postheader img {
-    width: 4vw; /* Adjust based on your design */
-    height: 4vw; /* Adjust based on your design */
-    border-radius: 50%;
-    margin-right: 2vw; /* Adjust based on your design */
+.postActions p {
+    margin: 0;
 }
 
-.postcontent h3 {
-    margin-bottom: 2vw; /* Adjust based on your design */
-}
-
-.postcontent p {
-    margin-bottom: 3vw; /* Adjust based on your design */
-}
-
-.postcontent img {
-    max-width: 100%;
-    margin-bottom: 2vw; /* Adjust based on your design */
-}
-
-.postactions {
-    display: flex;
-}
-
-.postactions button {
-    display: flex;
-    align-items: center;
-    margin-right: 2vw; /* Adjust based on your design */
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.postactions button svg {
-    margin-right: 1vw; /* Adjust based on your design */
+.postActions p svg {
+    margin-right: 0.5vw; /* Adjust based on your design */
 }
 
 /* Media Query for responsiveness */
 @media screen and (max-width: 768px) {
-    .logoup1 {
-        width: 15vw;
-        height: 15vw;
+    .postTitle {
+        font-size: 3vw;
     }
 
-    .username1 {
-        font-size: 2.5vw;
-        width: 25vw;
+    .postContent {
+        font-size: 2vw;
     }
 
     .post {
@@ -102,25 +62,11 @@
         left: 5vw;
     }
 
-    .postheader img {
-        width: 5vw;
-        height: 5vw;
-        margin-right: 2vw;
+    .postActions {
+        margin-top: 3vw;
     }
 
-    .postcontent p {
-        margin-bottom: 4vw;
-    }
-
-    .postcontent img {
-        margin-bottom: 3vw;
-    }
-
-    .postactions button {
-        margin-right: 2vw;
-    }
-
-    .postactions button svg {
+    .postActions p svg {
         margin-right: 1vw;
     }
 }

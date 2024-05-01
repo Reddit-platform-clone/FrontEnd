@@ -38,7 +38,7 @@ console.log( newPost);
 }
 
 async function sendInfo(data){
-    const promise = await axios.post('/createPost/create', data, {
+    const promise = await axios.post('http://localhost:5000/api/createPost/create', data, {
         headers: {
             Authorization:`Bearer ${token}`
         }
