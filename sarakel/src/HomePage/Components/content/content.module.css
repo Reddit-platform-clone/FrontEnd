@@ -1,9 +1,12 @@
 .container {
-    max-width: 720px;
-    margin-left: 350px;
-    margin-top: 90px;
+    max-width: 1150px;
+    margin-left: auto;
+    margin-top: 90px; 
+    background-color: none;
   }
-  
+  .post-list-container{
+    display: flex;
+  }
 .loading-posts{
   margin-top: 200px;
   margin-left: 300px;
@@ -87,7 +90,8 @@
     position: relative;
     border: none;
     border-radius: 10px;
-    width: 640px;
+    max-width: 830px;
+    width: 100%;
     height: 80px;
     transition: box-shadow 0.3s ease;
     background-color: transparent;
@@ -151,4 +155,31 @@
   .compact-post-card-image-compensation {
     width: 30px;
     height: 30px;
+  }
+
+  .content-recent-posts{
+    background-color: rgba(128, 128, 128, 0.3);
+    height: auto;
+    height: 100%;
+    left: 0;
+    width: 300px;
+    margin-left: auto;
+    border-radius: 15px;
+  }
+
+  .content-recent-posts-header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .content-recent-posts-header h6{
+  margin-left: 5px;
+  margin-top: 5px;
+  }
+
+  .content-recent-posts-header button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: blue;
+    margin-right: 5px;
   }
