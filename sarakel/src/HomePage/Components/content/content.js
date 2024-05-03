@@ -9,8 +9,8 @@ import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
 import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
+import { HiMiniUserGroup } from "react-icons/hi2";
 import { useAuth } from "../AuthContext.js"; //import
-import PostPage from "../PostPage/PostPage/PostPage.js";
 import  { Navigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -429,6 +429,10 @@ const Content = () => {
       </div>
     )}
 
+
+    <div className={styles["post-list-container"]}>
+      
+
 {selectedPostId && <Navigate to={`/post/${selectedPostId}`} />}
 
       {!selectedPostId && (
@@ -505,8 +509,16 @@ const Content = () => {
             )}
           </>
         )}
-      </div>
+      </div> 
     )}
+    <div className={styles["content-recent-posts"]}>
+      <div className={styles["content-recent-posts-header"]}>
+        <h6>Recent posts</h6>
+        <button>clear</button>
+      </div>
+      <HiMiniUserGroup />
+    </div>
+    </div>
   </div>
 );
 };
