@@ -59,7 +59,7 @@ function ProfilePage() {
                 <div className={style.usernameContainer}>
                     {userData && (
                         <>
-                            <img src={userData.profilepicture} alt="Profile Picture" className={style.profilePicture} />
+                            <img src={userData.profilePicture} alt="Profile Picture" className={style.profilePicture} />
                             <h2 className={`${style.username} text-lg font-bold`}>{userData.username}</h2>
                         </>
                     )}

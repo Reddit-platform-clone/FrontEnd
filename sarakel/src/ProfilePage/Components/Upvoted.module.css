@@ -1,0 +1,71 @@
+/* Upvoted.module.css */
+
+.upvotedcontainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 150px;
+    left: 250px;
+    width: 300px;
+    margin: 0px;
+  }
+  
+  .loadingtext {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .upvotedlist {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .upvoteditem {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+    max-width: 500px; /* Limit the maximum width of the post */
+  }
+  
+  .upvoteditem:hover {
+    transform: translateY(-5px); /* Add a slight lift effect on hover */
+  }
+  
+  .posttitle {
+    font-weight: bold;
+    font-size: 1.5rem; /* Increase font size for title */
+    margin-bottom: 10px; /* Increase spacing below title */
+    color: #333; /* Darken title color */
+  }
+  
+  .postdetails {
+    color: #888; /* Adjust details color */
+    font-size: 0.9rem; /* Decrease font size for details */
+    margin-bottom: 15px; /* Increase spacing below details */
+  }
+  
+  .postauthor {
+    font-style: bold;
+    font-size: 25px;
+    margin-right: 5px; /* Add spacing between author and community */
+  }
+  
+  .postcommunity {
+    font-style: italic;
+    color: #007bff; /* Change community color to blue */
+  }
+  
+  .commentid {
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .upvoteditem {
+      max-width: 100%; /* Adjust max width for smaller screens */
+    }
+  }
+  

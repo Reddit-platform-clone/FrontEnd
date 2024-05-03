@@ -248,7 +248,7 @@ body {
     justify-content: center;
     margin-top: 20px; /* Adjust the margin as needed */
     position: absolute;
-    left: 350px;
+    left: 230px;
 }
 
 .username {
@@ -257,14 +257,15 @@ body {
 }
 
 .profilePicture {
-    width: 40px; /* Adjust the width as needed */
-    height: 40px; /* Adjust the height as needed */
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
     border-radius: 50%; /* Make it circular */
     margin-right: 10px; /* Adjust the margin as needed */
 }
 
 @media screen and (max-width: 850px) {
     .middle-page {
+        max-width: 100%;
         padding: 10px;
         height: auto; /* Adjusted */
     }

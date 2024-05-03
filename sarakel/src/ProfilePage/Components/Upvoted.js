@@ -1,33 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from "../../HomePage/Components/AuthContext.js";
+import styles from './Upvoted.module.css';
 
-export default function Upvoted() {
-    const [upvotedPosts, setUpvotedPosts] = useState([]);
-    const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmlvciIsImlhdCI6MTcxMzE5NDM2NH0.plXgIm8oPx5va2VtE1EuQHmHxjAA7G9Uxo0h5_inQoY";
+function Upvoted() {
+  const { token } = useAuth();
+  const [upvotedData, setUpvotedData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
 
-    useEffect(() => {
-        axios.get('http://127.0.0.1:5000/api/v1/me', {
+  useEffect(() => {
+    if (token) {
+      axios.get('http://127.0.0.1:5000/api/v1/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(response => {
+        setUsername(response.data.user.username);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+    }
+  }, [token]);
+
+  useEffect(() => {
+    const fetchUpvotedData = async () => {
+      try {
+        if (username) {
+          const response = await axios.get(`http://localhost:5000/api/user/${username}/upvoted`, {
             headers: {
-                Authorization: `Bearer ${authToken}`
+              Authorization: `Bearer ${token}`
             }
-        })
-        .then(response => {
-            const upvotedPostsData = response.data.user.upVotes;
-            setUpvotedPosts(upvotedPostsData);
-        })
-        .catch(error => {
-            console.error('Error fetching upvoted posts data:', error);
-        });
-    }, []); // Empty dependency array means this effect runs once after the component mounts
+          });
 
-    return (
-        <div>
-            
-            <ul>
-                {upvotedPosts.map(post => (
-                    <li key={post._id}>{post.title}</li>
-                ))}
-            </ul>
-        </div>
-    );
+          setUpvotedData(response.data.upvotes);
+          setLoading(false);
+          console.log('Upvoted data fetched successfully');
+        }
+      } catch (error) {
+        console.error('Error fetching upvoted data:', error);
+        setLoading(false);
+      }
+    };
+
+    if (token && username) {
+      fetchUpvotedData();
+    }
+  }, [token, username]);
+
+  return (
+    <div className={styles.upvotedcontainer}>
+      {loading ? (
+        <p className={styles.loadingtext}>Loading...</p>
+      ) : (
+        <ul className={styles.upvotedlist}>
+          {upvotedData.map((item, index) => (
+            <li className={styles.upvoted-item} key={index}>
+              {item[0] === "post" ? (
+                <div>
+                  <p className={styles.postauthor}> {item[1][0].username}</p>
+                  <p className={styles.posttitle}> {item[1][0].title}</p>
+                  <p className={styles.postcommunity}>Community: {item[1][0].communityId}</p>
+                  {/* Add other relevant data for posts */}
+                </div>
+              ) : (
+                <div>
+                  {/* <p className={styles.commentid}>Comment ID: {item[1]._id}</p>
+                  <p className={styles.commentauthor}>Author: {item[1].username}</p> */}
+                  {/* Add other relevant data for comments */}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
+
+export default Upvoted;
