@@ -71,13 +71,23 @@ const PostCard = ({
     }
   };
 
+  const handleJoinButtonClick = (event, postId, communityId) => {
+    event.stopPropagation(); // Stop event propagation to parent container
+    handleJoinClick(postId, communityId);
+  };
+
+  const handleVoteButtonClick = (event, rank) => {
+    event.stopPropagation(); // Stop event propagation to parent container
+    toggleVote(rank);
+  };
 
   return (
-    <div onClick={() => handlePostClick(post._id)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
+    <div  className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
+      {/* onClick={() => handlePostClick(post._id)} */}
       <div className={classes["post-info"]}>
         <div className={classes["post-header"]}>
-          <div className={classes["post-header-left"]} onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}>
+          <div className={classes["post-header-left"]} >
+          {/* onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} */}
             {post.image ? (
               <img src={post.image} className={classes["profile-photo"]} alt={post.title} />
             ) : (
@@ -87,13 +97,13 @@ const PostCard = ({
             <p>.</p>
             <p>{calculateTimeSinceCreation(post.createdAt)}</p>
             {isHovering && (
-        <div className={classes["post-card-hovered-community"]}>
-          <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png'}  className={classes["post-card-hovered-community-background-photo"]}/>
-          <h2>Card Title</h2>
-          <p>Some card details here...</p>
-        {post.communityDesc}
-        </div>
-      )}
+              <div className={classes["post-card-hovered-community"]}>
+                <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png'} className={classes["post-card-hovered-community-background-photo"]} />
+                <h2>Card Title</h2>
+                <p>Some card details here...</p>
+                {post.communityDesc}
+              </div>
+            )}
           </div>
           <div className={classes["post-header-right"]}>
             <button
@@ -125,7 +135,7 @@ const PostCard = ({
         <div className={classes["interaction"]}>
           <div className={classes["left-post"]}>
             <button
-              onClick={() => toggleVote(1)}
+              onClick={(event) => handleVoteButtonClick(event, 1)}
               className={classes["upvote-button"]}
               style={{ backgroundColor: voteStatus === 1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
             >
@@ -133,7 +143,7 @@ const PostCard = ({
             </button>
             <p>{post.upvotes - post.downvotes + (voteStatus ? voteStatus : 0)}</p>
             <button
-              onClick={() => toggleVote(-1)}
+              onClick={(event) => handleVoteButtonClick(event, -1)}
               className={classes["downvote-button"]}
               style={{ backgroundColor: voteStatus === -1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
             >
