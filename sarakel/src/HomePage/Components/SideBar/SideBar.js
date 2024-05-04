@@ -14,7 +14,7 @@ export default function SideBar() {
         actArray.push(`${classes.rotate}`)
     }
     return(
-       <nav className={`${classes.sidebar}`}>
+       <nav className={`${classes.sidebar} col-3`}>
            <div className={`${classes.scrollbox}`}>
                 
                 <button className={`${classes.sidebarButtons}`}>

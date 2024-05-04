@@ -42,7 +42,7 @@ export default function PostPage(){
                             
                         </div>
                     </div>
-                    <div className={`col-3  ms-1  ${classes.RightSide}`}>
+                    {/* <div className={`col-3  ms-1  ${classes.RightSide}`}>
                         <div className="row mt-3 align-items-center justify-content-between">
                             <div className="col-auto ms-2 ">
                                 <h4>Community name</h4>
@@ -51,7 +51,7 @@ export default function PostPage(){
                                     <button className={`${classes.QueueButtons}`}>join</button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
            </div>
         </div>

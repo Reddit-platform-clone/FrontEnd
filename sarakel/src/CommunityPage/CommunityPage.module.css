@@ -1,0 +1,40 @@
+.Banner{
+    background-color: #eaedef;
+    border-radius: 10px;
+    height: 10rem;
+    overflow: hidden;
+}
+.CommunityImage{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-top: -50px;
+    padding: 5px;
+    background-color: white;
+}
+.CommunityButtons{
+    border: solid 1px grey;
+    border-radius: 20px;
+}
+.RightSide{
+    background-color: #eaedef;
+    border-radius: 10px;
+}
+.bannerimg{
+    margin-top: -18rem;
+    margin-left: -10rem;
+}
+.BannerDiv{
+    height: 20rem;
+}
+.CommunityName{
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+}
+.list{
+    list-style: none;
+}
+.sidebarname{
+    font-weight: 700;
+}
