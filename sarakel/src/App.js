@@ -27,6 +27,7 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="/post/:postId" element={<PostPage />} />
+          <Route path="/community/:communityId" element={<PostPage />} />
           <Route path="login/reset_password/:token" element={<ResetPasswordModal />} />
           <Route path="login/reset_username/:token" element={<ResetUsernameModal />} /> 
         </Routes>

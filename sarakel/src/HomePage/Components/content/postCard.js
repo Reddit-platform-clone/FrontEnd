@@ -22,11 +22,13 @@ const PostCard = ({
   renderMediaOrTruncateText,
   calculateTimeSinceCreation,
   handlePostClick,
+  handleCommunityClick
 }) => {
   const [voteStatus, setVoteStatus] = useState(null);
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
+
 
   useEffect(() => {
     // Function to fetch community info based on _id
@@ -82,11 +84,13 @@ const PostCard = ({
   };
 
   return (
-    <div  className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
+    <div onClick={() => handlePostClick(post._id,post.username)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
       {/* onClick={() => handlePostClick(post._id)} */}
       <div className={classes["post-info"]}>
         <div className={classes["post-header"]}>
           <div className={classes["post-header-left"]} >
+            <div className={classes["post-header-left-community"]} onClick={() => handleCommunityClick(post.communityId)}
+>
           {/* onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} */}
             {post.image ? (
               <img src={post.image} className={classes["profile-photo"]} alt={post.title} />
@@ -94,6 +98,7 @@ const PostCard = ({
               <HiMiniUserGroup className={classes["profile-photo"]} />
             )}
             <p><b>r/{post.communityId}</b></p>
+            </div>
             <p>.</p>
             <p>{calculateTimeSinceCreation(post.createdAt)}</p>
             {isHovering && (

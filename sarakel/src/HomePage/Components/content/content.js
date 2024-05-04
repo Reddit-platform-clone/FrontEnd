@@ -27,6 +27,7 @@ const Content = () => {
   const [sortingType, setSortingType] = useState("best");
   const [showViewOptions, setShowViewOptions] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [selectedCommunityId, setCommunityId] = useState(null);
   const { token } = useAuth(); //init
 
   useEffect(() => {
@@ -301,13 +302,45 @@ const Content = () => {
     }
   };
 
-  const handlePostClick = (passedId) => {
+  const handleCommunityClick = (communityID) => {
+    if(!communityID){
+      return;
+    }
+    setSelectedPostId(null); 
+    setCommunityId(communityID);
+  }
+  
+  const handlePostClick = (passedId,passedUsername) => {
     if (!passedId) {
       return;
     }
-    console.log("Post clicked with ID:", passedId);
-    setSelectedPostId(passedId);
+    
+  
+    fetch(`http://localhost:5000/api/${passedUsername}/viewPost`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ postId: passedId })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Response from backend:', data);
+      setSelectedPostId(passedId);
+    })
+    .catch(error => {
+      console.error('Error sending request to backend:', error);
+    });
+  
+    
   };
+  
 
   useEffect(() => {
     console.log("selectedPostId updated:", selectedPostId);
@@ -434,6 +467,7 @@ const Content = () => {
       
 
 {selectedPostId && <Navigate to={`/post/${selectedPostId}`} />}
+{selectedCommunityId && <Navigate to={`/community/${selectedCommunityId}`} />}
 
       {!selectedPostId && (
       <div className={styles["post-list"]}>
@@ -448,7 +482,7 @@ const Content = () => {
             {/* Render Posts */}
             {posts.length === 0 ? (
               // No Posts Message
-              <p>No posts to display.</p>
+              <p className={styles["loading-posts"]}>No posts to display.</p>
             ) : (
               posts.map((post) => {
                 if (!hiddenPosts[post._id]) {
@@ -468,6 +502,7 @@ const Content = () => {
                         renderMediaOrTruncateText={renderMediaOrTruncateText}
                         calculateTimeSinceCreation={calculateTimeSinceCreation}
                         handlePostClick={handlePostClick}
+                        handleCommunityClick={handleCommunityClick}
                       />
                     ) : (
                       <CompactPostCard
