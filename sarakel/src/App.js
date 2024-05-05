@@ -20,14 +20,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<HomePage />} />
-          <Route path='/settings' element={<Settings />} />
-          <Route path='/messages' element={<MessagesPage />} />
-          <Route path='/moderation' element={<Moderation />} />
-          <Route path='/createpost' element={<CreatePost />} />
-          <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/notifications' element={<Notifications />} />
-          <Route path="/" element={<Users />} />
+          <Route path='settings' element={<Settings />} />
+          <Route path='MessagesPage' element={<MessagesPage />} />
+          <Route path='Moderation' element={<Moderation />} />
+          <Route path='CreatePost' element={<CreatePost />} />
+          <Route path='ProfilePage' element={<ProfilePage />} />
+          <Route path='Search' element={<Search />} />
+          <Route path='Notifications' element={<Notifications />} />
           <Route path="/user/:username/overview" element={<UsersProfile />} />
         </Routes>
       </BrowserRouter>

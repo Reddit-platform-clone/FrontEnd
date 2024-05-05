@@ -7,6 +7,21 @@ import { LuShare } from "react-icons/lu";
 
 function Posts({ username }) {
     const [posts, setPosts] = useState([]);
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        async function fetchUserData() {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/user/${username}/overview`);
+                console.log('User Data:', response.data);
+                setUserData(response.data);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        fetchUserData();
+    }, [username]);
 
     useEffect(() => {
         async function fetchUserPosts() {
@@ -32,17 +47,17 @@ function Posts({ username }) {
         console.log(`Downvoting post with ID ${postId}`);
     };
 
+    if (!userData) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className={style.overviewPostComment1}>
             {posts.map(post => (
                 <div className={style.post} key={post.id}>
                     <div className={style.postheader}>
-                        {post.user && post.user.image && (
-                            <img src={post.user.image} alt='User Avatar' className={style.logoup1} />
-                        )}
-                        {post.user && post.user.name && (
-                            <span className={style.username2}>{username}</span>
-                        )}
+                        <img src={userData.profilePicture} alt='User Avatar' className={style.logoup1} />
+                        <span className={style.username2}>{userData.username}</span>
                         <div className={style.posttime}>
                             <span className={style.posttime}> {post.time} ago</span>
                         </div>
