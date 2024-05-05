@@ -34,7 +34,6 @@ const PostCard = ({
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [communityClick, setCommunityClick] = useState(false);
 
   useEffect(() => {
     // Function to fetch community info based on _id
@@ -109,13 +108,13 @@ const PostCard = ({
   const handleCopyToClipboard = (event) => {
     event.stopPropagation();
     navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
-      })
-      .catch((error) => {
-        console.error('Failed to copy:', error);
-      });
+      // .then(() => {
+      //   setCopied(true);
+      //   setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+      // })
+      // .catch((error) => {
+      //   console.error('Failed to copy:', error);
+      // });
       toast.success("Link copied")
   };
 

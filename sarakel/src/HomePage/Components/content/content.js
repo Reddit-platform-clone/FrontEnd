@@ -11,7 +11,7 @@ import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { useAuth } from "../AuthContext.js"; //import
-import  { Navigate } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
@@ -303,44 +303,40 @@ const Content = () => {
   };
 
   const handleCommunityClick = (communityID) => {
-    if(!communityID){
+    if (!communityID) {
       return;
     }
-    setSelectedPostId(null); 
+    setSelectedPostId(null);
     setCommunityId(communityID);
-  }
-  
-  const handlePostClick = (passedId,passedUsername) => {
+  };
+
+  const handlePostClick = (passedId, passedUsername) => {
     if (!passedId) {
       return;
     }
-    
-  
+
     fetch(`http://localhost:5000/api/${passedUsername}/viewPost`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ postId: passedId })
+      body: JSON.stringify({ postId: passedId }),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Response from backend:', data);
-      setSelectedPostId(passedId);
-    })
-    .catch(error => {
-      console.error('Error sending request to backend:', error);
-    });
-  
-    
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Response from backend:", data);
+        setSelectedPostId(passedId);
+      })
+      .catch((error) => {
+        console.error("Error sending request to backend:", error);
+      });
   };
-  
 
   useEffect(() => {
     console.log("selectedPostId updated:", selectedPostId);
@@ -411,151 +407,165 @@ const Content = () => {
       <ToastContainer />
 
       {!selectedPostId && (
-      <div className={styles["choice-above-posts"]}>
-        <div className={styles["content-sort-type"]}>
-          <button
-            className={styles["content-drop-down-list"]}
-            onClick={handleSortTypes}
-          >
-            {sortingType.charAt(0).toUpperCase() + sortingType.slice(1)}{" "}
-            <MdKeyboardArrowDown />
-          </button>
-          {showSortOptions && (
-            <div className={styles["options-content-sort-drop-down-list"]}>
-              <button onClick={() => handleSortingOption("Best")}>Best</button>
-              <button onClick={() => handleSortingOption("Hot")}>Hot</button>
-              <button onClick={() => handleSortingOption("Top")}>Top</button>
-              <button onClick={() => handleSortingOption("New")}>New</button>
-            </div>
-          )}
-        </div>
-
-        <div className={styles["content-view-type"]}>
-          <button
-            className={styles["content-drop-down-list"]}
-            onClick={handleViewTypes}
-          >
-            {viewType === "card" ? <BsViewStacked /> : <BsViewList />}{" "}
-            <MdKeyboardArrowDown />
-          </button>
-          {showViewOptions && (
-            <div className={styles["options-content-view-drop-down-list"]}>
-              <button
-                onClick={() => {
-                  setViewType("card");
-                  setShowViewOptions(false);
-                }}
-              >
-                <BsViewStacked />
-              </button>
-              <button
-                onClick={() => {
-                  setViewType("compact");
-                  setShowViewOptions(false);
-                }}
-              >
-                <BsViewList />
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    )}
-
-
-    <div className={styles["post-list-container"]}>
-      
-
-{selectedPostId && <Navigate to={`/post/${selectedPostId}`} />}
-{selectedCommunityId && <Navigate to={`/community/${selectedCommunityId}`} />}
-
-      {!selectedPostId && (
-      <div className={styles["post-list"]}>
-        {loading ? (
-          // Loading Indicator
-          <div className={styles["loading-posts"]}>
-            <p>Loading...</p>
-            <SyncLoader color="black" />
-          </div>
-        ) : (
-          <>
-            {/* Render Posts */}
-            {posts.length === 0 ? (
-              // No Posts Message
-              <p className={styles["loading-posts"]}>No posts to display.</p>
-            ) : (
-              posts.map((post) => {
-                if (!hiddenPosts[post._id]) {
-                  return (
-                    // Conditional Rendering of Post Card or Compact Post Card
-                    viewType === "card" ? (
-                      <PostCard
-                        key={post._id}
-                        post={post}
-                        joinStates={joinStates}
-                        saveStates={saveStates}
-                        handleJoinClick={handleJoinClick}
-                        handleSaveClick={handleSaveClick}
-                        handleReportClick={handleReportClick}
-                        handleHideClick={handleHideClick}
-                        handleVoteClick={handleVoteClick}
-                        renderMediaOrTruncateText={renderMediaOrTruncateText}
-                        calculateTimeSinceCreation={calculateTimeSinceCreation}
-                        handlePostClick={handlePostClick}
-                        handleCommunityClick={handleCommunityClick}
-                      />
-                    ) : (
-                      <CompactPostCard
-                        key={post._id}
-                        post={post}
-                        joinStates={joinStates}
-                        saveStates={saveStates}
-                        handleJoinClick={handleJoinClick}
-                        handleSaveClick={handleSaveClick}
-                        handleReportClick={handleReportClick}
-                        handleHideClick={handleHideClick}
-                        handleVoteClick={handleVoteClick}
-                        renderMediaOrTruncateText={renderMediaOrTruncateText}
-                        calculateTimeSinceCreation={calculateTimeSinceCreation}
-                        renderMediaWithCount={renderMediaWithCount}
-                        renderMedia={renderMedia}
-                      />
-                    )
-                  );
-                } else {
-                  return (
-                    // Hidden Post Message
-                    <div key={post._id} className={styles["hidden-post-card"]}>
-                      <p>Post hidden</p>
-                      <button
-                        onClick={() =>
-                          setHiddenPosts((prevHiddenPosts) => ({
-                            ...prevHiddenPosts,
-                            [post._id]: false,
-                          }))
-                        }
-                      >
-                        Undo
-                      </button>
-                    </div>
-                  );
-                }
-              })
+        <div className={styles["choice-above-posts"]}>
+          <div className={styles["content-sort-type"]}>
+            <button
+              className={styles["content-drop-down-list"]}
+              onClick={handleSortTypes}
+            >
+              {sortingType.charAt(0).toUpperCase() + sortingType.slice(1)}{" "}
+              <MdKeyboardArrowDown />
+            </button>
+            {showSortOptions && (
+              <div className={styles["options-content-sort-drop-down-list"]}>
+                <button onClick={() => handleSortingOption("Best")}>
+                  Best
+                </button>
+                <button onClick={() => handleSortingOption("Hot")}>Hot</button>
+                <button onClick={() => handleSortingOption("Top")}>Top</button>
+                <button onClick={() => handleSortingOption("New")}>New</button>
+              </div>
             )}
-          </>
+          </div>
+
+          <div className={styles["content-view-type"]}>
+            <button
+              className={styles["content-drop-down-list"]}
+              onClick={handleViewTypes}
+            >
+              {viewType === "card" ? <BsViewStacked /> : <BsViewList />}{" "}
+              <MdKeyboardArrowDown />
+            </button>
+            {showViewOptions && (
+              <div className={styles["options-content-view-drop-down-list"]}>
+                <button
+                  onClick={() => {
+                    setViewType("card");
+                    setShowViewOptions(false);
+                  }}
+                >
+                  <BsViewStacked />
+                </button>
+                <button
+                  onClick={() => {
+                    setViewType("compact");
+                    setShowViewOptions(false);
+                  }}
+                >
+                  <BsViewList />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      <div className={styles["post-list-container"]}>
+        {selectedPostId && <Navigate to={`/post/${selectedPostId}`} />}
+        {selectedCommunityId && (
+          <Navigate to={`/community/${selectedCommunityId}`} />
         )}
-      </div> 
-    )}
-    <div className={styles["content-recent-posts"]}>
-      <div className={styles["content-recent-posts-header"]}>
-        <h6>Recent posts</h6>
-        <button>clear</button>
+
+        {!selectedPostId && (
+          <div className={styles["post-list"]}>
+            {loading ? (
+              // Loading Indicator
+              <div className={styles["loading-posts"]}>
+                <p>Loading...</p>
+                <SyncLoader color="black" />
+              </div>
+            ) : (
+              <>
+                {/* Render Posts */}
+                {posts.length === 0 ? (
+                  // No Posts Message
+                  <p className={styles["loading-posts"]}>
+                    No posts to display.
+                  </p>
+                ) : (
+                  posts.map((post) => {
+                    if (!hiddenPosts[post._id]) {
+                      return (
+                        // Conditional Rendering of Post Card or Compact Post Card
+                        viewType === "card" ? (
+                          <PostCard
+                            key={post._id}
+                            post={post}
+                            joinStates={joinStates}
+                            saveStates={saveStates}
+                            handleJoinClick={handleJoinClick}
+                            handleSaveClick={handleSaveClick}
+                            handleReportClick={handleReportClick}
+                            handleHideClick={handleHideClick}
+                            handleVoteClick={handleVoteClick}
+                            renderMediaOrTruncateText={
+                              renderMediaOrTruncateText
+                            }
+                            calculateTimeSinceCreation={
+                              calculateTimeSinceCreation
+                            }
+                            handlePostClick={handlePostClick}
+                            handleCommunityClick={handleCommunityClick}
+                          />
+                        ) : (
+                          <CompactPostCard
+                            key={post._id}
+                            post={post}
+                            joinStates={joinStates}
+                            saveStates={saveStates}
+                            handleJoinClick={handleJoinClick}
+                            handleSaveClick={handleSaveClick}
+                            handleReportClick={handleReportClick}
+                            handleHideClick={handleHideClick}
+                            handleVoteClick={handleVoteClick}
+                            renderMediaOrTruncateText={
+                              renderMediaOrTruncateText
+                            }
+                            calculateTimeSinceCreation={
+                              calculateTimeSinceCreation
+                            }
+                            renderMediaWithCount={renderMediaWithCount}
+                            renderMedia={renderMedia}
+                          />
+                        )
+                      );
+                    } else {
+                      return (
+                        // Hidden Post Message
+                        <div
+                          key={post._id}
+                          className={styles["hidden-post-card"]}
+                        >
+                          <p>Post hidden</p>
+                          <button
+                            onClick={() =>
+                              setHiddenPosts((prevHiddenPosts) => ({
+                                ...prevHiddenPosts,
+                                [post._id]: false,
+                              }))
+                            }
+                          >
+                            Undo
+                          </button>
+                        </div>
+                      );
+                    }
+                  })
+                )}
+              </>
+            )}
+          </div>
+        )}
+        <div className={styles["content-recent-posts"]}>
+          <div className={styles["content-recent-posts-header"]}>
+            <h6>Recent posts</h6>
+            <button>clear</button>
+          </div>
+          <HiMiniUserGroup />
+        </div>
       </div>
-      <HiMiniUserGroup />
     </div>
-    </div>
-  </div>
-);
+  );
 };
 
 export default Content;
