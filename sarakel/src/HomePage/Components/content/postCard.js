@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BiSolidUpvote, BiSolidDownvote, BiUpvote, BiDownvote } from "react-icons/bi";
+import {
+  BiSolidUpvote,
+  BiSolidDownvote,
+  BiUpvote,
+  BiDownvote,
+} from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { IoShareOutline } from "react-icons/io5";
 import { BiHide } from "react-icons/bi";
@@ -8,7 +13,6 @@ import { HiMiniUserGroup } from "react-icons/hi2";
 import { useAuth } from "../AuthContext.js"; //import
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import  { Navigate } from 'react-router-dom'
 import classes from "./postCard.module.css";
 
 const PostCard = ({
@@ -23,41 +27,43 @@ const PostCard = ({
   renderMediaOrTruncateText,
   calculateTimeSinceCreation,
   handlePostClick,
-  handleCommunityClick
+  handleCommunityClick,
 }) => {
   const [voteStatus, setVoteStatus] = useState(null);
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [communityClick, setCommunityClick] = useState(false);
 
   useEffect(() => {
     // Function to fetch community info based on _id
     const fetchCommunityInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/community/${post._id}/getCommunityInfo`);
+        const response = await fetch(
+          `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
+        );
         const data = await response.json();
         setCommunityInfo(data); // Set community info state
-        console.log("Community info with data:", data);
+        // console.log("Community info with data:", data);
       } catch (error) {
         console.error("Error fetching community info:", error);
       }
     };
 
+    // Fetch community info if post.communityId exists
     if (post.communityId) {
-      fetchCommunityInfo(); // Fetch community info when post.communityId changes
+      fetchCommunityInfo();
     }
-  }, [post.communityId]);
+  }, [post._id]); // Use post._id as the dependency
 
   useEffect(() => {
-    console.log("Community info with community info:", communityInfo);
+    // console.log("Community info with community info:", communityInfo);
   }, [communityInfo]);
-  
 
   const handleMouseOver = () => {
     setIsHovering(true);
   };
-
 
   const handleMouseOut = () => {
     setIsHovering(false);
@@ -88,32 +94,69 @@ const PostCard = ({
     toggleVote(rank);
   };
 
-  // const handleCommunityClick = (event, communityId) => {
-  //   event.stopPropagation();
-  //   console.log("inside handle community click :");
-  //   setCommunityClick(true)
-  // }
+  const handleSaveButtonClick = (event, postId) => {
+    event.stopPropagation();
+    handleSaveClick(postId);
+  };
+  const handleReportButtonClick = (event, postId, Username) => {
+    event.stopPropagation();
+    handleReportClick(postId, Username);
+  };
+  const handleHideButtonClick = (event, postId) => {
+    event.stopPropagation();
+    handleHideClick(postId);
+  };
+  const handleCopyToClipboard = (event) => {
+    event.stopPropagation();
+    navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+      })
+      .catch((error) => {
+        console.error('Failed to copy:', error);
+      });
+      toast.success("Link copied")
+  };
+
   return (
-    <div onClick={() => handlePostClick(post._id,post.username)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
-      {/* onClick={() => handlePostClick(post._id)} */}
+    <div
+      onClick={() => handlePostClick(post._id, post.username)}
+      className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}
+    >
       <div className={classes["post-info"]}>
         <div className={classes["post-header"]}>
-          <div className={classes["post-header-left"]} >
-            <div className={classes["post-header-left-community"]} onClick={() => handleCommunityClick(post.communityId)}
->
-          {/* onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} */}
-            {communityInfo && communityInfo.displayPicUrl? (
-              <img src={communityInfo.displayPicUrl} className={classes["profile-photo"]} alt={post.title} />
-            ) : (
-              <HiMiniUserGroup className={classes["profile-photo"]} />
-            )}
-            <p><b>r/{post.communityId}</b></p>
+          <div className={classes["post-header-left"]}>
+            <div
+              className={classes["post-header-left-community"]}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+              onClick={() => handleCommunityClick(post.communityId)}
+            >
+              {communityInfo?.data?.data?.displayPic ? (
+                <img
+                  src={communityInfo.data.data.displayPic}
+                  className={classes["profile-photo"]}
+                  alt={post.title}
+                />
+              ) : (
+                <HiMiniUserGroup className={classes["profile-photo"]} />
+              )}
+
+              <p>
+                <b>r/{post.communityId}</b>
+              </p>
             </div>
             <p>.</p>
             <p>{calculateTimeSinceCreation(post.createdAt)}</p>
             {isHovering && (
               <div className={classes["post-card-hovered-community"]}>
-                <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png'} className={classes["post-card-hovered-community-background-photo"]} />
+                <img
+                  src={communityInfo.data.data.displayPic}
+                  className={
+                    classes["post-card-hovered-community-background-photo"]
+                  }
+                />
                 <h2>Card Title</h2>
                 <p>Some card details here...</p>
                 {post.communityDesc}
@@ -123,26 +166,47 @@ const PostCard = ({
           <div className={classes["post-header-right"]}>
             <button
               className={classes["join-btn-post"]}
-              onClick={() => handleJoinClick(post._id, post.communityId)}
+              onClick={(event) =>
+                handleJoinButtonClick(event, post._id, post.communityId)
+              }
             >
               {joinStates[post._id] ? "Leave" : "Join"}
             </button>
             <div className={classes["dropdown-post"]}>
-              <button className={classes["dropbtn-post"]}>&#8226;&#8226;&#8226;</button>
+              <button className={classes["dropbtn-post"]}>
+                &#8226;&#8226;&#8226;
+              </button>
               <div className={classes["dropdown-content-post"]}>
-                <a href="#"><BiHide /> show fewer posts like this</a>
-                <a href="#" onClick={() => handleSaveClick(post._id)}>
+                <a href="#">
+                  <BiHide /> show fewer posts like this
+                </a>
+                <a
+                  href="#"
+                  onClick={(event) => handleSaveButtonClick(event, post._id)}
+                >
                   <CiBookmark /> {saveStates[post._id] ? "Unsave" : "save"}
                 </a>
-                <a href="#" onClick={() => handleReportClick(post._id, post.username)}>
+                <a
+                  href="#"
+                  onClick={(event) =>
+                    handleReportButtonClick(event, post._id, post.username)
+                  }
+                >
                   <CiFlag1 /> report
                 </a>
-                <a href="#" onClick={() => handleHideClick(post._id)}><BiHide /> hide</a>
+                <a
+                  href="#"
+                  onClick={(event) => handleHideButtonClick(event, post._id)}
+                >
+                  <BiHide /> hide
+                </a>
               </div>
             </div>
           </div>
         </div>
-        <p className={classes["post-title"]}><b>{post.title}</b></p>
+        <p className={classes["post-title"]}>
+          <b>{post.title}</b>
+        </p>
         {/* <p>{communityInfo?.data?.data?.description || "No description"}</p> */}
         {renderMediaOrTruncateText(post.media, post.content, false)}
       </div>
@@ -152,25 +216,44 @@ const PostCard = ({
             <button
               onClick={(event) => handleVoteButtonClick(event, 1)}
               className={classes["upvote-button"]}
-              style={{ backgroundColor: voteStatus === 1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
+              style={{
+                backgroundColor:
+                  voteStatus === 1 ? "rgba(128, 128, 128, 0.3)" : "transparent",
+              }}
             >
               {voteStatus === 1 ? <BiSolidUpvote color="red" /> : <BiUpvote />}
             </button>
-            <p>{post.upvotes - post.downvotes + (voteStatus ? voteStatus : 0)}</p>
+            <p>
+              {post.upvotes - post.downvotes + (voteStatus ? voteStatus : 0)}
+            </p>
             <button
               onClick={(event) => handleVoteButtonClick(event, -1)}
               className={classes["downvote-button"]}
-              style={{ backgroundColor: voteStatus === -1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
+              style={{
+                backgroundColor:
+                  voteStatus === -1
+                    ? "rgba(128, 128, 128, 0.3)"
+                    : "transparent",
+              }}
             >
-              {voteStatus === -1 ? <BiSolidDownvote color="blue" /> : <BiDownvote />}
+              {voteStatus === -1 ? (
+                <BiSolidDownvote color="blue" />
+              ) : (
+                <BiDownvote />
+              )}
             </button>
           </div>
           <div className={classes["middle-post"]}>
-            <button><FaRegCommentAlt /></button>
+            <button>
+              <FaRegCommentAlt />
+            </button>
             <p>{post.numberOfComments}</p>
           </div>
-          <div className={classes["right-post"]}>
-            <button><IoShareOutline /></button>
+          <div className={classes["right-post"]} onClick={(event) => handleCopyToClipboard(event,post._id)}
+>
+            <button>
+              <IoShareOutline />
+            </button>
             <p>Share</p>
           </div>
         </div>
