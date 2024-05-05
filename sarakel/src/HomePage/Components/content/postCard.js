@@ -8,6 +8,7 @@ import { HiMiniUserGroup } from "react-icons/hi2";
 import { useAuth } from "../AuthContext.js"; //import
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import  { Navigate } from 'react-router-dom'
 import classes from "./postCard.module.css";
 
 const PostCard = ({
@@ -28,7 +29,7 @@ const PostCard = ({
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
-
+  const [communityClick, setCommunityClick] = useState(false);
 
   useEffect(() => {
     // Function to fetch community info based on _id
@@ -37,8 +38,7 @@ const PostCard = ({
         const response = await fetch(`http://localhost:5000/api/community/${post._id}/getCommunityInfo`);
         const data = await response.json();
         setCommunityInfo(data); // Set community info state
-        console.log("Community info response:", communityInfo);
-        console.log("Community info:", data);
+        console.log("Community info with data:", data);
       } catch (error) {
         console.error("Error fetching community info:", error);
       }
@@ -48,6 +48,11 @@ const PostCard = ({
       fetchCommunityInfo(); // Fetch community info when post.communityId changes
     }
   }, [post.communityId]);
+
+  useEffect(() => {
+    console.log("Community info with community info:", communityInfo);
+  }, [communityInfo]);
+  
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -83,6 +88,11 @@ const PostCard = ({
     toggleVote(rank);
   };
 
+  // const handleCommunityClick = (event, communityId) => {
+  //   event.stopPropagation();
+  //   console.log("inside handle community click :");
+  //   setCommunityClick(true)
+  // }
   return (
     <div onClick={() => handlePostClick(post._id,post.username)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
       {/* onClick={() => handlePostClick(post._id)} */}
@@ -92,8 +102,8 @@ const PostCard = ({
             <div className={classes["post-header-left-community"]} onClick={() => handleCommunityClick(post.communityId)}
 >
           {/* onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} */}
-            {post.image ? (
-              <img src={post.image} className={classes["profile-photo"]} alt={post.title} />
+            {communityInfo && communityInfo.displayPicUrl? (
+              <img src={communityInfo.displayPicUrl} className={classes["profile-photo"]} alt={post.title} />
             ) : (
               <HiMiniUserGroup className={classes["profile-photo"]} />
             )}

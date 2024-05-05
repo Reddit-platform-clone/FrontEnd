@@ -12,7 +12,7 @@
     position: relative;
     border-radius: 10px;
     padding: 50px;
-    width: 690px;
+    width: 830px;
     height: 690px;
     transition: box-shadow 0.3s ease;
     background-color: none;
@@ -42,7 +42,7 @@
   .post-card:hover {
     background-color: rgba(128, 128, 128, 0.1);
   }
-  
+/*   
   .post-image {
     margin-top: 10px;
     width: 540px;
@@ -60,7 +60,7 @@
     object-fit: cover;
     border-radius: 20px;
   }
-  
+   */
   .post-info {
     padding: 15px;
     margin-top: -32px;
@@ -274,6 +274,10 @@
     margin-right: 5px;
   }
   
+  .post-header-left-community{
+    display: flex;
+    align-items: center;
+  }
 
   /* postCard.module.css
 .post-header-left {
