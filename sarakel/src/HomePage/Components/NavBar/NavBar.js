@@ -58,7 +58,7 @@ function NavBar() {
           </div>
         </div>
       </div>
-      <hr className={styles["m-0"]} />
+      <div className={styles["divider"]} />
     </div>
   );
 }

@@ -50,7 +50,7 @@ function NavBarUnlogged() {
           </div>
         </div>
       </div>
-      <hr className={styles["m-0"]} />
+      <div className={styles["divider"]} />
 
       {/* Render login modal if showLogin is true */}
       {showLogin && <LogIn onSuccessfulLogin={handleSuccessfulLogin} onCloseModal={handleCloseModal} />}

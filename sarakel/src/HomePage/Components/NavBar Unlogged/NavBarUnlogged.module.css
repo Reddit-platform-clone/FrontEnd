@@ -178,7 +178,12 @@ input[type="text"]:focus {
     font-size: 25px; /* Increase the size of the close icon */
   }
   
-
+  .divider {
+    height: 1px;
+    background-color: #ddd; /* Adjust the color of the divider */
+    margin: 0; /* Remove any default margins */
+  }
+  
   @media screen and (max-width: 560px) {
     .container-fluid {
       height: 40%;
