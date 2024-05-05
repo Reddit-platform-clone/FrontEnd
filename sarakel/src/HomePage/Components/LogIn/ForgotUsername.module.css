@@ -100,6 +100,25 @@
     text-decoration: none;
 }
 
+#forget-username-email {
+  border: none;
+  background-color: rgba(128, 128, 128, 0.2);
+  max-width: 400px;
+  width: 100%;
+  height: 58px;
+  border-radius: 15px;
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+#forget-username-email:focus::placeholder,
+#forget-username-email:not(:placeholder-shown)::placeholder {
+  transform: translateY(-16px);
+  font-size: 13px; 
+  color: rgba(128, 128, 128, 1); 
+  opacity: 0.6; 
+  transition: all 0.3s ease; 
+}
 @media only screen and (max-width: 768px) {
   .forget-username-content {
       margin-left: 20px;
