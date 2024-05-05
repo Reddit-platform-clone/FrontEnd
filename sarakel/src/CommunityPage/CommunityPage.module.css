@@ -38,3 +38,9 @@
 .sidebarname{
     font-weight: 700;
 }
+.Content{
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 40rem;
+
+}

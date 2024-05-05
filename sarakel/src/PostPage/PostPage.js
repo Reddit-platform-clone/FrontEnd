@@ -5,8 +5,10 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import classes from './PostPage.module.css'
 import NavBar from '../HomePage/Components/NavBar/NavBar'
 import SideBar from '../HomePage/Components/SideBar/SideBar'
+import {useParams} from "react-router-dom"
 export default function PostPage(){
-
+    const {postId} = useParams();
+    console.log(postId)
     return(
         <div className="container-fluid  w-100">
            <div className="row">

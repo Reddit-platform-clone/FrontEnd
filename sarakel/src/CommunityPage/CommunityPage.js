@@ -7,6 +7,7 @@ import axios from 'axios';
 import SideBar from "../HomePage/Components/SideBar/SideBar";
 import Content from "./content/content";
 import NavBar from "../HomePage/Components/NavBar/NavBar";
+import {useAuth} from "../HomePage/Components/AuthContext"
 
 export default function CommunityPage(){
     const [CommunityName, setCommName] = React.useState()
@@ -16,6 +17,19 @@ export default function CommunityPage(){
     const [Banner, setBanner] = React.useState()
     const [Mods, setMods] = React.useState([])
     const [userRule, setUserRole] = React.useState()
+    const [member, setMember] = React.useState()
+    const [ModBool, steModbool] = React.useState()
+    const {token} = useAuth()
+    async function GetRole(){
+        if(token){
+            const promise = await axios.get('http://localhost:5000/api/r/friedChicken', {
+                headers:{Authorization: `Bearer ${token}`}
+        });
+            return promise.data
+        } else{
+            return "not"
+        }
+    }
     async function GetCommInfo(){
         const promise = await axios.get('http://localhost:5000/api/community/khalledAshrafNargasi/getCommunityInfoByName');
         return promise.data;
@@ -37,15 +51,15 @@ export default function CommunityPage(){
     },[])
     return(
         <div className="container-fluid w-100 vh-100 ">
-            <div className="row  sticky-top">
+            <div className="row sticky-top">
                 
                     <NavBar></NavBar>
             </div>
             <div className="row ">
-                <div className="col-3 vh-100">
+                <div className="col-2 vh-100">
                     <SideBar></SideBar>
                 </div>
-                <div className="col-9 mt-1 ">
+                <div className="col-10 mt-1 ">
                     <div className="row">
                         <div className={`col-12`}>
                             <div className={`  ${classes.Banner}`}>
@@ -71,13 +85,10 @@ export default function CommunityPage(){
                         </div>
                     </div>
                     <div className="row col-12 mt-3">
-                        <div className="col-8 ">
-                            <Content></Content>
+                        <div className={`col-9  ${classes.Content}`}>
+                            <Content ></Content>
                         </div>
-                        {/* <div className={`col-8`}>
-                            posts
-                        </div> */}
-                        <div className="col-4 ">
+                        <div className="col-3 ">
                             <div className={`${classes.RightSide}`}>
                                 <div className="row justify-content-center align-items-center">
                                     <span className={`${classes.sidebarname} col-6 ms-3 mt-3`}>{CommunityName}</span>

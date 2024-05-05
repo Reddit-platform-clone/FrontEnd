@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./content.css";
+import styles from "./content.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
 import ReactPlayer from "react-player";
@@ -7,10 +7,13 @@ import PostCard from "./postCard.js";
 import CompactPostCard from "./compactPostCard.js";
 import { CiViewList } from "react-icons/ci";
 import { AiOutlinePicture } from "react-icons/ai";
-import ImageSlider from "./imageSlider.js";
+import ImageSlider from "./imageSlider";
 import { RiVideoFill } from "react-icons/ri";
-import { useAuth } from "../../HomePage/Components/AuthContext.js"; //import
+import { HiMiniUserGroup } from "react-icons/hi2";
+import { useAuth } from "../../HomePage/Components/AuthContext"; //import
+import  { Navigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
+import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
 const Content = () => {
@@ -23,28 +26,41 @@ const Content = () => {
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [sortingType, setSortingType] = useState("best");
   const [showViewOptions, setShowViewOptions] = useState(false);
-  const {token} = useAuth()
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const { token } = useAuth(); //init
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          'http://localhost:5000/api/community/friedChicken/getPosts'
-        ,{
-          method: 'GET',
-          headers: {Authorization: `Bearer ${token}`},
-      });
+        let url;
+        if (token){
+          // If user is not logged in (token is null)
+          url = `http://localhost:5000/api/community/friedChicken/getPosts`;
+        }
+
+        const response = await fetch(url, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        });
         const responseData = await response.json();
+        console.log("Response data:", responseData.data); // For debugging
         if (response.ok) {
-          setPosts(responseData.data);
-          console.log(33)
+          if (Array.isArray(responseData.data)) {
+            // If responseData.data is an array, set posts directly
+            setPosts(responseData.data);
+          } else {
+            // If responseData.data is a single post object, wrap it in an array
+            setPosts([responseData.data]);
+          }
           setLoading(false);
         } else {
-          throw new Error(
-            responseData.message || "Failed to fetch posts"
-          );
+          throw new Error(responseData.message || "Failed to fetch posts");
         }
       } catch (error) {
         console.error("Error fetching posts:", error);
+        setPosts([]); // Set posts to empty array if fetching fails
         setLoading(false);
       }
     };
@@ -54,7 +70,7 @@ const Content = () => {
     return () => {
       // Cleanup tasks if needed
     };
-  }, [sortingType]); // Refetch posts when sortingType changes
+  }, [sortingType, token]);
 
   const handleSortTypes = () => {
     setShowSortOptions(!showSortOptions);
@@ -62,107 +78,51 @@ const Content = () => {
   };
 
   const handleSortingOption = (option) => {
+    if (!token) {
+      toast.error("You need to Login first");
+      return;
+    }
     setSortingType(option.toLowerCase());
     setShowSortOptions(false);
   };
 
+  const handleVoteClick = async (_id, rank) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          rank: rank, // Rank can be 1 for upvote, 0 to clear vote, or -1 for downvote
+          type: "post",
+          entityId: _id,
+        }),
+      });
+      console.log("post id is :", _id);
+      console.log("response : ", response);
+      // Check for the status code
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-  // const handleVoteClick = async (postId, rank) => {
-  //   if (!token) {
-  //     toast.error("You need to Login first");
-  //     return;
-  //   }
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/vote", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         rank: rank, // Rank can be 1 for upvote, 0 to clear vote, or -1 for downvote
-  //         type: "post",
-  //         entityId: "661d88eff83edb1b16c0c394",
-  //       }),
-  //     });
-  //     console.log("post id is :",postId)
-  //     console.log("response : ",response)
-  
-  //     // Check for the status code
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-  
-  //     const responseData = await response.json();
-  //     console.log(responseData.message);
-  //   } catch (error) {
-  //     console.error("Error voting:", error);
-  //   }
-  // };
-  
-  
-  
-  const handleUpvoteClick = (postId) => {
-    if (!token) {
-      toast.error("You need to Login first");
-      return;
+      const responseData = await response.json();
+    } catch (error) {
+      console.error("Error voting:", error);
     }
-    console.log("upvote")
-    console.log("post id : ",postId)
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.postId === postId
-          ? {
-              ...post,
-              upvoted: !post.upvoted,
-              downvoted: false,
-              likes: post.upvoted
-                ? parseInt(post.likes) - 1
-                : parseInt(post.likes) + 1,
-            }
-          : post
-      )
-    );
   };
 
-  const handleDownvoteClick = (postId) => {
-    if (!token) {
-      toast.error("You need to Login first");
-      return;
-    }
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.postId === postId
-          ? {
-              ...post,
-              upvoted: false,
-              downvoted: !post.downvoted,
-              likes: post.downvoted
-                ? parseInt(post.likes) + 1
-                : parseInt(post.likes) - 1,
-            }
-          : post
-      )
-    );
-  };
-
-  const getPostInfo = (postId) => {
-    const post = posts.find((post) => post.postId === postId);
-    return post ? { name: post.name, userId: post.userId } : null;
-  };
-
-  const handleJoinClick = async (postId) => {
+  const handleJoinClick = async (_id, name) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     try {
-      const { name, userId } = getPostInfo(postId);
-      const isJoining = !joinStates[postId];
+      // const { name, userId } = getPostInfo(_id);
+      const isJoining = !joinStates[_id];
       const response = await fetch(
-        `/api/community/${
-          isJoining ? "join" : "leave"
-        }`,
+        `http://localhost:5000/api/community/${isJoining ? "join" : "leave"}`,
         {
           method: "POST",
           headers: {
@@ -174,12 +134,14 @@ const Content = () => {
           }),
         }
       );
+      console.log("response : ", response);
       const responseData = await response.json();
       if (response.ok) {
         console.log(responseData.message);
+        toast.success(responseData.message);
         setJoinStates((prevState) => ({
           ...prevState,
-          [postId]: isJoining,
+          [_id]: isJoining,
         }));
       } else {
         throw new Error(
@@ -191,34 +153,39 @@ const Content = () => {
     }
   };
 
-  const handleSaveClick = async (postId) => {
-
+  const handleSaveClick = async (_id) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
     // Check if the post is already saved
-    const isSaved = saveStates[postId];
-  
+    const isSaved = saveStates[_id];
+
     try {
-      const response = await fetch(`/api/${isSaved ? 'unsave' : 'save'}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          type: "post",
-          entityId: postId,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/${isSaved ? "unsave" : "save"}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            type: "post",
+            entityId: _id,
+          }),
+        }
+      );
       const responseData = await response.json();
+      console.log("catch");
+      console.log(responseData.message);
       if (response.ok) {
+        toast.success(responseData.message);
+        console.log("catch");
         console.log(responseData.message);
-        // Toggle the save state for the post
         setSaveStates((prevState) => ({
           ...prevState,
-          [postId]: !isSaved,
+          [_id]: !isSaved,
         }));
       } else {
         throw new Error(responseData.message || "Failed to save/unsave post");
@@ -227,15 +194,15 @@ const Content = () => {
       console.error("Error saving/unsaving post:", error);
     }
   };
-  
-  const handleReportClick = async (postId, userId) => {
+
+  const handleReportClick = async (_id, userId) => {
     if (!token) {
       toast.error("You need to Login first");
       return;
     }
-  
+
     try {
-      const response = await fetch("/api/report", {
+      const response = await fetch("http://localhost:5000/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -244,34 +211,57 @@ const Content = () => {
         body: JSON.stringify({
           reason: "dummy",
           type: "post",
-          entityId: postId,
+          entityId: _id,
           reportedUsername: userId,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const responseData = await response.json();
       console.log(responseData.message);
+      toast.success(responseData.message);
     } catch (error) {
       console.error("Error reporting post:", error);
+      toast.error("Failed to report post");
     }
   };
-  
 
-  const handleHideClick = (postId) => {
-    console.log(posts)
+  const handleHideClick = (_id) => {
+    console.log(posts);
     setHiddenPosts((prevHiddenPosts) => ({
       ...prevHiddenPosts,
-      [postId]: true,
+      [_id]: true,
     }));
   };
 
   const handleViewTypes = () => {
     setShowViewOptions(!showViewOptions);
     setShowSortOptions(false); // Close the sort options dropdown
+  };
+
+  const calculateTimeSinceCreation = (createdAt) => {
+    const currentTime = new Date();
+    const postTime = new Date(createdAt);
+    const timeDifference = currentTime - postTime;
+
+    // Convert milliseconds to seconds
+    const seconds = Math.floor(timeDifference / 1000);
+
+    if (seconds < 60) {
+      return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
+    } else if (seconds < 3600) {
+      const minutes = Math.floor(seconds / 60);
+      return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
+    } else if (seconds < 86400) {
+      const hours = Math.floor(seconds / 3600);
+      return `${hours} hour${hours !== 1 ? "s" : ""} ago`;
+    } else {
+      const days = Math.floor(seconds / 86400);
+      return `${days} day${days !== 1 ? "s" : ""} ago`;
+    }
   };
 
   const truncateText = (text, maxLength) => {
@@ -295,7 +285,7 @@ const Content = () => {
       return <ImageSlider slides={media} viewType={viewType} />;
     } else if (typeof media === "string") {
       if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-        return <img src={media} alt={text} className="post-image" />;
+        return <img src={media} alt={text} className={styles["post-image"]} />;
       } else {
         return (
           <ReactPlayer url={media} width="540px" height="500px" controls />
@@ -306,13 +296,37 @@ const Content = () => {
     }
   };
 
+  const handlePostClick = (passedId) => {
+    if (!passedId) {
+      return;
+    }
+    console.log("Post clicked with ID:", passedId);
+    setSelectedPostId(passedId);
+  };
+
+  useEffect(() => {
+    console.log("selectedPostId updated:", selectedPostId);
+  }, [selectedPostId]);
+
+  const handleBackButtonClick = () => {
+    setSelectedPostId(null);
+  };
+
   const renderMediaWithCount = (media, text) => {
     if (!media) {
-      return <CiViewList className="compact-post-card-image-compensation" />;
+      return (
+        <CiViewList
+          className={styles["compact-post-card-image-compensation"]}
+        />
+      );
     } else if (Array.isArray(media)) {
       if (media.length === 1) {
         return (
-          <img src={media[0]} alt={text} className="compact-post-card-image" />
+          <img
+            src={media[0]}
+            alt={text}
+            className={styles["compact-post-card-image"]}
+          />
         );
       } else {
         return (
@@ -320,9 +334,9 @@ const Content = () => {
             <img
               src={media[0]}
               alt={text}
-              className="compact-post-card-image"
+              className={styles["compact-post-card-image"]}
             />
-            <span className="compact-post-card-image-count">
+            <span className={styles["compact-post-card-image-count"]}>
               <AiOutlinePicture />
               {media.length}
             </span>
@@ -332,28 +346,44 @@ const Content = () => {
     } else if (typeof media === "string") {
       if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
         return (
-          <img src={media} alt={text} className="compact-post-card-image" />
+          <img
+            src={media}
+            alt={text}
+            className={styles["compact-post-card-image"]}
+          />
         );
       } else {
-        return <RiVideoFill className="compact-post-card-image-compensation" />;
+        return (
+          <RiVideoFill
+            className={styles["compact-post-card-image-compensation"]}
+          />
+        );
       }
     } else {
-      return <CiViewList className="compact-post-card-image-compensation" />;
+      return (
+        <CiViewList
+          className={styles["compact-post-card-image-compensation"]}
+        />
+      );
     }
   };
 
   return (
-    <div className="container">
+    <div className={styles["container"]}>
       <ToastContainer />
 
-      <div className="choice-above-posts">
-        <div className="content-sort-type">
-          <button className="content-drop-down-list" onClick={handleSortTypes}>
+      {!selectedPostId && (
+      <div className={styles["choice-above-posts"]}>
+        <div className={styles["content-sort-type"]}>
+          <button
+            className={styles["content-drop-down-list"]}
+            onClick={handleSortTypes}
+          >
             {sortingType.charAt(0).toUpperCase() + sortingType.slice(1)}{" "}
             <MdKeyboardArrowDown />
           </button>
           {showSortOptions && (
-            <div className="options-content-sort-drop-down-list">
+            <div className={styles["options-content-sort-drop-down-list"]}>
               <button onClick={() => handleSortingOption("Best")}>Best</button>
               <button onClick={() => handleSortingOption("Hot")}>Hot</button>
               <button onClick={() => handleSortingOption("Top")}>Top</button>
@@ -362,13 +392,16 @@ const Content = () => {
           )}
         </div>
 
-        <div className="content-view-type">
-          <button className="content-drop-down-list" onClick={handleViewTypes}>
+        <div className={styles["content-view-type"]}>
+          <button
+            className={styles["content-drop-down-list"]}
+            onClick={handleViewTypes}
+          >
             {viewType === "card" ? <BsViewStacked /> : <BsViewList />}{" "}
             <MdKeyboardArrowDown />
           </button>
           {showViewOptions && (
-            <div className="options-content-view-drop-down-list">
+            <div className={styles["options-content-view-drop-down-list"]}>
               <button
                 onClick={() => {
                   setViewType("card");
@@ -389,77 +422,94 @@ const Content = () => {
           )}
         </div>
       </div>
+    )}
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="post-list">
-          {posts.length === 0 ? (
-            <p>No posts to display.</p>
-          ) : (
-            posts.map((post) =>
-              post.postId &&
-              post.name &&
-              post.image &&
-              post.title &&
-              (post.media || post.content) &&
-              post.likes &&
-              post.comments &&
-              post.time &&
-              post.reason ? (
-                !hiddenPosts[post.postId] ? (
-                  viewType === "card" ? (
-                    <PostCard
-                      key={post.postId}
-                      post={post}
-                      joinStates={joinStates}
-                      saveStates={saveStates}
-                      handleJoinClick={handleJoinClick}
-                      handleSaveClick={handleSaveClick}
-                      handleReportClick={handleReportClick}
-                      handleHideClick={handleHideClick}
-                      handleUpvoteClick={handleUpvoteClick}
-                      handleDownvoteClick={handleDownvoteClick}
-                      renderMediaOrTruncateText={renderMediaOrTruncateText}
-                    />
-                  ) : (
-                    <CompactPostCard
-                      key={post.id}
-                      post={post}
-                      joinStates={joinStates}
-                      saveStates={saveStates}
-                      handleJoinClick={handleJoinClick}
-                      handleSaveClick={handleSaveClick}
-                      handleReportClick={handleReportClick}
-                      handleHideClick={handleHideClick}
-                      handleUpvoteClick={handleUpvoteClick}
-                      handleDownvoteClick={handleDownvoteClick}
-                      renderMediaWithCount={renderMediaWithCount}
-                      renderMedia={renderMedia}
-                    />
-                  )
-                ) : (
-                  <div key={post.postId} className="hidden-post-card">
-                    <p>Post hidden</p>
-                    <button
-                      onClick={() =>
-                        setHiddenPosts((prevHiddenPosts) => ({
-                          ...prevHiddenPosts,
-                          [post.postId]: false,
-                        }))
-                      }
-                    >
-                      Undo
-                    </button>
-                  </div>
-                )
-              ) : null
-            )
-          )}
-        </div>
-      )}
+
+    <div className={styles["post-list-container"]}>
+      
+
+{selectedPostId && <Navigate to={`/post/${selectedPostId}`} />}
+
+      {!selectedPostId && (
+      <div className={styles["post-list"]}>
+        {loading ? (
+          // Loading Indicator
+          <div className={styles["loading-posts"]}>
+            <p>Loading...</p>
+            <SyncLoader color="black" />
+          </div>
+        ) : (
+          <>
+            {/* Render Posts */}
+            {posts.length === 0 ? (
+              // No Posts Message
+              <p>No posts to display.</p>
+            ) : (
+              posts.map((post) => {
+                if (!hiddenPosts[post._id]) {
+                  return (
+                    // Conditional Rendering of Post Card or Compact Post Card
+                    viewType === "card" ? (
+                      <PostCard
+                        key={post._id}
+                        post={post}
+                        joinStates={joinStates}
+                        saveStates={saveStates}
+                        handleJoinClick={handleJoinClick}
+                        handleSaveClick={handleSaveClick}
+                        handleReportClick={handleReportClick}
+                        handleHideClick={handleHideClick}
+                        handleVoteClick={handleVoteClick}
+                        renderMediaOrTruncateText={renderMediaOrTruncateText}
+                        calculateTimeSinceCreation={calculateTimeSinceCreation}
+                        handlePostClick={handlePostClick}
+                      />
+                    ) : (
+                      <CompactPostCard
+                        key={post._id}
+                        post={post}
+                        joinStates={joinStates}
+                        saveStates={saveStates}
+                        handleJoinClick={handleJoinClick}
+                        handleSaveClick={handleSaveClick}
+                        handleReportClick={handleReportClick}
+                        handleHideClick={handleHideClick}
+                        handleVoteClick={handleVoteClick}
+                        renderMediaOrTruncateText={renderMediaOrTruncateText}
+                        calculateTimeSinceCreation={calculateTimeSinceCreation}
+                        renderMediaWithCount={renderMediaWithCount}
+                        renderMedia={renderMedia}
+                      />
+                    )
+                  );
+                } else {
+                  return (
+                    // Hidden Post Message
+                    <div key={post._id} className={styles["hidden-post-card"]}>
+                      <p>Post hidden</p>
+                      <button
+                        onClick={() =>
+                          setHiddenPosts((prevHiddenPosts) => ({
+                            ...prevHiddenPosts,
+                            [post._id]: false,
+                          }))
+                        }
+                      >
+                        Undo
+                      </button>
+                    </div>
+                  );
+                }
+              })
+            )}
+          </>
+        )}
+      </div> 
+    )}
+    
     </div>
-  );
+  </div>
+);
 };
 
 export default Content;
