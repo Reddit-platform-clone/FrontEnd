@@ -1,0 +1,68 @@
+.savedContainer {
+    margin: 20px;
+    position: relative; /* Make it relative to position child elements */
+  }
+  
+  .loadingText {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .savedList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .savedItem {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    width: 300px; /* Decreased width */
+    margin-top: 150px;
+    margin-left: 250px; /* Move to the right */
+  }
+  
+  .postContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensure content width takes full space */
+  }
+  
+  .authorContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .postAuthor {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .postCommunity {
+    color: #666;
+  }
+  
+  .postContent {
+    margin-top: 10px;
+  }
+  
+  .errorText {
+    color: red;
+    font-size: x-large;
+    position: absolute;
+    top: 20px; /* Adjust top position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+  }
+  
+  /* Adjust position for larger screens */
+  @media (min-width: 768px) {
+    .errorText {
+      top: 40px; /* Increase top position for larger screens */
+    }
+  }
+  

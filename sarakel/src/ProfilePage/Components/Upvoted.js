@@ -8,6 +8,7 @@ function Upvoted() {
   const [upvotedData, setUpvotedData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
+  const [userLogo, setUserLogo] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -18,13 +19,14 @@ function Upvoted() {
       })
       .then(response => {
         setUsername(response.data.user.username);
+        setUserLogo(response.data.user.profilePicture); 
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
       });
     }
   }, [token]);
-
+  
   useEffect(() => {
     const fetchUpvotedData = async () => {
       try {
@@ -48,7 +50,7 @@ function Upvoted() {
     if (token && username) {
       fetchUpvotedData();
     }
-  }, [token, username]);
+  }, [token, username]); // Add username to the dependency array
 
   return (
     <div className={styles.upvotedcontainer}>
@@ -57,19 +59,26 @@ function Upvoted() {
       ) : (
         <ul className={styles.upvotedlist}>
           {upvotedData.map((item, index) => (
-            <li className={styles.upvoted-item} key={index}>
+            <li className={styles.upvoteditem} key={index}>
               {item[0] === "post" ? (
-                <div>
-                  <p className={styles.postauthor}> {item[1][0].username}</p>
-                  <p className={styles.posttitle}> {item[1][0].title}</p>
-                  <p className={styles.postcommunity}>Community: {item[1][0].communityId}</p>
-                  {/* Add other relevant data for posts */}
+                <div className={styles.postcontainer}>
+                  {userLogo && <img src={userLogo} alt="User Logo" className={styles.userLogo} />}
+                  <div className={styles.authorContainer}>
+                    <div>
+                      {/* Use username from state */}
+                      <p className={styles.postauthor}>{username}</p>
+                      <p className={styles.postcommunity}>Community: {item[1][0].communityId}</p>
+                    </div>
+                  </div>
+                  <div className={styles.postContent}>
+                    <p>Title:</p>
+                    <p className={styles.postTitle}> {item[1][0].title}</p>
+                    <p className={styles.postContentText}>{item[1][0].content}</p>
+                  </div>
                 </div>
               ) : (
-                <div>
-                  {/* <p className={styles.commentid}>Comment ID: {item[1]._id}</p>
-                  <p className={styles.commentauthor}>Author: {item[1].username}</p> */}
-                  {/* Add other relevant data for comments */}
+                <div className={styles.commentcontainer}>
+                  {/* Add comments */}
                 </div>
               )}
             </li>

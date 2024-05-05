@@ -3,39 +3,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    top: 120px;
 }
 
 .post {
-    margin-bottom: 4vw; /* Adjust based on your design */
-    padding: 4vw; /* Adjust based on your design */
+    margin-bottom: 20px; /* Adjust based on your design */
+    padding: 20px; /* Adjust based on your design */
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 80%;
-    max-width: 600px;
+    max-width: 800px;
     position: relative;
-    top: 4vw; /* Adjust based on your design */
-    left: -11vw; /* Adjust based on your design */
+    top: 150px;
+    right: 100px;
 }
 
 .postTitle {
-    font-size: 2.5vw; /* Adjust based on your design */
+    font-size: 1.5rem; /* Adjust based on your design */
     font-weight: bold;
     color: #333;
-    margin-bottom: 0.5vw; /* Adjust based on your design */
+    margin-bottom: 10px; /* Adjust based on your design */
 }
 
 .postContent {
-    font-size: 1.8vw; /* Adjust based on your design */
+    font-size: 1rem;
     color: #555;
-    margin-bottom: 1vw; /* Adjust based on your design */
+    margin-top: 10px; /* Add margin between user info and post content */
+    margin-bottom: 10px; /* Add margin at the bottom */
 }
 
 .postActions {
     display: flex;
     justify-content: space-between;
-    margin-top: 2vw; /* Adjust based on your design */
+    margin-top: 10px; /* Adjust based on your design */
 }
 
 .postActions p {
@@ -43,30 +42,23 @@
 }
 
 .postActions p svg {
-    margin-right: 0.5vw; /* Adjust based on your design */
+    margin-right: 5px; /* Adjust based on your design */
 }
 
-/* Media Query for responsiveness */
-@media screen and (max-width: 768px) {
-    .postTitle {
-        font-size: 3vw;
-    }
+.postUserInfo {
+    display: flex;
+    align-items: center; /* Align items at the center */
+    margin-bottom: 10px; /* Add margin between user info and post content */
+}
 
-    .postContent {
-        font-size: 2vw;
-    }
+.userLogo {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Add margin for spacing */
+}
 
-    .post {
-        width: 90%;
-        max-width: 100%;
-        left: 5vw;
-    }
-
-    .postActions {
-        margin-top: 3vw;
-    }
-
-    .postActions p svg {
-        margin-right: 1vw;
-    }
+.username {
+    font-weight: bold; /* Make the username bold */
+    font-size: 1rem;
 }

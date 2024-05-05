@@ -1,0 +1,120 @@
+.downvotedcontainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 150px;
+    left: 250px;
+    width: 1000px; /* Adjust container width */
+    margin: 0px;
+  }
+  
+  .loadingtext {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .downvotedlist {
+    list-style: none;
+    padding: 0;
+    width: 700px; /* Adjust container width */
+    position: relative;
+    right: 150px;
+  
+  }
+  
+  .downvoteditem {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+    max-width: 2200px; /* Limit the maximum width of the post */
+  }
+  
+  .downvoteditem:hover {
+    transform: translateY(-5px); /* Add a slight lift effect on hover */
+  }
+  
+  .postcontainer {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+    max-width: 1200px; /* Limit the maximum width of the post */
+    width: calc(100% - 40px); /* Adjust width to be responsive and maintain padding */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+  
+  .postcontainer:hover {
+    transform: translateY(-5px); /* Add a slight lift effect on hover */
+  }
+  
+  .commentcontainer {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+    max-width: 500px; /* Limit the maximum width of the comment */
+  }
+  
+  .commentcontainer:hover {
+    transform: translateY(-5px); /* Add a slight lift effect on hover */
+  }
+  
+  .posttitle {
+    font-weight: bold;
+    font-size: 1.5rem; /* Increase font size for title */
+    margin-bottom: 10px; /* Increase spacing below title */
+    color: #333; /* Darken title color */
+  }
+  
+  .postdetails {
+    color: #888; /* Adjust details color */
+    font-size: 0.9rem; /* Decrease font size for details */
+    margin-bottom: 15px; /* Increase spacing below details */
+  }
+  
+  .postauthor {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0; /* Reset margin */
+    position: relative;
+    left: 40px;
+  }
+  
+  .postcommunity {
+    font-style: italic;
+    color: #007bff; /* Change community color to blue */
+  }
+  
+  .commentid {
+    color: #666;
+  }
+  
+  .userLogo {
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    margin-right: 10px; /* Add spacing between logo and username */
+    position: relative;
+    top: 30px;
+  }
+  
+  .authorContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Add margin between logo and username */
+  }
+  
+  @media (max-width: 768px) {
+    .downvoteditem,
+    .postcontainer,
+    .commentcontainer {
+      max-width: 100%; /* Adjust max width for smaller screens */
+    }
+  }
+  

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import style from './Posts.module.css';
 import { BiUpvote, BiDownvote } from "react-icons/bi";
-import { GoReply } from "react-icons/go";
-import { LuShare } from "react-icons/lu";
+import { FaComment } from "react-icons/fa";
 import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
 function Posts() {
@@ -11,6 +10,7 @@ function Posts() {
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
+  const [userLogo, setUserLogo] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -21,6 +21,7 @@ function Posts() {
       })
       .then(response => {
         setUsername(response.data.user.username);
+        setUserLogo(response.data.user.profilePicture);
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
@@ -60,12 +61,16 @@ function Posts() {
       ) : (
         userPosts.map(post => (
           <div className={style.post} key={post._id}>
+            <div className={style.postUserInfo}>
+              <img className={style.userLogo} src={userLogo} alt="User Logo" />
+              <p className={style.username}>{username}</p>
+            </div>
             <h3 className={style.postTitle}>{post.title}</h3>
             <p className={style.postContent}>{post.content}</p>
             <div className={style.postActions}>
               <p><BiUpvote/> {post.upvotes}</p>
               <p><BiDownvote/> {post.downvotes}</p>
-              <p>Comments: {post.commentCount}</p>
+              <p><FaComment/> {post.commentCount}</p>
             </div>
             {/* Render other post details as needed */}
           </div>

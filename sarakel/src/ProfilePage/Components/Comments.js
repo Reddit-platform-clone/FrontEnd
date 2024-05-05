@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import style from './Comments2.module.css';
 import { useAuth } from '../../HomePage/Components/AuthContext.js';
+import { BiUpvote, BiDownvote } from "react-icons/bi";
 
 export default function Comments() {
     const { token } = useAuth();
     const [username, setUsername] = useState(null);
+    const [userLogo, setUserLogo] = useState(null);
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -18,6 +20,7 @@ export default function Comments() {
             })
             .then(response => {
                 setUsername(response.data.user.username);
+                setUserLogo(response.data.user.profilePicture);
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);
@@ -63,12 +66,11 @@ export default function Comments() {
                     <div className={style.comment1233} key={comment._id}>
                         {/* Render each comment */}
                         <div className={style.commentheader11}>
-                            {/* Display user ID */}
-                            <span className={style.userid}>{comment.userID}</span>
-                            {/* Display upvotes */}
-                            <span className={style.upvotes}>Upvotes: {comment.upvote}</span>
-                            {/* Display downvotes */}
-                            <span className={style.downvotes}>Downvotes: {comment.downVote}</span>
+                            {/* Display user logo and username */}
+                            <div className={style.userinfo}>
+                                <img className={style.userLogo} src={userLogo} alt="User Logo" />
+                                <span className={style.username}>{username}</span>
+                            </div>
                             {/* Display spoiler status */}
                             {comment.isSpoiler && (
                                 <span className={style.spoiler}>Spoiler</span>
@@ -77,7 +79,18 @@ export default function Comments() {
                         <div className={style.commentcontent12}>
                             <p>{comment.content}</p>
                         </div>
-                       
+                        {/* Display upvotes */}
+                        <div className={style.votes}>
+                            <span className={style.upvotes}>
+                                <BiUpvote />
+                                {comment.upvote}
+                            </span>
+                            {/* Display downvotes */}
+                            <span className={style.downvotes}>
+                                <BiDownvote />
+                                {comment.downVote}
+                            </span>
+                        </div>
                     </div>
                 ))
             )}

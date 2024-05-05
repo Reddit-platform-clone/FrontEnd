@@ -1,49 +1,86 @@
+/* Base styles */
 .commentscontainer1 {
-    width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    height: auto;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-radius: 10px;
     display: flex;
-    flex-direction: column; /* Stack items from bottom to top */
-    position: absolute;
-    top: 240px;
-    left: 200px;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 120px;
 }
 
 .comment1233 {
+    margin-bottom: 4vw; /* Adjust based on your design */
+    padding: 4vw; /* Adjust based on your design */
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 15px;
-    width: 100%;
-    margin-bottom: 20px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+    top: 4vw; /* Adjust based on your design */
+    left: -8vw; /* Adjust based on your design */
 }
 
 .commentheader11 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; /* Add space between elements */
+    margin-bottom: 1vw; /* Adjust based on your design */
+}
+
+.userinfo {
+    display: flex;
+    align-items: center;
+}
+
+.userLogo {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Add margin for spacing */
+}
+
+.username {
+    font-weight: bold; /* Make the username bold */
+    font-size: 16px;
 }
 
 .commentcontent12 {
-    margin-top: 10px;
+    font-size: 1.8vw;
+    color: #555;
+    margin-bottom: 1vw; /* Add margin at the bottom */
 }
 
-.commentcontent12 p {
-    margin-bottom: 15px; /* Corrected selector */
+.votes {
+    display: flex;
+    flex-direction: row; /* Make upvotes and downvotes stack horizontally */
+    align-items: center; /* Align items in the center horizontally */
+    margin-top: 0.5vw; /* Reduce margin between comment content and upvotes/downvotes */
 }
 
-/* Additional style for vote info and spoiler */
-.userid {
-    font-weight: bold; /* Make user ID bold */
+.upvotes,
+.downvotes {
+    display: flex;
+    align-items: center; /* Align items in the center vertically */
 }
 
-.voteinfo {
-    margin-left: 10px; /* Add margin between vote info */
+.upvotes svg,
+.downvotes svg {
+    margin-right: 3px; /* Reduce margin between icon and count */
 }
 
 .spoiler {
-    color: red; /* Change color to red for spoiler alert */
+    color: red; /* Adjust based on your design */
+    font-weight: bold; /* Adjust based on your design */
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+    .comment1233 {
+        width: 90%;
+        max-width: 100%;
+        left: 5vw;
+    }
+
+    .commentcontent12 {
+        font-size: 14px; /* Adjust based on your design */
+    }
 }
