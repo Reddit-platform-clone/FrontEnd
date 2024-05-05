@@ -1,3 +1,5 @@
+// Posts.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import style from './Posts.module.css';
@@ -42,6 +44,7 @@ function Posts() {
           setUserPosts(response.data.posts);
           setLoading(false);
           console.log('User posts fetched successfully');
+          console.log('User posts:', response.data.posts); // Log user posts
         }
       } catch (error) {
         console.error('Error fetching user posts:', error);
@@ -59,22 +62,31 @@ function Posts() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        userPosts.map(post => (
-          <div className={style.post} key={post._id}>
-            <div className={style.postUserInfo}>
-              <img className={style.userLogo} src={userLogo} alt="User Logo" />
-              <p className={style.username}>{username}</p>
+        userPosts.map(post => {
+          console.log('Post media:', post.media); 
+          return (
+            <div className={style.post} key={post._id}>
+              <div className={style.postUserInfo}>
+                <img className={style.userLogo} src={userLogo} alt="User Logo" />
+                <p className={style.username}>{username}</p>
+              </div>
+              <h3 className={style.postTitle}>{post.title}</h3>
+              <p className={style.postContent}>{post.content}</p>
+
+              {post.media && (
+                <div className={style.mediaContainer}>
+                  <img src={post.media} alt="Post Media" className={style.media} />
+                </div>
+              )}
+
+              <div className={style.postActions}>
+                <p><BiUpvote/> {post.upvotes}</p>
+                <p><BiDownvote/> {post.downvotes}</p>
+                <p><FaComment/> {post.commentCount}</p>
+              </div>
             </div>
-            <h3 className={style.postTitle}>{post.title}</h3>
-            <p className={style.postContent}>{post.content}</p>
-            <div className={style.postActions}>
-              <p><BiUpvote/> {post.upvotes}</p>
-              <p><BiDownvote/> {post.downvotes}</p>
-              <p><FaComment/> {post.commentCount}</p>
-            </div>
-            {/* Render other post details as needed */}
-          </div>
-        ))
+          );
+        })
       )}
     </div>
   );

@@ -74,6 +74,13 @@ function Downvoted() {
                     <p>Title:</p>
                     <p className={styles.postTitle}>{item[1][0].title}</p>
                     <p className={styles.postContentText}>{item[1][0].content}</p>
+                    
+                    {/* Add media if available */}
+                    {item[1][0].media && (
+                      <div className={styles.mediaContainer}>
+                        <img src={item[1][0].media} alt="Post Media" className={styles.media} />
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

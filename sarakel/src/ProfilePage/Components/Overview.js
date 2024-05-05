@@ -1,17 +1,18 @@
+// Overview.js
+
 import { useEffect, useState } from 'react';
-import { BiUpvote, BiDownvote } from "react-icons/bi";
-import { GoReply } from "react-icons/go";
-import { LuShare } from "react-icons/lu";
-import style from './Overview.module.css';
 import axios from 'axios';
+import { useParams } from 'react-router-dom'; // Assuming you're using React Router
 import { useAuth } from "../../HomePage/Components/AuthContext.js";
+import style from './Overview.module.css';
 
 function Overview() {
   const { token } = useAuth();
-  const [overviewData, setOverviewData] = useState([]);
-  const [username, setUsername] = useState(null);
+  const { username } = useParams(); // Get username from URL params
+  const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // Fetch user data from the backend API
   useEffect(() => {
     if (token) {
       axios.get('http://127.0.0.1:5000/api/v1/me', {
@@ -20,7 +21,7 @@ function Overview() {
         },
       })
       .then(response => {
-        setUsername(response.data.user.username);
+        setUserData(response.data.user);
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
@@ -28,60 +29,51 @@ function Overview() {
     }
   }, [token]);
 
+  // Fetch overview data
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
-        if (username) {
-          const response = await fetch(`http://localhost:5000/api/user/${username}/overview`, {
+        if (token) {
+          const response = await axios.get(`http://localhost:5000/api/user/${username}/overview`, {
             headers: {
-              'Authorization': `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           });
-          if (!response.ok) {
-            throw new Error('Failed to fetch overview data');
-          }
-          const data = await response.json();
-          setOverviewData(data.posts || []); // Set empty array if data.posts is undefined
-          setLoading(false); // Set loading state to false
-          console.log('Overview data fetched successfully');
+          console.log("Overview data response:", response.data); // Log the response data
+          setUserData(response.data); // Update to response.data
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching overview data:', error);
-        setLoading(false); // Set loading state to false in case of error
+        setLoading(false);
       }
     };
 
-    if (token && username) {
-      fetchOverviewData();
-    }
-  }, [token, username]); // Fetch data whenever the token or username changes
+    fetchOverviewData();
+  }, [token, username]); // Include username in dependency array
 
   return (
-    <div className={style.overviewpostcomment1}>
+    <div className={style.container}>
       {loading ? (
-        <p>Loading...</p>
+        <p className={style.loading}>Loading...</p>
       ) : (
-        overviewData.map(post => (
-          <div className={style.post} key={post.id}>
-            <div className={style.postheader}>
-              <img src={post.user.image} alt='User Avatar' className={style.logoup1} />
-              <span className={style.username1}>{post.user.name}</span>
-              <div className={style.posttime}>
-                <span className={style.posttime}>{post.time} ago</span>
-              </div>
-            </div>
-            <div className={style.postcontent}>
-              <h3>{post.title}</h3>
-              <p>{post.text}</p>
-            </div>
-            <div className={style.postactions}>
-              <button><BiUpvote /> {post.likes}</button>
-              <button><BiDownvote /> {post.comments}</button>
-              <button><GoReply /> Reply</button>
-              <button><LuShare /> Share</button>
-            </div>
+        <div className={style.userProfile}>
+          <img src={userData.profilePicture} alt='User Avatar' className={style.avatar} />
+          <h2>{userData.username}</h2>
+          <p>{userData.about}</p>
+          <div className={style.communities}>
+            <h3>Communities Joined:</h3>
+            <ul>
+              {userData.communitiesJoined ? (
+                userData.communitiesJoined.map((community, index) => (
+                  <li key={index}>{community}</li>
+                ))
+              ) : (
+                <li>No communities joined</li>
+              )}
+            </ul>
           </div>
-        ))
+        </div>
       )}
     </div>
   );

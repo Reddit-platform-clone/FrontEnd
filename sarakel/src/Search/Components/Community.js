@@ -9,7 +9,7 @@ function Community() {
     useEffect(() => {
         async function fetchCommunities() {
             try {
-                const response = await axios.post('http://localhost:5000/SearchBy/communities', { keyword: "batates" }, {
+                const response = await axios.post('http://localhost:5000/searchBy/communities', { keyword: "test" }, {
                     headers: {
                         Authorization: `Bearer ${authToken}`
                     }

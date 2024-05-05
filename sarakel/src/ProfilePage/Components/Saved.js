@@ -61,6 +61,13 @@ function Saved() {
                     <p>Title: {post.title}</p>
                     <p>Content: {post.content}</p>
                     <p>Created at: {new Date(post.createdAt).toLocaleString()}</p>
+                    
+                    {/* Add media if available */}
+                    {post.media && (
+                      <div className={styles.mediaContainer}>
+                        <img src={post.media} alt="Post Media" className={styles.media} />
+                      </div>
+                    )}
                   </div>
                 </div>
               </li>

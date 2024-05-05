@@ -63,6 +63,14 @@ function Hidden() {
             </div>
             <h3 className={styles.postTitle}>{post.title}</h3>
             <p className={styles.postContent}>{post.content}</p>
+
+            {/* Check if media exists */}
+            {post.media && (
+              <div className={styles.mediaContainer}>
+                <img src={post.media} alt="Post Media" className={styles.media} />
+              </div>
+            )}
+
             {/* Render other post details as needed */}
           </div>
         ))
