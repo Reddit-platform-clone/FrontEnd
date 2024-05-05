@@ -6,6 +6,9 @@ import ForgotUsername from "./ForgotUsername";
 import ForgotPassword from "./ForgotPassword";
 import { useAuth } from "../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
+// import { signInWithGoogle } from "./firebase";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function LogIn({ onSuccessfulLogin }) {
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
@@ -13,21 +16,57 @@ function LogIn({ onSuccessfulLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(true);
   const { setToken } = useAuth();
+  const firebaseConfig = {
+    apiKey: "AIzaSyANfoLDGZsVAl8NwHJUlgLrUynJJMaSsg0",
+    authDomain: "auth-8b1ef.firebaseapp.com",
+    projectId: "auth-8b1ef",
+    storageBucket: "auth-8b1ef.appspot.com",
+    messagingSenderId: "445273762769",
+    appId: "1:445273762769:web:81f403cae7cb5fe3760ef0",
+  };
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-  function handleCallbackResponse(response) {
-    console.log("Encoded JWT ID token : "+response.credential )
-  }
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({ 
-      client_id: '579900774553-gv8jas84grhmnqfqq6k0otb7tod7f8nq.apps.googleusercontent.com',
-      callback: handleCallbackResponse
+const signInWithGoogle = async () => {
+  try {
+    // Sign in with Google popup
+    const result = await signInWithPopup(auth, provider);
+    console.log(result)
+    // Extract token from result
+    const token = result._tokenResponse.oauthAccessToken;
+    // Send token to the specified endpoint
+    const response = await fetch("http://127.0.0.1:5000/api/verifyToken", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
     });
-    google.accounts.id.renderButton(document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-  )
-  }, []);
-  
+
+    if (response.ok) {
+      // Log the response if successful
+      const responseData = await response.json();
+      console.log("Response from server:", responseData);
+      
+      // Access the token sent back from the server
+      const serverToken = responseData.token;
+      // Now you can use `serverToken` as needed in your application
+      console.log("Token from server:", serverToken);
+      sessionStorage.setItem('token', serverToken);
+      setToken(serverToken);
+
+      
+    } else {
+      // Handle error response
+      console.error("Error:", response.statusText);
+    }
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error("Error:", error);
+  }
+};
+
   const handleSignUpClick = () => {
     setRedirectToSignUp(true);
   };
@@ -40,13 +79,6 @@ function LogIn({ onSuccessfulLogin }) {
     setShowPassword(true);
   };
 
-  const onSuccess = (res) => {
-    console.log("login success! current user:", res.profileObj);
-  };
-
-  const onFailure = (res) => {
-    console.log("login failed! res:", res);
-  };
 
   const handleLogin = async () => {
     const emailOrUsername = document.getElementById(styles.username).value;
@@ -83,6 +115,11 @@ function LogIn({ onSuccessfulLogin }) {
       );
     }
   };
+
+  const handleGoogleSignIn = async () => {
+  await signInWithGoogle();
+};
+
 
   const handleCloseModal = () => {
     setShowLoginModal(false);
@@ -125,19 +162,8 @@ function LogIn({ onSuccessfulLogin }) {
             .
           </p>
 
-          {/* <GoogleOAuthProvider
-            className={styles["login-google-oauth"]}
-            clientId={ClientID}
-          >
-            <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                console.log(credentialResponse);
-              }}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            />
-          </GoogleOAuthProvider> */}
+          <button className={styles["login-with-google-btn"]} onClick={handleGoogleSignIn}>Log in with google</button>
+          
           <div id="signInDiv" className={styles["notyet"]}>
 
           </div>
