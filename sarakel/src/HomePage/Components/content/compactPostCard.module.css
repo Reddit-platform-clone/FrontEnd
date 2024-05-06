@@ -8,6 +8,7 @@
     cursor: pointer;
     border: 1px solid #ccc;
     position: relative;
+    cursor: pointer;
 }
 .compact-post-card::after {
     content: '';

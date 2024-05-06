@@ -22,7 +22,9 @@ const CompactPostCard = ({
   renderMediaOrTruncateText,
   calculateTimeSinceCreation,
   renderMediaWithCount,
-  renderMedia
+  renderMedia,
+  handlePostClick,
+  handleCommunityClick
 }) => {
   const [expanded, setExpanded] = useState(false);
   const [voteStatus, setVoteStatus] = useState(null);
@@ -51,10 +53,36 @@ const CompactPostCard = ({
       handleVoteClick(post._id, rank); // Send the selected rank
     }
   };
-  const handleExpandClick = () => {
+  const handleExpandClick = (event) => {
+    event.stopPropagation();
     setExpanded(!expanded);
   };
 
+  const handleVoteButtonClick= (event,rank) => {
+    event.stopPropagation();
+    toggleVote(rank);
+  };
+  const handleShareButton = (event) => {
+    event.stopPropagation();
+    navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`);
+    toast.success("Link copied");
+  }
+  const handleSaveButtonClick = (event,postId)=>{
+    event.stopPropagation();
+    handleSaveClick(postId);
+  }
+  const handleReportButtonClick = (event, postId, Username) => {
+    event.stopPropagation();
+    handleReportClick(postId, Username);
+  };
+  const handleHideButtonClick = (event,postId)=>{
+    event.stopPropagation();
+    handleHideClick(postId);
+  };
+  const handleJoinButtonClick = (event,postId,communityId)=>{
+    event.stopPropagation();
+    handleJoinClick(postId,communityId);
+  }
   const adjustPostHeight = () => {
     if (postRef.current) {
       const postHeight = postRef.current.scrollHeight;
@@ -72,6 +100,7 @@ const CompactPostCard = ({
     <div
       className={`${styles["compact-post-card"]} ${expanded ? styles["expanded"] : ""}`}
       ref={postRef}
+      onClick={() => handlePostClick(post._id)}
     >
       <div className={styles["compact-post-card-header"]}>
         <p>{post.reason}</p>
@@ -97,7 +126,7 @@ const CompactPostCard = ({
         </div>
 
         <div className={styles["compact-post-card-right"]}>
-          <div className={styles["compact-post-card-right-header"]}>
+          <div className={styles["compact-post-card-right-header"]} >
             {post.image ? (
               <img src={post.image} className={styles["compact-post-card-profile-photo"]} alt={post.title} />
             ) : (
@@ -106,7 +135,7 @@ const CompactPostCard = ({
             <p>r/{post.communityId}</p>
             <button
               className={styles["compact-post-card-join-btn"]}
-              onClick={() => handleJoinClick(post._id,post.communityId)}
+              onClick={(event) => handleJoinButtonClick(event,post._id,post.communityId)}
             >
               {joinStates[post._id] ? "Leave" : "Join"}
             </button>
@@ -116,25 +145,19 @@ const CompactPostCard = ({
             <b>{post.title}</b>
           </p>
 
-          {expanded && (!post.content ? renderMedia(post.media) : <p>{post.content}</p>)}
+          {expanded && (post.media ? renderMedia(post.media) : <p>{post.content}</p>)}
 
           <div className={styles["compact-post-card-interaction"]}>
             <button
               className={styles["compact-post-card-interaction-expand"]}
-              onClick={handleExpandClick}
+              onClick={(event) => handleExpandClick(event)}
             >
               <FaExpandAlt />
             </button>
 
             <div className={styles["compact-post-card-interaction-voting"]}>
-              {/* <button
-                onClick={() => handleVoteClick(post.id, 1)}
-                className={post.upvoted ? styles["upvoted"] : ""}
-              >
-                <BiUpvote />
-              </button> */}
               <button
-              onClick={() => toggleVote(1)}
+              onClick={(event)=>handleVoteButtonClick(event,1)}
               className={styles["upvote-button"]}
               style={{ backgroundColor: voteStatus === 1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
             >
@@ -142,32 +165,26 @@ const CompactPostCard = ({
             </button>
               <p>{post.upvotes - post.downvotes + (voteStatus ? voteStatus : 0)}</p>
             <button
-              onClick={() => toggleVote(-1)}
+              onClick={(event)=>handleVoteButtonClick(event,-1)}
               className={styles["downvote-button"]}
               style={{ backgroundColor: voteStatus === -1 ? "rgba(128, 128, 128, 0.3)" : "transparent" }}
             >
               {voteStatus === -1 ? <BiSolidDownvote color="blue" /> : <BiDownvote />}
             </button>
-              {/* <button
-                onClick={() => handleVoteClick(post.id, -1)}
-                className={post.downvoted ? styles["downvoted"] : ""}
-              >
-                <BiDownvote />
-              </button> */}
             </div>
 
             <div className={styles["compact-post-card-interaction-text-buttons"]}>
               <button className={styles["compact-post-card-interaction-comments-button"]}>
                 {post.comments} comments
               </button>
-              <button>Share</button>
+              <button onClick={(event) => handleShareButton(event)}>Share</button>
               <button
-                onClick={() => handleSaveClick(post._id)}
+                onClick={(event) => handleSaveButtonClick(event,post._id)}
               >
                 {saveStates[post._id] ? "Unsave" : "Save"}
               </button>
-              <button onClick={() => handleHideClick(post._id)}>Hide</button>
-              <button>Report</button>
+              <button onClick={(event) => handleHideButtonClick(event,post._id)}>Hide</button>
+              <button onClick={(event) =>handleReportButtonClick(event,post._id,post.username)}>Report</button>
             </div>
           </div>
         </div>
