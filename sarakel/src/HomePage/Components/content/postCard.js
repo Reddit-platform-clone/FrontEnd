@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   BiSolidUpvote,
   BiSolidDownvote,
@@ -33,38 +33,41 @@ const PostCard = ({
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [hoverTimeoutId, setHoverTimeoutId] = useState(null);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
-    // Function to fetch community info based on _id
     const fetchCommunityInfo = async () => {
       try {
         const response = await fetch(
           `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
         );
         const data = await response.json();
-        setCommunityInfo(data); // Set community info state
-        // console.log("Community info with data:", data);
+        console.log("Community info response:", data); // Log the API response
+        setCommunityInfo(data);
       } catch (error) {
         console.error("Error fetching community info:", error);
       }
     };
 
-    // Fetch community info if post.communityId exists
     if (post.communityId) {
       fetchCommunityInfo();
     }
-  }, [post._id]); // Use post._id as the dependency
+  }, [post._id]);
 
   useEffect(() => {
-    // console.log("Community info with community info:", communityInfo);
+    console.log("Community info:", communityInfo); // Log communityInfo
   }, [communityInfo]);
 
   const handleMouseOver = () => {
-    setIsHovering(true);
+    const timeoutId = setTimeout(() => {
+      setIsHovering(true);
+    }, 500);
+    setHoverTimeoutId(timeoutId);
   };
 
   const handleMouseOut = () => {
+    clearTimeout(hoverTimeoutId);
     setIsHovering(false);
   };
 
@@ -107,60 +110,112 @@ const PostCard = ({
   };
   const handleCopyToClipboard = (event) => {
     event.stopPropagation();
-    navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`)
-      // .then(() => {
-      //   setCopied(true);
-      //   setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
-      // })
-      // .catch((error) => {
-      //   console.error('Failed to copy:', error);
-      // });
-      toast.success("Link copied")
+    navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`);
+    toast.success("Link copied");
   };
 
   return (
     <div
-      onClick={() => handlePostClick(post._id, post.username)}
+      onClick={() => handlePostClick(post._id)}
       className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}
     >
       <div className={classes["post-info"]}>
         <div className={classes["post-header"]}>
           <div className={classes["post-header-left"]}>
             <div
-              className={classes["post-header-left-community"]}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
-              onClick={() => handleCommunityClick(post.communityId)}
+              className={classes["post-header-left-community-wrapper"]}
+              onMouseEnter={() =>
+                setTimeout(() => {
+                  setIsHovering(true);
+                }, 500)
+              }
+              onMouseLeave={() => setIsHovering(false)}
             >
-              {communityInfo?.data?.data?.displayPic ? (
-                <img
-                  src={communityInfo.data.data.displayPic}
-                  className={classes["profile-photo"]}
-                  alt={post.title}
-                />
-              ) : (
-                <HiMiniUserGroup className={classes["profile-photo"]} />
-              )}
+              <div
+                className={classes["post-header-left-community"]}
+                // onMouseOver={handleMouseOver}
+                // onMouseOut={handleMouseOut}
+                onClick={() => handleCommunityClick(post.communityId)}
+              >
+                {communityInfo?.data?.data?.displayPic ? (
+                  <img
+                    src={communityInfo.data.data.displayPic}
+                    className={classes["profile-photo"]}
+                    alt={post.title}
+                  />
+                ) : (
+                  <HiMiniUserGroup className={classes["profile-photo"]} />
+                )}
 
-              <p>
-                <b>r/{post.communityId}</b>
-              </p>
+                <p>
+                  <b>r/{post.communityId}</b>
+                </p>
+              </div>
+              {isHovering && (
+                <div
+                  className={classes["post-card-hovered-community"]}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  <div>
+                    {communityInfo?.data?.data?.backgroundPicUrl ? (
+                      <img
+                        src={communityInfo.data.data.backgroundPicUrl}
+                        className={
+                          classes[
+                            "post-card-hovered-community-background-photo"
+                          ]
+                        }
+                        alt={post.communityId}
+                      />
+                    ) : (
+                      <HiMiniUserGroup
+                        className={
+                          classes[
+                            "post-card-hovered-community-background-photo"
+                          ]
+                        }
+                      />
+                    )}
+                  </div>
+                  <div
+                    className={classes["post-card-hovered-community-header"]}
+                  >
+                    {communityInfo?.data?.data?.displayPic ? (
+                      <img
+                        src={communityInfo.data.data.displayPic}
+                        className={classes["post-card-hovered-community-photo"]}
+                        alt={post.communityId}
+                      />
+                    ) : (
+                      <HiMiniUserGroup
+                        className={classes["post-card-hovered-community-photo"]}
+                      />
+                    )}
+                    <b>r/{post.communityId}</b>
+                    <button
+                      className={classes["hover-card-join-btn-post"]}
+                      onClick={(event) =>
+                        handleJoinButtonClick(event, post._id, post.communityId)
+                      }
+                    >
+                      {joinStates[post._id] ? "Leave" : "Join"}
+                    </button>
+                  </div>
+                  <p
+                    className={
+                      classes["post-card-hovered-community-description"]
+                    }
+                  >
+                    {post.communityDesc}
+                  </p>
+                  <b>members</b>
+                  {communityInfo.data.data.members.length}
+                </div>
+              )}
             </div>
             <p>.</p>
             <p>{calculateTimeSinceCreation(post.createdAt)}</p>
-            {isHovering && (
-              <div className={classes["post-card-hovered-community"]}>
-                <img
-                  src={communityInfo.data.data.displayPic}
-                  className={
-                    classes["post-card-hovered-community-background-photo"]
-                  }
-                />
-                <h2>Card Title</h2>
-                <p>Some card details here...</p>
-                {post.communityDesc}
-              </div>
-            )}
           </div>
           <div className={classes["post-header-right"]}>
             <button
@@ -248,8 +303,10 @@ const PostCard = ({
             </button>
             <p>{post.numberOfComments}</p>
           </div>
-          <div className={classes["right-post"]} onClick={(event) => handleCopyToClipboard(event,post._id)}
->
+          <div
+            className={classes["right-post"]}
+            onClick={(event) => handleCopyToClipboard(event, post._id)}
+          >
             <button>
               <IoShareOutline />
             </button>
