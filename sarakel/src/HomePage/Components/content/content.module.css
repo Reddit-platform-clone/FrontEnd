@@ -155,6 +155,7 @@
     height: 100px;
     width: 90px;
     border-radius: 15px;
+    object-fit: cover;
   }
   
   .compact-post-card-image-count {
