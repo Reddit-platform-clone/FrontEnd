@@ -193,8 +193,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position:relative
   }
-  
+  .post-header-right , .join-btn-post{
+    z-index: 1;
+  }
   .post-header-left {
     display: flex;
     justify-content: flex-start;
@@ -285,9 +288,8 @@
     display: flex;
     align-items: center;
   }
-  /* .post-header-left-community-wrapper{
-    position: relative;
-  } */
+  .post-header-left-community-wrapper{
+z-index: 2;  }
 .post-card-hovered-community {
   position: absolute;
   top: 100%;

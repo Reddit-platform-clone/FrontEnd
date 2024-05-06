@@ -43,7 +43,6 @@ const PostCard = ({
           `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
         );
         const data = await response.json();
-        console.log("Community info response:", data); // Log the API response
         setCommunityInfo(data);
       } catch (error) {
         console.error("Error fetching community info:", error);
@@ -56,7 +55,6 @@ const PostCard = ({
   }, [post._id]);
 
   useEffect(() => {
-    console.log("Community info:", communityInfo); // Log communityInfo
   }, [communityInfo]);
 
   const handleMouseOver = () => {
@@ -88,6 +86,7 @@ const PostCard = ({
 
   const handleJoinButtonClick = (event, postId, communityId) => {
     event.stopPropagation(); // Stop event propagation to parent container
+    console.log("i will never fail you")
     handleJoinClick(postId, communityId);
   };
 
