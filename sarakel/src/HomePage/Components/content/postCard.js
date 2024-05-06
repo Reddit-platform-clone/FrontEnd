@@ -128,7 +128,7 @@ const PostCard = ({
                 setTimeout(() => {
                   setIsHovering(true);
                 }, 500)
-              }
+                }
               onMouseLeave={() => setIsHovering(false)}
             >
               <div
@@ -192,7 +192,7 @@ const PostCard = ({
                         className={classes["post-card-hovered-community-photo"]}
                       />
                     )}
-                    <b>r/{post.communityId}</b>
+                    <b onClick={() => handleCommunityClick(post.communityId)}>r/{post.communityId}</b>
                     <button
                       className={classes["hover-card-join-btn-post"]}
                       onClick={(event) =>
