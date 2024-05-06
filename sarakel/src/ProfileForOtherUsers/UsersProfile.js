@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './UsersProfile.module.css';
-import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged';
+import NavBar from '../HomePage/Components/NavBar/NavBar';
 import SideBar from '../HomePage/Components/SideBar/SideBar';
 import Overview from './Components/Overview';
 import Posts from './Components/Posts';
@@ -32,6 +32,11 @@ function UsersProfile() {
 
     const toggleFollow = () => {
         setIsFollowing(!isFollowing);
+        if (!isFollowing) {
+            alert(`You have followed ${username}`);
+        } else {
+            alert(`You have unfollowed ${username}`);
+        }
     };
 
     const handleTabClick = (index) => {
@@ -46,7 +51,7 @@ function UsersProfile() {
 
     return (
         <>
-            <NavBarUnlogged />
+            <NavBar />
             <SideBar />
             <div className='user-data'>
                 <img src={userData.profilePicture} alt='User Avatar' className={styles.logoup} />
@@ -71,7 +76,7 @@ function UsersProfile() {
                     {activeTab === 0 && (
                         /* Render content for Overview tab */
                         <div>
-                            <Overview />
+                            <Overview username={username} />
                         </div>
                     )}
                     {activeTab === 1 && (
@@ -84,7 +89,7 @@ function UsersProfile() {
                     {activeTab === 2 && (
                         /* Render content for Comments tab */
                         <div>
-                            <Comments />
+                            <Comments username={username}/>
                         </div>
                     )}
 

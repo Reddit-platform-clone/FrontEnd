@@ -1,39 +1,104 @@
-.commentscontainer54321 {
-    width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    height: auto;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+/* Base styles */
+.commentsContainer {
     display: flex;
-    flex-direction: column; /* Stack items from bottom to top */
-    position: absolute;
-    top: 200px;
-    left: 200px;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 120px; /* Adjust based on your design */
 }
 
-.comment54321 {
+.comment {
+    margin-bottom: 4vw; /* Adjust based on your design */
+    padding: 4vw; /* Adjust based on your design */
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 15px;
-    width: 100%;
-    margin-bottom: 20px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    top: 4vw; /* Adjust based on your design */
+    left: -11vw; /* Adjust based on your design */
 }
 
-.commentheader54321 {
+.commentHeader {
     display: flex;
     align-items: center;
+    margin-bottom: 2vw; /* Adjust based on your design */
 }
 
-.commentcontent54321 {
-    margin-top: 10px;
+.commentUserAvatar {
+    width: 4vw; /* Adjust based on your design */
+    height: 4vw; /* Adjust based on your design */
+    border-radius: 50%;
+    margin-right: 2vw; /* Adjust based on your design */
 }
 
-.commentcontent54321 h3 {
-    margin-bottom: 10px;
+.commentUsername {
+    font-size: 2vw; /* Adjust based on your design */
+    font-weight: bold;
+    color: #333;
 }
 
-.commencontent54321 p {
-    margin-bottom: 15px;
+.commentDateTime {
+    margin-left: auto;
+}
+
+.commentDateTimeText {
+    font-size: 1.5vw; /* Adjust based on your design */
+    color: #888;
+}
+
+.commentContent p {
+    margin-bottom: 2vw; /* Adjust based on your design */
+}
+
+.commentActions {
+    display: flex;
+}
+
+.commentActions button {
+    display: flex;
+    align-items: center;
+    margin-right: 2vw; /* Adjust based on your design */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.commentActions button svg {
+    margin-right: 1vw; /* Adjust based on your design */
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+    .comment {
+        width: 90%;
+        max-width: 100%;
+        left: 5vw;
+    }
+
+    .commentUserAvatar {
+        width: 5vw; /* Adjust based on your design */
+        height: 5vw; /* Adjust based on your design */
+        margin-right: 2vw; /* Adjust based on your design */
+    }
+
+    .commentUsername {
+        font-size: 2.5vw; /* Adjust based on your design */
+    }
+
+    .commentDateTimeText {
+        font-size: 2vw; /* Adjust based on your design */
+    }
+
+    .commentContent p {
+        margin-bottom: 3vw; /* Adjust based on your design */
+    }
+
+    .commentActions button {
+        margin-right: 2vw; /* Adjust based on your design */
+    }
+
+    .commentActions button svg {
+        margin-right: 1vw; /* Adjust based on your design */
+    }
 }

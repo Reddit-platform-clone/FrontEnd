@@ -47,6 +47,10 @@ function Posts({ username }) {
         console.log(`Downvoting post with ID ${postId}`);
     };
 
+    const formatTime = (timestamp) => {
+        return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    };
+
     if (!userData) {
         return <div>Loading...</div>;
     }
@@ -54,32 +58,23 @@ function Posts({ username }) {
     return (
         <div className={style.overviewPostComment1}>
             {posts.map(post => (
-                <div className={style.post} key={post.id}>
+                <div className={style.post} key={post._id}>
                     <div className={style.postheader}>
                         <img src={userData.profilePicture} alt='User Avatar' className={style.logoup1} />
                         <span className={style.username2}>{userData.username}</span>
-                        <div className={style.posttime}>
-                            <span className={style.posttime}> {post.time} ago</span>
-                        </div>
-                    </div>
-                    <div className={style.postcontent}>
-                        <h3>{post.title}</h3>
-                        <p>{post.text}</p>
-                        {post.media && post.media.length > 0 && (
-                            <div>
-                                {Array.isArray(post.media) ? (
-                                    post.media.map((media, index) => (
-                                        <img src={media} key={index} alt={`Media ${index}`} />
-                                    ))
-                                ) : (
-                                    <img src={post.media} alt='Media' />
-                                )}
+                        {post.scheduled && (
+                            <div className={style.posttime}>
+                                <span className={style.posttime}>{formatTime(post.scheduled.time)}</span>
                             </div>
                         )}
                     </div>
+                    <div className={style.postcontent}>
+                        <h3>{post.title}</h3>
+                        <p>{post.content}</p>
+                    </div>
                     <div className={style.postactions}>
-                        <button onClick={() => handleUpvote(post.id)}><BiUpvote /> {post.upvotes}</button>
-                        <button onClick={() => handleDownvote(post.id)}><BiDownvote /> {post.downvotes}</button>
+                        <button onClick={() => handleUpvote(post._id)}><BiUpvote /> {post.upvotes}</button>
+                        <button onClick={() => handleDownvote(post._id)}><BiDownvote /> {post.downvotes}</button>
                         <button><GoReply /> Reply</button>
                         <button><LuShare /> Share</button>
                     </div>

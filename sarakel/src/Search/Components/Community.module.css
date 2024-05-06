@@ -15,7 +15,7 @@
 .CommunitySearchData {
     display: flex;
     align-items: center;
-    margin: 0; /* Reset margin */
+    margin: 10px 10px; /* Add margin to top and bottom */
     padding: 20px; /* Increase padding for better spacing */
     border-radius: 8px;
     background-color: #f7f7f7;

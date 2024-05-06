@@ -1,5 +1,3 @@
-// Overview.js
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Assuming you're using React Router
