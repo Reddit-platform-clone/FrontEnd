@@ -68,7 +68,7 @@
   }
 
 
-  #signuptwo-username,#signuptwo-password{
+  .signuptwo-username,.signuptwo-password{
     border: none;
     background-color: rgba(128, 128, 128,0.2);
     width: 400px;
@@ -76,11 +76,11 @@
     border-radius: 15px;
     font-size: 15px;
   }
-#signuptwo-username:hover,#signuptwo-password:hover{
+.signuptwo-username:hover,.signuptwo-password:hover{
     background-color: rgba(128, 128, 128,0.3);
 }
 
-#signuptwo-username:focus,#signuptwo-password:focus{
+.signuptwo-username:focus,.signuptwo-password:focus{
     outline: none;
 }
 
@@ -98,8 +98,8 @@
       max-height: 70%;
   }
 
-  #signuptwo-username,
-  #signuptwo-password,
+  .signuptwo-username,
+  .signuptwo-password,
   .signuptwo-cntnu-btn {
       width: 90%;
       margin-top: 10px;

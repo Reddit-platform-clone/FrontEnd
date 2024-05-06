@@ -3,15 +3,16 @@ import styles from "./SignUpTwo.module.css";
 import SignUpOne from "./SignUpOne.js";
 import { FaArrowLeft } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../AuthContext.js";
 
 function SignUpTwo({ email }) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
+  const {setToken} = useAuth();
 
   const handleContinueClick = async () => {
     const usernameInput = document.getElementById("signuptwo-username");
     const passwordInput = document.getElementById("signuptwo-password");
-    
 
     if (!usernameInput || !passwordInput) {
       toast.error("Username or password is missing.");
@@ -28,10 +29,12 @@ function SignUpTwo({ email }) {
 
     try {
       // Check if the username is available
-      const availabilityResponse = await fetch(`http://localhost:5000/api/username_available/${username}`);
+      const availabilityResponse = await fetch(
+        `http://localhost:5000/api/username_available/${username}`
+      );
       const availabilityData = await availabilityResponse.json();
-      
-      if (availabilityData.message === 'Username is not available') {
+
+      if (availabilityData.message === "Username is not available") {
         toast.error("Username is not available.");
         return;
       }
@@ -45,13 +48,14 @@ function SignUpTwo({ email }) {
         body: JSON.stringify({ email, password, username }),
       });
       const signupData = await signupResponse.json();
-      
+      console.log(signupData)
+      console.log("sign up token : ",signupData.token)
       if (signupResponse.ok) {
         toast.success("Account created!");
-        
-        // Save token in sessionStorage
-        sessionStorage.setItem('token', signupData.token);
 
+        // Save token in sessionStorage
+        sessionStorage.setItem("token", signupData.token);
+        setToken(signupData.token)
         handleCloseModal();
       } else {
         toast.error(signupData.error);
@@ -61,7 +65,7 @@ function SignUpTwo({ email }) {
       toast.error("An error occurred while signing up");
     }
   };
-  
+
   const handleBackButtonClick = () => {
     setShowSignUpOne(true);
   };
@@ -73,7 +77,7 @@ function SignUpTwo({ email }) {
   if (showSignUpOne) {
     return <SignUpOne />;
   }
-  
+
   return showSignUpModal ? (
     <div className={styles["signuptwo-overlay"]}>
       <div className={styles["signuptwo-modal"]}>
@@ -94,7 +98,8 @@ function SignUpTwo({ email }) {
           <div className={styles["signuptwo-input-group"]}>
             <label htmlFor="username"></label>
             <input
-              id={styles["signuptwo-username"]}
+              id="signuptwo-username"
+              className={styles["signuptwo-username"]}
               type="text"
               placeholder="Username*"
               required
@@ -102,7 +107,8 @@ function SignUpTwo({ email }) {
 
             <label htmlFor="password"></label>
             <input
-              id={styles["signuptwo-password"]}
+              id="signuptwo-password"
+              className={styles["signuptwo-password"]}
               type="password"
               placeholder="Password*"
               required
