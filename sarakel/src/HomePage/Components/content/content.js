@@ -310,12 +310,13 @@ const Content = () => {
     setCommunityId(communityID);
   };
 
-  const handlePostClick = (passedId, passedUsername) => {
+  const handlePostClick = (passedId) => {
     if (!passedId) {
       return;
     }
 
-    fetch(`http://localhost:5000/api/${passedUsername}/viewPost`, {
+    console.log("inside handle post click")
+    fetch(`http://localhost:5000/api/viewPost`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -330,7 +331,7 @@ const Content = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Response from backend:", data);
+        console.log("Response from backend verifying done:", data);
         setSelectedPostId(passedId);
       })
       .catch((error) => {
