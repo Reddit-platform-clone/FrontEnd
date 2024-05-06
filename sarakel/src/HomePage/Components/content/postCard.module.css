@@ -299,7 +299,7 @@
   z-index: 1;
   border-radius: 20px;
   display: flex;
-  flex-direction: column; /* Change to column layout */
+  flex-direction: column;
 }
 .post-card-hovered-community-background-photo{
   width: 100%;
@@ -318,6 +318,11 @@
 .post-card-hovered-community-header {
   display: flex;
   align-items: center;
+  font-size: 15px;
+}
+.post-card-hovered-community-header:hover b{
+  color: rgb(9, 9, 139);
+  text-decoration: underline;
 }
 
 .hover-card-join-btn-post {
