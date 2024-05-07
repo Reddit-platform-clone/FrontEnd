@@ -1,0 +1,358 @@
+.container {
+    max-width: 720px;
+    margin-left: 25px;
+    margin-top: 90px;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: -70px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.post-card {
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    padding: 50px;
+    width: 640px;
+    height: 690px;
+    transition: box-shadow 0.3s ease;
+    background-color: transparent;
+    margin-top: 20px; /* Adjust margin between cards */
+    justify-content: center;
+    align-items: center;
+}
+
+.post-card.no-media {
+    width: 640px;
+    height: 300px;
+  }
+
+.post-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 1px; /* Height of the line */
+    background-color: rgba(128, 128, 128, 0.2); /* Color of the line */
+    border-radius: 5px; /* Optional: Add rounded corners to the line */
+}
+
+.post-card:hover {
+    background-color: rgba(128, 128, 128, 0.1); /* Semi-transparent grey background on hover */
+}
+
+.post-image {
+    margin-top: 10px;
+    width: 540px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+
+.post-video {
+    width: 540px; /* Same width as the image */
+    height: 500px; /* Same height as the image */
+    object-fit: cover; /* Ensure the video covers the specified dimensions */
+    border-radius: 20px; /* Optional: Apply border radius */
+}
+
+
+.post-info {
+    padding: 15px;
+    margin-top: -32px;
+}
+
+.post-info p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.interaction {
+    display: flex;
+    justify-content: flex-start; /* Align buttons on the left */
+    align-items: center;
+    /* margin-top: 20px; Adjust margin as needed */
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.right-post{
+    font-size: 20px;
+    margin-bottom: 4px;
+    width: 75px;
+    height: 37.5px;
+    border-radius: 37.5px;
+}
+
+.left-post, .middle-post, .right-post {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: center;
+    margin-right: 20px; /* Adjust margin between buttons */
+    border-radius: 100%; 
+    padding: -15px;
+}
+
+.left-post button, .middle-post button, .right-post button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%; /* Make the button circular */
+    width: 30px; 
+    height: 30px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-post button:hover, .middle-post button:hover, .right-post button:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+    border-radius: 50%; /* Make the button circular */
+}
+
+.upvoted-button {
+    background-color: #0045AC !important; /* Set background color to blue */
+}
+
+.downvoted-button{
+    background-color: #D2DADD !important;
+}
+
+.left-post p , .middle-post p{
+    margin-right: 2px; /* Adjust margin between icon and count */
+    margin-top: 15px;
+    margin-left: 2px;
+    padding: 5px;
+}
+
+.right-post p{
+    font-size: 13px;
+    margin-top: 19px;
+    
+}
+
+.interaction-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-post button.upvoted {
+    background-color: #0045AC;
+}
+
+.left-post button.downvoted {
+    background-color: orange;
+}
+
+.profile-photo{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-right: 5px;
+}
+
+.post-header-right {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center;
+}
+
+.post-header-left {
+    display: flex;
+    justify-content:flex-start; /* Align items to the right */
+    align-items: center;
+    margin-bottom: -29px;
+}
+
+.dropbtn-post {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropbtn-post:hover{
+    background-color: rgba(128, 128, 128, 0.3);
+}
+  
+.dropdown-post {
+    position: relative;
+    overflow:visible;
+    margin-left: 10px; /* Adjust margin for dropdown button */
+}
+  
+.dropdown-content-post {
+    display: none;
+    position:absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 10px;
+    border-radius: 15px;
+    
+}
+  
+.dropdown-content-post a {
+    color: rgb(0, 0, 0);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    float : none;
+    border-radius: 15px;
+}
+  
+.dropdown-content-post a:hover {
+    background-color: #ddd;
+}
+  
+.dropdown-post:hover .dropdown-content-post {
+    display: block;
+}
+
+.join-btn-post {
+    width: auto; /* Allow button width to adjust based on content */
+    padding: 0 10px; /* Add padding to the button */
+    background-color: #0045AC;
+    border-radius: 25px;
+    color: white; /* Set text color to white */
+    display: flex; /* Use flexbox for positioning */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    font-size: 15px;
+    border: none;
+}
+
+.join-btn-post:hover{
+    background-color: #003584;
+}
+
+.post-title , .post-text{
+    margin-top: 5px;
+}
+.post-header p{
+    margin-right: 5px;
+}
+
+
+
+.hidden-post-card{
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    width: 640px;
+    height: 80px;
+    transition: box-shadow 0.3s ease;
+    background-color: transparent;
+    margin-top: 20px; 
+    background-color: rgba(128, 128, 128, 0.1); /* Semi-transparent grey background on hover */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.hidden-post-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 1px; /* Height of the line */
+    background-color: rgba(128, 128, 128, 0.2); /* Color of the line */
+    border-radius: 5px; /* Optional: Add rounded corners to the line */
+}
+
+.hidden-post-card p{
+    justify-content: flex-start; /* Align items to the right */
+    margin-top: 15px;
+    color: black;
+    margin-left: 10px;
+}
+
+.hidden-post-card button{
+    justify-content: flex-end; /* Align items to the right */
+    border: none;
+    background-color: rgba(128, 128, 128, 0.3);
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.hidden-post-card button:hover{
+    background-color: rgba(128, 128, 128, 0.7);
+
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+      max-width: 100%;
+      margin-left: 0;
+      margin-top: 60px; 
+    }
+  
+    .post-list {
+      margin-top: -50px; 
+    }
+  
+    .post-card {
+      width: 100%; 
+      padding: 20px; 
+      height: auto; 
+    }
+  
+    .post-card.no-media {
+      height: auto; 
+      width: 100%;
+    }
+  
+    .post-image {
+      width: 100%; 
+      height: auto; 
+    }
+  
+    .post-video {
+      width: 100%; 
+      height: auto; 
+    }
+  
+    .post-info {
+      margin-top: -20px; 
+      font-size: 40%;
+
+    }
+  
+    .interaction {
+      margin-bottom: 10px; 
+    }
+  
+    .left-post,
+    .middle-post,
+    .right-post {
+      margin-right: 10px; 
+    }
+  
+    .post-header-left {
+      margin-bottom: -15px; 
+    }
+  
+    .hidden-post-card {
+      height: auto; 
+      margin-top: 10px; 
+    }
+  }
