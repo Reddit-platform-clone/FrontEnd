@@ -15,9 +15,11 @@ import { Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
+import { TbUserPentagon } from "react-icons/tb";
 
 const Content = () => {
   const [posts, setPosts] = useState([]);
+  const [recentPosts,setRecentPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hiddenPosts, setHiddenPosts] = useState({});
   const [joinStates, setJoinStates] = useState({});
@@ -78,6 +80,35 @@ const Content = () => {
     };
   }, [sortingType, token]);
 
+  useEffect(() => {
+    const fetchRecentPosts = async () => {
+      try {
+        if (!token) {
+          return; // No need to fetch if not logged in
+        }
+
+        const response = await fetch("http://localhost:5000/api/recentlyViewedPosts", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log("Recent posts:", responseData);
+        // Update state with recent posts data
+        setRecentPosts(responseData.message.result);
+      } catch (error) {
+        console.error("Error fetching recent posts:", error);
+      }
+    };
+
+    fetchRecentPosts();
+  }, [token]);
   const handleSortTypes = () => {
     setShowSortOptions(!showSortOptions);
     setShowViewOptions(false);
@@ -278,7 +309,7 @@ const Content = () => {
   };
 
   const renderMediaOrTruncateText = (media, content) => {
-    const maxTextLength = 450;
+    const maxTextLength = 510;
     if (media) {
       return renderMedia(media, content);
     } else {
@@ -519,14 +550,14 @@ const Content = () => {
                             handleReportClick={handleReportClick}
                             handleHideClick={handleHideClick}
                             handleVoteClick={handleVoteClick}
-                            renderMediaOrTruncateText={
-                              renderMediaOrTruncateText
-                            }
+                            renderMediaOrTruncateText={renderMediaOrTruncateText}
                             calculateTimeSinceCreation={
                               calculateTimeSinceCreation
                             }
                             renderMediaWithCount={renderMediaWithCount}
                             renderMedia={renderMedia}
+                            handlePostClick={handlePostClick}
+                            handleCommunityClick={handleCommunityClick}
                           />
                         )
                       );
@@ -555,15 +586,29 @@ const Content = () => {
                 )}
               </>
             )}
+          {/* back to top */}
           </div>
         )}
-        <div className={styles["content-recent-posts"]}>
+{token && <div className={styles["content-recent-posts"]}>
           <div className={styles["content-recent-posts-header"]}>
             <h6>Recent posts</h6>
             <button>clear</button>
           </div>
-          <HiMiniUserGroup />
-        </div>
+          {recentPosts.map((recent)=>(
+              <div key={recent._id}>
+                <div className={styles["content-recent-posts-community"]}>
+                  <TbUserPentagon className={styles['content-recent-posts-image']}/>
+                <p>r/{recent.communityId}</p>
+                </div>
+                <p>{recent.title}</p>
+                <div className={styles["content-recent-posts-last"]}>
+                <p>{recent.upvotes - recent.downvotes} votes</p>
+                <p>{calculateTimeSinceCreation(recent.createdAt)}</p>
+                </div>
+                <hr/>
+              </div>
+            ))}
+        </div>}
       </div>
     </div>
   );

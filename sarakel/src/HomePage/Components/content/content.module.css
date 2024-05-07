@@ -177,15 +177,18 @@
   }
 
   .content-recent-posts{
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(128, 128, 128, 0.1);
     height: auto;
     height: 100%;
     left: 0;
     width: 300px;
-    margin-left: auto;
+    margin-left: auto ;
     border-radius: 15px;
+    padding: 10px;
   }
-
+.content-recent-posts:hover{
+  background-color: rgba(128, 128, 128, 0.15);
+}
   .content-recent-posts-header{
     display: flex;
     justify-content: space-between;
@@ -201,4 +204,29 @@
     background-color: transparent;
     color: blue;
     margin-right: 5px;
+  }
+
+  .content-recent-posts-image{
+    max-width: 20px;
+    max-height: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding-right: 2px;
+  }
+
+  .content-recent-posts-community {
+    display: flex;
+  }
+  .content-recent-posts-community p{
+    left: 0;
+  }
+  .content-recent-posts-community:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .content-recent-posts-last{
+    display: flex;
+    justify-content:space-between;
+
   }
