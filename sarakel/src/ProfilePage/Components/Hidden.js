@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Hidden.module.css';
+import { FaBookmark } from "react-icons/fa";
+
 import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
 function Hidden() {
@@ -50,6 +52,19 @@ function Hidden() {
     }
   }, [token, username]);
 
+  const removeFromHidden = async (postId) => {
+    try {
+      // Call API to remove the post from hidden
+      // Here, you need to implement your API endpoint to remove the post from hidden
+      // After successfully removing the post, update the state to reflect the change
+      const updatedPosts = posts.filter(post => post._id !== postId);
+      setPosts(updatedPosts);
+      alert('Post removed from hidden successfully!');
+    } catch (error) {
+      console.error('Error removing post from hidden:', error);
+    }
+  };
+
   return (
     <div className={styles.hiddenContainer}>
       {loading ? (
@@ -57,6 +72,9 @@ function Hidden() {
       ) : (
         posts.map(post => (
           <div className={styles.post} key={post._id}>
+             <div className={styles.bookmarkContainer}>
+              <FaBookmark className={styles.bookmarkIcon} onClick={() => removeFromHidden(post._id)} />
+            </div>
             <div className={styles.postUserInfo}>
               <img className={styles.userLogo} src={userLogo} alt="User Logo" />
               <p className={styles.username}>{username}</p>
@@ -71,7 +89,8 @@ function Hidden() {
               </div>
             )}
 
-            {/* Render other post details as needed */}
+            {/* Bookmark icon */}
+           
           </div>
         ))
       )}

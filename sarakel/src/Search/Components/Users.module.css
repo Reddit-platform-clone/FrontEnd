@@ -18,7 +18,7 @@
     background-color: #f7f7f7;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
-    width: 800px;
+    width: 600px;
     position: relative;
 }
 
@@ -67,9 +67,14 @@
     line-height: 1.5;
 }
 
-/* Media Query */
 @media (max-width: 768px) {
     .UserSearchDataContainer {
         left: 50px; /* Adjust position from left */
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .UserAvatar {
+        width: 50px; /* Adjust avatar size */
+        height: 50px;
     }
 }

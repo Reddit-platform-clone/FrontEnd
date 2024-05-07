@@ -88,3 +88,12 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   }
   
+  .bookmarkIcon{
+    /* Styling for the bookmark icon */
+    font-size: 18px; /* Adjust as needed */
+    color: #302c3a; /* Example color */
+    margin-left: 10px; /* Adjust margin as needed to position the icon */
+   position: relative;
+   left:500px;
+   border-radius: 20px;
+  }

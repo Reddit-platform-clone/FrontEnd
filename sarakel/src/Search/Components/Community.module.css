@@ -8,7 +8,7 @@
     position: absolute;
     top: 200px;
     left: 200px;
-    width: 900px;
+    width: 600px;
 }
 
 /* CommunitySearchData */
@@ -21,7 +21,7 @@
     background-color: #f7f7f7;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     width: 80%; /* Adjust width to be responsive */
-    max-width: 800px; /* Set maximum width */
+    max-width: 500px; /* Set maximum width */
     position: relative;
 }
 
@@ -70,13 +70,10 @@
     top: 30px; /* Adjust position from top */
 }
 
-/* Media Query */
 @media (max-width: 768px) {
     .CommunitySearchDataContainer {
-        padding-top: 20px; /* Decrease padding on smaller screens */
-    }
-
-    .CommunitySearchData {
+        top: 150px; /* Adjust position from top */
+        left: 50px; /* Adjust position from left */
         width: 90%; /* Adjust width for smaller screens */
     }
 

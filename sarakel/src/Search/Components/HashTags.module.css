@@ -22,19 +22,9 @@
   color: #333;
 }
 
-/* Media Query */
 @media (max-width: 768px) {
   .container {
       top: 150px; /* Adjust position from top */
       left: 50px; /* Adjust position from left */
-  }
-
-  .hashtagContainer {
-      flex-direction: column; /* Change to column layout */
-  }
-
-  .hashtag {
-      margin-right: 0; /* Reset margin between hashtags */
-      margin-bottom: 10px; /* Keep space between rows */
   }
 }

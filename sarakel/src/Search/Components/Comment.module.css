@@ -93,5 +93,6 @@
         max-width: 400px;
         right: 100px;
         top: 150px;
+        left: 50px; /* Adjust position from left */
     }
 }

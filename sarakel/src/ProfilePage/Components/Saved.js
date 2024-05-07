@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from "../../HomePage/Components/AuthContext.js";
 import styles from './Saved.module.css';
+import { FaBookmark } from "react-icons/fa";
 
 function Saved() {
   const { token } = useAuth();
@@ -41,6 +42,17 @@ function Saved() {
     fetchData();
   }, [token]);
 
+  const removeFromSaved = async (postId) => {
+    try {
+      
+      const updatedSavedData = savedData.filter(post => post._id !== postId);
+      setSavedData(updatedSavedData);
+      alert('Post removed from saved successfully!');
+    } catch (error) {
+      console.error('Error removing post from saved:', error);
+    }
+  };
+
   return (
     <div className={styles.savedContainer}>
       {loading ? (
@@ -50,24 +62,26 @@ function Saved() {
           {savedData.length > 0 ? (
             savedData.map(post => (
               <li className={styles.savedItem} key={post._id}>
-                <div className={styles.postContainer}>
-                  <div className={styles.authorContainer}>
-                    <p className={styles.postAuthor}>{post.username}</p>
-                    <p className={styles.postCommunity}>
-                      Community: {post.communityId}
-                    </p>
+                <div className={styles.post}>
+                  <button className={styles.removeButton} onClick={() => removeFromSaved(post._id)}><FaBookmark /></button>
+                  <div className={styles.postUserInfo}>
+                    {post.profilePicture ? (
+                      <img src={post.profilePicture} alt='User Avatar' className={styles.userLogo} />
+                    ) : (
+                      <div className={styles.defaultUserLogo}></div>
+                    )}
+                    <p className={styles.username}>{post.username}</p>
                   </div>
                   <div className={styles.postContent}>
-                    <p>Title: {post.title}</p>
-                    <p>Content: {post.content}</p>
-                    <p>Created at: {new Date(post.createdAt).toLocaleString()}</p>
-                    
+                    <p className={styles.postTitle}>{post.title}</p>
+                    <p>{post.content}</p>
                     {/* Add media if available */}
                     {post.media && (
                       <div className={styles.mediaContainer}>
                         <img src={post.media} alt="Post Media" className={styles.media} />
                       </div>
                     )}
+                    <p>Created at: {new Date(post.createdAt).toLocaleString()}</p>
                   </div>
                 </div>
               </li>

@@ -98,19 +98,6 @@
     border-radius: 20px;
 }
 
-/* LineAfterAllTime */
-.LineAfterAllTime::after {
-    content: '';
-    display:inline-block;
-    width: 800px;
-    height: 1px;
-    background-color: #ccc;
-    margin-left: 10px;
-    position: absolute;
-    top: 20px;
-    left: 220px;
-}
-
 /* Media Query */
 @media (max-width: 768px) {
     .SearchContents {

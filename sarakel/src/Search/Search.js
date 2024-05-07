@@ -108,7 +108,6 @@ function Search() {
                 <FaCalendarWeek />
                 {selectedTimeOption}
             </button>
-            <div className={styles.LineAfterAllTime}></div>
             {timeOpen && (
                 <div className={styles.AllTimeContent}>
                     <label>
