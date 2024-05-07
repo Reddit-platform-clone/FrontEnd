@@ -100,7 +100,7 @@ const signInWithGoogle = async () => {
     
         // Save token in sessionStorage
         sessionStorage.setItem('token', data.token);
-    
+        sessionStorage.setItem("username",emailOrUsername)
         setToken(data.token);
         onSuccessfulLogin();
       } else {

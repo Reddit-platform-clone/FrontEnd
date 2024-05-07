@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import styles from "./content.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 import { TbUserPentagon } from "react-icons/tb";
+import { TbHandClick } from "react-icons/tb";
 
 const Content = () => {
   const [posts, setPosts] = useState([]);
@@ -26,10 +27,13 @@ const Content = () => {
   const [saveStates, setSaveStates] = useState({});
   const [viewType, setViewType] = useState("card");
   const [showSortOptions, setShowSortOptions] = useState(false);
-  const [sortingType, setSortingType] = useState("best");
+  const [sortingType, setSortingType] = useState("new");
   const [showViewOptions, setShowViewOptions] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [selectedCommunityId, setCommunityId] = useState(null);
+  const [page, setPage] = useState(1);
+  const [endOfPosts, setEndOfPosts] = useState(false); // New state to track the end of posts
+  const contentRef = useRef(null);
   const { token } = useAuth(); //init
 
   useEffect(() => {
@@ -40,29 +44,31 @@ const Content = () => {
           // If user is logged in (token exists)
           url = `http://localhost:5000/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
-          }`;
+          }?page=${page}`; // Include page number in the API endpoint
         } else {
           // If user is not logged in (token is null)
           url = `http://localhost:5000/api/subreddit/getRandom`;
         }
-
+  
         const response = await fetch(url, {
           headers: {
             "Content-Type": "application/json",
             Authorization: token ? `Bearer ${token}` : undefined,
           },
         });
+        console.log("before response data")
         const responseData = await response.json();
-        console.log("Response data:", responseData.data); // For debugging
+        console.log("Response data:", responseData.data.posts); // For debugging
         if (response.ok) {
-          if (Array.isArray(responseData.data)) {
-            // If responseData.data is an array, set posts directly
-            setPosts(responseData.data);
+          // If new posts are received
+          if (Array.isArray(responseData.data.posts) && responseData.data.posts.length > 0) {
+            // Append new posts to existing posts
+            setPosts(prevPosts => [...prevPosts, ...responseData.data.posts]);
+            setLoading(false);
           } else {
-            // If responseData.data is a single post object, wrap it in an array
-            setPosts([responseData.data]);
+            // If no new posts are received, set endOfPosts to true
+            setEndOfPosts(true);
           }
-          setLoading(false);
         } else {
           throw new Error(responseData.message || "Failed to fetch posts");
         }
@@ -72,13 +78,41 @@ const Content = () => {
         setLoading(false);
       }
     };
-
+  
     fetchData();
-
+  
     return () => {
       // Cleanup tasks if needed
     };
-  }, [sortingType, token]);
+  }, [sortingType, token, page]); // Include 'page' as a dependency in useEffect
+  
+
+  // useEffect(() => {
+  //   console.log("Inside useEffect");
+  //   const handleScroll = () => {
+  //     console.log("Inside handleScroll");
+  //     console.log("Scroll position:", window.innerHeight + document.documentElement.scrollTop);
+  //     console.log("Page height:", document.documentElement.offsetHeight);
+  //     if (
+  //       window.innerHeight - document.documentElement.scrollTop ===
+  //       document.documentElement.offsetHeight
+  //     ) {
+  //       console.log("Reached bottom of page");
+  //       setPage(prevPage => prevPage + 1);
+  //       console.log("Page:", page);
+  //     }
+  //   };
+  //   console.log("Adding scroll event listener");
+  //   // Add event listener for scroll
+  //   window.addEventListener("scroll", handleScroll);
+  
+  //   // Remove event listener when component unmounts
+  //   return () => {
+  //     console.log("Removing scroll event listener");
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [page]);
+  
 
   useEffect(() => {
     const fetchRecentPosts = async () => {
@@ -266,6 +300,70 @@ const Content = () => {
     }
   };
 
+  const checkUserVote = async (postId) => {
+    try {
+      // Extract username from session storage
+      const username = sessionStorage.getItem("username");
+      if (!username) {
+        throw new Error("Username not found in session storage");
+      }
+  
+      // Make request to API for upvoted posts
+      const upvotedResponse = await fetch(`http://localhost:5000/api/user/${username}/upvoted`, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+  
+      if (!upvotedResponse.ok) {
+        throw new Error(`HTTP error! Status: ${upvotedResponse.status}`);
+      }
+  
+      const upvotedData = await upvotedResponse.json();
+  
+      // Check if the post exists in the list of upvoted posts
+      const isUpvoted = upvotedData.upvotes.some(([type, posts]) => {
+        return posts.some(post => post._id === postId);
+      });
+      if (isUpvoted) {
+        return 1; // Post is upvoted
+      }
+  
+      // Make request to API for downvoted posts
+      const downvotedResponse = await fetch(`http://localhost:5000/api/user/${username}/downvoted`, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+  
+      if (!downvotedResponse.ok) {
+        throw new Error(`HTTP error! Status: ${downvotedResponse.status}`);
+      }
+  
+      const downvotedData = await downvotedResponse.json();
+  
+      // Check if the post exists in the list of downvoted posts
+      const isDownvoted = downvotedData.upvotes.some(([type, posts]) => {
+        return posts.some(post => post._id === postId);
+      });
+      if (isDownvoted) {
+        return -1; // Post is downvoted
+      }
+  
+      // Post is neither upvoted nor downvoted
+      return 0;
+    } catch (error) {
+      console.error("Error checking voted posts:", error);
+      return 0; // Default to not voted
+    }
+  };
+  
+  const addMorePosts = () =>{
+    setPage(prevPage => prevPage + 1);
+    console.log("page : "+page)
+  }
   const handleHideClick = (_id) => {
     console.log(posts);
     setHiddenPosts((prevHiddenPosts) => ({
@@ -437,7 +535,6 @@ const Content = () => {
   return (
     <div className={styles["container"]}>
       <ToastContainer />
-
       {!selectedPostId && (
         <div className={styles["choice-above-posts"]}>
           <div className={styles["content-sort-type"]}>
@@ -450,11 +547,12 @@ const Content = () => {
             </button>
             {showSortOptions && (
               <div className={styles["options-content-sort-drop-down-list"]}>
-                <button onClick={() => handleSortingOption("Best")}>
+                { <button onClick={() => handleSortingOption("Best")}>
                   Best
                 </button>
+                /*
                 <button onClick={() => handleSortingOption("Hot")}>Hot</button>
-                <button onClick={() => handleSortingOption("Top")}>Top</button>
+                <button onClick={() => handleSortingOption("Top")}>Top</button> */}
                 <button onClick={() => handleSortingOption("New")}>New</button>
               </div>
             )}
@@ -538,6 +636,7 @@ const Content = () => {
                             }
                             handlePostClick={handlePostClick}
                             handleCommunityClick={handleCommunityClick}
+                            checkUserVote={checkUserVote}
                           />
                         ) : (
                           <CompactPostCard
@@ -587,6 +686,7 @@ const Content = () => {
               </>
             )}
           {/* back to top */}
+          <button onClick={() => addMorePosts()} className={styles["load-more-posts-button"]}><TbHandClick />More posts</button>
           </div>
         )}
 {token && <div className={styles["content-recent-posts"]}>

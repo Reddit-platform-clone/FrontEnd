@@ -175,8 +175,21 @@
     width: 30px;
     height: 30px;
   }
-
-  .content-recent-posts{
+  .content-recent-posts {
+    background-color: rgba(128, 128, 128, 0.1);
+    max-height: 650px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 300px;
+    margin-left: auto;
+    border-radius: 15px;
+    padding: 10px;
+    position: fixed; /* Fixed position */
+    /* top: 50px; Adjust this value according to your layout */
+    right: 10px; /* Adjust this value according to your layout */
+    z-index: 999; /* Ensure it's above other elements */
+  }
+  
+  /* .content-recent-posts{
     background-color: rgba(128, 128, 128, 0.1);
     height: auto;
     height: 100%;
@@ -185,7 +198,7 @@
     margin-left: auto ;
     border-radius: 15px;
     padding: 10px;
-  }
+  } */
 .content-recent-posts:hover{
   background-color: rgba(128, 128, 128, 0.15);
 }
@@ -229,4 +242,31 @@
     display: flex;
     justify-content:space-between;
 
+  }
+
+  .load-more-posts-button{
+    width: auto;
+    padding: 10px;
+    background-color: #0045ac;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: none;
+
+  }
+
+  .join-btn-post {
+    width: auto;
+    padding: 0 10px;
+    background-color: #0045ac;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: none;
   }

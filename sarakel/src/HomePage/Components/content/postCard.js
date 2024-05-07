@@ -28,34 +28,53 @@ const PostCard = ({
   calculateTimeSinceCreation,
   handlePostClick,
   handleCommunityClick,
+  checkUserVote
 }) => {
   const [voteStatus, setVoteStatus] = useState(null);
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
   const { token } = useAuth(); //init
   const [isHovering, setIsHovering] = useState(false);
   const [hoverTimeoutId, setHoverTimeoutId] = useState(null);
-  const timeoutRef = useRef(null);
 
   useEffect(() => {
-    const fetchCommunityInfo = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
-        );
-        const data = await response.json();
-        setCommunityInfo(data);
-      } catch (error) {
-        console.error("Error fetching community info:", error);
+    const fetchVoteStatus = async () => {
+      if (token) {
+        try {
+          const response = await checkUserVote(post._id);
+          // Check if the post is upvoted or downvoted by the user
+          if (response === 1) {
+            setVoteStatus(1);
+          } else if (response === -1) {
+            setVoteStatus(-1);
+          }
+        } catch (error) {
+          console.error("Error checking user vote:", error);
+        }
       }
     };
 
-    if (post.communityId) {
-      fetchCommunityInfo();
-    }
+    fetchVoteStatus();
   }, [post._id]);
+  // useEffect(() => {
+  //   const fetchCommunityInfo = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
+  //       );
+  //       const data = await response.json();
+  //       setCommunityInfo(data);
+  //     } catch (error) {
+  //       console.error("Error fetching community info:", error);
+  //     }
+  //   };
 
-  useEffect(() => {
-  }, [communityInfo]);
+  //   if (post.communityId) {
+  //     fetchCommunityInfo();
+  //   }
+  // }, [post._id]);
+
+  // useEffect(() => {
+  // }, [communityInfo]);
 
   const handleMouseOver = () => {
     const timeoutId = setTimeout(() => {
@@ -123,12 +142,12 @@ const PostCard = ({
           <div className={classes["post-header-left"]}>
             <div
               className={classes["post-header-left-community-wrapper"]}
-              onMouseEnter={() =>
-                setTimeout(() => {
-                  setIsHovering(true);
-                }, 500)
-                }
-              onMouseLeave={() => setIsHovering(false)}
+              // onMouseEnter={() =>
+              //   setTimeout(() => {
+              //     setIsHovering(true);
+              //   }, 500)
+              //   }
+              // onMouseLeave={() => setIsHovering(false)}
             >
               <div
                 className={classes["post-header-left-community"]}
@@ -150,7 +169,7 @@ const PostCard = ({
                   <b>r/{post.communityId}</b>
                 </p>
               </div>
-              {isHovering && (
+              {/* {isHovering && (
                 <div
                   className={classes["post-card-hovered-community"]}
                   onMouseEnter={() => setIsHovering(true)}
@@ -211,7 +230,7 @@ const PostCard = ({
                   <b>members</b>
                   {communityInfo.data.data.members.length}
                 </div>
-              )}
+              )} */}
             </div>
             <p>.</p>
             <p>{calculateTimeSinceCreation(post.createdAt)}</p>
