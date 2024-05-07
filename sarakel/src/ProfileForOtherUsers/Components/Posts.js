@@ -71,6 +71,11 @@ function Posts({ username }) {
                     <div className={style.postcontent}>
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
+                        {post.media && ( // Check if media exists and render it
+                            <div className={style.postMedia}>
+                                <img src={post.media} alt="Media" />
+                            </div>
+                        )}
                     </div>
                     <div className={style.postactions}>
                         <button onClick={() => handleUpvote(post._id)}><BiUpvote /> {post.upvotes}</button>

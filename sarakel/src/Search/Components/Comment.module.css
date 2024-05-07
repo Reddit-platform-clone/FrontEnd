@@ -87,3 +87,11 @@
     margin-right: 5px; /* Adjust as needed */
 }
 
+/* Media Query */
+@media screen and (max-width: 768px) {
+    .CommentsContainer {
+        max-width: 400px;
+        right: 100px;
+        top: 150px;
+    }
+}

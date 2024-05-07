@@ -97,3 +97,33 @@
 .usersdata p {
     margin: 0;
 }
+
+/* Media Query */
+@media screen and (max-width: 768px) {
+    .logoup {
+        width: 60px;
+        height: 60px;
+        left: 150px;
+        top: 60px;
+    }
+    
+    .username {
+        font-size: 18px;
+        left: 230px;
+        top: 80px;
+    }
+
+    .Contents {
+        right: 250px;
+        top: 90px;
+    }
+
+    .containerUP {
+        top: 80px;
+        right: 5px;
+    }
+
+    .button123456 {
+        font-size: 12px;
+    }
+}

@@ -6,7 +6,7 @@ import SideBar from '../HomePage/Components/SideBar/SideBar';
 import Overview from './Components/Overview';
 import Posts from './Components/Posts';
 import Comments from './Components/Comments';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function UsersProfile() {
     const { username } = useParams(); // Access the username from URL params
@@ -37,6 +37,13 @@ function UsersProfile() {
         } else {
             alert(`You have unfollowed ${username}`);
         }
+    };
+
+    const handleReport = () => {
+        alert(`You have reported ${username}`);
+    };
+    const handleBlock = () => {
+        alert(`You have blocked ${username}`);
     };
 
     const handleTabClick = (index) => {
@@ -101,7 +108,11 @@ function UsersProfile() {
                     <button className={`${styles.button123456} ${isFollowing ? styles.following : ''}`} onClick={toggleFollow}>
                         {isFollowing ? '- Unfollow' : '→ Follow'}
                     </button>
-                    <button className={styles.button123456}>Chat</button>
+                    <Link to="/MessagesPage">
+                        <button className={styles.button123456}>
+                            Chat
+                        </button>
+                     </Link>
                     <div>
                         <button className={styles.button123456} onClick={() => setShowList(!showList)}>
                             {showList ? 'Close' : 'Options'}
@@ -110,16 +121,19 @@ function UsersProfile() {
                             <div>
                                 <ul>
                                     <button className={styles.button123456}>Share</button><br/>
-                                    <button className={styles.button123456}>Send a message</button>
-                                    <button className={styles.button123456}>Block account</button>
-                                    <button className={styles.button123456}>Report account</button>
+                                    <Link to="/MessagesPage">
+                                            <button className={styles.button123456}>Send a message</button>
+
+                                    </Link>
+                                    <button className={styles.button123456} onClick={handleBlock}>Block account</button>
+                                    <button className={styles.button123456} onClick={handleReport}>Report account</button>
                                 </ul>
                             </div>
                         )}
                     </div>
                 </div>
                 <br/>
-                <div className='usersdata'>
+                {/* <div className='usersdata'>
                     <div className={styles.horizontalali}>
                         <p className='text-sm text-gray-500'>Post Karma</p>
                         <p className='text-lg font-bold'>1</p>
@@ -132,7 +146,7 @@ function UsersProfile() {
                         <p className='text-sm text-gray-500'>Cake day</p>
                         <p className='text-lg font-bold'>Mar 1, 2024</p>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     );

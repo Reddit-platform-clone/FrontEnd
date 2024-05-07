@@ -55,11 +55,11 @@
     margin-top: 10px;
 }
 
-.errorText {
+.errorText1 {
     color: red;
     font-size: x-large;
     position: absolute;
-    top: 20px;
+    top: 320px;
     left: 50%;
     transform: translateX(-50%);
 }

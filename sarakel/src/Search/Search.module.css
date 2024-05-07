@@ -1,4 +1,4 @@
-
+/* SearchContents */
 .SearchContents {
     display: flex;
     flex-direction: row;
@@ -109,4 +109,11 @@
     position: absolute;
     top: 20px;
     left: 220px;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+    .SearchContents {
+        left: 50px; /* Adjust position from left */
+    }
 }

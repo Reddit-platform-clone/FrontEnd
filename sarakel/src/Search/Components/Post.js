@@ -39,19 +39,20 @@ function Post() {
             {posts.map(post => (
                 <div className={`${styles.Post} ${post.isLocked ? styles.LockedPost : ''}`} key={post._id}>
                     <div className={styles.PostHeader}>
-                        {post.user && ( // Check if post.user exists
+                        {post.user && (
                             <>
                                 <img src={post.user?.image} alt='User Avatar' className={styles.LogoUp1} />
                                 <span className={styles.Username1}>{post.user.name}</span>
                             </>
                         )}
                         <div className={styles.PostTime}>
-                        <span className={styles.PostTime}>{formatTime(post.createdAt)}</span>                        </div>
+                            <span className={styles.PostTime}>{formatTime(post.createdAt)}</span>
+                        </div>
                     </div>
                     <div className={styles.PostContent}>
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
-                        {post.media && ( // Check if media exists
+                        {post.media && ( // Check if media exists and render it
                             <div className={styles.PostMedia}>
                                 {Array.isArray(post.media) ? (
                                     post.media.map((media, index) => (

@@ -73,7 +73,7 @@ function Saved() {
               </li>
             ))
           ) : (
-            <p className={styles.errorText}>No saved posts found</p>
+            <p className={styles.errorText1}>No saved posts found</p>
           )}
         </ul>
       )}
