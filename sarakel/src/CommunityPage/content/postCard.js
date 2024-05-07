@@ -73,7 +73,7 @@ const PostCard = ({
 
 
   return (
-    <div onClick={() => handlePostClick(post)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
+    <div onClick={() => handlePostClick(post._id)} className={`${classes["post-card"]} ${!post.media ? classes["no-media"] : ""}`}>
       <div className={classes["post-info"]}>
         <div className={classes["post-header"]}>
           <div className={classes["post-header-left"]} onMouseOver={handleMouseOver}

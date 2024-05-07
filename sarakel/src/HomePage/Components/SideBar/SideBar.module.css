@@ -17,6 +17,9 @@
     margin-top: -40px;
    
 }
+.nodec{
+    text-decoration: none;
+}
 
 .scrollbox{
     overflow: auto;

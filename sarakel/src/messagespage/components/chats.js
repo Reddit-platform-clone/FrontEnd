@@ -136,7 +136,7 @@ function removeDeletedMessageFromUI(messageId) {
 }
 
 async function getSentMessages() {
-  const response = await fetch('/api/message/sent', {
+  const response = await fetch('http://localhost:5000/api/message/sent', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -6,10 +6,10 @@
     padding-right: 8px;
 }
 .UserImage{
-    border-radius: 45%;
-    height: 2.2rem;
-    padding-left: 8px;
-    padding-right: 8px;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    
 }
 .UserName{
     color: #576f76;
@@ -21,8 +21,8 @@
     text-decoration: none;
 }
 .PostImg{
-
-    height: 350px;
+  max-width: 2050px;
+   max-height: 550px;
 }
 .RightSide{
     background-color: #f3f3f3;
@@ -48,4 +48,95 @@
     justify-content: center;
     align-items: center;
 
+}
+.collapse{
+    visibility: collapse;
+}
+.interaction-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.interaction {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.downvote-button:hover {
+    color: blue;
+}
+.upvote-button:hover {
+    color: red;
+}
+.left-post p,
+.middle-post p {
+  margin-right: 2px;
+  margin-top: 15px;
+  margin-left: 2px;
+  padding: 5px;
+}
+
+.right-post p {
+  font-size: 13px;
+  margin-top: 19px;
+  margin-left: -4px;
+}
+.left-post button.upvoted {
+    background-color: #0045ac;
+  }
+  
+  .left-post button.downvoted {
+    background-color: orange;
+  }
+  .left-post,
+  .middle-post{
+    cursor: pointer;
+    border: none;
+    width: auto;
+    max-height: 35px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 25px;
+    padding: 0 0px;
+    background-color: rgba(128, 128, 128, 0.1);
+  }
+  .right-post {
+    cursor: pointer;
+    border: none;
+    width: auto;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 25px;
+    padding: 0 5px;
+    background-color: rgba(128, 128, 128, 0.1);
+  } 
+  .left-post button,
+  .middle-post button,
+  .right-post button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .CommunityButtons{
+    border-radius: 20px;
+    color: white;
+}
+.CommentImage{
+  width: 4rem;
+  height: 3rem;
+  border-radius: 50%;
 }

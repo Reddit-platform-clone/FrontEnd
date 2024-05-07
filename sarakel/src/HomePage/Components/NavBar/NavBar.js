@@ -37,14 +37,19 @@ function NavBar() {
             <IoIosNotificationsOutline />
           </button>
 
+          <Link to="/messagespage">
           <button className={styles["button"] + " " + styles["chat-button"]} data-title="Open chat">
             <IoChatbubbleEllipsesOutline />
           </button>
+          </Link>
+          
 
-          <button className={styles["button"] + " " + styles["create-button"]} data-title="Create post">
-            <FaPlus />
-            <span>Create</span>
-          </button>  
+          <Link to={'/createpost'}>
+            <button className={styles["button"] + " " + styles["create-button"]} data-title="Create post">
+              <FaPlus />
+              <span>Create</span>
+            </button>
+          </Link>  
 
           <div className={styles['dropdown']}>
             <button className={styles['dropbtn'] + " " + styles['user-button']}>

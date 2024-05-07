@@ -3,403 +3,22 @@ import '../../bootstrap.min.css'
 import classes from '../Moderation.module.css'
 import jsonData from '../../mock.json';
 import mock from '../../mock.json'
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
+import {useParams, useNavigate} from "react-router-dom"
 import 'bootstrap/dist/js/bootstrap.min.js'
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from "react-player";
+import { list } from '@chakra-ui/react';
+import {useAuth} from "../../HomePage/Components/AuthContext"
 
 
- function Listing(queue){
-    let img
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            img = user.image
-            return
-        }
-    }) 
-    const [posts, setPosts] = useState();
-    const [loading, setLoading] = useState(true);
-    const [hiddenPosts, setHiddenPosts] = useState({});
-  
-    function GetUserName(id){
-        let username = 5
-        mock.users.map((user) => {
-            if(user.id === id){
-                username = user.name
-                  return user.name
-            }
-        })
-        return username
-    }
-    
-    function GetUserImage(id){
-        mock.users.map((user) => {
-            if(user.id === id){
-                console.log(566)
-                 return user.image[0]  
-            }
-        })
-    }
 
-    useEffect(() => {
-      const fetchData = () => {
-        setTimeout(() => {
-          setPosts(jsonData.communities[0]);
-          setLoading(false);
-        }, 1000);
-      };
-  
-      fetchData();
-  
-      return () => {
-        // Cleanup tasks if needed
-      };
-    }, []);
-  
-
-    if(queue + 1 === 1){
-        return (
-        <div >
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <div className="">
-            {posts.length === 0 ? (
-              <p>No posts to display.</p>
-            ) : (
-              posts.ModQueue.map((item) => (
-                !hiddenPosts[item.id] ? (
-                  <div className={`row  mt-1 ${classes.ModListBox}`}>
-                    <div className='row '>
-                    <div className='col-1'>
-                        <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
-                    </div>
-                    <div className='col '>
-                        <div className='row mt-2 '>
-                            <div className='col-1'>
-                                <span className={`align-items-center w-100 `}>R/MAMAZAMANHAGAYA</span>
-                            </div>
-                        </div>
-                        <div className='row mt-3'>
-                            <div className='col'>
-                                <span className={`${classes.content}`}>{item.title}</span>
-                            </div>
-                        </div>
-                        <div className='row mt-1'>
-                            <span className={`${classes.color}`}>{item.text}</span>
-                        </div>
-                        <div className='row  mt-2'>
-                            <img src={item.media} className='col-7'></img>
-                        </div>
-                        <div className='row mt-1'>
-                            <p className={`${classes.color}`}>{item.comments} comments</p>
-                        </div>
-                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
-                            <div className='col-1 '>
-                                <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
-                            </div>
-                            <div className='col'>
-                                <div className='row'><a>Removed</a></div>
-                                <div className='row '><a>u/MemoNar</a></div>
-                            </div>
-                        </div>
-                        <div className='row mt-3 '>
-                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
-                            </div>
-                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                ) : (
-                  <div  className="hidden-post-card">
-                    
-                  </div>
-                )
-              ))
-            )}
-          </div>
-        )}
-      </div>
-    )}else if(queue + 1 ===2){
-        return (
-            <div >
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
-              <div className="">
-                {posts.ReportedQueue.length === 0 ? (
-                  <p>No posts to display.</p>
-                ) : (
-                  posts.ReportedQueue.map((item) => (
-                    !hiddenPosts[item.id] ? (
-                      <div className={`row  mt-1 ${classes.ModListBox}`}>
-                        <div className='row '>
-                        <div className='col-1'>
-                            <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
-                        </div>
-                        <div className='col '>
-                            <div className='row mt-2 '>
-                                <div className='col-1'>
-                                    <span className={`align-items-center w-100 `}>R/MAMAZAMANHAGAYA</span>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col'>
-                                    <span className={`${classes.content}`}>{item.title}</span>
-                                </div>
-                            </div>
-                            <div className='row mt-1'>
-                                <span className={`${classes.color}`}>{item.text}</span>
-                            </div>
-                            <div className='row  mt-2'>
-                                <img src={item.media} className='col-7'></img>
-                            </div>
-                            <div className='row mt-1'>
-                                <p className={`${classes.color}`}>{item.comments} comments</p>
-                            </div>
-                            <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
-                                <div className='col-1 '>
-                                    <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
-                                </div>
-                                <div className='col'>
-                                    <div className='row'><a>Removed</a></div>
-                                    <div className='row '><a>u/MemoNar</a></div>
-                                </div>
-                            </div>
-                            <div className='row mt-3 '>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
-                                </div>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    ) : (
-                      <div  className="hidden-post-card">
-                        
-                      </div>
-                    )
-                  ))
-                )}
-              </div>
-            )}
-          </div>
-        )
-    }else if(queue+1 ===3){
-        return (
-            <div >
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
-              <div className="">
-                {posts.RemovedQueue.length === 0 ? (
-                  <p>No posts to display.</p>
-                ) : (
-                  posts.RemovedQueue.map((item) => (
-                    !hiddenPosts[item.id] ? (
-                      <div className={`row  mt-1 ${classes.ModListBox}`}>
-                        <div className='row '>
-                        <div className='col-1'>
-                            <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
-                        </div>
-                        <div className='col '>
-                            <div className='row mt-2 '>
-                                <div className='col-1'>
-                                    <span className={`align-items-center w-100 `}>R/MAMAZAMANHAGAYA</span>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col'>
-                                    <span className={`${classes.content}`}>{item.title}</span>
-                                </div>
-                            </div>
-                            <div className='row mt-1'>
-                                <span className={`${classes.color}`}>{item.text}</span>
-                            </div>
-                            <div className='row  mt-2'>
-                                <img src={item.media} className='col-7'></img>
-                            </div>
-                            <div className='row mt-1'>
-                                <p className={`${classes.color}`}>{item.comments} comments</p>
-                            </div>
-                            <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
-                                <div className='col-1 '>
-                                    <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
-                                </div>
-                                <div className='col'>
-                                    <div className='row'><a>Removed</a></div>
-                                    <div className='row '><a>u/MemoNar</a></div>
-                                </div>
-                            </div>
-                            <div className='row mt-3 '>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
-                                </div>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    ) : (
-                      <div  className="hidden-post-card">
-                        
-                      </div>
-                    )
-                  ))
-                )}
-              </div>
-            )}
-          </div>
-        )
-    }else if(queue+1 ===4){
-        return (
-            <div >
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
-              <div className="">
-                {posts.EditedQueue.length === 0 ? (
-                  <p>No posts to display.</p>
-                ) : (
-                  posts.EditedQueue.map((item) => (
-                    !hiddenPosts[item.id] ? (
-                      <div className={`row  mt-1 ${classes.ModListBox}`}>
-                        <div className='row '>
-                        <div className='col-1'>
-                            <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
-                        </div>
-                        <div className='col '>
-                            <div className='row mt-2 '>
-                                <div className='col-1'>
-                                    <span className={`align-items-center w-100 `}>R/MAMAZAMANHAGAYA</span>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col'>
-                                    <span className={`${classes.content}`}>{item.title}</span>
-                                </div>
-                            </div>
-                            <div className='row mt-1'>
-                                <span className={`${classes.color}`}>{item.text}</span>
-                            </div>
-                            <div className='row  mt-2'>
-                                <img src={item.media} className='col-7'></img>
-                            </div>
-                            <div className='row mt-1'>
-                                <p className={`${classes.color}`}>{item.comments} comments</p>
-                            </div>
-                            <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
-                                <div className='col-1 '>
-                                    <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
-                                </div>
-                                <div className='col'>
-                                    <div className='row'><a>Removed</a></div>
-                                    <div className='row '><a>u/MemoNar</a></div>
-                                </div>
-                            </div>
-                            <div className='row mt-3 '>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
-                                </div>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    ) : (
-                      <div  className="hidden-post-card">
-                        
-                      </div>
-                    )
-                  ))
-                )}
-              </div>
-            )}
-          </div>
-        )
-    }else if(queue+1 ===5){
-        return (
-            <div >
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
-              <div className="">
-                {posts.UnmoderatedQueue.length === 0 ? (
-                  <p>No posts to display.</p>
-                ) : (
-                  posts.UnmoderatedQueue.map((item) => (
-                    !hiddenPosts[item.id] ? (
-                      <div className={`row  mt-1 ${classes.ModListBox}`}>
-                        <div className='row '>
-                        <div className='col-1'>
-                            <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
-                        </div>
-                        <div className='col '>
-                            <div className='row mt-2 '>
-                                <div className='col-1'>
-                                    <span className={`align-items-center w-100 `}>R/MAMAZAMANHAGAYA</span>
-                                </div>
-                            </div>
-                            <div className='row mt-3'>
-                                <div className='col'>
-                                    <span className={`${classes.content}`}>{item.title}</span>
-                                </div>
-                            </div>
-                            <div className='row mt-1'>
-                                <span className={`${classes.color}`}>{item.text}</span>
-                            </div>
-                            <div className='row  mt-2'>
-                                <img src={item.media} className='col-7'></img>
-                            </div>
-                            <div className='row mt-1'>
-                                <p className={`${classes.color}`}>{item.comments} comments</p>
-                            </div>
-                            <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
-                                <div className='col-1 '>
-                                    <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
-                                </div>
-                                <div className='col'>
-                                    <div className='row'><a>Removed</a></div>
-                                    <div className='row '><a>u/MemoNar</a></div>
-                                </div>
-                            </div>
-                            <div className='row mt-3 '>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
-                                </div>
-                                <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                    <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    ) : (
-                      <div  className="hidden-post-card">
-                        
-                      </div>
-                    )
-                  ))
-                )}
-              </div>
-            )}
-          </div>
-        )
-    }
-}
 export default function Queues(){
+    const navigate = useNavigate();
+    const {token} = useAuth()
+    const {communityId} = useParams();
     const actArray = []
     const buttArray = []
     const [value, setValue] = React.useState(0)
@@ -411,15 +30,77 @@ export default function Queues(){
         }
     }
     let img
-    mock.users.map((user) => {
-        if(user.LoggedIn === 1){
-            img = user.image
-            return
-        }
-    }) 
-    const [Sort1, setSort1] = React.useState("Newest first")
-    const [Sort2, setSort2] = React.useState("Posts and comments")
+
     
+    const [ModQueue, setModQueue] = React.useState([])
+    const [Reported, setReported] = React.useState([])
+    const [Edited, setEdited] = React.useState([])
+    const [Removed, setRemoved] = React.useState([])
+    const [UnMod, setUnMod] = React.useState([])
+
+
+    async function ApprovePost(postID){
+        const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/approve`,{postId: postID},{headers:{Authorization: `Bearer ${token}`}})
+        GetQueues()
+        return console.log(promise)
+    }
+    async function RemovePost(postID){
+        const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/remove`,{postId: postID},{headers:{Authorization: `Bearer ${token}`}})
+        GetQueues()
+        return console.log(promise)
+    }
+    async function GetModQueue (){
+        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/modqueue`,{headers:{Authorization: `Bearer ${token}`}})
+        return promise.data
+    }
+    async function GetRemoved (){
+        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/removed`,{headers:{Authorization: `Bearer ${token}`}})
+        return promise.data
+    }
+    async function GetReported (){
+        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/reports`,{headers:{Authorization: `Bearer ${token}`}})
+        return promise.data
+    }
+    async function GetEdited (){
+        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/edited`,{headers:{Authorization: `Bearer ${token}`}})
+        return promise.data
+    }
+    async function GetUnMod (){
+        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/unmoderated`,{headers:{Authorization: `Bearer ${token}`}})
+        return promise.data
+    }
+    async function GetQueues(){
+        const modData = await GetModQueue()
+        const removedData = await GetRemoved()
+        const reportedData = await GetReported()
+        const editedData = await GetEdited()
+        const unmodData = await GetUnMod()
+        if(modData && removedData && reportedData && editedData && unmodData){
+            setModQueue(modData.posts)
+            setReported(reportedData.posts)
+            setRemoved(removedData.posts)
+            setEdited(editedData.posts)
+            setUnMod(unmodData.posts)
+        }
+    }
+    React.useEffect(()=>{
+        async function GetQueues(){
+            const modData = await GetModQueue()
+            const removedData = await GetRemoved()
+            const reportedData = await GetReported()
+            const editedData = await GetEdited()
+            const unmodData = await GetUnMod()
+            if(modData && removedData && reportedData && editedData && unmodData){
+                setModQueue(modData.posts)
+                setReported(reportedData.posts)
+                setRemoved(removedData.posts)
+                setEdited(editedData.posts)
+                setUnMod(unmodData.posts)
+            }
+        }
+
+        GetQueues()
+    },[])
 
     return(
 
@@ -430,7 +111,6 @@ export default function Queues(){
                         <div className='row'>
                             <div className='col  d-flex'>
                                 <span className={`  ${classes.QueuesHeader}`}>Queues</span>
-                            	<img src={img} className={`${classes.ModImg}`}></img>
                             </div>
                         </div>
                         <div className='row mt-3 '>
@@ -450,34 +130,8 @@ export default function Queues(){
                                 <button className={actArray[4]} onClick={()=>{setValue(4)}}><span>Unmoderated</span></button>
                             </div>
                         </div>
-                        <div className='row justify-content mt-3'>
-                            <div className='col-auto'>
-                                <div class="dropdown">
-                                    <button className='btn  dropdown-toggle' type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                       {Sort1}
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" onClick={()=>{setSort1('Newest First')}} href="#">Newest First</a></li>
-                                        <li><a class="dropdown-item" onClick={()=>{setSort1('Oldest First')}} href="#">Oldest First</a></li>
-                                        <li><a class="dropdown-item" onClick={()=>{setSort1('Most reported first')}} href="#">Most Reported First</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className='col-auto'>
-                                <div class="dropdown">
-                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {Sort2}
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" onClick={()=>{setSort2('Posts and comments')}} href="#">Posts And Comments</a></li>
-                                        <li><a class="dropdown-item" onClick={()=>{setSort2('Posts')}} href="#">Posts</a></li>
-                                        <li><a class="dropdown-item" onClick={()=>{setSort2('Comments')}} href="#">Comments</a></li>
-                                        <li><a class="dropdown-item" onClick={()=>{setSort2('Live Chat Messages')}} href="#">Live Chat Messages</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={`row justify-content ${classes.ActionBar}`}>
+                        
+                        <div className={`row justify-content mt-3 ${classes.ActionBar}`}>
                             <div className={`col-auto ${classes.ActionBarDrpdwn}`}>
                                 <div class="btn-group">
                                     <button type="button" class="btn"><input type='checkbox'></input></button>
@@ -496,7 +150,243 @@ export default function Queues(){
                             </div>
                         </div>
 
-                        {Listing(value)}
+                        {value == 0 ? (
+                            <>
+                                {ModQueue.length == 0 ? <span>no posts</span> : ModQueue.map((item) => (
+                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
+                                    <div className='row '>
+                                    <div className='col-1'>
+                                        <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
+                                    </div>
+                                    <div className='col '>
+                                        <div className='row mt-2 '>
+                                            <div className='col-1'>
+                                                <span className={`align-items-center w-100 `}>r/{item.communityId}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-3'>
+                                            <div className='col'>
+                                                <span className={`${classes.content}`}>{item.title}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <span className={`${classes.color}`}>{item.text}</span>
+                                        </div>
+                                        <div className='row  mt-2'>
+                                            <img src={item.media} className='col-7'></img>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <p className={`${classes.color}`}>{item.comments} comments</p>
+                                        </div>
+                                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
+                                            <div className='col-1 '>
+                                                <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
+                                            </div>
+                                            <div className='col'>
+                                                <div className='row'><a>Removed</a></div>
+                                                <div className='row '><a>u/MemoNar</a></div>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-3 '>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
+                                            </div>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                ))}
+                            </>
+                        ):<></>}
+                        {value == 1 ? (
+                            <>
+                                {Reported.length == 0 ? <span>no posts</span> : Reported.map((item) => (
+                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
+                                    <div className='row '>
+                                    <div className='col-1'>
+                                        <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
+                                    </div>
+                                    <div className='col '>
+                                        <div className='row mt-2 '>
+                                            <div className='col-1'>
+                                                <span className={`align-items-center w-100 `}>r/{item.communityId}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-3'>
+                                            <div className='col'>
+                                                <span className={`${classes.content}`}>{item.title}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <span className={`${classes.color}`}>{item.text}</span>
+                                        </div>
+                                        <div className='row  mt-2'>
+                                            <img src={item.media} className='col-7'></img>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <p className={`${classes.color}`}>{item.comments} comments</p>
+                                        </div>
+                                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
+                                            <div className='col-1 '>
+                                                <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
+                                            </div>
+                                            <div className='col'>
+                                                <div className='row'><a>Removed</a></div>
+                                                <div className='row '><a>u/MemoNar</a></div>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-3 '>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
+                                            </div>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                ))}
+                            </>
+                        ):<></>}
+                        {value == 2 ? (
+                            <>
+                                {Removed.length == 0 ? <span>no posts</span> : Removed.map((item) => (
+                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
+                                    <div className='row '>
+                                    <div className='col-1'>
+                                        <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
+                                    </div>
+                                    <div className='col '>
+                                        <div className='row mt-2 '>
+                                            <div className='col-3'>
+                                                <span className={` col-2 `}>r/{item.communityId}</span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div className='row mt-3'>
+                                            <div className='col'>
+                                                <span className={`${classes.content}`}>{item.title}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <span className={`${classes.color}`}>{item.content}</span>
+                                        </div>
+                                        <div className='row  mt-2'>
+                                            <img src={item.media} className='col-7'></img>
+                                        </div>
+                                        
+                                        
+                                        <div className='row mt-3  mb-2'>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button onClick={() =>{ApprovePost(item._id)}} className={`btn btn-primary`}><span>Approve</span></button>
+                                            </div>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button onClick={()=>{RemovePost(item._id)}} className={`btn btn-danger`}><span>Remove</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                ))}
+                            </>
+                        ):<></>}
+                        {value == 3 ? (
+                            <>
+                                {Edited.length == 0 ? <span>no posts</span> : Edited.map((item) => (
+                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
+                                    <div className='row '>
+                                    <div className='col-1'>
+                                        <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
+                                    </div>
+                                    <div className='col '>
+                                        <div className='row mt-2 '>
+                                            <div className='col-1'>
+                                                <span className={`align-items-center w-100 `}>r/{item.communityId}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-3'>
+                                            <div className='col'>
+                                                <span className={`${classes.content}`}>{item.title}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <span className={`${classes.color}`}>{item.text}</span>
+                                        </div>
+                                        <div className='row  mt-2'>
+                                            <img src={item.media} className='col-7'></img>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <p className={`${classes.color}`}>{item.comments} comments</p>
+                                        </div>
+                                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
+                                            <div className='col-1 '>
+                                                <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
+                                            </div>
+                                            <div className='col'>
+                                                <div className='row'><a>Removed</a></div>
+                                                <div className='row '><a>u/MemoNar</a></div>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-3 '>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
+                                            </div>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                ))}
+                            </>
+                        ):<></>}
+                        {value == 4 ? (
+                            <>
+                                {UnMod.length == 0 ? <span>no posts</span> : UnMod.map((item) => (
+                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
+                                    <div className='row '>
+                                    <div className='col-1'>
+                                        <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
+                                    </div>
+                                    <div className='col '>
+                                        <div className='row mt-2 '>
+                                            <div className='col-3'>
+                                                <span className={` col-2 `}>r/{item.communityId}</span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div className='row mt-3'>
+                                            <div className='col'>
+                                                <span className={`${classes.content}`}>{item.title}</span>
+                                            </div>
+                                        </div>
+                                        <div className='row mt-1'>
+                                            <span className={`${classes.color}`}>{item.content}</span>
+                                        </div>
+                                        <div className='row  mt-2'>
+                                            <img src={item.media} className='col-7'></img>
+                                        </div>
+                                        
+                                        
+                                        <div className='row mt-3  mb-2'>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button onClick={() =>{ApprovePost(item._id)}} className={`btn btn-primary`}><span>Approve</span></button>
+                                            </div>
+                                            <div className={`col-auto ${classes.QueueButtonDiv}`}>
+                                                <button onClick={()=>{RemovePost(item._id)}} className={`btn btn-danger`}><span>Remove</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                ))}
+                            </>
+                        ):<></>}
                         
                     </div>
                 </div>

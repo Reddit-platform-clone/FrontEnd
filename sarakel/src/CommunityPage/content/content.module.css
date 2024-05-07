@@ -80,6 +80,13 @@
     text-align: left;
     border-radius: 5px;
   }
+  .post-image {
+    margin-top: 10px;
+    width: 540px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
   
   .options-content-sort-drop-down-list button:hover,
   .options-content-view-drop-down-list button:hover {

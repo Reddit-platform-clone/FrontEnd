@@ -97,9 +97,6 @@
   
   
   .upload{
-    position: absolute;
-    top: 4%;
-    right: 60%; /* Adjust as needed */
     color: #0079d3;
     text-decoration: none;
     background-color: transparent;

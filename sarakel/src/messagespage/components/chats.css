@@ -87,7 +87,7 @@
     margin-top: 0px;
     display: none;
     height: 600px;
-    overflow: scroll;
+    overflow-y: scroll;
   
   }
 

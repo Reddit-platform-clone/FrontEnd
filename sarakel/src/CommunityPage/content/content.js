@@ -16,7 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
 import "react-toastify/dist/ReactToastify.css";
 
-const Content = () => {
+const Content = ({communityId}) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hiddenPosts, setHiddenPosts] = useState({});
@@ -35,7 +35,7 @@ const Content = () => {
         let url;
         if (token){
           // If user is not logged in (token is null)
-          url = `http://localhost:5000/api/community/friedChicken/getPosts`;
+          url = `http://localhost:5000/api/community/${communityId}/getPosts`;
         }
 
         const response = await fetch(url, {
