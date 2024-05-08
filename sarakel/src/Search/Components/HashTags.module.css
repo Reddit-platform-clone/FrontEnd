@@ -6,6 +6,15 @@
   top: 200px;
   left: 200px;
 }
+.SearchInput{
+  display: flex;
+  position: relative;
+  top: -10px;
+  left: 1100px;
+  max-width: fit-content;
+  
+
+}
 
 .hashtagContainer {
   display: flex-column;
