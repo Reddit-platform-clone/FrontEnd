@@ -13,7 +13,7 @@ export default function Notifications() {
   const {token} = useAuth()
 
 
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState({});
 
   useEffect(() => {
     requestPermission();
@@ -33,35 +33,41 @@ export default function Notifications() {
     fetchNotifications();
   }, []);
 
-  // Function to fetch notifications from the database
   async function fetchNotifications() {
     try {
       const response = await axios.get("http://localhost:5000/api/notifications/listNotifications", {
         headers: {
-          Authorization: `Bearer ${token}` 
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJhaGV5MSIsImlhdCI6MTcxNTEwODI0MX0.l4yDvmBHyap-LoZ4oRgK5vZziN6FoY-BB6-gzw4FQKo` 
         }
       });
-      // Update state with fetched notifications
-      setNotifications(response.data);
+  
+      // Check if response.data is an object
+      if (typeof response.data === 'object' && response.data !== null) {
+        setNotifications(response.data);
+        console.log(response.data)
+      } else {
+        console.error("Data received is not an object:", response.data);
+      }
     } catch (error) {
       console.error("Error fetching notifications:", error);
     }
-    console.log(`${token}`)
   }
 
   return (
     <div>
       <NavBar />
       <div id="pop-page">
-        <ul>
-          {notifications.map((notification, index) => (
-            <li key={index}>
-              <span>{notification.title}</span>
-              <span>{notification.body}</span>
-            </li>
-          ))}
-        </ul>
+     
+      <ul cl>
+        {notifications && notifications.data && notifications.data.map((notification, index) => (
+          <li className='notif' key={index}>
+            <span className='sendery'>{notification.title}</span>
+            <span className='recievery'>{notification.body}</span>
+          </li>
+        ))}
+      </ul>
       </div>
+
       <Toaster />
     </div>
   );

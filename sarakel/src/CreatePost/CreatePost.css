@@ -247,6 +247,11 @@
     padding: 4px 16px;
     margin:4px ;
   }
+
+  .postprobbutton.clicked{
+    background-color: blue;
+    color :white;
+  }
    
   /*save and draft*/
   .savepost{
