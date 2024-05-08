@@ -10,6 +10,15 @@
     top: 200px;
     right: 200px;
 }
+.SearchInput{
+    display: flex;
+    position: relative;
+    top: -70px;
+    left: 1000px;
+    max-width: fit-content;
+    
+ 
+}
 
 /* Comment */
 .Comment {
