@@ -49,7 +49,7 @@ const Content = () => {
           }?page=${page}&limit=10`; // Include page number in the API endpoint
         } else {
           // If user is not logged in (token is null)
-          url = `http://localhost:5000/api/subreddit/getRandom`;
+          url = `http://localhost:5000/api/subreddit/getRandom?page=${page}&limit=10`;
         }
 
         const response = await fetch(url, {
@@ -759,9 +759,9 @@ const Content = () => {
                         <TbUserPentagon
                           className={styles["content-recent-posts-image"]}
                         />
-                        <p>r/{recent.communityId}</p>
+                        <p onClick={() => handleCommunityClick(recent.communityId)}>r/{recent.communityId}</p>
                       </div>
-                      <p>{recent.title}</p>
+                      <p onClick={()=>handlePostClick(recent._id)} className={styles["recent-posts-title"]}>{recent.title}</p>
                       <div className={styles["content-recent-posts-last"]}>
                         <p>{recent.upvotes - recent.downvotes} votes</p>
                         <p>{calculateTimeSinceCreation(recent.createdAt)}</p>

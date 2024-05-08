@@ -218,7 +218,10 @@
     color: blue;
     margin-right: 5px;
   }
-
+.recent-posts-title:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
   .content-recent-posts-image{
     max-width: 20px;
     max-height: 20px;
