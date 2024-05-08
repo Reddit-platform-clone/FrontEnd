@@ -415,7 +415,7 @@
       margin-top: 5px;
       }
   
-      .sender{
+      .sendery{
         color: var(--color-secondary-plain);
       font-weight: 600;
       padding-right: 10px;
@@ -424,7 +424,7 @@
       unicode-bidi: isolate;
       }
   
-      .reciever{
+      .recievery{
   
         color: var(--color-neutral-content-weak);
   
