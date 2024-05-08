@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./content.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsViewList, BsViewStacked } from "react-icons/bs";
@@ -14,20 +14,22 @@ import { useAuth } from "../AuthContext.js"; //import
 import { Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 import "react-toastify/dist/ReactToastify.css";
 import { TbUserPentagon } from "react-icons/tb";
 import { TbHandClick } from "react-icons/tb";
 
 const Content = () => {
   const [posts, setPosts] = useState([]);
-  const [recentPosts,setRecentPosts] = useState([]);
+  const [recentPosts, setRecentPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMorePosts, setLoadingMorePosts] = useState(false);
   const [hiddenPosts, setHiddenPosts] = useState({});
   const [joinStates, setJoinStates] = useState({});
   const [saveStates, setSaveStates] = useState({});
   const [viewType, setViewType] = useState("card");
   const [showSortOptions, setShowSortOptions] = useState(false);
-  const [sortingType, setSortingType] = useState("new");
+  const [sortingType, setSortingType] = useState("best");
   const [showViewOptions, setShowViewOptions] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [selectedCommunityId, setCommunityId] = useState(null);
@@ -44,33 +46,37 @@ const Content = () => {
           // If user is logged in (token exists)
           url = `http://localhost:5000/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
-          }?page=${page}&limit=15`; // Include page number in the API endpoint
+          }?page=${page}&limit=10`; // Include page number in the API endpoint
         } else {
           // If user is not logged in (token is null)
           url = `http://localhost:5000/api/subreddit/getRandom`;
         }
-  
+
         const response = await fetch(url, {
           headers: {
             "Content-Type": "application/json",
             Authorization: token ? `Bearer ${token}` : undefined,
           },
         });
-        console.log("before response data")
+
+        if (!response.ok) {
+          throw new Error(response.statusText || "Failed to fetch posts");
+        }
+
         const responseData = await response.json();
-        console.log("Response data:", responseData.data.posts); // For debugging
-        if (response.ok) {
-          // If new posts are received
-          if (Array.isArray(responseData.data.posts) && responseData.data.posts.length > 0) {
-            // Append new posts to existing posts
-            setPosts(prevPosts => [...prevPosts, ...responseData.data.posts]);
-            setLoading(false);
-          } else {
-            // If no new posts are received, set endOfPosts to true
-            setEndOfPosts(true);
-          }
+
+        if (
+          Array.isArray(responseData.data.posts) &&
+          responseData.data.posts.length > 0
+        ) {
+          // Reverse the order of posts before setting them
+          const reversedPosts = responseData.data.posts.reverse();
+          setPosts((prevPosts) => [...prevPosts, ...reversedPosts]);
+          setLoading(false);
+          setLoadingMorePosts(false);
         } else {
-          throw new Error(responseData.message || "Failed to fetch posts");
+          // If no new posts are received, set endOfPosts to true
+          setEndOfPosts(true);
         }
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -78,14 +84,13 @@ const Content = () => {
         setLoading(false);
       }
     };
-  
+
     fetchData();
-  
+
     return () => {
       // Cleanup tasks if needed
     };
   }, [sortingType, token, page]); // Include 'page' as a dependency in useEffect
-  
 
   // useEffect(() => {
   //   console.log("Inside useEffect");
@@ -105,14 +110,13 @@ const Content = () => {
   //   console.log("Adding scroll event listener");
   //   // Add event listener for scroll
   //   window.addEventListener("scroll", handleScroll);
-  
+
   //   // Remove event listener when component unmounts
   //   return () => {
   //     console.log("Removing scroll event listener");
   //     window.removeEventListener("scroll", handleScroll);
   //   };
   // }, [page]);
-  
 
   useEffect(() => {
     const fetchRecentPosts = async () => {
@@ -121,12 +125,15 @@ const Content = () => {
           return; // No need to fetch if not logged in
         }
 
-        const response = await fetch("http://localhost:5000/api/recentlyViewedPosts", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:5000/api/recentlyViewedPosts",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -143,6 +150,32 @@ const Content = () => {
 
     fetchRecentPosts();
   }, [token]);
+
+  const deleteRecentPosts = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/deleteRecentlyViewedPosts",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      console.log(responseData.message);
+      setRecentPosts([]); // Clear recent posts
+    } catch (error) {
+      console.error("Error deleting recent posts:", error);
+    }
+  };
+
   const handleSortTypes = () => {
     setShowSortOptions(!showSortOptions);
     setShowViewOptions(false);
@@ -154,6 +187,8 @@ const Content = () => {
       return;
     }
     setSortingType(option.toLowerCase());
+    setPosts([]); // Clear existing posts
+    setLoading(true);
     setShowSortOptions(false);
   };
 
@@ -307,51 +342,57 @@ const Content = () => {
       if (!username) {
         throw new Error("Username not found in session storage");
       }
-  
+
       // Make request to API for upvoted posts
-      const upvotedResponse = await fetch(`http://localhost:5000/api/user/${username}/upvoted`, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
+      const upvotedResponse = await fetch(
+        `http://localhost:5000/api/user/${username}/upvoted`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
-      });
-  
+      );
+
       if (!upvotedResponse.ok) {
         throw new Error(`HTTP error! Status: ${upvotedResponse.status}`);
       }
-  
+
       const upvotedData = await upvotedResponse.json();
-  
+
       // Check if the post exists in the list of upvoted posts
       const isUpvoted = upvotedData.upvotes.some(([type, posts]) => {
-        return posts.some(post => post._id === postId);
+        return posts.some((post) => post._id === postId);
       });
       if (isUpvoted) {
         return 1; // Post is upvoted
       }
-  
+
       // Make request to API for downvoted posts
-      const downvotedResponse = await fetch(`http://localhost:5000/api/user/${username}/downvoted`, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
+      const downvotedResponse = await fetch(
+        `http://localhost:5000/api/user/${username}/downvoted`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
-      });
-  
+      );
+
       if (!downvotedResponse.ok) {
         throw new Error(`HTTP error! Status: ${downvotedResponse.status}`);
       }
-  
+
       const downvotedData = await downvotedResponse.json();
-  
+
       // Check if the post exists in the list of downvoted posts
       const isDownvoted = downvotedData.upvotes.some(([type, posts]) => {
-        return posts.some(post => post._id === postId);
+        return posts.some((post) => post._id === postId);
       });
       if (isDownvoted) {
         return -1; // Post is downvoted
       }
-  
+
       // Post is neither upvoted nor downvoted
       return 0;
     } catch (error) {
@@ -359,11 +400,12 @@ const Content = () => {
       return 0; // Default to not voted
     }
   };
-  
-  const addMorePosts = () =>{
-    setPage(prevPage => prevPage + 1);
-    console.log("page : "+page)
-  }
+
+  const addMorePosts = () => {
+    setPage((prevPage) => prevPage + 1);
+    console.log("page : " + page);
+    setLoadingMorePosts(true);
+  };
   const handleHideClick = (_id) => {
     console.log(posts);
     setHiddenPosts((prevHiddenPosts) => ({
@@ -444,7 +486,7 @@ const Content = () => {
       return;
     }
 
-    console.log("inside handle post click")
+    console.log("inside handle post click");
     fetch(`http://localhost:5000/api/viewPost`, {
       method: "POST",
       headers: {
@@ -547,12 +589,12 @@ const Content = () => {
             </button>
             {showSortOptions && (
               <div className={styles["options-content-sort-drop-down-list"]}>
-                { <button onClick={() => handleSortingOption("Best")}>
+                <button onClick={() => handleSortingOption("Best")}>
                   Best
                 </button>
-                /*
+
                 <button onClick={() => handleSortingOption("Hot")}>Hot</button>
-                <button onClick={() => handleSortingOption("Top")}>Top</button> */}
+                {/*  <button onClick={() => handleSortingOption("Top")}>Top</button>  */}
                 <button onClick={() => handleSortingOption("New")}>New</button>
               </div>
             )}
@@ -649,7 +691,9 @@ const Content = () => {
                             handleReportClick={handleReportClick}
                             handleHideClick={handleHideClick}
                             handleVoteClick={handleVoteClick}
-                            renderMediaOrTruncateText={renderMediaOrTruncateText}
+                            renderMediaOrTruncateText={
+                              renderMediaOrTruncateText
+                            }
                             calculateTimeSinceCreation={
                               calculateTimeSinceCreation
                             }
@@ -685,34 +729,49 @@ const Content = () => {
                 )}
               </>
             )}
-          {/* back to top */}
-          <button onClick={() => addMorePosts()} className={styles["load-more-posts-button"]}><TbHandClick />More posts</button>
+            {/* back to top */}
+            { !loading && <button
+              onClick={() => addMorePosts()}
+              className={styles["load-more-posts-button"]}
+            >
+              {loadingMorePosts ? (
+                <PacmanLoader color="white" />
+              ) : (
+                <div>
+                  <TbHandClick /> More posts
+                </div>
+              )}
+            </button>}
           </div>
         )}
-{        console.log("recent : ",recentPosts)}
-{token && recentPosts.result && <div className={styles["content-recent-posts"]}>
-          <div className={styles["content-recent-posts-header"]}>
-            <h6>Recent posts</h6>
-            <button>clear</button>
+        {token && recentPosts.length > 0 && recentPosts && (
+          <div className={styles["content-recent-posts"]}>
+            <div className={styles["content-recent-posts-header"]}>
+              <h6>Recent posts</h6>
+              <button onClick={() => deleteRecentPosts()}>clear</button>
+            </div>
+            {recentPosts &&
+              recentPosts.slice(0, 10).map(
+                (recent) =>
+                  recent && ( // Added check for recent not being null or undefined
+                    <div key={recent._id}>
+                      <div className={styles["content-recent-posts-community"]}>
+                        <TbUserPentagon
+                          className={styles["content-recent-posts-image"]}
+                        />
+                        <p>r/{recent.communityId}</p>
+                      </div>
+                      <p>{recent.title}</p>
+                      <div className={styles["content-recent-posts-last"]}>
+                        <p>{recent.upvotes - recent.downvotes} votes</p>
+                        <p>{calculateTimeSinceCreation(recent.createdAt)}</p>
+                      </div>
+                      <hr />
+                    </div>
+                  )
+              )}
           </div>
-          {recentPosts && recentPosts.length > 0 && recentPosts.map((recent) => (
-  recent && ( // Added check for recent not being null or undefined
-    <div key={recent._id}>
-      <div className={styles["content-recent-posts-community"]}>
-        <TbUserPentagon className={styles['content-recent-posts-image']} />
-        <p>r/{recent.communityId}</p>
-      </div>
-      <p>{recent.title}</p>
-      <div className={styles["content-recent-posts-last"]}>
-        <p>{recent.upvotes - recent.downvotes} votes</p>
-        <p>{calculateTimeSinceCreation(recent.createdAt)}</p>
-      </div>
-      <hr />
-    </div>
-  )
-))}
-
-        </div>}
+        )}
       </div>
     </div>
   );
