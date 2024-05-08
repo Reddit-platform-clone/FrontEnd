@@ -245,6 +245,7 @@
   }
 
   .load-more-posts-button {
+    position:relative;
     bottom: 0; /* This places the button at the bottom of its containing element */
     left: 50%; /* This centers the button horizontally */
     transform: translateX(-50%); /* This adjusts the horizontal position to center it */
