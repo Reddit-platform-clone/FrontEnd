@@ -75,7 +75,7 @@ async function CreateCommunity() {
 }
 
 async function sendInfo(data){
-    const promise = await axios.post('http://localhost:5000/api/site_admin', data, {
+    const promise = await axios.post('http://57.151.116.81:5000/api/site_admin', data, {
         headers: {
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaHJhZiIsImlhdCI6MTcxMjc1NTMyMH0.rLf3qX_XiDt8Ujb9IYdLgfAt89cWyD_1C5MOYPYik9k'
         }

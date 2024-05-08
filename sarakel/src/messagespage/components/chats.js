@@ -56,7 +56,7 @@ function Chats() {
      useEffect(() => {
       async function fetchPostReplies() {
         try {
-          const response = await axios.post('http://localhost:5000/api/get_post_replies');
+          const response = await axios.post('http://57.151.116.81:5000/api/get_post_replies');
           const { data } = response;
           if (data && Array.isArray(data.message)) {
             setPostReplies(data.message); // Update component state with retrieved post replies
@@ -80,7 +80,7 @@ function Chats() {
     async function getUsernameMentions() {
       try {
         const token = 'YOUR_AUTH_TOKEN'; // Replace with your authentication token
-        const response = await fetch('http://localhost:5000/api/get_user_mentions', {
+        const response = await fetch('http://57.151.116.81:5000/api/get_user_mentions', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`}});  
@@ -106,9 +106,9 @@ function Chats() {
     const fetchMessages = async () => {
       try {
         const [inboxResponse, sentResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/message/inbox', {
+          axios.get('http://57.151.116.81:5000/api/message/inbox', {
             headers: {Authorization: `Bearer ${token}`}}),
-          axios.get('http://localhost:5000/api/message/sent', {
+          axios.get('http://57.151.116.81:5000/api/message/sent', {
             headers: {Authorization: `Bearer ${token}`}})]);
   
         if (inboxResponse && inboxResponse.data) {
@@ -126,7 +126,7 @@ function Chats() {
 
     async function fetchInboxMessages() {
       try {
-        const response = await fetch('http://localhost:5000/api/message/inbox', {
+        const response = await fetch('http://57.151.116.81:5000/api/message/inbox', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -160,14 +160,14 @@ function Chats() {
 
   async function markMessageRead(messageId) {
     try {
-      await axios.post('http://localhost:5000/api/read_message', { messageId });
+      await axios.post('http://57.151.116.81:5000/api/read_message', { messageId });
       fetchCombinedMessages();
     } catch (error) {
       console.error('Failed to mark message as read:', error.message);}}
 
   async function markMessageUnread(messageId) {
     try {
-      await axios.post('http://localhost:5000/api/unread_message', { messageId });
+      await axios.post('http://57.151.116.81:5000/api/unread_message', { messageId });
       fetchCombinedMessages();
     } catch (error) {
       console.error('Failed to mark message as unread:', error.message);}}
@@ -181,7 +181,7 @@ function Chats() {
      }, [toggle]);
      async function getUnreadMessages(username) {
       try {
-        const response = await fetch(`http://localhost:5000/api/message/unread`, {
+        const response = await fetch(`http://57.151.116.81:5000/api/message/unread`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ function Chats() {
 
     async function fetchCombinedMessages() {
       try {
-        const response = await axios.get('http://localhost:5000/api/message/combined');
+        const response = await axios.get('http://57.151.116.81:5000/api/message/combined');
         const { data } = response;
   
         if (data && Array.isArray(data)) {
@@ -226,7 +226,7 @@ async function sendMessage() {
     title: title,
     content: content
   };
-  const response = await fetch('http://localhost:5000/api/message/compose', {
+  const response = await fetch('http://57.151.116.81:5000/api/message/compose', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ useEffect(() => {
 }, [toggle]);
 
 async function getSentMessages() {
-  const response = await fetch('http://localhost:5000/api/message/sent', {
+  const response = await fetch('http://57.151.116.81:5000/api/message/sent', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -269,7 +269,7 @@ async function getSentMessages() {
 
 async function handleDeleteMessage(messageId) {
   try {
-    const response = await fetch(`http://localhost:5000/api/message/del_msg`, {
+    const response = await fetch(`http://57.151.116.81:5000/api/message/del_msg`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -289,7 +289,7 @@ const handleReportMessage = async (messageId) => {
   try {
     toggleReportModal();
     if (selectedReportReason) {
-      const response = await fetch(`http://localhost:5000/api/report_msg`, {
+      const response = await fetch(`http://57.151.116.81:5000/api/report_msg`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -310,7 +310,7 @@ const handleReportMessage = async (messageId) => {
 const toggleMessageStatus = async (messageId, isRead) => {
   try {
     const endpoint = isRead ? 'markMessageUnread' : 'markMessageRead';
-    await axios.post(`http://localhost:5000/api/${endpoint}`, { messageId });
+    await axios.post(`http://57.151.116.81:5000/api/${endpoint}`, { messageId });
     fetchInboxMessages();
   } catch (error) {
     console.error(`Failed to mark message as ${isRead ? 'unread' : 'read'}:`, error.message);

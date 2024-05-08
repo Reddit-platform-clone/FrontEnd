@@ -33,7 +33,7 @@ export default function Comments() {
         const fetchComments = async () => {
             try {
                 if (username) {
-                    const response = await axios.get(`http://localhost:5000/api/user/${username}/comments`, {
+                    const response = await axios.get(`http://57.151.116.81:5000/api/user/${username}/comments`, {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },

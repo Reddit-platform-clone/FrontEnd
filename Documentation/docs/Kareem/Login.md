@@ -23,7 +23,7 @@ const [redirectToSignUp, setRedirectToSignUp] = useState(false);
     const password = document.getElementById("password").value;
   
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('http://57.151.116.81:5000/api/login', {
         method: 'POST',
         body: JSON.stringify({ emailOrUsername, password }), // Ensure both fields are included
         headers: {

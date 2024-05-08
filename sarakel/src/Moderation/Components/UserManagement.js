@@ -208,16 +208,16 @@ export default function UserManagement(){
     }
 
     async function BanUser(user){
-      const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/ban/${user}`,{headers:{Authorization: `Bearer ${token}`}})
+      const promise = await axios.post(`http://57.151.116.81:5000/r/${communityId}/api/ban/${user}`,{headers:{Authorization: `Bearer ${token}`}})
       console.log(promise)
       return promise
     }
     async function MuteUser(user){
-      const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/ban/${user}`,{headers:{Authorization: `Bearer ${token}`}})
+      const promise = await axios.post(`http://57.151.116.81:5000/r/${communityId}/api/ban/${user}`,{headers:{Authorization: `Bearer ${token}`}})
       return promise
     }
     async function InviteMod(user){
-      const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/invite/${user}`,{headers:{Authorization: `Bearer ${token}`}})
+      const promise = await axios.post(`http://57.151.116.81:5000/r/${communityId}/api/invite/${user}`,{headers:{Authorization: `Bearer ${token}`}})
       return promise
     }
     const ChangeNewRule = event =>{
@@ -225,15 +225,15 @@ export default function UserManagement(){
     }
 
     async function GetBanned(){
-      const promise = await axios.post(`http://localhost:5000/api/r/${communityId}/about/banned`)
+      const promise = await axios.post(`http://57.151.116.81:5000/api/r/${communityId}/about/banned`)
       return promise
     }
     async function GetMods(){
-      const promise = await axios.post(`http://localhost:5000/api/r/${communityId}/about/banned`)
+      const promise = await axios.post(`http://57.151.116.81:5000/api/r/${communityId}/about/banned`)
       return promise
     }
     async function GetMuted(){
-      const promise = await axios.post(`http://localhost:5000/api/r/${communityId}/about/muted`)
+      const promise = await axios.post(`http://57.151.116.81:5000/api/r/${communityId}/about/muted`)
       return promise
     }
 

@@ -34,7 +34,7 @@ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/subreddit/get${
+          `http://57.151.116.81:5000/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
           }`
         );
@@ -145,7 +145,7 @@ useEffect(() => {
       const { name, userId } = getPostInfo(postId);
       const isJoining = !joinStates[postId];
       const response = await fetch(
-        `http://localhost:5000/api/community/${
+        `http://57.151.116.81:5000/api/community/${
           isJoining ? "join" : "leave"
         }`,
         {
@@ -188,7 +188,7 @@ useEffect(() => {
     const isSaved = saveStates[postId];
   
     try {
-      const response = await fetch(`http://localhost:5000/api/${isSaved ? 'unsave' : 'save'}`, {
+      const response = await fetch(`http://57.151.116.81:5000/api/${isSaved ? 'unsave' : 'save'}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -224,7 +224,7 @@ useEffect(() => {
     }
   
     try {
-      const response = await fetch("http://localhost:5000/api/report", {
+      const response = await fetch("http://57.151.116.81:5000/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

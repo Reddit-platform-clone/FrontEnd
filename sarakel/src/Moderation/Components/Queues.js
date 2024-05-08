@@ -40,33 +40,33 @@ export default function Queues(){
 
 
     async function ApprovePost(postID){
-        const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/approve`,{postId: postID},{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.post(`http://57.151.116.81:5000/r/${communityId}/api/approve`,{postId: postID},{headers:{Authorization: `Bearer ${token}`}})
         GetQueues()
         return console.log(promise)
     }
     async function RemovePost(postID){
-        const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/remove`,{postId: postID},{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.post(`http://57.151.116.81:5000/r/${communityId}/api/remove`,{postId: postID},{headers:{Authorization: `Bearer ${token}`}})
         GetQueues()
         return console.log(promise)
     }
     async function GetModQueue (){
-        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/modqueue`,{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.get(`http://57.151.116.81:5000/api/r/${communityId}/about/modqueue`,{headers:{Authorization: `Bearer ${token}`}})
         return promise.data
     }
     async function GetRemoved (){
-        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/removed`,{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.get(`http://57.151.116.81:5000/api/r/${communityId}/about/removed`,{headers:{Authorization: `Bearer ${token}`}})
         return promise.data
     }
     async function GetReported (){
-        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/reports`,{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.get(`http://57.151.116.81:5000/api/r/${communityId}/about/reports`,{headers:{Authorization: `Bearer ${token}`}})
         return promise.data
     }
     async function GetEdited (){
-        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/edited`,{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.get(`http://57.151.116.81:5000/api/r/${communityId}/about/edited`,{headers:{Authorization: `Bearer ${token}`}})
         return promise.data
     }
     async function GetUnMod (){
-        const promise = await axios.get(`http://localhost:5000/api/r/${communityId}/about/unmoderated`,{headers:{Authorization: `Bearer ${token}`}})
+        const promise = await axios.get(`http://57.151.116.81:5000/api/r/${communityId}/about/unmoderated`,{headers:{Authorization: `Bearer ${token}`}})
         return promise.data
     }
     async function GetQueues(){

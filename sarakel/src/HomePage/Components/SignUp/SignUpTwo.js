@@ -30,7 +30,7 @@ function SignUpTwo({ email }) {
     try {
       // Check if the username is available
       const availabilityResponse = await fetch(
-        `http://localhost:5000/api/username_available/${username}`
+        `http://57.151.116.81:5000/api/username_available/${username}`
       );
       const availabilityData = await availabilityResponse.json();
 
@@ -40,7 +40,7 @@ function SignUpTwo({ email }) {
       }
 
       // Proceed with signup if the username is available
-      const signupResponse = await fetch("http://localhost:5000/api/signup", {
+      const signupResponse = await fetch("http://57.151.116.81:5000/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

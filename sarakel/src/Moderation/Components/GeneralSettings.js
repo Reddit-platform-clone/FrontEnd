@@ -30,11 +30,11 @@ export default function GeneralSettings(){
     const [Private, setPrivate] = React.useState(false)
     const [Restricted,setRestricted] = React.useState(false)
     async function GetCommInfo(){
-        const promise = await axios.get(`http://localhost:5000/api/community/${communityId}/getCommunityInfoByName`);
+        const promise = await axios.get(`http://57.151.116.81:5000/api/community/${communityId}/getCommunityInfoByName`);
         return promise.data;
     }
     async function setInfo(data){
-        const promise = await axios.patch(`http://localhost:5000/api/r/${communityId}/edit_community`,data,{
+        const promise = await axios.patch(`http://57.151.116.81:5000/api/r/${communityId}/edit_community`,data,{
             headers:{Authorization: `Bearer ${token}`}
     });
         console.log(promise)

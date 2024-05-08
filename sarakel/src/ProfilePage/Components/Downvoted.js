@@ -31,7 +31,7 @@ function Downvoted() {
     const fetchDownvotedData = async () => {
       try {
         if (username) {
-          const response = await axios.get(`http://localhost:5000/api/user/${username}/downvoted`, {
+          const response = await axios.get(`http://57.151.116.81:5000/api/user/${username}/downvoted`, {
             headers: {
               Authorization: `Bearer ${token}`
             }

@@ -19,7 +19,7 @@ function UsersProfile() {
     useEffect(() => {
         async function fetchUserData() {
             try {
-                const response = await axios.get(`http://localhost:5000/api/user/${username}/overview`);
+                const response = await axios.get(`http://57.151.116.81:5000/api/user/${username}/overview`);
                 console.log('User Data:', response.data);
                 setUserData(response.data);
             } catch (error) {

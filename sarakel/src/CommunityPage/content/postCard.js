@@ -32,7 +32,7 @@ const PostCard = ({
     // Function to fetch community info based on _id
     const fetchCommunityInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/community/${post._id}/getCommunityInfo`);
+        const response = await fetch(`http://57.151.116.81:5000/api/community/${post._id}/getCommunityInfo`);
         const data = await response.json();
         setCommunityInfo(data); // Set community info state
         console.log("Community info response:", communityInfo);

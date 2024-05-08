@@ -10,7 +10,7 @@ function Comments() {
     useEffect(() => {
         async function fetchComments() {
             try {
-                const response = await axios.post('http://localhost:5000/searchBy/comments', { keyword: "test" }, {
+                const response = await axios.post('http://57.151.116.81:5000/searchBy/comments', { keyword: "test" }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

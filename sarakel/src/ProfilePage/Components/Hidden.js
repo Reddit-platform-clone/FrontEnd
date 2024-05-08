@@ -33,7 +33,7 @@ function Hidden() {
   useEffect(() => {
     const fetchHiddenPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/get_hide', {
+        const response = await axios.get('http://57.151.116.81:5000/api/get_hide', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

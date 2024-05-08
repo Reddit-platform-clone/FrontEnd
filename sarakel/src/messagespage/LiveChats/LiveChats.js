@@ -43,7 +43,7 @@ function LiveChats() {
   const [messageMap, setMessageMap] = useState({});
   useEffect(() => {
     // Connect to the WebSocket server
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io('http://57.151.116.81:5000');
 
     newSocket.on('connect', () => {
 
@@ -77,7 +77,7 @@ function LiveChats() {
   //           Authorization: `Bearer ${token}`,
   //           'Content-Type': 'application/json'}};
 
-  //       const response = await axios.get('http://localhost:5000/api/message/getconversations', config);
+  //       const response = await axios.get('http://57.151.116.81:5000/api/message/getconversations', config);
   //       const previousChats = response.data; // Assuming response.data is an array of chat messages
   //       console.log(previousChats)
   //       setMessages(previousChats);
@@ -106,7 +106,7 @@ function LiveChats() {
             };
     
             const response = await axios.get(
-              'http://localhost:5000/api/message/getconverstaions',
+              'http://57.151.116.81:5000/api/message/getconverstaions',
               config
             );
     
@@ -135,7 +135,7 @@ function LiveChats() {
       
           // Send POST request with conversationId in the request body
           const response = await axios.post(
-            'http://localhost:5000/api/message/read_message',
+            'http://57.151.116.81:5000/api/message/read_message',
             { conversationId },
             config
           );

@@ -42,12 +42,12 @@ const Content = () => {
         let url;
         if (token) {
           // If user is logged in (token exists)
-          url = `http://localhost:5000/api/subreddit/get${
+          url = `http://57.151.116.81:5000/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
           }?page=${page}&limit=15`; // Include page number in the API endpoint
         } else {
           // If user is not logged in (token is null)
-          url = `http://localhost:5000/api/subreddit/getRandom`;
+          url = `http://57.151.116.81:5000/api/subreddit/getRandom`;
         }
   
         const response = await fetch(url, {
@@ -121,7 +121,7 @@ const Content = () => {
           return; // No need to fetch if not logged in
         }
 
-        const response = await fetch("http://localhost:5000/api/recentlyViewedPosts", {
+        const response = await fetch("http://57.151.116.81:5000/api/recentlyViewedPosts", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -159,7 +159,7 @@ const Content = () => {
 
   const handleVoteClick = async (_id, rank) => {
     try {
-      const response = await fetch("http://localhost:5000/api/vote", {
+      const response = await fetch("http://57.151.116.81:5000/api/vote", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -193,7 +193,7 @@ const Content = () => {
       // const { name, userId } = getPostInfo(_id);
       const isJoining = !joinStates[_id];
       const response = await fetch(
-        `http://localhost:5000/api/community/${isJoining ? "join" : "leave"}`,
+        `http://57.151.116.81:5000/api/community/${isJoining ? "join" : "leave"}`,
         {
           method: "POST",
           headers: {
@@ -234,7 +234,7 @@ const Content = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/${isSaved ? "unsave" : "save"}`,
+        `http://57.151.116.81:5000/api/${isSaved ? "unsave" : "save"}`,
         {
           method: "POST",
           headers: {
@@ -273,7 +273,7 @@ const Content = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/report", {
+      const response = await fetch("http://57.151.116.81:5000/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -309,7 +309,7 @@ const Content = () => {
       }
   
       // Make request to API for upvoted posts
-      const upvotedResponse = await fetch(`http://localhost:5000/api/user/${username}/upvoted`, {
+      const upvotedResponse = await fetch(`http://57.151.116.81:5000/api/user/${username}/upvoted`, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -331,7 +331,7 @@ const Content = () => {
       }
   
       // Make request to API for downvoted posts
-      const downvotedResponse = await fetch(`http://localhost:5000/api/user/${username}/downvoted`, {
+      const downvotedResponse = await fetch(`http://57.151.116.81:5000/api/user/${username}/downvoted`, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -445,7 +445,7 @@ const Content = () => {
     }
 
     console.log("inside handle post click")
-    fetch(`http://localhost:5000/api/viewPost`, {
+    fetch(`http://57.151.116.81:5000/api/viewPost`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -34,7 +34,7 @@
 async function getUnreadMessages(username) {
       try {
         const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-        const response = await fetch(`http://localhost:5000/message/get_unread_messages`, {
+        const response = await fetch(`http://57.151.116.81:5000/message/get_unread_messages`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ async function sendMessage() {
     content
   };
   const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-  const response = await fetch('http://localhost:5000/message/compose', {
+  const response = await fetch('http://57.151.116.81:5000/message/compose', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ async function sendMessage() {
 async function deleteMessage(userID, messageId) {
   try {
     const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-    const response = await fetch(`http://localhost:5000/message/del_msg`, {
+    const response = await fetch(`http://57.151.116.81:5000/message/del_msg`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ async function deleteMessage(userID, messageId) {
 ```jsx
 async function getSentMessages() {
   const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-  const response = await fetch('http://localhost:5000/message/sent', {
+  const response = await fetch('http://57.151.116.81:5000/message/sent', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ async function getSentMessages() {
 async function getInboxMessages(username) {
   try {
     const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzMTI5Mjg0fQ.v3Q_7WegCC-UB8UGTlE1Lq3vLnuKm66oA7TsC-Yc0Ss';
-    const response = await fetch('http://localhost:5000/message/inbox', {
+    const response = await fetch('http://57.151.116.81:5000/message/inbox', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -64,7 +64,7 @@ const CompactPostCard = ({
   };
   const handleShareButton = (event) => {
     event.stopPropagation();
-    navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`);
+    navigator.clipboard.writeText(`http://57.151.116.81:3000/post/${post._id}`);
     toast.success("Link copied");
   }
   const handleSaveButtonClick = (event,postId)=>{

@@ -106,14 +106,14 @@ export default function Account() {
     }
 
     async function sendInfo(data){
-        const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
+        const promise = await axios.patch('http://57.151.116.81:5000/api/v1/me/prefs',data,{
             headers:{Authorization: `Bearer ${token}`}
         });
         console.log(promise)
         return promise;
     }
     async function GetInfo(){
-        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
+        const promise = await axios.get('http://57.151.116.81:5000/api/v1/me/prefs',{
             headers:{Authorization: `Bearer ${token}`}
     });
         return promise.data;

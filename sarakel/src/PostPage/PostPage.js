@@ -45,22 +45,22 @@ export default function PostPage(){
           alert("please enter a comment first")
           return
       }
-        const promise = await axios.post(`http://localhost:5000/api/comment`,{postID:postId,content:comment},{headers:{Authorization: `Bearer ${token}`}});
+        const promise = await axios.post(`http://57.151.116.81:5000/api/comment`,{postID:postId,content:comment},{headers:{Authorization: `Bearer ${token}`}});
         setComment('');
         getRepliesAndApply();
     }
 
 
     async function GetPostInfo(){
-        const promise = await axios.post(`http://localhost:5000/api/getAPost`,{postID: postId});
+        const promise = await axios.post(`http://57.151.116.81:5000/api/getAPost`,{postID: postId});
         return promise.data;
     }
     async function GetCommInfo(){
-      const promise = await axios.get(`http://localhost:5000/api/community/${postId}/getCommunityInfo`);
+      const promise = await axios.get(`http://57.151.116.81:5000/api/community/${postId}/getCommunityInfo`);
       return promise.data;
   }
   async function getreplies(){
-      const promise = await axios.post(`http://localhost:5000/api/get_post_replies`,{postID: postId})
+      const promise = await axios.post(`http://57.151.116.81:5000/api/get_post_replies`,{postID: postId})
       return promise.data
   }
     React.useEffect(()=>{
@@ -123,7 +123,7 @@ export default function PostPage(){
     const handleVoteClick = async (_id, rank) => {
       
         try {
-          const response = await fetch("http://localhost:5000/api/vote", {
+          const response = await fetch("http://57.151.116.81:5000/api/vote", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

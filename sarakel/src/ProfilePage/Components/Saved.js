@@ -13,7 +13,7 @@ function Saved() {
     const fetchData = async () => {
       try {
         if (token) {
-          const response = await axios.get('http://localhost:5000/api/get_save', {
+          const response = await axios.get('http://57.151.116.81:5000/api/get_save', {
             headers: {
               Authorization: `Bearer ${token}`,
             },

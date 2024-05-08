@@ -18,7 +18,7 @@ function ForgotPassword() {
     const username = document.getElementById(styles["forget-password-username"]).value;
 
     try {
-      const response = await fetch('http://localhost:5000/api/login/forget_password', {
+      const response = await fetch('http://57.151.116.81:5000/api/login/forget_password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

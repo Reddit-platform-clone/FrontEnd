@@ -12,7 +12,7 @@ export default function HashTags() {
 
             try {
                 const response = await axios.post(
-                    'http://localhost:5000/searchBy/hashtags',
+                    'http://57.151.116.81:5000/searchBy/hashtags',
                     { keyword: '!' }, // Replace '!' with your desired keyword
                     {
                         headers: {

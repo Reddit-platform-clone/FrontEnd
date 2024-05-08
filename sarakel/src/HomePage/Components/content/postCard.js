@@ -59,7 +59,7 @@ const PostCard = ({
   //   const fetchCommunityInfo = async () => {
   //     try {
   //       const response = await fetch(
-  //         `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
+  //         `http://57.151.116.81:5000/api/community/${post._id}/getCommunityInfo`
   //       );
   //       const data = await response.json();
   //       setCommunityInfo(data);
@@ -128,7 +128,7 @@ const PostCard = ({
   };
   const handleCopyToClipboard = (event) => {
     event.stopPropagation();
-    navigator.clipboard.writeText(`http://localhost:3000/post/${post._id}`);
+    navigator.clipboard.writeText(`http://57.151.116.81:3000/post/${post._id}`);
     toast.success("Link copied");
   };
 

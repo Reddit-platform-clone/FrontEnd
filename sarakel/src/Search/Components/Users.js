@@ -12,7 +12,7 @@ function Users() {
     useEffect(() => {
         async function fetchUsers() {
             try {
-                const response = await axios.post('http://localhost:5000/searchBy/users', { keyword });
+                const response = await axios.post('http://57.151.116.81:5000/searchBy/users', { keyword });
                 console.log('Response:', response.data); // Log the response data
                 const userData = response.data;
                 setUsers(userData.userSuggestions); // Update to userSuggestions

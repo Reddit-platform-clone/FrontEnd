@@ -11,7 +11,7 @@ function Post() {
     useEffect(() => {
         async function fetchPosts() {
             try {
-                const response = await axios.post('http://localhost:5000/searchBy/posts', { keyword: "test" }, {
+                const response = await axios.post('http://57.151.116.81:5000/searchBy/posts', { keyword: "test" }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

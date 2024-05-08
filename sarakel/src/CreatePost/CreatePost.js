@@ -24,7 +24,7 @@ export default function CreatePost() {
     let lock=false;
 
     async function getCommList(){
-        const promise = await axios.get(`http://localhost:5000/api/community/list`,{headers:{Authorization: `Bearer ${token}`}});
+        const promise = await axios.get(`http://57.151.116.81:5000/api/community/list`,{headers:{Authorization: `Bearer ${token}`}});
         return promise.data
     }
 
@@ -67,7 +67,7 @@ console.log( newPost);
 async function sendInfo(data){
     const promise = await axios({
         method: "post",
-        url: "http://localhost:5000/api/createPost/create",
+        url: "http://57.151.116.81:5000/api/createPost/create",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data",  Authorization: `Bearer ${token}` },
       })

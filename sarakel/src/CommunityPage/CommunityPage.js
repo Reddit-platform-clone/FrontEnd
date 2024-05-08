@@ -28,13 +28,13 @@ export default function CommunityPage(){
 
     const {communityId} = useParams();
     async function GetRole(){
-            const promise = await axios.get(`http://localhost:5000/api/r/${communityId}`, {
+            const promise = await axios.get(`http://57.151.116.81:5000/api/r/${communityId}`, {
                 headers:{Authorization: `Bearer ${token}`}
         });
             return promise.data
     }
     async function GetCommInfo(){
-        const promise = await axios.get(`http://localhost:5000/api/community/${communityId}/getCommunityInfoByName`);
+        const promise = await axios.get(`http://57.151.116.81:5000/api/community/${communityId}/getCommunityInfoByName`);
         return promise.data;
     }
     const setRoles = () => {

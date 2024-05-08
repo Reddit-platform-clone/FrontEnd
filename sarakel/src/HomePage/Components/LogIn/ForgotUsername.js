@@ -31,7 +31,7 @@ function ForgotUsername() {
     const email = document.getElementById(styles["forget-username-email"]).value;
   
     try {
-      const response = await fetch('http://localhost:5000/api/login/forget_username', {
+      const response = await fetch('http://57.151.116.81:5000/api/login/forget_username', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

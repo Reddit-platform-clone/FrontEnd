@@ -24,7 +24,7 @@ function ResetPassword() {
     }
 
     axios
-      .patch(`http://localhost:5000/api/login/reset_password/${token}`, { password: password })
+      .patch(`http://57.151.116.81:5000/api/login/reset_password/${token}`, { password: password })
       .then((response) => {
         // Handle successful response
         console.log("Password reset successful:", response.data);

@@ -35,7 +35,7 @@ const Content = ({communityId}) => {
         let url;
         if (token){
           // If user is not logged in (token is null)
-          url = `http://localhost:5000/api/community/${communityId}/getPosts`;
+          url = `http://57.151.116.81:5000/api/community/${communityId}/getPosts`;
         }
 
         const response = await fetch(url, {
@@ -88,7 +88,7 @@ const Content = ({communityId}) => {
 
   const handleVoteClick = async (_id, rank) => {
     try {
-      const response = await fetch("http://localhost:5000/api/vote", {
+      const response = await fetch("http://57.151.116.81:5000/api/vote", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ const Content = ({communityId}) => {
       // const { name, userId } = getPostInfo(_id);
       const isJoining = !joinStates[_id];
       const response = await fetch(
-        `http://localhost:5000/api/community/${isJoining ? "join" : "leave"}`,
+        `http://57.151.116.81:5000/api/community/${isJoining ? "join" : "leave"}`,
         {
           method: "POST",
           headers: {
@@ -163,7 +163,7 @@ const Content = ({communityId}) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/${isSaved ? "unsave" : "save"}`,
+        `http://57.151.116.81:5000/api/${isSaved ? "unsave" : "save"}`,
         {
           method: "POST",
           headers: {
@@ -202,7 +202,7 @@ const Content = ({communityId}) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/report", {
+      const response = await fetch("http://57.151.116.81:5000/api/report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

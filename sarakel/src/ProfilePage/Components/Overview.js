@@ -34,7 +34,7 @@ function Overview() {
     const fetchUserPosts = async () => {
       try {
         if (username) {
-          const response = await axios.get(`http://localhost:5000/api/user/${username}/submitted`, {
+          const response = await axios.get(`http://57.151.116.81:5000/api/user/${username}/submitted`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
