@@ -77,7 +77,7 @@ export default function SafetyPrivacy() {
     React.useEffect(() =>{
         async function GetandApply(){
             const data = await GetInfo()
-            if(data){+
+            if(data){
                 setSearch(data.settings.showInSearch)
                 setPersonal1(data.settings.personalizeAds)
                 setAlcohol(data.settings.alcohol)
