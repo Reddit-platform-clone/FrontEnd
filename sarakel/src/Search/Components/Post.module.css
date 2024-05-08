@@ -10,6 +10,16 @@
     left: 250px;
 }
 
+.SearchInput{
+    display: flex;
+    position: relative;
+    top: -70px;
+    left: 1000px;
+    max-width: fit-content;
+    
+ 
+}
+
 /* Post */
 .Post {
     border: 1px solid #ccc;
