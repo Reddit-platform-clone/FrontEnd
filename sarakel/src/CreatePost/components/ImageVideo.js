@@ -1,9 +1,11 @@
 import React  from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
-
-export default function ImageVideo() {
+export default function ImageVideo({handlemedia}) {
     const content=''
-
+    const [media,setMedia] = React.useState()
     const handleChange = (e) => {
         // Prevent users from typing in the textarea
         e.preventDefault();
@@ -15,30 +17,28 @@ export default function ImageVideo() {
     };
 
     return (
-        <div className="ImageVideo-container">
-            <textarea 
-                className="ImageVideo-textarea"
-                value={content}
-                onChange={handleChange}
-                placeholder="Drag and drop image or..."
-                readOnly // Make the textarea read-only
-            />
+        <div className="container ">
+            
 
             <input
                 type="file"
                 id="file-input"
-                style={{ display: 'none' }}
+                
                 accept="image/*, video/*"
                 
                 onChange={(e) => {
                     // Handle file upload logic here
                     const selectedFile = e.target.files[0];
                     console.log('Selected file:', selectedFile);
+                    handlemedia(selectedFile)
                 }}
                 
             />
+            <div>
+                {media ? <img src={media}></img> : <></>}
+            </div>
             
-            <button className="upload" onClick={handleUpload}>Upload</button>
+           
         </div>
     );
 }

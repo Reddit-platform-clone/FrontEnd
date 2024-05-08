@@ -1,0 +1,278 @@
+.container {
+    max-width: 1150px;
+    margin-left: auto;
+    margin-top: 90px; 
+    background-color: none;
+  }
+  .post-list-container{
+    display: flex;
+  }
+.loading-posts{
+  margin-top: 200px;
+  margin-left: 300px;
+  font-size: 20px;
+}
+  .choice-above-posts {
+    padding: 50px;
+    background-color: transparent;
+    margin-top: -110px;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+    margin-bottom: -70px;
+  }
+  
+  .content-sort-type {
+    position: relative;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 70px;
+    height: 28px;
+    z-index: 9;
+  }
+  
+  .content-view-type {
+    position: relative;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 50px;
+    height: 24px;
+    z-index: 9;
+  }
+  
+  .content-sort-type:hover, .content-view-type:hover {
+    background-color: rgba(128, 128, 128, 0.4);
+    border-radius: 50px;
+  }
+  
+  .content-sort-type p {
+    margin: 0;
+  }
+  
+  .content-drop-down-list {
+    border: none;
+    background-color: transparent;
+  }
+  
+  .options-content-sort-drop-down-list,
+  .options-content-view-drop-down-list {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 40px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 15px;
+    top: calc(100% + 5px);
+  }
+  
+  .options-content-sort-drop-down-list button,
+  .options-content-view-drop-down-list button {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-decoration: none;
+    border: none;
+    background: none;
+    text-align: left;
+    border-radius: 5px;
+  }
+  
+  .options-content-sort-drop-down-list button:hover,
+  .options-content-view-drop-down-list button:hover {
+    background-color: #ddd;
+  }
+
+  .post-image {
+    margin-top: 10px;
+    width: 690px;
+    height: 500px;
+    object-fit:contain;
+    background-color: black;
+    border-radius: 20px;
+  }
+  .post-video {
+    max-width: 540px;
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  
+  .hidden-post-card {
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    max-width: 830px;
+    width: 100%;
+    height: 80px;
+    transition: box-shadow 0.3s ease;
+    background-color: transparent;
+    margin-top: 40px;
+    background-color: rgba(128, 128, 128, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .hidden-post-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.2);
+    border-radius: 5px;
+  }
+  
+  .hidden-post-card p {
+    justify-content: flex-start;
+    margin-top: 15px;
+    color: black;
+    margin-left: 10px;
+  }
+  
+  .hidden-post-card button {
+    justify-content: flex-end;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.3);
+    border-radius: 10px;
+    margin-right: 15px;
+  }
+  
+  .hidden-post-card button:hover {
+    background-color: rgba(128, 128, 128, 0.7);
+  }
+
+  .compact-post-card-image {
+    height: 100px;
+    width: 90px;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+  
+  .compact-post-card-image-count {
+    margin-left: -55px;
+    margin-top: 70px;
+    color: white;
+    width: auto;
+    height: 20px;
+    border-radius: 25px;
+    padding: 0 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.7);
+  }
+  
+  .compact-post-card-image-compensation {
+    width: 30px;
+    height: 30px;
+  }
+  .content-recent-posts {
+    background-color: rgba(128, 128, 128, 0.1);
+    max-height: 650px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 300px;
+    margin-left: auto;
+    border-radius: 15px;
+    padding: 10px;
+    position: fixed; /* Fixed position */
+    /* top: 50px; Adjust this value according to your layout */
+    right: 10px; /* Adjust this value according to your layout */
+    z-index: 999; /* Ensure it's above other elements */
+  }
+  
+  /* .content-recent-posts{
+    background-color: rgba(128, 128, 128, 0.1);
+    height: auto;
+    height: 100%;
+    left: 0;
+    width: 300px;
+    margin-left: auto ;
+    border-radius: 15px;
+    padding: 10px;
+  } */
+.content-recent-posts:hover{
+  background-color: rgba(128, 128, 128, 0.15);
+}
+  .content-recent-posts-header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .content-recent-posts-header h6{
+  margin-left: 5px;
+  margin-top: 5px;
+  }
+
+  .content-recent-posts-header button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: blue;
+    margin-right: 5px;
+  }
+
+  .content-recent-posts-image{
+    max-width: 20px;
+    max-height: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding-right: 2px;
+  }
+
+  .content-recent-posts-community {
+    display: flex;
+  }
+  .content-recent-posts-community p{
+    left: 0;
+  }
+  .content-recent-posts-community:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .content-recent-posts-last{
+    display: flex;
+    justify-content:space-between;
+
+  }
+
+  .load-more-posts-button {
+    bottom: 0; /* This places the button at the bottom of its containing element */
+    left: 50%; /* This centers the button horizontally */
+    transform: translateX(-50%); /* This adjusts the horizontal position to center it */
+    width: auto;
+    padding: 10px;
+    background-color: #0045ac;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: none;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+
+
+  .join-btn-post {
+    width: auto;
+    padding: 0 10px;
+    background-color: #0045ac;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    border: none;
+  }

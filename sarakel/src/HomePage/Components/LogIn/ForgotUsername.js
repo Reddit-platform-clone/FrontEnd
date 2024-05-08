@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import "./ForgotUsername.css";
+import styles from "./ForgotUsername.module.css";
 import SignUpOne from "../SignUp/SignUpOne";
 import LogIn from "./LogIn.js";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
+
+
 
 
 function ForgotUsername() {
@@ -26,19 +28,19 @@ function ForgotUsername() {
   };
 
   const handleEmailMeClick = async () => {
-    const emailOrUsername = document.getElementById("forget-username-email").value;
+    const email = document.getElementById(styles["forget-username-email"]).value;
   
     try {
-      const response = await fetch('/api/login/forget_password', {
+      const response = await fetch('http://localhost:5000/api/login/forget_username', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ emailOrUsername })
+        body: JSON.stringify({ email })
       });
   
       const data = await response.json();
-  
+      console.log(data);
       if (response.ok) {
         toast.success(data.message);
       } else {
@@ -66,17 +68,17 @@ function ForgotUsername() {
   return (
     <>
       {showModal && (
-        <div className="forget-username-overlay">
-          <div className="forget-username-modal">
-            <div className="forget-username-content">
+        <div className={styles["forget-username-overlay"]}>
+          <div className={styles["forget-username-modal"]}>
+            <div className={styles["forget-username-content"]}>
               <button
-                className="forget-username-back-btn"
+                className={styles["forget-username-back-btn"]}
                 onClick={handleBackButtonClick}
               >
                 {" "}
                 <FaArrowLeft />{" "}
               </button>
-              <button className="forget-username-close-btn" onClick={handleCloseModal}>
+              <button className={styles["forget-username-close-btn"]} onClick={handleCloseModal}>
                 {" "}
                 <IoMdClose />{" "}
               </button>
@@ -87,10 +89,10 @@ function ForgotUsername() {
                 we’ll send you an email with your username.
               </p>
 
-              <div className="forget-username-input-group">
+              <div className={styles["forget-username-input-group"]}>
                 <label htmlFor="email"></label>
                 <input
-                  id="forget-username-email"
+                  id={styles["forget-username-email"]}
                   type="text"
                   placeholder="Email*"
                   required
@@ -98,20 +100,20 @@ function ForgotUsername() {
 
                 <br></br>
 
-                <div className="forget-username-forgot-text">
+                <div className={styles["forget-username-forgot-text"]}>
                   <p>
                     Don't have an email or need assistance logging in?{" "}
-                    <a href="#" className="forget-username-get-help">
+                    <a href="#" className={styles["forget-username-get-help"]}>
                       Get help
                     </a>
                   </p>
                 </div>
 
-                <div className="forget-username-new-text">
+                <div className={styles["forget-username-new-text"]}>
                   <p>
                     <a
                       href="#"
-                      className="forget-username-signup-text"
+                      className={styles["forget-username-signup-text"]}
                       onClick={handleSignUpClick}
                     >
                       Sign Up
@@ -119,7 +121,7 @@ function ForgotUsername() {
                     .{" "}
                     <a
                       href="#"
-                      className="forget-username-login-text"
+                      className={styles["forget-username-login-text"]}
                       onClick={handleLoginClick}
                     >
                       Login
@@ -128,7 +130,7 @@ function ForgotUsername() {
                 </div>
 
                 <button
-                  className="forget-username-btn-final"
+                  className={styles["forget-username-btn-final"]}
                   onClick={handleEmailMeClick}
                 >
                   Email Me

@@ -1,0 +1,126 @@
+/* Base styles */
+.overviewPostComment1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 120px;
+}
+
+.logoup1 {
+  width: 12vw; /* Adjust based on your design */
+  height: 12vw; /* Adjust based on your design */
+  border-radius: 50%;
+  border: 2px solid black;
+  object-fit: cover;
+  margin: 0;
+  position: relative;
+  left: 10px;
+}
+
+.username1 {
+  font-size: 2vw; /* Adjust based on your design */
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  width: 20vw; /* Adjust based on your design */
+  height: min-content;
+  position: relative;
+  left: 10px;
+}
+
+.post {
+  margin-bottom: 4vw; /* Adjust based on your design */
+  padding: 4vw; /* Adjust based on your design */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  top: 4vw; /* Adjust based on your design */
+  left: -11vw; /* Adjust based on your design */
+}
+
+.postheader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2vw; /* Adjust based on your design */
+}
+
+.postheader img {
+  width: 4vw; /* Adjust based on your design */
+  height: 4vw; /* Adjust based on your design */
+  border-radius: 50%;
+  margin-right: 2vw; /* Adjust based on your design */
+}
+
+.postcontent h3 {
+  margin-bottom: 2vw; /* Adjust based on your design */
+}
+
+.postcontent p {
+  margin-bottom: 3vw; /* Adjust based on your design */
+}
+
+.postcontent img {
+  max-width: 100%;
+  margin-bottom: 2vw; /* Adjust based on your design */
+}
+
+.postactions {
+  display: flex;
+}
+
+.postactions button {
+  display: flex;
+  align-items: center;
+  margin-right: 2vw; /* Adjust based on your design */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.postactions button svg {
+  margin-right: 1vw; /* Adjust based on your design */
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+  .logoup1 {
+      width: 15vw;
+      height: 15vw;
+  }
+
+  .username1 {
+      font-size: 2.5vw;
+      width: 25vw;
+  }
+
+  .post {
+      width: 90%;
+      max-width: 100%;
+      left: 5vw;
+  }
+
+  .postheader img {
+      width: 5vw;
+      height: 5vw;
+      margin-right: 2vw;
+  }
+
+  .postcontent p {
+      margin-bottom: 4vw;
+  }
+
+  .postcontent img {
+      margin-bottom: 3vw;
+  }
+
+  .postactions button {
+      margin-right: 2vw;
+  }
+
+  .postactions button svg {
+      margin-right: 1vw;
+  }
+}

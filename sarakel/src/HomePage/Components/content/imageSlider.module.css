@@ -1,0 +1,22 @@
+.image-slider {
+    position: relative;
+  }
+  
+  .prev-button,
+  .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(128, 128, 128, 1);
+    border: none;
+    border-radius: 15px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .prev-button {
+    left: 10px;
+  }
+  
+  

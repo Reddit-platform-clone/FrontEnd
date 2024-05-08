@@ -14,25 +14,46 @@ import axios from 'axios';
 
 
 export default function CreatePost() {
+    var bodyFormData = new FormData();
     const {token} = useAuth()
-    
+    const [Commlist, setCommList] = React.useState([])
     const[postTitle, setPostTitle] = useState('');
     const[postBody, setPostBody] = useState('');
-    const[community,setCommunity]=useState('batates');
-    //const[flair,setFlair]=useState('');
-    const[NSFW,setNSFW]=useState(false);
-    const[oc,setOC]=useState(false);
-    const[spoiler,setpoiler]=useState(false);
-
+    const[community,setCommunity]=useState('');
+    const [media, setMedia] = useState()
     let lock=false;
+
+    async function getCommList(){
+        const promise = await axios.get(`http://localhost:5000/api/community/list`,{headers:{Authorization: `Bearer ${token}`}});
+        return promise.data
+    }
+
+    function handlemedia(media){
+        setMedia(media)
+    }
+    React.useEffect(() =>{
+        async function ApplyCommList(){
+            const data = await getCommList()
+            if(data){
+                console.log(data.data)
+                setCommList(data.data)
+            }
+        }
+
+        ApplyCommList()
+    },[])
 
   async function handleSubmit  () {
         
-   
-    const newPost = { title: postTitle, content: postBody ,communityId: community 
-    , isLocked:lock , ac:oc , nsfw:NSFW, isSpoiler:spoiler }
+    bodyFormData.append('content', postBody);
+    bodyFormData.append('title', postTitle);
+    bodyFormData.append('communityId', community);
+    if(media){
+        bodyFormData.append('media', media)
+    }
+    const newPost = { title: postTitle, content: postBody ,communityId: community ,userId:'1',parentId:'1', isLocked:lock ,numViews:0}
     try {
-    const response = await sendInfo(newPost);
+    const response = await sendInfo(bodyFormData);
 
     console.log("post created successfully:", response.data);
 
@@ -44,11 +65,20 @@ console.log( newPost);
 }
 
 async function sendInfo(data){
-    const promise = await axios.post("http://localhost:5000/api/createPost/create", data, {
-        headers: {
-            Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhZmV6IiwiaWF0IjoxNzEzOTY2OTk5fQ.sq-v00RodLyZCJGSZg8HY3IltGiuundSBCyYxoItPfM`
-        }
-    });
+    const promise = await axios({
+        method: "post",
+        url: "http://localhost:5000/api/createPost/create",
+        data: bodyFormData,
+        headers: { "Content-Type": "multipart/form-data",  Authorization: `Bearer ${token}` },
+      })
+        .then(function (response) {
+          //handle success
+          console.log(response);
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
     return promise;
 }
 
@@ -77,15 +107,18 @@ async function sendInfo(data){
 
                 <div className="create-post-container">
                     <label htmlFor="myDropdown">Choose a community</label>
-                    <select id="myDropdown" name="myDropdown" onChange={(e) => setCommunity(e.target.value)} >
-                        <option value="batates" >Community 1</option>
-                        <option value="friedChicken" >Community 2</option>
-                        <option value="wahed" >Community 3</option>
+                    <select id="myDropdown" name="myDropdown" onChange={(e) => setCommunity(e.target.value)}>
+                        {/* <option value="option1" >Community 1</option>
+                        <option value="option2" >Community 2</option>
+                        <option value="option3" >Community 3</option> */}
+                        {Commlist.map((list)=>(
+                            <option value={list.communityName}>{list.communityName}</option>
+                        ))}
                     </select>
                     
                     <div className="toolbar">
                         <button className="toolbar-button postbtn1" onClick={() => renderComponent(<Post setPostBody={setPostBody}/>)}><FontAwesomeIcon icon={faFileLines} /> Post</button>
-                        <button className="toolbar-button postbtn2" onClick={() => renderComponent(<ImageVideo />)}><FontAwesomeIcon icon={faImage} /> Image & Video</button>
+                        <button className="toolbar-button postbtn2" onClick={() => renderComponent(<ImageVideo handlemedia={handlemedia} />)}><FontAwesomeIcon icon={faImage} /> Image & Video</button>
                         <button className="toolbar-button postbtn3" onClick={() => renderComponent(<Link setPostBody={setPostBody} />)}><FontAwesomeIcon icon={faLink} />Link</button>
                         <button className="toolbar-button postbtn4" onClick={() => renderComponent(<Poll setPostBody={setPostBody}/>)}> <FontAwesomeIcon icon={faSquarePollHorizontal} /> Poll</button>
                     </div>
@@ -100,9 +133,9 @@ async function sendInfo(data){
                     </div>
                     
                     <div className="postprob">
-                         <button  className={`postprobbutton ${oc ? 'clicked' : ''}`} id="original content" onClick={() =>{setOC(!oc)}}><FontAwesomeIcon icon={faPlus} /> OC</button>
-                         <button className={`postprobbutton ${spoiler ? 'clicked' : ''}`} id="spoiler" onClick={() => {setpoiler(!spoiler)}}><FontAwesomeIcon icon={faPlus} />Spoiler</button>
-                         <button className={`postprobbutton ${NSFW ? 'clicked' : ''}`} id="not safe" onClick={() => {setNSFW(!NSFW)}}><FontAwesomeIcon icon={faPlus} />NSFW</button>
+                         <button className="postprobbutton" id="original content"><FontAwesomeIcon icon={faPlus} /> OC</button>
+                         <button className="postprobbutton" id="spoiler"><FontAwesomeIcon icon={faPlus} />Spoiler</button>
+                         <button className="postprobbutton" id="not safe"><FontAwesomeIcon icon={faPlus} />NSFW</button>
                          <button className="postprobbutton" id="flair"><FontAwesomeIcon icon={faTag} />Flair</button>
                     </div>
                     

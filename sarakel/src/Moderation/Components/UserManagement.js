@@ -5,7 +5,9 @@ import mock from '../../mock.json'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
-
+import axios from 'axios';
+import {useAuth} from "../../HomePage/Components/AuthContext"
+import {useParams, useNavigate} from "react-router-dom"
 
 function Listing(queue){
     let img
@@ -184,11 +186,17 @@ function Listing(queue){
 }
 
 export default function UserManagement(){
+    const navigate = useNavigate();
+    const {token} = useAuth()
+    const {communityId} = useParams();
     const [button, setButton] = React.useState('Ban User')
     const [value, setValue] = React.useState(0)
     const [AddUser, setUser] = React.useState(false)
     const [toggle, setToggle] = React.useState(false)
     const [toggle1, setToggle1] = React.useState(false)
+    const [Banned, setBanned] = React.useState([])
+    const [Muted, setMuted] = React.useState([])
+    const [Mods, setMods] = React.useState([])
     const actArray = []
     const buttArray = []
     for(let i=0;i<4;i++){
@@ -199,31 +207,65 @@ export default function UserManagement(){
         }
     }
 
+    async function BanUser(user){
+      const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/ban/${user}`,{headers:{Authorization: `Bearer ${token}`}})
+      console.log(promise)
+      return promise
+    }
+    async function MuteUser(user){
+      const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/ban/${user}`,{headers:{Authorization: `Bearer ${token}`}})
+      return promise
+    }
+    async function InviteMod(user){
+      const promise = await axios.post(`http://localhost:5000/r/${communityId}/api/invite/${user}`,{headers:{Authorization: `Bearer ${token}`}})
+      return promise
+    }
     const ChangeNewRule = event =>{
-        setUser({name: event.target.value , image:"https://www.redditstatic.com/avatars/defaults/v2/avatar_default_4.png"})
+        setUser(event.target.value)
     }
 
+    async function GetBanned(){
+      const promise = await axios.post(`http://localhost:5000/api/r/${communityId}/about/banned`)
+      return promise
+    }
+    async function GetMods(){
+      const promise = await axios.post(`http://localhost:5000/api/r/${communityId}/about/banned`)
+      return promise
+    }
+    async function GetMuted(){
+      const promise = await axios.post(`http://localhost:5000/api/r/${communityId}/about/muted`)
+      return promise
+    }
 
-    function AddNewUser(){
+    React.useEffect(()=>{
+      async function GetLists(){
+        const BannedList = await GetBanned()
+        if(BannedList){
+          setBanned(BannedList.bannedUsers)
+        }
+      }
+    },[])
+    async function AddNewUser(){
          if(button === 'Ban User'){
             if((AddUser === false)){ alert('Enter A user')
             }else{
-                mock.communities[0].Banned.push(AddUser)}
-        }
+                const ban = await BanUser(AddUser)
+                if(ban){alert("banned")}
+                setUser(false)
+        }}
         if(button === 'Mute User'){
             if( (AddUser === false)){ alert('Enter A user')
             }else{
-              mock.communities[0].Muted.push(AddUser)}
-        }if(button === 'Approve User'){
-            if((AddUser === false)){ alert('Enter A user')
-            }else{
-              mock.communities[0].Approved.push(AddUser)}
+              const ban = await MuteUser(AddUser)
+                setUser(false)}
         }if(button === 'Invite user as mod'){
             if((AddUser === false)){ alert('Enter A user')
             }else{
-              mock.communities[0].Moderators.push(AddUser)}
+              const ban = await InviteMod(AddUser)
+                setUser(false)}
         }
     }
+
     return(
         <div className='container-fluid'>
             <div className='row'>
@@ -261,7 +303,10 @@ export default function UserManagement(){
                             <input type="text" placeholder='' onChange={ChangeNewRule} className='col-6'></input>
                         </div>
                 </div>)}
-            {Listing(value)}
+            {/* {Listing(value)} */}
+            {value == 0 ? (<>{Banned.length == 0 ? <span>No users</span> : Banned.map((item)=>(
+              <span>ochd</span>
+            ))}</>): <></>}
         </div>
 
     )

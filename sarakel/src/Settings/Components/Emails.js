@@ -23,12 +23,12 @@ export default function Emails(){
         sendInfo({unsubscribeFromAllEmails: !unsub});
     }
     async function sendInfo(data){
-            const promise = await axios.patch('/api/v1/me/prefs',data,{
+            const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
                 headers:{Authorization: `Bearer ${token}`}     });
             return promise;
     }
     async function GetInfo(){
-        const promise = await axios.get('/api/v1/me/prefs',{
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
             headers:{Authorization: `Bearer ${token}`}        });
         return promise.data;
     }

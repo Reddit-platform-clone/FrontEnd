@@ -1,0 +1,385 @@
+.App {
+  display: flex;
+  min-height: 100vh; /* Set minimum height for full viewport */
+}
+
+.sidebar {
+  width: fit-content; /* Adjust sidebar width as needed */
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  background-color: #ffffff;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar-header {
+  font-weight: bold;
+  border-bottom: 1px solid #ddd; /* Add visual separation */
+  display: flex;
+}
+
+.sidebar-header-txt{
+margin-right: 50px;
+margin-left: 10px;
+font-size: medium;
+margin-top: 20px;
+
+}
+
+.Threadstxt{
+  font-size: medium;
+  margin-left: 5px;
+
+}
+
+.sidebar-header-button img {
+  height: 20px; /* Adjust as needed */
+  width: fit-content;
+  background-color: transparent;
+  width: 20px;
+  color: #ff5500;
+}
+
+.sidebar-header-button{
+  border: none;
+  margin-top: 18px;
+  margin-left: 20px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  background-color: #ffffff;
+
+
+}
+.backbutton-image{
+width: 30px;
+height: 30px;
+background-color:#ffffff;
+}
+.buttton{
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  background-color: #ffffff;
+}
+
+.sidebar-header-button:hover{
+  background:#e7e6e6 ;
+}
+
+.sidebar-main1 {
+  flex: 1; /* Sidebar main takes up remaining space */
+  display: flex; /* Allow buttons to stack vertically */
+  flex-direction: column;
+  gap: 5px; /* Add a gap between buttons */
+font-size: medium;
+}
+
+.sidebar-main2{
+flex: 1; /* Sidebar main takes up remaining space */
+display: flex; /* Allow buttons to stack vertically */
+flex-direction: column;
+gap: 5px; /* Add a gap between buttons */
+font-size: medium;
+
+}
+
+.backbuttonn img{
+
+  height: 550px; /* Adjust as needed */
+  padding: 2px;
+  background-color: transparent;
+
+}
+
+.backbuttonn{
+width: fit-content;
+border: none;
+background-color: transparent;
+
+}
+
+.backbuttonn{
+font-size: medium;
+align-items: center;
+margin-left: 42px;
+}
+
+.sidebar2{
+  flex: 1; /* Sidebar main takes up remaining space */
+margin-top: 10px;
+gap: 5px;
+}
+
+.sidebar-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: medium;
+
+}
+.sidebar-button2 {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: medium;
+  margin-top: 5px;
+
+}
+
+.sidebar-button:hover {
+
+  background:#e7e6e6 ;
+
+}
+.sidebar-button2:hover {
+
+  background:#e7e6e6 ;
+
+}
+
+.main-window {
+  flex: 1; /* Main window takes up remaining space */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  /* Set main window height to 100% viewport height */
+  height: 100vh;
+  align-items: center; /* Centers children vertically */
+  margin-top: 100px;
+}
+
+.startchatbutton{
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #ff4d00;
+  color: #eee;
+  border-style: hidden;
+
+}
+
+.main-window-header {
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  height: fit-content;
+}
+
+.main-window-main {
+  flex: 1; /* Main window main takes up remaining space */
+}
+
+.Homewindow{
+background-color: #eee;
+flex: 1; /* Main window main takes up remaining space */
+height: fit-content;
+}
+
+.homewindow-main{
+background-color: #eee;
+height: fit-content;
+
+}
+
+.NewChatstxt{
+  font-size: medium;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.cancelButton{
+border-radius: 20px;
+padding: 8px;
+background-color: #eee;
+margin-left: 1110px;
+margin-right: 10px;
+margin-top: 5px;
+}
+
+.cancelButton:hover{
+
+  background-color: #ff5500;
+}
+
+.mainwindowfooterButton{
+border-radius: 20px;
+padding: 8px;
+background-color: #eee;
+
+}
+
+.mainwindowfooterButton:hover{
+background-color: #ff5500;
+}
+/* .usernamesearch-main-window-header{
+
+} */
+
+.usernamesearch-main-window-header{
+background-color: #ffffff;
+
+}
+
+.username-input{
+margin-left: 300px;
+height: 80px;
+  border-radius: 20px;
+  width: 500px;
+  background-color: #fffcfc;
+  margin-top: 50px;
+}
+
+.mainwindowfooter{
+  margin-top: 520px;
+  background-color: #ffffff;
+  height: 60%;
+  height: fit-content;
+justify-content:flex-end ;
+}
+
+.chat-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: scroll;
+  width: 100%;
+  height: 580px;
+}
+
+.message {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ff6200;
+  height: fit-content;
+  width:fit-content;
+}
+
+.message-input {
+  width: 91%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: fit-content;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.send-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6200;
+  color: #fff;
+  cursor: pointer;
+  height: fit-content;
+  margin-left: 8px;
+}
+
+.txt+send{
+  display: flex;
+  padding: 10px;
+  border: none;
+
+
+}
+.Applybutton{
+  padding: 8px 20px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  margin-left: 110px;
+}
+.Applybutton:hover {
+  background-color: #ff5500;
+}
+
+.popup {
+  position: absolute;
+  background-color: #f5f5f5;
+  border: 1px solid #ffffff;
+  padding: 10px;
+  box-shadow: 0 10px 15px rgba(255, 102, 0, 0.236);
+ margin-left: 160px;
+ margin-top: 50px;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup label {
+  display: block;
+  margin-top: 10px;
+  padding: 5px;
+  margin-bottom: 2px;
+  background-color:#f5f5f5;
+  border: #000000;
+  border-radius: 20cm;
+  
+}
+
+.popup button {
+  margin-top: 10px;
+}
+
+.windowno2{
+background: rgb(255, 255, 255);
+width: 100%;
+background-color: #eee;
+align-items:center; 
+justify-content: center;
+}
+
+.go-to-msg-button{
+padding: 8px 20px;
+background-color: #ffffff;
+color: #000000;
+border-radius: 20px;
+cursor: pointer;
+background-color:#ff5500;
+
+}
+
+.windowno2header{
+border-bottom: #000000;
+background-color: #ffffff;
+height: 30px;
+margin-top: 5px;
+}
+
+.windowno2main{
+align-items:center; 
+margin-left: 300px;
+margin-top: 250px;
+justify-content: center;
+}
+
+
+
+.windowno1{
+background: rgb(255, 255, 255);
+margin-top: 15px;
+width: 100%;
+
+}
+
+.windowno3{
+background: rgb(255, 255, 255);
+margin-top: 15px;
+}
+
+.active-content{
+display: block;
+}
+
+/* .Homewindow{
+display: none;
+} */

@@ -1,0 +1,98 @@
+/* CommentsContainer */
+.CommentsContainer {
+    /* Styles for the container of all comments */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust the gap between comments */
+    max-width: 600px; /* Adjust the maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    position: relative;
+    top: 200px;
+    right: 200px;
+}
+
+/* Comment */
+.Comment {
+    /* Styles for each individual comment */
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* CommentHeader */
+.CommentHeader {
+    /* Styles for the header of each comment */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Avatar */
+.Avatar {
+    /* Styles for the user avatar */
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Username */
+.Username {
+    /* Styles for the username */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Votes */
+.Votes {
+    /* Styles for the voting section */
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Upvote */
+.Upvote {
+    /* Styles for the upvote count */
+    margin-right: 5px;
+    color: green;
+}
+
+/* Downvote */
+.Downvote {
+    /* Styles for the downvote count */
+    margin-right: 5px;
+    color: red;
+}
+
+/* CommentContent */
+.CommentContent {
+    /* Styles for the content of each comment */
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* CommentTime */
+.CommentTime {
+    /* Styles for the time of each comment */
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.userID {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333; /* or any color that suits your design */
+    margin-right: 5px; /* Adjust as needed */
+}
+
+/* Media Query */
+@media screen and (max-width: 768px) {
+    .CommentsContainer {
+        max-width: 400px;
+        right: 100px;
+        top: 150px;
+        left: 50px; /* Adjust position from left */
+    }
+}

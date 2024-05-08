@@ -97,7 +97,7 @@ async function CreateCommunity() {
 
 
 async function sendInfo(data){
-    const promise = await axios.post('/api/site_admin', data, {
+    const promise = await axios.post('http://localhost:5000/api/community/create', data, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -153,7 +153,7 @@ function ComType()
 }
 
 
-
+const [toggle, setToggle] = React.useState(true)
 
 function Create()
 {
@@ -181,7 +181,8 @@ function Create()
     
     
     <div className="cancelcreate">
- <button className="cancel">cancel</button> <button className="create" onClick={()=>{CreateCommunity()}}>create</button>  
+ {/* <button className="cancel" onClick={setToggle(false)}>cancel</button>  */}
+ <button className="create" onClick={()=>{CreateCommunity()}}>create</button>  
    </div>
     
     </div>
@@ -191,13 +192,7 @@ function Create()
 
 
     return (
-        <div>
-            <button className='sidebarButtons' onClick={() => ReactDOM.createRoot(document.getElementById("pop-page")).render(<Create/>)}>  
-            <svg rpl="" className='sideIcon' fill="currentColor" height="20" icon-name="add-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path></svg>
-            Create Community</button>
-            
-            <div id="pop-page"></div>
-        </div>
+        <Create></Create>
     );
     
 }

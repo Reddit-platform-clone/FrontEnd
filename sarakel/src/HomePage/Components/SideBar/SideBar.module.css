@@ -15,7 +15,10 @@
     flex-direction: column;
     padding: 60px 5px 30px 20px;
     margin-top: -40px;
-
+   
+}
+.nodec{
+    text-decoration: none;
 }
 
 .scrollbox{

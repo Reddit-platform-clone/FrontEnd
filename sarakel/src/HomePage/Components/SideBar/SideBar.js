@@ -5,27 +5,35 @@ import CreateCommunity from '../../../CreateCommunity/CreateCommunity'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import  { Navigate } from 'react-router-dom'
 import { Link } from "react-router-dom";
 export default function SideBar() {
     const [toggle, setToggle] = React.useState(true)
-    const{toggle1, setToggle1} = React.useState(false)
+    const [toggle1, setToggle1] = React.useState(false)
+    const [toggle2, setToggle2] = React.useState(false)
     const actArray = []
     if(toggle === true){
         actArray.push(`${classes.rotate}`)
     }
     return(
-       <nav className={`${classes.sidebar}`}>
+       <nav className={`${classes.sidebar} `}>
            <div className={`${classes.scrollbox}`}>
-                <Link to='/'>
+                
+                <Link to={"/"} className={`${classes.nodec}`}>
                 <button className={`${classes.sidebarButtons}`}>
                     <svg rpl="" className={`${classes.sideIcon}`} fill="currentColor" height="20" icon-name="home-fill" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"> <path d="m19.724 6.765-9.08-6.11A1.115 1.115 0 0 0 9.368.647L.276 6.765a.623.623 0 0 0 .35 1.141h.444v10.001c.001.278.113.544.31.74.196.195.462.304.739.303h5.16a.704.704 0 0 0 .706-.707v-4.507c0-.76 1.138-1.475 2.02-1.475.882 0 2.02.715 2.02 1.475v4.507a.71.71 0 0 0 .707.707h5.16c.274-.001.538-.112.732-.307.195-.195.305-.46.306-.736v-10h.445a.618.618 0 0 0 .598-.44.625.625 0 0 0-.25-.702Z"></path></svg>
                     <span>Home</span>
                 </button>
                 </Link>
-                <button className={`${classes.sidebarButtons}`}>
-                <svg rpl="" className={`${classes.sideIcon}`} fill="currentColor" height="20" icon-name="popular-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"> <path d="M10 0a10 10 0 1 0 10 10A10.01 10.01 0 0 0 10 0Zm0 18.75a8.7 8.7 0 0 1-5.721-2.145l8.471-8.471v4.148H14V6.638A.647.647 0 0 0 13.362 6H7.718v1.25h4.148L3.4 15.721A8.739 8.739 0 1 1 10 18.75Z"></path></svg>
-                <span>Popular</span>
-                </button>
+                
+               
+                    
+                        <button className={`${classes.sidebarButtons}`} >
+                        <svg rpl="" className={`${classes.sideIcon}`} fill="currentColor" height="20" icon-name="popular-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"> <path d="M10 0a10 10 0 1 0 10 10A10.01 10.01 0 0 0 10 0Zm0 18.75a8.7 8.7 0 0 1-5.721-2.145l8.471-8.471v4.148H14V6.638A.647.647 0 0 0 13.362 6H7.718v1.25h4.148L3.4 15.721A8.739 8.739 0 1 1 10 18.75Z"></path></svg>
+                        <span>Popular</span>
+                        </button>
+                    
+
                 <button className={`${classes.sidebarButtons}`}>
                 <svg rpl="" className={`${classes.sideIcon}`} fill="currentColor" height="20" icon-name="all-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0a10 10 0 1 0 10 10A10.01 10.01 0 0 0 10 0Zm5 17.171V6h-1.25v11.894a8.66 8.66 0 0 1-2.75.794V10H9.75v8.737A8.684 8.684 0 0 1 6.47 18H7v-4H5.75v3.642a8.753 8.753 0 1 1 9.25-.471Z"></path></svg>
                     <span>All</span>
@@ -40,8 +48,12 @@ export default function SideBar() {
                         </span>
                 </button>
                 <hr></hr>
-                <CreateCommunity className={`${classes.w00}`}/>
-                <button className={`${classes.sidebarButtons}`}>
+                <button className={`${classes.sidebarButtons}`} onClick={() => setToggle2(!toggle2)} Toggle State>
+                            <svg rpl="" className='sideIcon' fill="currentColor" height="20" icon-name="add-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path></svg>
+                            <span>Create Community</span>
+                </button>
+                {toggle2 && (<CreateCommunity />)}
+                <button className={`${classes.sidebarButtons}`} >
                     <span>COMMUNITIES</span> 
                     <span className={`${classes.FlexEnd}`}>
                     <svg rpl="" fill="currentColor" height="20" icon-name="caret-down-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">

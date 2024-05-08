@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import "./SignUpTwo.css";
+import styles from "./SignUpTwo.module.css";
 import SignUpOne from "./SignUpOne.js";
-import { useAuth } from "../AuthContext";
 import { FaArrowLeft } from "react-icons/fa6";
-// import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../AuthContext.js";
 
 function SignUpTwo({ email }) {
   const [showSignUpOne, setShowSignUpOne] = useState(false);
-  // const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(true);
-  const { setToken } = useAuth();
- 
-  const handleContinueClick = async () => {
-    // if (!recaptchaVerified) {
-    //   toast.error("Please verify that you're not a robot.");
-    //   return;
-    // }
+  const {setToken} = useAuth();
 
+  const handleContinueClick = async () => {
     const usernameInput = document.getElementById("signuptwo-username");
     const passwordInput = document.getElementById("signuptwo-password");
 
@@ -36,22 +29,18 @@ function SignUpTwo({ email }) {
 
     try {
       // Check if the username is available
-      const availabilityResponse = await fetch(`/api/username_available/${username}`);
+      const availabilityResponse = await fetch(
+        `http://localhost:5000/api/username_available/${username}`
+      );
       const availabilityData = await availabilityResponse.json();
-      
-      // if (!availabilityResponse.ok) {
-      //   toast.error("An error occurred while checking username availability");
-      //   return;
-      // }
-      console.log(availabilityData)
 
-      if (availabilityData.message === 'Username is not available') {
+      if (availabilityData.message === "Username is not available") {
         toast.error("Username is not available.");
         return;
       }
 
       // Proceed with signup if the username is available
-      const signupResponse = await fetch("/api/signup", {
+      const signupResponse = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,11 +48,15 @@ function SignUpTwo({ email }) {
         body: JSON.stringify({ email, password, username }),
       });
       const signupData = await signupResponse.json();
-      
+      console.log(signupData)
+      console.log("sign up token : ",signupData.token)
       if (signupResponse.ok) {
         toast.success("Account created!");
-        console.log("Token:", signupData.token);
-        setToken(signupData.token);
+
+        // Save token in sessionStorage
+        sessionStorage.setItem("token", signupData.token);
+        sessionStorage.setItem("username",username)
+        setToken(signupData.token)
         handleCloseModal();
       } else {
         toast.error(signupData.error);
@@ -73,15 +66,10 @@ function SignUpTwo({ email }) {
       toast.error("An error occurred while signing up");
     }
   };
-  
 
   const handleBackButtonClick = () => {
     setShowSignUpOne(true);
   };
-
-  // const handleRecaptchaChange = (value) => {
-  //   setRecaptchaVerified(!!value);
-  // };
 
   const handleCloseModal = () => {
     setShowSignUpModal(false);
@@ -92,11 +80,11 @@ function SignUpTwo({ email }) {
   }
 
   return showSignUpModal ? (
-    <div className="signuptwo-overlay">
-      <div className="signuptwo-modal">
-        <div className="signuptwo-content">
+    <div className={styles["signuptwo-overlay"]}>
+      <div className={styles["signuptwo-modal"]}>
+        <div className={styles["signuptwo-content"]}>
           <button
-            className="signuptwo-back-btn"
+            className={styles["signuptwo-back-btn"]}
             onClick={handleBackButtonClick}
           >
             {" "}
@@ -108,10 +96,11 @@ function SignUpTwo({ email }) {
             Choose wisely—because once you get a name, you can’t change it.
           </p>
 
-          <div className="signuptwo-input-group">
+          <div className={styles["signuptwo-input-group"]}>
             <label htmlFor="username"></label>
             <input
               id="signuptwo-username"
+              className={styles["signuptwo-username"]}
               type="text"
               placeholder="Username*"
               required
@@ -120,20 +109,16 @@ function SignUpTwo({ email }) {
             <label htmlFor="password"></label>
             <input
               id="signuptwo-password"
+              className={styles["signuptwo-password"]}
               type="password"
               placeholder="Password*"
               required
             />
 
             <br></br>
-            {/* <ReCAPTCHA
-              sitekey="6LfKJ54pAAAAAKOVJdj7SYP5-xuXU8-YNqAQ0E2t"
-              onChange={handleRecaptchaChange}
-              className="signuptwo-recaptcha"
-            /> */}
 
             <button
-              className="signuptwo-cntnu-btn"
+              className={styles["signuptwo-cntnu-btn"]}
               onClick={handleContinueClick}
             >
               Continue

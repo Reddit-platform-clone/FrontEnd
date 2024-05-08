@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import NavBarUnlogged from '../HomePage/Components/NavBar Unlogged/NavBarUnlogged.js';
 import SideBar from '../HomePage/Components/SideBar/SideBar.js';
-import './Search.css';
+import styles from './Search.module.css'; 
 import NavBar from '../HomePage/Components/NavBar/NavBar.js'
 import Users from './Components/Users';
 import Post from './Components/Post.js';
 import Community from './Components/Community.js';
 import Comment from './Components/Comment.js';
+import HashTags from './Components/HashTags.js';
 import { AiOutlineRocket } from "react-icons/ai";
 import { FaCalendarWeek } from "react-icons/fa";
 import { PiFireSimple } from "react-icons/pi";
@@ -21,7 +22,7 @@ function Search() {
     const [selectedOption, setSelectedOption] = useState({ text: "Relevance", icon: <AiOutlineRocket /> });
     const [selectedTimeOption, setSelectedTimeOption] = useState("All Time");
 
-    const tabLabels = ["Users", "Posts", "Comments", "Communities"];
+    const tabLabels = ["Users", "Posts", "Comments", "Communities" , "HashTags"];
 
     const handleTabClick = (index) => {
         setRelevanceOpen(false);
@@ -52,14 +53,14 @@ function Search() {
         <div>
             <NavBar />
             <SideBar />
-            <div className='search-title'>
+            <div className={styles.SearchTitle}>
                 <span>Search-results</span>
             </div>
-            <div className='Contents2'>
+            <div className={styles.SearchContents}>
                 {tabLabels.map((label, index) => (
                     <button
                         key={index}
-                        className={`tab-button ${activeTab === index ? 'active' : ''}`}
+                        className={`${styles.TabButton} ${activeTab === index ? styles.Active : ''}`}
                         onClick={() => handleTabClick(index)}
                     >
                         {label}
@@ -68,18 +69,18 @@ function Search() {
             </div>
 
 
-            <div className='sort-by-title'>
-                <span className='sort-by'>Sort by:</span>
+            <div className={styles.SortByTitle}>
+                <span className={styles.SortBy}>Sort by:</span>
             </div>
 
 
-            <div className='sort-by-dropdown'>
-            <button className='relevance-button' onClick={toggleRelevanceDropdown}>
+            <div className={styles.SortByDropdown}>
+            <button className={styles.RelevanceButton} onClick={toggleRelevanceDropdown}>
                 {selectedOption.icon}
                 {selectedOption.text}
             </button>
             {relevanceOpen && (
-                <div className="relevance-content">
+                <div className={styles.RelevanceContent}>
                     <button onClick={() => handleOptionSelect("Relevance", <AiOutlineRocket />)}>
                         <AiOutlineRocket />
                         Relevance
@@ -103,13 +104,12 @@ function Search() {
                 </div>
             )}
                     
-                    <button className='all-time-button' onClick={toggleTimeDropdown}>
+                    <button className={styles.AllTimeButton} onClick={toggleTimeDropdown}>
                 <FaCalendarWeek />
                 {selectedTimeOption}
             </button>
-            <div className="line-after-all-time"></div>
             {timeOpen && (
-                <div className='all-time-content'>
+                <div className={styles.AllTimeContent}>
                     <label>
                         <input type="radio" name="allTimeOption" value="All Time" onChange={() => handleTimeOptionSelect("All Time")} checked={selectedTimeOption === "All Time"} />
                         All Time
@@ -137,27 +137,33 @@ function Search() {
                 </div>
             )}
             </div>
-            <div className="tab-content">
+            <div className={styles.TabContent}>
                 {activeTab === 0 && (
-                    <div className="user-content">
+                    <div className={styles.UserContent}>
                         <Users/>
                     </div>
                 )}
                 {activeTab === 1 && (
-                    <div className="post-content">
+                    <div className={styles.PostContent}>
                         <Post/>
 
                     </div>
                 )}
                 {activeTab === 2 && (
-                    <div className="comment-content">
+                    <div className={styles.CommentContent}>
                         <Comment/>
 
                     </div>
                 )}
                 {activeTab === 3 && (
-                    <div className="community-content">
+                    <div className={styles.CommunityContent}>
                         <Community/>
+                        
+                    </div>
+                )}
+                {activeTab === 4 && (
+                    <div className={styles.CommunityContent}>
+                        <HashTags/>
                         
                     </div>
                 )}
