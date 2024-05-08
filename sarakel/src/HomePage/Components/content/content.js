@@ -44,7 +44,7 @@ const Content = () => {
           // If user is logged in (token exists)
           url = `http://localhost:5000/api/subreddit/get${
             sortingType.charAt(0).toUpperCase() + sortingType.slice(1)
-          }?page=${page}`; // Include page number in the API endpoint
+          }?page=${page}&limit=15`; // Include page number in the API endpoint
         } else {
           // If user is not logged in (token is null)
           url = `http://localhost:5000/api/subreddit/getRandom`;
@@ -689,26 +689,30 @@ const Content = () => {
           <button onClick={() => addMorePosts()} className={styles["load-more-posts-button"]}><TbHandClick />More posts</button>
           </div>
         )}
-{/* {token && <div className={styles["content-recent-posts"]}>
+{        console.log("recent : ",recentPosts)}
+{token && recentPosts.result && <div className={styles["content-recent-posts"]}>
           <div className={styles["content-recent-posts-header"]}>
             <h6>Recent posts</h6>
             <button>clear</button>
           </div>
-          {recentPosts.map((recent)=>(
-              <div key={recent._id}>
-                <div className={styles["content-recent-posts-community"]}>
-                  <TbUserPentagon className={styles['content-recent-posts-image']}/>
-                <p>r/{recent.communityId}</p>
-                </div>
-                <p>{recent.title}</p>
-                <div className={styles["content-recent-posts-last"]}>
-                <p>{recent.upvotes - recent.downvotes} votes</p>
-                <p>{calculateTimeSinceCreation(recent.createdAt)}</p>
-                </div>
-                <hr/>
-              </div>
-            ))}
-        </div>} */}
+          {recentPosts && recentPosts.length > 0 && recentPosts.map((recent) => (
+  recent && ( // Added check for recent not being null or undefined
+    <div key={recent._id}>
+      <div className={styles["content-recent-posts-community"]}>
+        <TbUserPentagon className={styles['content-recent-posts-image']} />
+        <p>r/{recent.communityId}</p>
+      </div>
+      <p>{recent.title}</p>
+      <div className={styles["content-recent-posts-last"]}>
+        <p>{recent.upvotes - recent.downvotes} votes</p>
+        <p>{calculateTimeSinceCreation(recent.createdAt)}</p>
+      </div>
+      <hr />
+    </div>
+  )
+))}
+
+        </div>}
       </div>
     </div>
   );

@@ -244,7 +244,10 @@
 
   }
 
-  .load-more-posts-button{
+  .load-more-posts-button {
+    bottom: 0; /* This places the button at the bottom of its containing element */
+    left: 50%; /* This centers the button horizontally */
+    transform: translateX(-50%); /* This adjusts the horizontal position to center it */
     width: auto;
     padding: 10px;
     background-color: #0045ac;
@@ -255,8 +258,11 @@
     align-items: center;
     font-size: 15px;
     border: none;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
 
-  }
+
 
   .join-btn-post {
     width: auto;
