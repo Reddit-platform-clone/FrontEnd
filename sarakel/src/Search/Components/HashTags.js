@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './HashTags.module.css'; // Import CSS file
+import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
 export default function HashTags() {
     const [hashtags, setHashtags] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [error, setError] = useState(null);
+    const { token } = useAuth();
 
     useEffect(() => {
         const fetchData = async () => {
-            const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmlvciIsImlhdCI6MTcxMzE5NDM2NH0.plXgIm8oPx5va2VtE1EuQHmHxjAA7G9Uxo0h5_inQoY";
-
             try {
                 const response = await axios.post(
                     'http://localhost:5000/searchBy/hashtags',
-                    { keyword: '!' }, // Replace '!' with your desired keyword
+                    { keyword: searchTerm },
                     {
                         headers: {
-                            Authorization: `Bearer ${authToken}`
+                            Authorization: `Bearer ${token}`
                         }
                     }
                 );
                 setHashtags(response.data.hashtagsResults);
+                setError(null); // Clear any previous errors if successful
             } catch (error) {
                 console.error('Error fetching hashtags:', error);
                 setError('Error fetching hashtags');
@@ -28,11 +30,21 @@ export default function HashTags() {
         };
 
         fetchData();
-    }, []);
+    }, [searchTerm, token]);
+
+    const handleInputChange = (event) => {
+        setSearchTerm(event.target.value); // Update the search term state
+    };
 
     return (
         <div className={styles.container}>
-            <h1>Hashtags</h1>
+            <input
+                type="text"
+                placeholder="Search hashtags..."
+                value={searchTerm}
+                onChange={handleInputChange}
+                className={styles.SearchInput}
+            />
             {error && <p className={styles.error}>{error}</p>}
             <div className={styles.hashtagContainer}>
                 {hashtags.map(hashtag => (
