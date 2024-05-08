@@ -211,9 +211,10 @@ export default function Queues(){
                                     </div>
                                     <div className='col '>
                                         <div className='row mt-2 '>
-                                            <div className='col-1'>
-                                                <span className={`align-items-center w-100 `}>r/{item.communityId}</span>
+                                            <div className='col-3'>
+                                                <span className={` col-2 `}>r/{item.communityId}</span>
                                             </div>
+                                            
                                         </div>
                                         <div className='row mt-3'>
                                             <div className='col'>
@@ -221,29 +222,19 @@ export default function Queues(){
                                             </div>
                                         </div>
                                         <div className='row mt-1'>
-                                            <span className={`${classes.color}`}>{item.text}</span>
+                                            <span className={`${classes.color}`}>{item.content}</span>
                                         </div>
                                         <div className='row  mt-2'>
                                             <img src={item.media} className='col-7'></img>
                                         </div>
-                                        <div className='row mt-1'>
-                                            <p className={`${classes.color}`}>{item.comments} comments</p>
-                                        </div>
-                                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
-                                            <div className='col-1 '>
-                                                <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
-                                            </div>
-                                            <div className='col'>
-                                                <div className='row'><a>Removed</a></div>
-                                                <div className='row '><a>u/MemoNar</a></div>
-                                            </div>
-                                        </div>
-                                        <div className='row mt-3 '>
+                                        
+                                        
+                                        <div className='row mt-3  mb-2'>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                                <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
+                                                <button onClick={() =>{ApprovePost(item._id)}} className={`btn btn-primary`}><span>Approve</span></button>
                                             </div>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
-                                                <button className={`${classes.QueueButtons}`}><span>Approve</span></button>
+                                                <button onClick={()=>{RemovePost(item._id)}} className={`btn btn-danger`}><span>Remove</span></button>
                                             </div>
                                         </div>
                                     </div>
