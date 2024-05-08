@@ -1,316 +1,415 @@
 .app-container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .TopBar {
-    background:#0079D3;
-    padding: 10px 0;
-    display: flex; /* Use flexbox to align items in a row */
-    position: absolute; /* Add this line */
-    width: 100%; /* Ensure it spans the full width */
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
-    margin-top: 63px;
-    height: 50px;
-  }
-  
-  .menu-button {
-    margin: 0 0px;
-    color: rgba(255, 255, 255, 0.69);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: 80px;
-    padding: 0%;
-    font-size: 15px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight: 700;
-  }
-  
-  .TopBar2{
-    background:#0079D3;
-    padding: 10px 0;
-    display: flex; /* Use flexbox to align items in a row */
-    position: absolute; /* Add this line */
-    width: 100%; /* Ensure it spans the full width */
-    top: 100px;
-    left: 0; /* Align to the left */
-  }
-  
-  .menu-button2 {
-    margin: 0 0px;
-    color: rgba(255, 255, 255, 0.707);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: 80px;
-    padding: 0%;
-    font-size: 13px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight: 300;
-  }
-  
-  
-  .menu-button:hover {
-    opacity: 0.8;
-  }
-  
-  .MainWindow {
-    display: flex; /* Establishes a flex container */
-    justify-content: center; /* Centers children horizontally */
-    align-items: center; /* Centers children vertically */
-    height: 100%; /* Set to desired height */
-    width: 100%; /* Set to desired width or 100% for full width */
-    /* Add any additional styling such as padding or background color */
-    background: rgb(235, 235, 235);
-  }
-  
-  .MainWindow1{
-    background: rgb(255, 255, 255);
-    /* margin-top: 200px; */
-    display: none;
-    align-items: center;
-    justify-content: center;
-  
-  }
-  
-  .MainWindow2{
-    background: rgb(255, 255, 255);
-    margin-top: 15px;
-    display: none;
-  
-  }
-  
-  .MainWindow3{
-    background: rgb(255, 255, 255);
-    margin-top: 0px;
-    display: none;
-    height: 600px;
-    overflow-y: scroll;
-  
-  }
+  display: flex;
+  height: 100vh;
+}
 
-  .txt1{
-    font-size: 30px;
-  }
-  
-  .towindow{
-    margin-top: 15px;
-  margin-left: 18px;
-  }
-  
-  .tobox{
+.TopBar {
+  background:#0079D3;
+  padding: 10px 0;
+  display: flex; /* Use flexbox to align items in a row */
+  position: absolute; /* Add this line */
+  width: 100%; /* Ensure it spans the full width */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  margin-top: 63px;
+  height: 50px;
+}
+
+.menu-button {
+  margin: 0 0px;
+  color: rgba(255, 255, 255, 0.69);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 80px;
+  padding: 0%;
+  font-size: 15px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.TopBar2{
+  background:#0079D3;
+  padding: 10px 0;
+  display: flex; /* Use flexbox to align items in a row */
+  position: absolute; /* Add this line */
+  width: 100%; /* Ensure it spans the full width */
+  top: 100px;
+  left: 0; 
+  margin-bottom: 20px;
+}
+
+.menu-button2 {
+  margin: 0 0px;
+  color: rgba(255, 255, 255, 0.707);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 80px;
+  padding: 0%;
+  font-size: 13px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+
+.menu-button:hover {
+  opacity: 0.8;
+}
+
+.MainWindow {
+  display: flex; /* Establishes a flex container */
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically */
+  height: 100%; /* Set to desired height */
+  width: 100%; /* Set to desired width or 100% for full width */
+  /* Add any additional styling such as padding or background color */
+  background: rgb(235, 235, 235);
+}
+
+.MainWindow1{
+  background: rgb(255, 255, 255);
+  /* margin-top: 200px; */
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.MainWindow2{
+  background: rgb(255, 255, 255);
+  margin-top: 100px;
+  display: none;
+  height: 600px;
+overflow-y: scroll;
+}
+
+.MainWindow3{
+  background: rgb(255, 255, 255);
+  margin-top: 0px;
+  display: none;
+  height: 600px;
+overflow-y: scroll;  
+}
+
+.txt1{
+  font-size: 30px;
+}
+
+.towindow{
+  margin-top: 15px;
+margin-left: 18px;
+}
+
+.tobox{
+width: 500px;
+height: 30px;
+margin-right: 600px;
+
+}
+
+.subwindow{
+  margin-top: 15px;
+margin-left: 18px;
+
+}
+.subbox{
   width: 500px;
   height: 30px;
-  margin-right: 600px;
-  
-  }
-  
-  .subwindow{
-    margin-top: 15px;
+  margin-right: 400px;
+}
+
+.to{
+  font-size: larger;
+}
+
+.subject{
+  font-size: larger;
+}
+
+.Msgbox{
+  margin-top: 15px;
   margin-left: 18px;
   
-  }
-  .subbox{
-    width: 500px;
-    height: 30px;
-    margin-right: 400px;
-  }
-  
-  .to{
-    font-size: larger;
-  }
-  /* .txtt{
+}
+
+.msgboxx{
+  width: 500px;
+  height: 90px;
+  margin-right: 400px;
+  margin-bottom: 15px;
+}
+
+.message{
+font-size: larger;
+}
+
+.Sendbutton{
+  padding: 8px 20px;
+  background: rgb(68, 82, 185);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 0px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  margin-top: 9px;
+}
+
+.active-content{
+  display: block;
+}
+
+.footer{
+  height:5px;
+  width: 100%;
+}
+
+.nocontmsg{
+  border-radius: 5px; 
+}
+
+.errmsg{
   display: flex;
-  
-  } */
-  .subject{
-    font-size: larger;
-  }
-  
-  .Msgbox{
-    margin-top: 15px;
-    margin-left: 18px;
-    
-  }
-  
-  .msgboxx{
-    width: 500px;
-    height: 90px;
-    margin-right: 400px;
-    margin-bottom: 15px;
-  }
-  
-  .message{
+  margin-left: 5px;
+  margin-right: 100px;
+  height: fit-content;
   font-size: larger;
-  }
-  
-  .Sendbutton{
-    padding: 8px 20px;
-    background: rgb(68, 82, 185);
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 0px;
-    margin-bottom: 15px;
-    font-weight: 700;
-    margin-top: 9px;
-  }
-  
-  
-  .active-content{
-    display: block;
-  }
-  
-  .footer{
-    height:5px;
-    width: 100%;
-  }
-  
-  .nocontmsg{
-    border-radius: 5px;
-    
-  }
-  
-  .errmsg{
-    display: flex;
-    margin-left: 5px;
-    margin-right: 100px;
-height: fit-content;
-    font-size: larger;
-  }
-  
-  .robotchk{
-    margin-left: 18px;
-  }
-  
-  .tab2-1{
-    display: none;
-    margin-top: 90px;
+}
 
-  }
+.robotchk{
+  margin-left: 18px;
+}
 
-  .tab2-2{
-    display: none;
-    margin-top: 90px;
+.tab2-1{
+  display: none;
+  margin-top: 90px;
 
-  }
+}
 
-  .tab2-3{
-    display: none;
-    margin-top: 90px;
+.tab2-2{
+  display: none;
+  margin-top: 90px;
 
-  }
+}
 
-  .tab2-4{
-    display: none;
-    margin-top: 90px;
+.tab2-3{
+  display: none;
+margin-top: 50px;
+}
 
-  }
+.tab2-4{
+  display: none;
+  margin-top: 90px;
 
-  .tab2-5{
-    display: none;
-    margin-top: 90px;
+}
 
-  }
+.tab2-5{
+  display: none;
+  margin-top: 90px;
 
-  .tab2-6{
-    display: none;
-    height: fit-content;
+}
 
-  }
+.tab2-6{
+  display: none;
+  height: fit-content;
 
-  .active{
-    display: block;
-  }
+}
 
-  .active-content2{
+.active{
+  display: block;
+}
 
-    display: block;
-  }
-  .firsttxt{
-    display: flex;
-  }
-  .titlebox{
-    font-size: 18px;
-    color: #373c3f;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .greytxt{
-    color: #878a8c;
-    font-size: 15px;
-    margin-top: 2px;
-    margin-left: 2px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.active-content2{
 
-  /* .themessage{
-    height: 500px;
-    width: 500px;
-  } */
+  display: block;
+}
+.firsttxt{
+  display: flex;
+}
+.titlebox{
+  font-size: 18px;
+  color: #373c3f;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.greytxt{
+  color: #878a8c;
+  font-size: 15px;
+  margin-top: 2px;
+  margin-left: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .msgcontent{
-    font-size: 21.9231;
-    font-family: Arial, Helvetica, sans-serif;
-    border-bottom: #878a8c;
-    color: #373c3f;
-    font-weight: 200;
+.msgcontent{
+  font-size: 21.9231;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: #878a8c;
+  color: #373c3f;
+  font-weight: 200;
 
-  }
-  .message-container{
-    /* margin-bottom: 50px; */
-    background-color:#fff;
-    margin-top: 10px;
-    width: 500px;
-    overflow: hidden;
-    margin-right: 400px;
-    margin-left: 20px;
-   border-style: groove; 
-   border-width: 1px;
-  }
+}
+.message-container{
+  /* margin-bottom: 50px; */
+  background-color:#fff;
+  margin-top: 10px;
+  width: 500px;
+  overflow: hidden;
+  margin-right: 400px;
+  margin-left: 20px;
+ border-style: groove; 
+ border-width: 1px;
+}
 
-  .txttitle{
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+.txttitle{
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  }
+.belowtitle{
+  margin-left: 50px;
+}
 
-  .belowtitle{
-    margin-left: 50px;
-  }
+.topmsg{
+  display: flex;
+  margin-left: 5px;
+}
 
-  .topmsg{
-    display: flex;
-    margin-left: 5px;
-  }
+.contmsg{
+  display: flex;
 
-  .contmsg{
-    display: flex;
- 
-  }
+}
 
-  .Permalink{
-    background: transparent;
-    text-decoration: underline;
-    color: #888888;
-    border-style: hidden;
-    font-size: small;  
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400;
-  }
+.Permalink{
+  background: transparent;
+  text-decoration: underline;
+  color: #888888;
+  border-style: hidden;
+  font-size: small;  
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
 
-  .msgbody{
-    margin-left: 5p0x;
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
+.msgbody{
+  margin-left: 5p0x;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
 
-  }
-  .reciever{
-    color: #0079d3;
+}
+.reciever{
+  color: #0079d3;
 font-size: 11px;
 margin-left: 2px;
 margin-top: 1px;
 font-family: Arial, Helvetica, sans-serif;
 margin-right: 5px;
+}
+
+
+.inbox-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* Style for each message item in the list */
+.inbox-message {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for message details (username, title, content) */
+.message-details {
+  margin-bottom: 5px;
+}
+
+/* Style for message title */
+.message-title {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style for message content */
+.message-content {
+  color: #666;
+}
+
+/* Style for message date */
+.message-date {
+  color: #999;
+  font-size: 0.8em;
+}
+
+.themessageinb{
+
+  height: 0px;
+}
+
+
+
+/* Styles for the overlay */
+.report-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for the report modal */
+.report-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-modal h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.report-modal p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.report-modal select,
+.report-modal button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.report-modal select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.report-modal button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.report-modal button:hover {
+  background-color: #0056b3;
+}
+
+/* Media query to adjust modal width for smaller screens */
+@media (max-width: 600px) {
+  .report-modal {
+    width: 90%;
   }
+}
