@@ -1,39 +1,92 @@
-/* HashTags.module.css */
 
-.container {
-  padding: 20px;
-  position: absolute;
+.PostsContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 600px;
   top: 200px;
-  left: 200px;
+  left: 250px;
 }
+
 .SearchInput{
   display: flex;
   position: relative;
-  top: -10px;
+  top: -90px;
   left: 1100px;
   max-width: fit-content;
   
 
 }
 
-.hashtagContainer {
-  display: flex-column;
-  flex-wrap: wrap;
+/* Post */
+.Post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
-.hashtag {
-  margin-right: 10px; /* Adjust space between each hashtag */
-  margin-bottom: 10px; /* Adjust space between each row */
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #333;
+.LockedPost {
+  border-color: red; /* Example color for locked posts */
+}
+
+/* PostHeader */
+.PostHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.LogoUp1 {
+  width: 40px; /* Adjust according to your design */
+  height: 40px; /* Adjust according to your design */
+  border-radius: 50%; /* To make the image round */
+  margin-right: 10px;
+}
+
+.Username1 {
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.PostTime {
+  margin-left: auto; /* Push the time to the right */
+}
+
+/* PostContent */
+.PostContent {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+/* PostMedia */
+.PostMedia img {
+  max-width: 100%; /* Ensure images don't overflow */
+  margin-bottom: 10px; /* Add space between images */
+}
+
+.Hashtag{
+  background-color: rgb(108, 206, 112);
+}
+
+/* PostFooter */
+.PostFooter {
+  display: flex;
+  align-items: center;
+}
+
+.Votes {
+  margin-right: 20px; /* Add space between votes */
 }
 
 @media (max-width: 768px) {
-  .container {
-      top: 150px; /* Adjust position from top */
+  .PostsContainer {
       left: 50px; /* Adjust position from left */
+      max-width: 90%; /* Adjust width for smaller screens */
+  }
+
+  .Avatar {
+      width: 40px; /* Adjust avatar size */
+      height: 40px;
   }
 }
