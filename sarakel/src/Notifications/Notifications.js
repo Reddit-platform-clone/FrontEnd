@@ -57,11 +57,12 @@ export default function Notifications() {
     <div>
       <NavBar />
       <div id="pop-page">
-      <ul>
-        {notifications.data.map((notification, index) => (
-          <li key={index}>
-            <span>{notification.title}</span>
-            <span>{notification.body}</span>
+     
+      <ul cl>
+        {notifications && notifications.data && notifications.data.map((notification, index) => (
+          <li className='notif' key={index}>
+            <span className='sendery'>{notification.title}</span>
+            <span className='recievery'>{notification.body}</span>
           </li>
         ))}
       </ul>
