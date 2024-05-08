@@ -10,6 +10,16 @@
     width: 600px;
     max-width: 90%; /* Set a maximum width for responsiveness */
   }
+
+  .SearchInput{
+    display: flex;
+    position: relative;
+    top: 130px;
+    left: 1300px;
+    max-width: fit-content;
+    
+ 
+}
   
   /* CommunitySearchData */
   .CommunitySearchData {
