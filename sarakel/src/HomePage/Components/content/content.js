@@ -689,7 +689,7 @@ const Content = () => {
           <button onClick={() => addMorePosts()} className={styles["load-more-posts-button"]}><TbHandClick />More posts</button>
           </div>
         )}
-{token && <div className={styles["content-recent-posts"]}>
+{/* {token && <div className={styles["content-recent-posts"]}>
           <div className={styles["content-recent-posts-header"]}>
             <h6>Recent posts</h6>
             <button>clear</button>
@@ -708,7 +708,7 @@ const Content = () => {
                 <hr/>
               </div>
             ))}
-        </div>}
+        </div>} */}
       </div>
     </div>
   );

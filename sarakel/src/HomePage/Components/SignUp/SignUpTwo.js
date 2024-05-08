@@ -55,6 +55,7 @@ function SignUpTwo({ email }) {
 
         // Save token in sessionStorage
         sessionStorage.setItem("token", signupData.token);
+        sessionStorage.setItem("username",username)
         setToken(signupData.token)
         handleCloseModal();
       } else {

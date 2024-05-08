@@ -6,6 +6,8 @@ import classes from './Tabs.module.css'
 import icon from './google-logo-9808.png'
 import can from './red-trash-can-icon.png'
 import mock from '../../mock.json';
+import { useAuth } from '../../HomePage/Components/AuthContext.js';
+
 export default function Account() {
     let mail
 
@@ -34,23 +36,11 @@ export default function Account() {
     }else{
         SavePass = "Change"
     }
-
-
-
-mock.users.map((user) => {
-    if(user.LoggedIn === 1){
-        UserId = user.id
-        SavedGender = user.gender
-        Country = user.Country
-        Pass = user.pass
-        
-        return
-    }
-})  
-    const [Password, setPass] = React.useState(`${Pass}`)
+    const { token } = useAuth()
+    const [Password, setPass] = React.useState(null)
     const [gender, setGender] = React.useState(SavedGender)
     const [value, setValue] = React.useState(0)
-    const [Email, setEmail] = React.useState()
+    const [Email, setEmail] = React.useState(null)
     const GenderHandler = (g) =>{
         mock.users.map((user) =>{
             if(user.id === UserId ){
@@ -77,30 +67,60 @@ mock.users.map((user) => {
         secArray.push(`${classes.hide}`)
         }
     }
+    function isEmail(input) {
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(input);
+    }
 
     const AddEmail = () => {
-        
+        if(Email == null && saveEmail == "Save"){
+            alert("please enter an email")
+        }else if(!isEmail(Email) && saveEmail == "Save"){
+            alert("please Enter a valid email")
+        }
+        else if(Email !== null && isEmail(Email) ){
+            // sendInfo({password: Email})
+            alert("Email Changed!!: " + Email)
+            setEmail(null)
+        }
         
     }
     const changeEmail = event =>{
         setEmail(event.target.value)
 
     }
-    const AddPass = () => {
-        mock.users.map((user) =>{
-            if(user.id === UserId ){
-                user.pass = Password
-                return
-            }
-        })
+    const AddPass = () =>{
+        if(Password == null && SavePass == "Save"){
+            alert("please enter password")
+        }else if(Password !== null){
+            // sendInfo({password: Password})
+            alert("Password Changed!!")
+            setPass(null)
+        }
+        
     }
     const changePass = event =>{
 
         setPass(event.target.value)
+        
+    }
 
+    async function sendInfo(data){
+        const promise = await axios.patch('http://localhost:5000/api/v1/me/prefs',data,{
+            headers:{Authorization: `Bearer ${token}`}
+        });
+        console.log(promise)
+        return promise;
+    }
+    async function GetInfo(){
+        const promise = await axios.get('http://localhost:5000/api/v1/me/prefs',{
+            headers:{Authorization: `Bearer ${token}`}
+    });
+        return promise.data;
     }
 
     
+
     return(
         <div className={`${classes.tab}`}>
             <div className={`${classes.w100}`}>
@@ -145,7 +165,7 @@ mock.users.map((user) => {
                     </div>
                     <div className={`${classes.SettingToggles}`}>
                         <div className={`${classes.dropdown}`}>
-                            <button className={`${classes.dropbtn} `}><span className={`${classes.font}`}>{gender}</span></button>
+                            <button className={`${classes.dropbtn} bg-info `}><span className={`${classes.font}`}>{gender}</span></button>
                             <div className={`${classes.dropdownContent} ${classes.font}`}>
                                 <a  onClick={() => {setGender("Male"); GenderHandler("Male")}}>Male</a>
                                 <a  onClick={() => {setGender("Woman"); GenderHandler("Woman")}}>Woman</a>

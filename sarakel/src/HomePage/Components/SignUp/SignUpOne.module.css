@@ -1,208 +1,208 @@
 .signup-overlay {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99999;
-  }
-  
-  .signup-modal {
-    border-radius: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 550px;
-    max-height: 630px;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .signup-content{
-    margin-top: 30px;
-    margin-left: 80px;
-    margin-right: 80px;
-  }
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+}
+
+.signup-modal {
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 550px;
+  max-height: 630px;
+  width: 100%;
+  height: 100%;
+}
+
+.signup-content{
+  margin-top: 30px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
 .signup-close-btn{
-    border-radius: 30px;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    margin-left: auto;
+  border-radius: 30px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .signup-close-btn:hover{
-    background-color: rgba(128, 128, 128,0.3);
+  background-color: rgba(128, 128, 128,0.3);
 }
 
 .signup-content p{
-    font-size: 14px;
-    margin-top: -10px;
+  font-size: 14px;
+  margin-top: -10px;
 }
 
 .signup-content h2{
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 
 .signUpOne-google{
-  width: 400px;
+width: 400px;
 }
 .signUpOne-divider {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
+display: flex;
+align-items: center;
+margin-top: 20px;
 }
 
 /* Style for the divider line */
 .SignUpOne-divider-line {
-  flex: 1;
-  height: 1px;
-  background-color: #ccc;
+flex: 1;
+height: 1px;
+background-color: #ccc;
 }
 
 /* Style for the text "OR" */
 .SignUpOne-divider-text {
-  margin: 0 10px;
-  color: black;
-  font-size: 13px;
+margin: 0 10px;
+color: black;
+font-size: 13px;
 }  
-  #signup-email{
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
+#signup-email{
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
 
 #signup-email{
-    border: none;
-    background-color: rgba(128, 128, 128,0.2);
-    width: 400px;
-    height: 58px;
-    border-radius: 15px;
-    font-size: 15px;
-  }
-  
-#signup-email:hover{
-    background-color: rgba(128, 128, 128,0.3);
-}
-.signup-input-group input[type="email"] {
-  padding-left: 20px; 
-}
-  .signup-input-group input::placeholder {
-    color: rgba(128, 128, 128,1);
-  }
-
-  #signup-email:focus {
-    outline: none;
-  }
-
-  .signup-login-text{
-    margin-top: 35px;
-    display: flex;
-  }
-
-
-  .signup-cntnu-btn{
-    background-color: #D93A00;
-    width: 400px;
-    height: 48px;
-    border-radius: 40px;
-    font-size: 15px;
-    margin-top: 120px;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-.login-privcy-plcy,.login-user-agremnt,.login-signup-text,.login-forgot-password,.login-forgot-username{
-    text-decoration: none;
-}
-#signup-email {
   border: none;
-  background-color: rgba(128, 128, 128, 0.2);
-  max-width: 400px;
-  width: 100%;
+  background-color: rgba(128, 128, 128,0.2);
+  width: 400px;
   height: 58px;
   border-radius: 15px;
   font-size: 15px;
-  margin-top: 30px;
+}
+
+#signup-email:hover{
+  background-color: rgba(128, 128, 128,0.3);
+}
+.signup-input-group input[type="email"] {
+padding-left: 20px; 
+}
+.signup-input-group input::placeholder {
+  color: rgba(128, 128, 128,1);
+}
+
+#signup-email:focus {
+  outline: none;
+}
+
+.signup-login-text{
+  margin-top: 35px;
+  display: flex;
+}
+
+
+.signup-cntnu-btn{
+  background-color: #D93A00;
+  width: 400px;
+  height: 48px;
+  border-radius: 40px;
+  font-size: 15px;
+  margin-top: 120px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.login-privcy-plcy,.login-user-agremnt,.login-signup-text,.login-forgot-password,.login-forgot-username{
+  text-decoration: none;
+}
+#signup-email {
+border: none;
+background-color: rgba(128, 128, 128, 0.2);
+max-width: 400px;
+width: 100%;
+height: 58px;
+border-radius: 15px;
+font-size: 15px;
+margin-top: 30px;
 }
 
 #signup-email:focus::placeholder,
 #signup-email:not(:placeholder-shown)::placeholder {
-  transform: translateY(-16px);
-  font-size: 13px; 
-  color: rgba(128, 128, 128, 1); 
-  opacity: 0.6; 
-  transition: all 0.3s ease; 
+transform: translateY(-16px);
+font-size: 13px; 
+color: rgba(128, 128, 128, 1); 
+opacity: 0.6; 
+transition: all 0.3s ease; 
 }
 
 
 
 .login-with-google-btn {
-  transition:
-    background-color 0.3s,
-    box-shadow 0.3s;
-  padding: 12px 16px 12px 42px;
-  border: none;
-  border-radius: 3px;
-  box-shadow:
-    0 -1px 0 rgba(0, 0, 0, 0.04),
-    0 1px 1px rgba(0, 0, 0, 0.25);
-  color: #757575;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-  background-color: white;
-  background-repeat: no-repeat;
-  background-position: 12px 11px;
-  width: 400px;
-  height: 40px;
+transition:
+  background-color 0.3s,
+  box-shadow 0.3s;
+padding: 12px 16px 12px 42px;
+border: none;
+border-radius: 3px;
+box-shadow:
+  0 -1px 0 rgba(0, 0, 0, 0.04),
+  0 1px 1px rgba(0, 0, 0, 0.25);
+color: #757575;
+font-size: 14px;
+font-weight: 500;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+background-color: white;
+background-repeat: no-repeat;
+background-position: 12px 11px;
+width: 400px;
+height: 40px;
 }
 .login-with-google-btn:hover {
-  box-shadow:
-    0 -1px 0 rgba(0, 0, 0, 0.04),
-    0 2px 4px rgba(0, 0, 0, 0.25);
+box-shadow:
+  0 -1px 0 rgba(0, 0, 0, 0.04),
+  0 2px 4px rgba(0, 0, 0, 0.25);
 }
 .login-with-google-btn:active {
-  background-color: #eeeeee;
+background-color: #eeeeee;
 }
 .login-with-google-btn:focus {
-  outline: none;
-  box-shadow:
-    0 -1px 0 rgba(0, 0, 0, 0.04),
-    0 2px 4px rgba(0, 0, 0, 0.25),
-    0 0 0 3px #c8dafc;
+outline: none;
+box-shadow:
+  0 -1px 0 rgba(0, 0, 0, 0.04),
+  0 2px 4px rgba(0, 0, 0, 0.25),
+  0 0 0 3px #c8dafc;
 }
 .login-with-google-btn:disabled {
-  filter: grayscale(100%);
-  background-color: #ebebeb;
-  box-shadow:
-    0 -1px 0 rgba(0, 0, 0, 0.04),
-    0 1px 1px rgba(0, 0, 0, 0.25);
-  cursor: not-allowed;
+filter: grayscale(100%);
+background-color: #ebebeb;
+box-shadow:
+  0 -1px 0 rgba(0, 0, 0, 0.04),
+  0 1px 1px rgba(0, 0, 0, 0.25);
+cursor: not-allowed;
 }
 
 @media only screen and (max-width: 768px) {
-  .signup-content {
-      margin-left: 20px;
-      margin-right: 20px;
-  }
+.signup-content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
-  .signup-modal,.signUpOne-google {
-      max-width: 90%;
-      max-height: 70%;
-  }
+.signup-modal,.signUpOne-google {
+    max-width: 90%;
+    max-height: 70%;
+}
 
-  #signup-email {
-      width: 90%;
-  }
+#signup-email {
+    width: 90%;
+}
 
-  .signup-cntnu-btn {
-      width: 90%;
-  }
+.signup-cntnu-btn {
+    width: 90%;
+}
 }

@@ -11,6 +11,7 @@ import Content from "./content/content";
 import NavBar from "../HomePage/Components/NavBar/NavBar";
 import NavBarUnlogged from "../HomePage/Components/NavBar Unlogged/NavBarUnlogged";
 import {useAuth} from "../HomePage/Components/AuthContext"
+
 import {useParams} from "react-router-dom"
 import { Button } from "bootstrap";
 export default function CommunityPage(){
@@ -24,6 +25,7 @@ export default function CommunityPage(){
     const [member, setMember] = React.useState()
     const [buttonText, setText] = React.useState("join")
     const {token} = useAuth()
+    console.log(token)
     const {communityId} = useParams();
     async function GetRole(){
             const promise = await axios.get(`http://localhost:5000/api/r/${communityId}`, {
