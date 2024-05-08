@@ -21,8 +21,8 @@
     border-radius: 10px;
 }
 .bannerimg{
-    margin-top: -18rem;
-    margin-left: -8rem;
+    width: 100%;
+    height: 100%;
 }
 .BannerDiv{
     height: 20rem;

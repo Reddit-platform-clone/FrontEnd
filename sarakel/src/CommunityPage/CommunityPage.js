@@ -25,7 +25,7 @@ export default function CommunityPage(){
     const [member, setMember] = React.useState()
     const [buttonText, setText] = React.useState("join")
     const {token} = useAuth()
-    console.log(token)
+
     const {communityId} = useParams();
     async function GetRole(){
             const promise = await axios.get(`http://localhost:5000/api/r/${communityId}`, {
@@ -54,8 +54,14 @@ export default function CommunityPage(){
                 setNumOfMembers(data.data.data.members.length)
                 setRules(data.data.data.rules)
                 setMods(data.data.data.moderatorsUsernames)
-                setCommPic(data.data.data.displayPicUrl)
-                setBanner(data.data.data.backgroundPicUrl)
+                if(data.data.data.displayPicUrl){
+                    setCommPic(data.data.data.displayPicUrl)   
+                    setBanner(data.data.data.backgroundPicUrl)
+                }else if(data.data.data.displayPic){
+                    setCommPic(data.data.data.displayPic)   
+                    setBanner(data.data.data.backgroundPic)
+                }
+                
                 
             }
         
@@ -129,7 +135,7 @@ export default function CommunityPage(){
                     </div>
                     <div className="row col-12 mt-3">
                         <div className={`col-9  ${classes.Content}`}>
-                            <Content communityId={communityId}></Content>
+                            <Content communityId={communityId} ></Content>
                         </div>
                         <div className="col-3 ">
                             <div className={`${classes.RightSide}`}>

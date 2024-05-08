@@ -443,7 +443,7 @@ const Content = ({communityId}) => {
             {/* Render Posts */}
             {posts.length === 0 ? (
               // No Posts Message
-              <p>No posts to display.</p>
+              <p className="mt-4">No posts to display.</p>
             ) : (
               posts.map((post) => {
                 if (!hiddenPosts[post._id]) {

@@ -96,12 +96,7 @@ const PostCard = ({
       )}
           </div>
           <div className={classes["post-header-right"]}>
-            <button
-              className={classes["join-btn-post"]}
-              onClick={() => handleJoinClick(post._id, post.communityId)}
-            >
-              {joinStates[post._id] ? "Leave" : "Join"}
-            </button>
+            
             <div className={classes["dropdown-post"]}>
               <button className={classes["dropbtn-post"]}>&#8226;&#8226;&#8226;</button>
               <div className={classes["dropdown-content-post"]}>

@@ -6,6 +6,7 @@ import Notifications from './Notifications/Notifications.js';
 import MessagesPage from './messagespage/messagespage.js';
 import CreatePost from './CreatePost/CreatePost.js';
 import ProfilePage from './ProfilePage/ProfilePage.js';
+import UsersProfile from './ProfileForOtherUsers/UsersProfile.js'
 import CommunityPage from './CommunityPage/CommunityPage.js';
 import Search from './Search/Search.js';
 import ResetPasswordModal from './HomePage/Components/Reset/ResetPassword.js'; 
@@ -24,7 +25,8 @@ function App() {
           <Route path="messagespage" element={<MessagesPage />} />
           <Route path="/ModTools/:communityId" element={<Moderation />} />
           <Route path="createpost" element={<CreatePost />} />
-          <Route path="profilepage" element={<ProfilePage />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
+          <Route path='/user/:username/overview' element={<UsersProfile></UsersProfile>} />
           <Route path="search" element={<Search />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="/post/:postId" element={<PostPage />} />

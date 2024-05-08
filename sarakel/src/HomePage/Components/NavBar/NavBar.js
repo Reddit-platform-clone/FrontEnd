@@ -29,7 +29,9 @@ function NavBar() {
           <div className={styles["search-icon-container"]}>
             <IoSearchOutline id={styles["search-icon"]} />
           </div>
+          <Link to={"search"} className='w-100'>
           <input type="text" id="search" placeholder="search sarakel" className={styles["search"]} />
+          </Link>
         </div>
 
         <div className={styles["right"]}>
@@ -56,7 +58,7 @@ function NavBar() {
               <span><img className={styles['userImage']} src='https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png' alt="User avatar" /></span>
             </button>
             <div className={styles['dropdownContent']}>
-              <a>User profile</a>
+              <Link to={"/profilepage"}><a>User profile</a></Link>
               <Link to='/settings'>User Settings</Link>
               <a onClick={handleLogout}>Log out</a> {/* Call handleLogout function on click */}
             </div>

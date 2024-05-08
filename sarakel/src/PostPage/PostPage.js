@@ -86,7 +86,13 @@ export default function PostPage(){
       async function getCommAndApply(){
         const data = await GetCommInfo()
         if(data){
-          setCommPic(data.data.data.displayPicUrl)
+          if(data.data.data.displayPicUrl){
+            setCommPic(data.data.data.displayPicUrl)   
+            
+        }else if(data.data.data.displayPic){
+            setCommPic(data.data.data.displayPic)   
+            
+        }
         }
       }
 
