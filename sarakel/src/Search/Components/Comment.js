@@ -1,31 +1,52 @@
-import jsonData from '../../mock.json';
-import './Comment.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styles from './Comment.module.css'; // Import CSS module
+import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
+function Comments() {
+    const [comments, setComments] = useState([]);
+    const { token } = useAuth();
 
-export default function Comments(){
-    return(
-        <>
+    useEffect(() => {
+        async function fetchComments() {
+            try {
+                const response = await axios.post('http://localhost:5000/searchBy/comments', { keyword: "test" }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const commentsData = response.data.commentsResults;
+                setComments(commentsData);
+            } catch (error) {
+                console.error('Error fetching comments:', error);
+            }
+        }
         
-<div className='comments-container'>
-    {/* Display comments */}
-    {jsonData.Comments.map(comment => (
-        <div className='comment' key={comment.comment_id}>
-            {/* Render each comment */}
-            <div className='comment-header'>
-                {/* <span className='username'>{comment.comment_id}</span> */}
-            </div>
-            <div className='comment-content'>
-                <p>{comment.text}</p>
-            </div>
-            <div className='comment-time'>
-                    <span>{comment.time}</span>
+        fetchComments();
+    }, [token]);
+
+    const formatTime = (timestamp) => {
+        return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    };
+
+    return (
+        <div className={styles.CommentsContainer}>
+            {comments.map(comment => (
+                <div className={styles.Comment} key={comment._id}>
+                    <div className={styles.CommentHeader}>
+                        <span className={styles.userID}>{comment.userID}</span>
+                        {/* Render each comment header here if needed */}
+                    </div>
+                    <div className={styles.CommentContent}>
+                        <p>{comment.content}</p>
+                    </div>
+                    <div className={styles.CommentTime}>
+                        <span>{formatTime(comment.dateTime)}</span>
+                    </div>
                 </div>
+            ))}
         </div>
-    ))}
-</div>
-
-        
-
-        </>
     );
 }
+
+export default Comments;

@@ -1,57 +1,95 @@
-import jsonData from '../../mock.json'
-import '../ProfilePage.css'
-import { CgAddR } from "react-icons/cg";
-import { BiUpvote } from "react-icons/bi";
-import { BiDownvote } from "react-icons/bi";
-import { GoReply } from "react-icons/go";
-import { LuShare } from "react-icons/lu";
 
-function Posts(){
-    return(
-        <>
 
-        
-        <div className='overview-post-comment1'>
-                    {jsonData.posts.map(post => {
-                            // const user = jsonData.users.find(user => user.id === post.user_id);
-                            // if (!user) return null; // If user does not exist, skip this post
-                            return (
-                                <div className='post' key={post.id}>
-                                    <div className='post-header'>
-                                        <img src={post.user.image} alt='User Avatar' className='logoup1' />
-                                        <span className='username1'>{post.user.name}</span>
-                                        <div className='posttime'>
-                                            <span className='posttime'>{post.time} ago</span>
-                                        </div>
-                                    </div>
-                                    <div className='post-content'>
-                                        <h3>{post.title}</h3>
-                                        <p>{post.text}</p>
-                                        {Array.isArray(post.media) ? (
-                                            post.media.map((media, index) => (
-                                                <img src={media} key={index} alt={`Media ${index}`} />
-                                            ))
-                                        ) : (
-                                            <img src={post.media} alt='Media' />
-                                        )}
-                                    </div>
-                                    <div className='post-actions'>
-                                        <button><BiUpvote /> {post.likes}</button>
-                                        <button><BiDownvote /> {post.comments}</button>
-                                        <button><GoReply /> Reply</button>
-                                        <button><LuShare /> Share</button>
-                                    </div>
-                                </div>
-                            );
-                        })}
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import style from './Posts.module.css';
+import { BiUpvote, BiDownvote } from "react-icons/bi";
+import { FaComment } from "react-icons/fa";
+import { useAuth } from "../../HomePage/Components/AuthContext.js";
+
+function Posts() {
+  const { token } = useAuth();
+  const [userPosts, setUserPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
+  const [userLogo, setUserLogo] = useState(null);
+
+  useEffect(() => {
+    if (token) {
+      axios.get('http://127.0.0.1:5000/api/v1/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(response => {
+        setUsername(response.data.user.username);
+        setUserLogo(response.data.user.profilePicture);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+        setLoading(false); // Set loading to false in case of error
+      });
+    }
+  }, [token]);
+
+  useEffect(() => {
+    const fetchUserPosts = async () => {
+      try {
+        if (username) {
+          const response = await axios.get(`http://localhost:5000/api/user/${username}/submitted`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUserPosts(response.data.posts);
+          setLoading(false);
+          console.log('User posts fetched successfully');
+          console.log('User posts:', response.data.posts); // Log user posts
+        }
+      } catch (error) {
+        console.error('Error fetching user posts:', error);
+        setLoading(false);
+      }
+    };
+
+    if (username) {
+      fetchUserPosts();
+    }
+  }, [token, username]);
+
+  return (
+    <div className={style.overviewPostComment1}>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        userPosts.map(post => {
+          console.log('Post media:', post.media); 
+          return (
+            <div className={style.post} key={post._id}>
+              <div className={style.postUserInfo}>
+                <img className={style.userLogo} src={userLogo} alt="User Logo" />
+                <p className={style.username}>{username}</p>
+              </div>
+              <h3 className={style.postTitle}>{post.title}</h3>
+              <p className={style.postContent}>{post.content}</p>
+
+              {post.media && (
+                <div className={style.mediaContainer}>
+                  <img src={post.media} alt="Post Media" className={style.media} />
+                </div>
+              )}
+
+              <div className={style.postActions}>
+                <p><BiUpvote/> {post.upvotes}</p>
+                <p><BiDownvote/> {post.downvotes}</p>
+                <p><FaComment/> {post.commentCount}</p>
+              </div>
             </div>
-                        
-        
-        
-                </>
-        
-
-    );
+          );
+        })
+      )}
+    </div>
+  );
 }
 
-export default Posts
+export default Posts;

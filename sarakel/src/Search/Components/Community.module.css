@@ -1,0 +1,105 @@
+
+.CommunitySearchDataContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    position: absolute;
+    top: 200px;
+    left: 50%; /* Center horizontally for responsiveness */
+    transform: translateX(-50%); /* Offset by half width for centering */
+    width: 600px;
+    max-width: 90%; /* Set a maximum width for responsiveness */
+  }
+  
+  /* CommunitySearchData */
+  .CommunitySearchData {
+    display: flex;
+    align-items: center;
+    margin: 10px 10px; /* Add margin to top and bottom */
+    padding: 20px; /* Increase padding for better spacing */
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 80%; /* Adjust width as needed for smaller screens */
+    max-width: 500px; /* Set maximum width */
+    position: relative;
+  }
+  
+  .CommunitySearchData:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* CommunityAvatar */
+  .CommunityAvatar {
+    width: 60px;
+    height: 60px; /* Adjust height for better proportions */
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  /* CommunityName */
+  .CommunityName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  /* Description */
+  .Description {
+    font-size: 14px; /* Increase font size for better readability */
+    color: #555;
+    margin: 0; /* Reset margin */
+    line-height: 1.5;
+  }
+  
+  /* CommunityType, NSFWIndicator */
+  .CommunityType,
+  .NSFWIndicator {
+    position: absolute;
+    top: 10px; /* Adjust position from top */
+    /* Use right instead of left for positioning on the other side */
+    left: 420px; /* Adjust position from right */
+    font-size: 12px; /* Adjust font size */
+    display: flex; /* Set display to flex */
+    flex-direction: column; /* Arrange items in column */
+  }
+  
+  /* NSFWIndicator */
+  .NSFWIndicator {
+    color: red; /* Set color to red for visibility */
+    top: 30px; /* Adjust position from top */
+  }
+  
+  /* Media Query for Smaller Screens (Adjust as needed) */
+  @media (max-width: 768px) {
+    .CommunitySearchDataContainer {
+      top: 150px; /* Adjust position from top */
+      left: unset; /* Remove left positioning for centering */
+    }
+  
+    .CommunitySearchData {
+      width: 100%; /* Adjust width for smaller screens */
+      flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+      position: relative;
+      /* Increase margin-left to move the container to the left */
+      margin-left: 20px; /* Adjust value as needed */
+    }
+  
+    .CommunityAvatar {
+      width: 40px; /* Adjust avatar size */
+      height: 40px;
+    }
+  
+    .CommunityName,
+    .Description {
+      font-size: 14px; /* Adjust font sizes for better readability */
+    }
+  
+    .CommunityType,
+    .NSFWIndicator {
+      top: unset; /* Remove top positioning */
+      margin-top: 10px; /* Add margin for spacing */
+    }
+  }
+  
