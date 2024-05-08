@@ -28,7 +28,7 @@ const PostCard = ({
   calculateTimeSinceCreation,
   handlePostClick,
   handleCommunityClick,
-  checkUserVote
+  checkUserVote,
 }) => {
   const [voteStatus, setVoteStatus] = useState(null);
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
@@ -105,7 +105,7 @@ const PostCard = ({
 
   const handleJoinButtonClick = (event, postId, communityId) => {
     event.stopPropagation(); // Stop event propagation to parent container
-    console.log("i will never fail you")
+    console.log("i will never fail you");
     handleJoinClick(postId, communityId);
   };
 
@@ -155,9 +155,10 @@ const PostCard = ({
                 // onMouseOut={handleMouseOut}
                 onClick={() => handleCommunityClick(post.communityId)}
               >
-                {communityInfo?.data?.data?.displayPic ? (
+                {/* {                console.log("is there a pic",communityInfo?.data?.data?.communityPic?true:false)} */}
+                {communityInfo?.data?.data?.commnunityPic ? (
                   <img
-                    src={communityInfo.data.data.displayPic}
+                    src={communityInfo.data.data.communityPic}
                     className={classes["profile-photo"]}
                     alt={post.title}
                   />
@@ -254,21 +255,28 @@ const PostCard = ({
                 </a>
                 <a
                   href="#"
-                  onClick={(event) => handleSaveButtonClick(event, post._id)}
+                  onClick={(event) => {
+                    event.preventDefault(); // Prevent default behavior
+                    handleSaveButtonClick(event, post._id);
+                  }}
                 >
                   <CiBookmark /> {saveStates[post._id] ? "Unsave" : "save"}
                 </a>
                 <a
                   href="#"
-                  onClick={(event) =>
-                    handleReportButtonClick(event, post._id, post.username)
-                  }
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleReportButtonClick(event, post._id, post.username);
+                  }}
                 >
                   <CiFlag1 /> report
                 </a>
                 <a
                   href="#"
-                  onClick={(event) => handleHideButtonClick(event, post._id)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleHideButtonClick(event, post._id);
+                  }}
                 >
                   <BiHide /> hide
                 </a>
