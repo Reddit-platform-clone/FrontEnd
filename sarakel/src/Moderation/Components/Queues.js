@@ -105,15 +105,15 @@ export default function Queues(){
     return(
 
             <div className='container-md '>
-            <div className='row m-3  justify-content-center'>
+            <div className=' row col-12 m-3  justify-content-center'>
                 <div className='col-8  '>
                     <div className='container-md'>
-                        <div className='row'>
+                        <div className=' row col-12'>
                             <div className='col  d-flex'>
                                 <span className={`  ${classes.QueuesHeader}`}>Queues</span>
                             </div>
                         </div>
-                        <div className='row mt-3 '>
+                        <div className=' row col-12 mt-3 '>
                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
                                 <button className={actArray[0]} onClick={()=>{setValue(0)}}><span>Mod Queue</span></button>
                             </div>
@@ -131,7 +131,7 @@ export default function Queues(){
                             </div>
                         </div>
                         
-                        <div className={`row justify-content mt-3 ${classes.ActionBar}`}>
+                        <div className={` row col-12 justify-content mt-3 ${classes.ActionBar}`}>
                             <div className={`col-auto ${classes.ActionBarDrpdwn}`}>
                                 <div class="btn-group">
                                     <button type="button" class="btn"><input type='checkbox'></input></button>
@@ -153,41 +153,41 @@ export default function Queues(){
                         {value == 0 ? (
                             <>
                                 {ModQueue.length == 0 ? <span>no posts</span> : ModQueue.map((item) => (
-                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
-                                    <div className='row '>
+                                    <div className={` row col-12  mt-1 ${classes.ModListBox}`}>
+                                    <div className=' row col-12 '>
                                     <div className='col-1'>
                                         <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
                                     </div>
                                     <div className='col '>
-                                        <div className='row mt-2 '>
+                                        <div className=' row col-12 mt-2 '>
                                             <div className='col-1'>
                                                 <span className={`align-items-center w-100 `}>r/{item.communityId}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-3'>
+                                        <div className=' row col-12 mt-3'>
                                             <div className='col'>
                                                 <span className={`${classes.content}`}>{item.title}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <span className={`${classes.color}`}>{item.text}</span>
                                         </div>
-                                        <div className='row  mt-2'>
+                                        <div className=' row col-12  mt-2'>
                                             <img src={item.media} className='col-7'></img>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <p className={`${classes.color}`}>{item.comments} comments</p>
                                         </div>
-                                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
+                                        <div className={` row col-12 ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
                                             <div className='col-1 '>
                                                 <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
                                             </div>
                                             <div className='col'>
-                                                <div className='row'><a>Removed</a></div>
-                                                <div className='row '><a>u/MemoNar</a></div>
+                                                <div className=' row col-12'><a>Removed</a></div>
+                                                <div className=' row col-12 '><a>u/MemoNar</a></div>
                                             </div>
                                         </div>
-                                        <div className='row mt-3 '>
+                                        <div className=' row col-12 mt-3 '>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
                                                 <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
                                             </div>
@@ -204,32 +204,32 @@ export default function Queues(){
                         {value == 1 ? (
                             <>
                                 {Reported.length == 0 ? <span>no posts</span> : Reported.map((item) => (
-                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
-                                    <div className='row '>
+                                    <div className={` row col-12  mt-1 ${classes.ModListBox}`}>
+                                    <div className=' row col-12 '>
                                     <div className='col-1'>
                                         <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
                                     </div>
                                     <div className='col '>
-                                        <div className='row mt-2 '>
+                                        <div className=' row col-12 mt-2 '>
                                             <div className='col-3'>
                                                 <span className={` col-2 `}>r/{item.communityId}</span>
                                             </div>
                                             
                                         </div>
-                                        <div className='row mt-3'>
+                                        <div className=' row col-12 mt-3'>
                                             <div className='col'>
                                                 <span className={`${classes.content}`}>{item.title}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <span className={`${classes.color}`}>{item.content}</span>
                                         </div>
-                                        <div className='row  mt-2'>
+                                        <div className=' row col-12  mt-2'>
                                             <img src={item.media} className='col-7'></img>
                                         </div>
                                         
                                         
-                                        <div className='row mt-3  mb-2'>
+                                        <div className=' row col-12 mt-3  mb-2'>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
                                                 <button onClick={() =>{ApprovePost(item._id)}} className={`btn btn-primary`}><span>Approve</span></button>
                                             </div>
@@ -246,32 +246,32 @@ export default function Queues(){
                         {value == 2 ? (
                             <>
                                 {Removed.length == 0 ? <span>no posts</span> : Removed.map((item) => (
-                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
-                                    <div className='row '>
+                                    <div className={` row col-12  mt-1 ${classes.ModListBox}`}>
+                                    <div className=' row col-12 '>
                                     <div className='col-1'>
                                         <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
                                     </div>
                                     <div className='col '>
-                                        <div className='row mt-2 '>
+                                        <div className=' row col-12 mt-2 '>
                                             <div className='col-3'>
                                                 <span className={` col-2 `}>r/{item.communityId}</span>
                                             </div>
                                             
                                         </div>
-                                        <div className='row mt-3'>
+                                        <div className=' row col-12 mt-3'>
                                             <div className='col'>
                                                 <span className={`${classes.content}`}>{item.title}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <span className={`${classes.color}`}>{item.content}</span>
                                         </div>
-                                        <div className='row  mt-2'>
+                                        <div className=' row col-12  mt-2'>
                                             <img src={item.media} className='col-7'></img>
                                         </div>
                                         
                                         
-                                        <div className='row mt-3  mb-2'>
+                                        <div className=' row col-12 mt-3  mb-2'>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
                                                 <button onClick={() =>{ApprovePost(item._id)}} className={`btn btn-primary`}><span>Approve</span></button>
                                             </div>
@@ -288,41 +288,41 @@ export default function Queues(){
                         {value == 3 ? (
                             <>
                                 {Edited.length == 0 ? <span>no posts</span> : Edited.map((item) => (
-                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
-                                    <div className='row '>
+                                    <div className={` row col-12  mt-1 ${classes.ModListBox}`}>
+                                    <div className=' row col-12 '>
                                     <div className='col-1'>
                                         <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
                                     </div>
                                     <div className='col '>
-                                        <div className='row mt-2 '>
+                                        <div className=' row col-12 mt-2 '>
                                             <div className='col-1'>
                                                 <span className={`align-items-center w-100 `}>r/{item.communityId}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-3'>
+                                        <div className=' row col-12 mt-3'>
                                             <div className='col'>
                                                 <span className={`${classes.content}`}>{item.title}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <span className={`${classes.color}`}>{item.text}</span>
                                         </div>
-                                        <div className='row  mt-2'>
+                                        <div className=' row col-12  mt-2'>
                                             <img src={item.media} className='col-7'></img>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <p className={`${classes.color}`}>{item.comments} comments</p>
                                         </div>
-                                        <div className={`row ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
+                                        <div className={` row col-12 ${classes.ModBanner} align-items-center col-11 rounded mt-2`}>
                                             <div className='col-1 '>
                                                 <img  src={img} className={`${classes.ModImg} w-100 col-12`} ></img>
                                             </div>
                                             <div className='col'>
-                                                <div className='row'><a>Removed</a></div>
-                                                <div className='row '><a>u/MemoNar</a></div>
+                                                <div className=' row col-12'><a>Removed</a></div>
+                                                <div className=' row col-12 '><a>u/MemoNar</a></div>
                                             </div>
                                         </div>
-                                        <div className='row mt-3 '>
+                                        <div className=' row col-12 mt-3 '>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
                                                 <button className={`${classes.QueueButtons}`}><span>Add Removal Reasons</span></button>
                                             </div>
@@ -339,32 +339,32 @@ export default function Queues(){
                         {value == 4 ? (
                             <>
                                 {UnMod.length == 0 ? <span>no posts</span> : UnMod.map((item) => (
-                                    <div className={`row  mt-1 ${classes.ModListBox}`}>
-                                    <div className='row '>
+                                    <div className={` row col-12  mt-1 ${classes.ModListBox}`}>
+                                    <div className=' row col-12 '>
                                     <div className='col-1'>
                                         <button type="button" class={`btn`}><input className={`${classes.checkBox}`} type='checkbox'></input></button>
                                     </div>
                                     <div className='col '>
-                                        <div className='row mt-2 '>
+                                        <div className=' row col-12 mt-2 '>
                                             <div className='col-3'>
                                                 <span className={` col-2 `}>r/{item.communityId}</span>
                                             </div>
                                             
                                         </div>
-                                        <div className='row mt-3'>
+                                        <div className=' row col-12 mt-3'>
                                             <div className='col'>
                                                 <span className={`${classes.content}`}>{item.title}</span>
                                             </div>
                                         </div>
-                                        <div className='row mt-1'>
+                                        <div className=' row col-12 mt-1'>
                                             <span className={`${classes.color}`}>{item.content}</span>
                                         </div>
-                                        <div className='row  mt-2'>
+                                        <div className=' row col-12  mt-2'>
                                             <img src={item.media} className='col-7'></img>
                                         </div>
                                         
                                         
-                                        <div className='row mt-3  mb-2'>
+                                        <div className=' row col-12 mt-3  mb-2'>
                                             <div className={`col-auto ${classes.QueueButtonDiv}`}>
                                                 <button onClick={() =>{ApprovePost(item._id)}} className={`btn btn-primary`}><span>Approve</span></button>
                                             </div>
