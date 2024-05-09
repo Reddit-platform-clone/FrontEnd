@@ -1,44 +1,89 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from './HashTags.module.css'; // Import CSS file
+import styles from './HashTags.module.css'; 
+import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
 export default function HashTags() {
-    const [hashtags, setHashtags] = useState([]);
-    const [error, setError] = useState(null);
+    const [posts, setPosts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const { token } = useAuth();
 
     useEffect(() => {
-        const fetchData = async () => {
-            const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmlvciIsImlhdCI6MTcxMzE5NDM2NH0.plXgIm8oPx5va2VtE1EuQHmHxjAA7G9Uxo0h5_inQoY";
-
+        async function fetchPosts() {
             try {
-                const response = await axios.post(
-                    'http://localhost:5000/searchBy/hashtags',
-                    { keyword: '!' }, // Replace '!' with your desired keyword
-                    {
-                        headers: {
-                            Authorization: `Bearer ${authToken}`
-                        }
+                const response = await axios.post('http://localhost:5000/searchBy/posts', { keyword: searchTerm }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
-                );
-                setHashtags(response.data.hashtagsResults);
+                });
+                const postsData = response.data.postsResults;
+                setPosts(postsData);
             } catch (error) {
-                console.error('Error fetching hashtags:', error);
-                setError('Error fetching hashtags');
+                console.error('Error fetching posts:', error);
             }
-        };
+        }
+        
+        fetchPosts();
+    }, [searchTerm, token]);
 
-        fetchData();
-    }, []);
+    const formatTime = (timestamp) => {
+        const date = new Date(timestamp);
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        
+        return `${hours}:${minutes}`;
+    };
+
+    const handleInputChange = (event) => {
+        setSearchTerm(event.target.value); // Update the search term state
+    };
 
     return (
-        <div className={styles.container}>
-            <h1>Hashtags</h1>
-            {error && <p className={styles.error}>{error}</p>}
-            <div className={styles.hashtagContainer}>
-                {hashtags.map(hashtag => (
-                    <div key={hashtag._id} className={styles.hashtag}>{hashtag.hashtagString}</div>
-                ))}
-            </div>
+        <div className={styles.PostsContainer}>
+            <input
+                type="text"
+                placeholder="Search For Hashtag..."
+                value={searchTerm}
+                onChange={handleInputChange}
+                className={styles.SearchInput}
+            />
+            {posts.map(post => (
+                <div className={`${styles.Post} ${post.isLocked ? styles.LockedPost : ''}`} key={post._id}>
+                    <div className={styles.PostHeader}>
+                        {post.user && (
+                            <>
+                                <img src={post.user?.image} alt='User Avatar' className={styles.LogoUp1} />
+                                <span className={styles.Username1}>{post.user.name}</span>
+                            </>
+                        )}
+                        <div className={styles.PostTime}>
+                            <span className={styles.PostTime}>{formatTime(post.createdAt)}</span>
+                        </div>
+                    </div>
+                    <div className={styles.PostContent}>
+                        <h3>{post.title}</h3>
+                        <p>{post.content}</p>
+                        {post.hashtags && post.hashtags.length > 0 && (
+                            <div className={styles.Hashtags}>
+                                {post.hashtags.map((hashtag, index) => (
+                                    <span key={index} className={styles.Hashtag}>{hashtag}</span>
+                                ))}
+                            </div>
+                        )}
+                        {post.media && ( // Check if media exists and render it
+                            <div className={styles.PostMedia}>
+                                {Array.isArray(post.media) ? (
+                                    post.media.map((media, index) => (
+                                        <img src={media} key={index} alt={`Media ${index}`} />
+                                    ))
+                                ) : (
+                                    <img src={post.media} alt='Media' />
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }

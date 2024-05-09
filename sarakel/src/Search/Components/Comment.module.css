@@ -10,6 +10,15 @@
     top: 200px;
     right: 200px;
 }
+.SearchInput{
+    display: flex;
+    position: relative;
+    top: -70px;
+    left: 1090px;
+    max-width: fit-content;
+    
+ 
+}
 
 /* Comment */
 .Comment {
@@ -94,5 +103,12 @@
         right: 100px;
         top: 150px;
         left: 50px; /* Adjust position from left */
+    }
+
+    .SearchInput {
+        top: -60px; /* Adjust the top position for smaller screens */
+        left: 200px; /* Remove the left position */
+        width: fit-content; /* Adjust the width for smaller screens */
+        margin: 0 auto; /* Center the input horizontally */
     }
 }

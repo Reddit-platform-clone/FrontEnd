@@ -5,12 +5,13 @@ import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
 function Comments() {
     const [comments, setComments] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const { token } = useAuth();
 
     useEffect(() => {
         async function fetchComments() {
             try {
-                const response = await axios.post('http://localhost:5000/searchBy/comments', { keyword: "test" }, {
+                const response = await axios.post('http://localhost:5000/searchBy/comments', { keyword: searchTerm }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -23,14 +24,25 @@ function Comments() {
         }
         
         fetchComments();
-    }, [token]);
+    }, [searchTerm, token]);
 
     const formatTime = (timestamp) => {
         return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     };
 
+    const handleInputChange = (event) => {
+        setSearchTerm(event.target.value); // Update the search term state
+    };
+
     return (
         <div className={styles.CommentsContainer}>
+            <input
+                type="text"
+                placeholder="Search comments..."
+                value={searchTerm}
+                onChange={handleInputChange}
+                className={styles.SearchInput}
+            />
             {comments.map(comment => (
                 <div className={styles.Comment} key={comment._id}>
                     <div className={styles.CommentHeader}>

@@ -10,6 +10,16 @@
     left: 250px;
 }
 
+.SearchInput{
+    display: flex;
+    position: relative;
+    top: -70px;
+    left: 1100px;
+    max-width: fit-content;
+    
+ 
+}
+
 /* Post */
 .Post {
     border: 1px solid #ccc;
@@ -76,5 +86,12 @@
     .Avatar {
         width: 40px; /* Adjust avatar size */
         height: 40px;
+    }
+
+    .SearchInput {
+        top: -60px; /* Adjust the top position for smaller screens */
+        left: 220px; /* Remove the left position */
+        width: fit-content; /* Adjust the width for smaller screens */
+        margin: 0 auto; /* Center the input horizontally */
     }
 }

@@ -10,6 +10,16 @@
     width: 600px;
     max-width: 90%; /* Set a maximum width for responsiveness */
   }
+
+  .SearchInput{
+    display: flex;
+    position: relative;
+    top: 130px;
+    left: 1350px;
+    max-width: fit-content;
+    
+ 
+}
   
   /* CommunitySearchData */
   .CommunitySearchData {
@@ -101,5 +111,12 @@
       top: unset; /* Remove top positioning */
       margin-top: 10px; /* Add margin for spacing */
     }
+
+    .SearchInput {
+      top: 130px; /* Adjust the top position for smaller screens */
+      left: 220px; /* Remove the left position */
+      width: fit-content; /* Adjust the width for smaller screens */
+      margin: 0 auto; /* Center the input horizontally */
+  }
   }
   

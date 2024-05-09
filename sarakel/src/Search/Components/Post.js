@@ -6,12 +6,13 @@ import { useAuth } from "../../HomePage/Components/AuthContext.js";
 
 function Post() {
     const [posts, setPosts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const { token } = useAuth();
 
     useEffect(() => {
         async function fetchPosts() {
             try {
-                const response = await axios.post('http://localhost:5000/searchBy/posts', { keyword: "test" }, {
+                const response = await axios.post('http://localhost:5000/searchBy/posts', { keyword: searchTerm }, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -24,7 +25,7 @@ function Post() {
         }
         
         fetchPosts();
-    }, [token]);
+    }, [searchTerm, token]);
 
     const formatTime = (timestamp) => {
         const date = new Date(timestamp);
@@ -34,8 +35,19 @@ function Post() {
         return `${hours}:${minutes}`;
     };
 
+    const handleInputChange = (event) => {
+        setSearchTerm(event.target.value); // Update the search term state
+    };
+
     return (
         <div className={styles.PostsContainer}>
+            <input
+                type="text"
+                placeholder="Search posts..."
+                value={searchTerm}
+                onChange={handleInputChange}
+                className={styles.SearchInput}
+            />
             {posts.map(post => (
                 <div className={`${styles.Post} ${post.isLocked ? styles.LockedPost : ''}`} key={post._id}>
                     <div className={styles.PostHeader}>
