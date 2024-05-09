@@ -1,4 +1,6 @@
+/* Post.module.css */
 
+/* PostsContainer */
 .PostsContainer {
   display: flex;
   flex-direction: column;
@@ -11,7 +13,7 @@
 .SearchInput{
   display: flex;
   position: relative;
-  top: -90px;
+  top: -70px;
   left: 1100px;
   max-width: fit-content;
   
@@ -89,4 +91,10 @@
       width: 40px; /* Adjust avatar size */
       height: 40px;
   }
+  .SearchInput {
+    top: -60px; /* Adjust the top position for smaller screens */
+    left: 220px; /* Remove the left position */
+    width: fit-content; /* Adjust the width for smaller screens */
+    margin: 0 auto; /* Center the input horizontally */
+}
 }
