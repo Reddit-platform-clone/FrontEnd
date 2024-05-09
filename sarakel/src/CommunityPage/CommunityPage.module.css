@@ -44,3 +44,19 @@
     height: 40rem;
 
 }
+.ymeen{
+
+}
+
+@media screen and (max-width: 787px) {
+    .ymeen{
+        visibility: collapse;
+    }
+    .width{
+        width: 100%;
+        height: 100vh;
+    }
+    .Content{
+        height: 60rem;
+    }
+  }
