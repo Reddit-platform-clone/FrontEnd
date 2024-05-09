@@ -262,3 +262,37 @@ margin-right: 5px;
   background-color: #ddd; /* Adjust the color of the divider */
   margin: 0; /* Remove any default margins */
 }
+
+@media screen and (max-width: 768px) {
+  .center {
+    display: none; /* Hide center section on smaller screens */
+  }
+
+  .navbar {
+    flex-direction: column; /* Stack elements vertically */
+    padding: 10px 0; /* Reduce top and bottom padding */
+  }
+
+  .left,
+  .right {
+    width: 100%; /* Make left and right sections take full width */
+    justify-content: center; /* Center contents horizontally */
+  }
+
+  .left {
+    margin-bottom: 10px; /* Add space between logo and buttons */
+  }
+
+  .right {
+    justify-content: center; /* Center buttons on smaller screens */
+  }
+
+  .search {
+    width: 100%; /* Make search input take full width */
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .button {
+    margin: 0 5px; /* Add space between buttons */
+  }
+}
