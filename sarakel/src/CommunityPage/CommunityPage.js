@@ -85,14 +85,14 @@ export default function CommunityPage(){
             <div className="row sticky-top">
                 {token ? <NavBar/> : <NavBarUnlogged /> }
             </div>
-            <div className="row ">
-                <div className="col-2 vh-100">
+            <div className="row " >
+                <div className={`col-2 ${classes.ymeen}  `}>
                     <SideBar></SideBar>
                 </div>
-                <div className="col-10 mt-1 ">
+                <div className={`col-10 ${classes.width}  `}>
                     <div className="row">
-                        <div className={`col-12`}>
-                            <div className={`  ${classes.Banner}`}>
+                        <div className={``}>
+                            <div className={` ${classes.Banner}`}>
                                     <img src={Banner} className={`${classes.bannerimg}`}></img>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ export default function CommunityPage(){
                             <img className={`ms-5 col-2 ${classes.CommunityImage}`} src={Commpic}></img>
                             <span className={`${classes.CommunityName} col-10 mt-3 ms-2`}>r/{CommunityName}</span>
                             </div>
-                            <div className="col-7 row mt-3 justify-content-end">
+                            <div className="col-xl-7 col-lg-12 row mt-3 justify-content-end">
                                  <button type="button" class={`${classes.CommunityButtons} btn col-auto btn-light`}><svg rpl="" fill="currentColor" height="20" icon-name="add-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path>
                                 </svg> Create a post</button>                                
@@ -134,14 +134,14 @@ export default function CommunityPage(){
                         </div>
                     </div>
                     <div className="row col-12 mt-3">
-                        <div className={`col-9  ${classes.Content}`}>
+                        <div className={`col-md-12 col-lg-9  ${classes.Content}`}>
                             <Content communityId={communityId} ></Content>
                         </div>
-                        <div className="col-3 ">
+                        <div className={`col-3 ${classes.ymeen} `} >
                             <div className={`${classes.RightSide}`}>
-                                <div className="row justify-content-center align-items-center">
-                                    <span className={`${classes.sidebarname} col-6 ms-3 mt-3`}>{CommunityName}</span>
-                                    <span className="col-5 mt-3">members: <span className={`${classes.sidebarname} ms-1`}> {NumOfMembers}</span></span>
+                                <div className="row  align-items-center">
+                                    <span className={`${classes.sidebarname} col-6 ms-1 mt-3`}>{CommunityName}</span>
+                                    <span className="col-xxl-5 col-xl-12 mt-3">members: <span className={`${classes.sidebarname} `}> {NumOfMembers}</span></span>
                                 </div>
                                 <hr></hr>
                                 <div className="row">
