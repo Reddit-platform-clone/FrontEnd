@@ -1,4 +1,4 @@
-/* CommentsContainer */
+
 .CommentsContainer {
     /* Styles for the container of all comments */
     display: flex;
@@ -14,15 +14,15 @@
     display: flex;
     position: relative;
     top: -70px;
-    left: 1000px;
+    left: 1090px;
     max-width: fit-content;
     
  
 }
 
-/* Comment */
+
 .Comment {
-    /* Styles for each individual comment */
+    
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #ccc;
@@ -31,7 +31,7 @@
 
 /* CommentHeader */
 .CommentHeader {
-    /* Styles for the header of each comment */
+    
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -39,7 +39,7 @@
 
 /* Avatar */
 .Avatar {
-    /* Styles for the user avatar */
+   
     width: 50px; /* Adjust size as needed */
     height: 50px; /* Adjust size as needed */
     border-radius: 50%;
@@ -48,7 +48,7 @@
 
 /* Username */
 .Username {
-    /* Styles for the username */
+   
     font-weight: bold;
     color: #333;
 }
@@ -103,5 +103,12 @@
         right: 100px;
         top: 150px;
         left: 50px; /* Adjust position from left */
+    }
+
+    .SearchInput {
+        top: -60px; /* Adjust the top position for smaller screens */
+        left: 200px; /* Remove the left position */
+        width: fit-content; /* Adjust the width for smaller screens */
+        margin: 0 auto; /* Center the input horizontally */
     }
 }
