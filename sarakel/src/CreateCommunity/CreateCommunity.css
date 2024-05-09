@@ -189,156 +189,132 @@
   }
   
   
-  /*css for createcommunity*/
-  .container{
-    width: 20px;
-  }
-  h3 {
-    font-size: 10px;
-    
-  }
-  
-  .adult {
-     margin-bottom:24px;
-     left:-7%;
-  
-  }
-  
-  .adult-header{     
-    font-size: 16px;
-    line-height: 20px;
-    margin-bottom: 4px;
-    font-weight: 500;
-  }
-  
-  .adultCheckbox{
-     display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-  
-  .typeslist{
-     list-style: none ;
-     padding: 0px;
-     
-     
-  }
-  .type{
-     display:block ;
-     justify-content: left;
-     align-items:left;
-     text-align:left;
-     padding:0px; 
-     
-  }
-  
-  
-  
-  
-  .cancel {
-    color: #0079d3;
-    text-decoration: none;
-    background-color: transparent;
-    border-radius: 20px;
-    border: solid 1px #0079d3 !important;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: unset;
-    line-height: 17px;
-    text-transform: unset;
-    min-height: 32px;
-    min-width: 32px;
-    padding: 4px 16px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex; 
-  }
-  
-  .create {
-    color: white;
-    text-decoration: none;
-    background-color: #0079d3;
-    border-radius: 20px;
-    border: solid 1px #0079d3 !important;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: unset;
-    line-height: 17px;
-    text-transform: unset;
-    min-height: 32px;
-    min-width: 32px;
-    padding: 4px 16px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex; 
-    margin-left:5px ;
-  }
-  
-  
-  .cancelcreate{
-     
-    align-items: center;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-    background-color: #edeff1;
-    padding:16px; 
-  }
-  
-  
-  .ml10
-  {
-     margin-left: 10px;
-  }
-  
-  .w90{
-    width:90%;  
-     
-  }
-  .w00{
-    width: 300px;
-    border: groove 1px #a0a0a0;
-    border-style: groove;
-    margin-right: 10px;
-    border-radius: 10px;
-    margin-top: 5px;
-    padding-left: 3px;
-    padding-bottom: 2px;
-    padding-right: 2px;
-  }
-  .sidebarButtons{
-    color: #000000;
-    text-decoration: none;
-    background-color: transparent;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-    font-weight: 200;
-    letter-spacing: unset;
-    line-height: 17px;
-    text-transform: unset;
-    min-height: 32px;
-    min-width: 100%;
-    padding: 4px 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+/* CreateCommunity.css */
+
+/* Modal styles */
+.ReactModal__Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 100;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure the modal is on top of everything */
 }
 
-.sidebarButtons:hover{
-    background-color: #eaedef;
+.ReactModal__Content {
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 90%; /* Responsive width */
+  width: 35%;
+  max-height: 90%; /* Responsive height */
+  overflow-y: auto; /* Enable scrolling for content overflow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 30%;
+  margin-top: 2%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
-.sideIcon{
-  width: 20px;
+
+/* Modal content styles */
+.modal-content {
+  text-align: center;
+}
+
+.modal-content h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+}
+
+.modal-content input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content .typeslist {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-content .typeslist li {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.modal-content .adult {
+  margin-top: 20px;
+}
+
+.modal-content .adult-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-content .adultCheckbox input[type="checkbox"] {
   margin-right: 10px;
+}
 
-  margin-top: 1px;
+.modal-content .cancelcreate {
+  margin-top: 20px;
+}
+
+.modal-content .cancel,
+.modal-content .create {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-content .cancel {
+  background-color: #ccc;
+}
+
+.modal-content .create {
+  background-color: #007bff;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.sideIcon{
+
+  background-color: none;
+  border: none;
+}
+
+.sidebarButtons{
+  color: #000000;
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: unset;
+  line-height: 17px;
+  text-transform: unset;
+  min-height: 32px;
+  min-width: 100%;
+  padding: 4px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebarButtons:hover{
+  background-color: #eaedef;
 }
