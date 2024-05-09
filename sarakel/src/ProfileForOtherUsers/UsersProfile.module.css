@@ -1,4 +1,4 @@
-/* UsersProfile.module.css */
+
 
 /* Logo styling */
 .logoup {
@@ -98,29 +98,28 @@
     margin: 0;
 }
 
-/* Media Query */
 @media screen and (max-width: 768px) {
     .logoup {
         width: 60px;
         height: 60px;
-        left: 150px;
+        left: 10px;
         top: 60px;
     }
     
     .username {
         font-size: 18px;
-        left: 230px;
+        left: 90px;
         top: 80px;
     }
 
     .Contents {
-        right: 250px;
+        right: 180px;
         top: 90px;
     }
 
     .containerUP {
         top: 80px;
-        right: 5px;
+        right: 15px;
     }
 
     .button123456 {
