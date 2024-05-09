@@ -81,4 +81,11 @@
         width: 50px; /* Adjust avatar size */
         height: 50px;
     }
+    .SearchInput {
+        top: 150px; /* Adjust the top position for smaller screens */
+        left: 500px; /* Remove the left position */
+        width: fit-content; /* Adjust the width for smaller screens */
+        margin: 0 auto; /* Center the input horizontally */
+    }
+
 }
