@@ -40,6 +40,15 @@ body {
     left: 210px;
 }
 
+.overviewPostComment1 {
+    /* Add your styles for the overviewPostComment1 container here */
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Navigation links */
 .Contents1 {
     display: flex;
@@ -284,43 +293,96 @@ body {
     margin-right: 10px; /* Adjust the margin as needed */
 }
 
-@media screen and (max-width: 50px) {
+@media screen and (max-width: 768px) {
+    /* Adjustments for smaller screens */
     .middle-page {
-        max-width: 100%;
         padding: 10px;
-        height: auto; /* Adjusted */
+        border-radius: 0;
+        box-shadow: none;
+        max-width: none;
+        height: auto;
     }
-    
+
     .username2,
     .sarakelid {
-        left: 220px;
+        position: static;
+        left: auto;
+        top: auto;
     }
-    
+
     .logo1 {
-        left: 120px;
+        position: static;
+        top: auto;
+        left: auto;
     }
-    
-    .Contents1 {
-        right: 50px;
-        top: 60px;
+
+    .rightsidecontainer {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
     }
-    
+
     .rightside {
-        top: 50px;
-        right: 10px;
+        position: static;
+        width: auto;
+        margin: 20px 0;
+        top: auto;
+        right: auto;
     }
-    
-    .backgroundimage {
-        width: 250px;
-        height: 150px;
+
+    .rightside h2 {
+        text-align: center;
     }
-    
-    .addbannerbtn {
-        top: 130px;
+
+    .Contents1 {
+        position: static;
+        top: auto;
+        right: auto;
+        justify-content: center;
     }
-    
+
     .linePP {
-        left: 120px;
-        width: 700px;
+        position: static;
+        left: auto;
+        top: auto;
+        width: 100%;
+    }
+
+    .usernameContainer {
+        position: static;
+        left: auto;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .profilePicture {
+        width: 40px; /* Adjust the width as needed for smaller screens */
+        height: 40px; /* Adjust the height as needed for smaller screens */
+    }
+
+    .addbannerbtn {
+        display: none;
+    }
+
+    .backgroundimage {
+        width: 100%;
+        height: 150px;
+        border-radius: 0;
+    }
+
+    .Contents1 a {
+        padding: 5px 10px; /* Adjust padding for smaller screens */
+        margin: 2px; /* Adjust margin for smaller screens */
+    }
+
+    .Settingsbutton button {
+        padding: 6px 12px; /* Adjust padding for smaller screens */
+        width: 70px; /* Adjust width for smaller screens */
+    }
+
+    .Sociallink button {
+        padding: 6px 12px; /* Adjust padding for smaller screens */
+        width: 120px; /* Adjust width for smaller screens */
     }
 }
+
