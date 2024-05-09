@@ -89,6 +89,7 @@
   }
 
   .post-image {
+    display: block;
     margin-top: 10px;
     width: 690px;
     height: 500px;
@@ -175,12 +176,16 @@
     width: 30px;
     height: 30px;
   }
+
   .content-recent-posts {
     background-color: rgba(128, 128, 128, 0.1);
     max-height: 650px; /* Set the maximum height */
     overflow-y: auto; /* Enable vertical scrolling */
-    width: 300px;
-    margin-left: auto;
+    height: auto;
+    height: 100%;
+    max-width: 300px;
+    width: 100%;
+    margin: 10px;
     border-radius: 15px;
     padding: 10px;
     position: fixed; /* Fixed position */
@@ -189,16 +194,6 @@
     z-index: 999; /* Ensure it's above other elements */
   }
   
-  /* .content-recent-posts{
-    background-color: rgba(128, 128, 128, 0.1);
-    height: auto;
-    height: 100%;
-    left: 0;
-    width: 300px;
-    margin-left: auto ;
-    border-radius: 15px;
-    padding: 10px;
-  } */
 .content-recent-posts:hover{
   background-color: rgba(128, 128, 128, 0.15);
 }
@@ -218,7 +213,10 @@
     color: blue;
     margin-right: 5px;
   }
-
+.recent-posts-title:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
   .content-recent-posts-image{
     max-width: 20px;
     max-height: 20px;
@@ -245,12 +243,13 @@
   }
 
   .load-more-posts-button {
+    position:relative;
     bottom: 0; /* This places the button at the bottom of its containing element */
     left: 50%; /* This centers the button horizontally */
     transform: translateX(-50%); /* This adjusts the horizontal position to center it */
     width: auto;
     padding: 10px;
-    background-color: #0045ac;
+    background-color: #d93a01;
     border-radius: 25px;
     color: white;
     display: flex;
@@ -261,9 +260,6 @@
     margin-top: 30px;
     margin-bottom: 10px;
 }
-
-
-
   .join-btn-post {
     width: auto;
     padding: 0 10px;
@@ -275,4 +271,70 @@
     align-items: center;
     font-size: 15px;
     border: none;
+  }
+
+  @media screen and (max-width: 500px) {
+    .post-image {
+        width: 100%; /* Take full width on small screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+  
+    .content-recent-posts {
+        max-height: calc(100vh - 100px); /* Adjust maximum height for smaller screens */
+        position: static;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      max-width: 90%; /* Adjust container width for smaller screens */
+      margin-top: 60px; /* Adjust top margin */
+    }
+  
+    .loading-posts {
+      margin-top: 150px;
+      margin-left: auto; /* Center loading message on smaller screens */
+      margin-right: auto;
+      text-align: center; /* Center text */
+    }
+  
+    /* Adjust other styles for smaller screens */
+    .post-image {
+      width: 100%; /* Make images responsive */
+      height: auto;
+    }
+  
+    .hidden-post-card {
+      max-width: 100%; /* Make hidden post cards responsive */
+    }
+  
+  
+    .load-more-posts-button {
+      width: 100%; /* Make load more button full width */
+      margin: 20px auto; /* Add margin */
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .content-recent-posts {
+      display: none; /* Hide recent posts */
+    }
+    .post-image{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @media screen and (max-width: 1435px) {
+    .content-recent-posts {
+      position: static;
+    }
+    
+  }
+  @media screen and (max-width: 667px) {
+  
+    /* Adjust other styles for smaller screens */
+    .post-image {
+      max-width: 400px; /* Make images responsive */
+      max-height: 470px;
+    }
   }
