@@ -37,6 +37,7 @@
     border: none;
     font-size: 30px;
     cursor: pointer;
+    background-color: rgba(128, 128, 128,0.2);
 }
 
 .signuptwo-back-btn:hover{

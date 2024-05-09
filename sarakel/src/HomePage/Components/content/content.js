@@ -180,7 +180,12 @@ const Content = () => {
     setShowSortOptions(!showSortOptions);
     setShowViewOptions(false);
   };
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
   const handleSortingOption = (option) => {
     if (!token) {
       toast.error("You need to Login first");
@@ -729,7 +734,6 @@ const Content = () => {
                 )}
               </>
             )}
-            {/* back to top */}
             { !loading && <button
               onClick={() => addMorePosts()}
               className={styles["load-more-posts-button"]}
@@ -742,6 +746,9 @@ const Content = () => {
                 </div>
               )}
             </button>}
+            {!loading && <button onClick={scrollToTop} className={styles["load-more-posts-button"]}>
+        Back to Top
+      </button>}
           </div>
         )}
         {token && recentPosts.length > 0 && recentPosts && (

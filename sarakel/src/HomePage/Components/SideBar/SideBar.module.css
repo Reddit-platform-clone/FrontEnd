@@ -88,7 +88,7 @@ span {
 }
 
 
-@media screen and (max-width: 890px) {
+@media screen and (max-width: 1350px) {
     .sidebar{
         display: none;
     }
