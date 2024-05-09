@@ -413,3 +413,60 @@ margin-right: 5px;
     width: 90%;
   }
 }
+/* Adjust styles for screens smaller than 768px */
+@media (max-width: 768px) {
+  .menu-button {
+    margin-left: 20px;
+    font-size: 12px;
+  }
+
+  .tobox,
+  .subbox,
+  .msgboxx {
+    width: 100%; /* Full width for smaller screens */
+    margin-right: 0; /* Remove right margin */
+  }
+
+  .MainWindow2.active-content,
+  .MainWindow3 {
+    margin-top: 20px; /* Adjust top margin */
+  }
+
+  .message-container {
+    width: 100%; /* Full width for message containers on smaller screens */
+    margin-right: 0; /* Remove right margin */
+    margin-left: 0; /* Remove left margin */
+  }
+}
+@media screen and (max-width: 768px) {
+  .TopBar2 {
+    /* Modify styles for smaller screens */
+    margin-top: 50px;
+  }
+  .TopBar{
+    margin-top: 100px;
+
+  }
+
+  .menu-button2 {
+    /* Modify styles for smaller screens */
+    margin-left: 20px; /* Adjust the left margin for menu buttons */
+    font-size: 12px; /* Decrease font size for menu buttons */
+  }
+}
+@media (min-width: 649px) and (max-width: 768px) {
+.TopBar{
+  margin-top: 60px;
+}
+.TopBar2{
+  margin-top: 0px;
+}
+}
+@media (max-width: 401px) {
+  .TopBar{
+    margin-top: 130px;
+  }
+  .TopBar2{
+    margin-top: 75px;
+  }
+}
