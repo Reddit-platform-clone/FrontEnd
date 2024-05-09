@@ -1,4 +1,4 @@
-import React  from 'react';
+import React ,{useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import mock from '../mock.json';
 import { useAuth } from '../HomePage/Components/AuthContext';
@@ -16,6 +16,11 @@ const {token} = useAuth()
 let name
 let type = "public"
 let adult=false
+
+const [showCreateForm, setShowCreateForm] = useState(false);
+function toggleCreateForm() {
+    setShowCreateForm(!showCreateForm);
+}
  
 
 
@@ -97,9 +102,9 @@ async function CreateCommunity() {
 
 
 async function sendInfo(data){
-    const promise = await axios.post('/api/site_admin', data, {
+    const promise = await axios.post('http://localhost:5000/api/community/create', data, {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJhaGV5MSIsImlhdCI6MTcxNTEwODI0MX0.l4yDvmBHyap-LoZ4oRgK5vZziN6FoY-BB6-gzw4FQKo`
         }
     });
     return promise;
@@ -190,14 +195,19 @@ function Create()
 }
 
 
-    return (
-        <div>
-            <button className='sidebarButtons' onClick={() => ReactDOM.createRoot(document.getElementById("pop-page")).render(<Create/>)}>  
+return (
+    <div>
+        <button className='sidebarButtons' onClick={toggleCreateForm}>
             <svg rpl="" className='sideIcon' fill="currentColor" height="20" icon-name="add-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path></svg>
-            Create Community</button>
-            
-            <div id="pop-page"></div>
-        </div>
-    );
+            Create Community
+        </button>
+        
+        {showCreateForm && (
+            <div id="pop-page">
+                <Create />
+            </div>
+        )}
+    </div>
+);
     
 }
