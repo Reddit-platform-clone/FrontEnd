@@ -28,7 +28,7 @@ const PostCard = ({
   calculateTimeSinceCreation,
   handlePostClick,
   handleCommunityClick,
-  checkUserVote
+  checkUserVote,
 }) => {
   const [voteStatus, setVoteStatus] = useState(null);
   const [communityInfo, setCommunityInfo] = useState(null); // State to hold community info
@@ -55,26 +55,26 @@ const PostCard = ({
 
     fetchVoteStatus();
   }, [post._id]);
-  // useEffect(() => {
-  //   const fetchCommunityInfo = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
-  //       );
-  //       const data = await response.json();
-  //       setCommunityInfo(data);
-  //     } catch (error) {
-  //       console.error("Error fetching community info:", error);
-  //     }
-  //   };
 
-  //   if (post.communityId) {
-  //     fetchCommunityInfo();
-  //   }
-  // }, [post._id]);
+  useEffect(() => {
+    const fetchCommunityInfo = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/community/${post._id}/getCommunityInfo`
+        );
+        const data = await response.json();
+        setCommunityInfo(data);
+      } catch (error) {
+        console.error("Error fetching community info:", error);
+      }
+    };
 
-  // useEffect(() => {
-  // }, [communityInfo]);
+    if (post.communityId) {
+      fetchCommunityInfo();
+    }
+  }, [post._id]);
+
+  useEffect(() => {}, [communityInfo]);
 
   const handleMouseOver = () => {
     const timeoutId = setTimeout(() => {
@@ -105,7 +105,7 @@ const PostCard = ({
 
   const handleJoinButtonClick = (event, postId, communityId) => {
     event.stopPropagation(); // Stop event propagation to parent container
-    console.log("i will never fail you")
+    console.log("i will never fail you");
     handleJoinClick(postId, communityId);
   };
 
@@ -142,22 +142,26 @@ const PostCard = ({
           <div className={classes["post-header-left"]}>
             <div
               className={classes["post-header-left-community-wrapper"]}
-              // onMouseEnter={() =>
-              //   setTimeout(() => {
-              //     setIsHovering(true);
-              //   }, 500)
-              //   }
-              // onMouseLeave={() => setIsHovering(false)}
+              onMouseEnter={() =>
+                setTimeout(() => {
+                  setIsHovering(true);
+                }, 500)
+              }
+              onMouseLeave={() => setIsHovering(false)}
             >
               <div
                 className={classes["post-header-left-community"]}
-                // onMouseOver={handleMouseOver}
-                // onMouseOut={handleMouseOut}
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
                 onClick={() => handleCommunityClick(post.communityId)}
               >
-                {communityInfo?.data?.data?.displayPic ? (
+                {console.log(
+                  "is there a pic",
+                  communityInfo?.data?.data?.communityPic ? true : false
+                )}
+                {communityInfo?.data?.data?.commnunityPic ? (
                   <img
-                    src={communityInfo.data.data.displayPic}
+                    src={communityInfo.data.data.communityPic}
                     className={classes["profile-photo"]}
                     alt={post.title}
                   />
@@ -169,7 +173,7 @@ const PostCard = ({
                   <b>r/{post.communityId}</b>
                 </p>
               </div>
-              {/* {isHovering && (
+              {isHovering && (
                 <div
                   className={classes["post-card-hovered-community"]}
                   onMouseEnter={() => setIsHovering(true)}
@@ -210,7 +214,9 @@ const PostCard = ({
                         className={classes["post-card-hovered-community-photo"]}
                       />
                     )}
-                    <b onClick={() => handleCommunityClick(post.communityId)}>r/{post.communityId}</b>
+                    <b onClick={() => handleCommunityClick(post.communityId)}>
+                      r/{post.communityId}
+                    </b>
                     <button
                       className={classes["hover-card-join-btn-post"]}
                       onClick={(event) =>
@@ -230,7 +236,7 @@ const PostCard = ({
                   <b>members</b>
                   {communityInfo.data.data.members.length}
                 </div>
-              )} */}
+              )}
             </div>
             <p>.</p>
             <p>{calculateTimeSinceCreation(post.createdAt)}</p>
@@ -254,21 +260,28 @@ const PostCard = ({
                 </a>
                 <a
                   href="#"
-                  onClick={(event) => handleSaveButtonClick(event, post._id)}
+                  onClick={(event) => {
+                    event.preventDefault(); // Prevent default behavior
+                    handleSaveButtonClick(event, post._id);
+                  }}
                 >
                   <CiBookmark /> {saveStates[post._id] ? "Unsave" : "save"}
                 </a>
                 <a
                   href="#"
-                  onClick={(event) =>
-                    handleReportButtonClick(event, post._id, post.username)
-                  }
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleReportButtonClick(event, post._id, post.username);
+                  }}
                 >
                   <CiFlag1 /> report
                 </a>
                 <a
                   href="#"
-                  onClick={(event) => handleHideButtonClick(event, post._id)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleHideButtonClick(event, post._id);
+                  }}
                 >
                   <BiHide /> hide
                 </a>
@@ -284,7 +297,17 @@ const PostCard = ({
       </div>
       <div className={classes["interaction-container"]}>
         <div className={classes["interaction"]}>
-          <div className={classes["left-post"]}>
+          <div
+            className={classes["left-post"]}
+            style={{
+              backgroundColor:
+                voteStatus === 1
+                  ? "#d93a01"
+                  : voteStatus === -1
+                    ? "blue"
+                    : "transparent",
+            }}
+          >
             <button
               onClick={(event) => handleVoteButtonClick(event, 1)}
               className={classes["upvote-button"]}
@@ -293,9 +316,20 @@ const PostCard = ({
                   voteStatus === 1 ? "rgba(128, 128, 128, 0.3)" : "transparent",
               }}
             >
-              {voteStatus === 1 ? <BiSolidUpvote color="red" /> : <BiUpvote />}
+              {voteStatus === 1 ? (
+                <BiSolidUpvote color="white" />
+              ) : (
+                <BiUpvote />
+              )}
             </button>
-            <p>
+            <p  style={{
+              color:
+                voteStatus === 1
+                  ? "white"
+                  : voteStatus === -1
+                    ? "white"
+                    : "black",
+            }}>
               {post.upvotes - post.downvotes + (voteStatus ? voteStatus : 0)}
             </p>
             <button
@@ -309,12 +343,13 @@ const PostCard = ({
               }}
             >
               {voteStatus === -1 ? (
-                <BiSolidDownvote color="blue" />
+                <BiSolidDownvote color="white" />
               ) : (
                 <BiDownvote />
               )}
             </button>
           </div>
+
           <div className={classes["middle-post"]}>
             <button>
               <FaRegCommentAlt />
