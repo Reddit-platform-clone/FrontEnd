@@ -34,6 +34,7 @@
   font-size: 30px;
   cursor: pointer;
   margin-left: auto;
+   background-color: rgba(128, 128, 128, 0.2);
 }
 
 .login-close-btn:hover {
@@ -123,7 +124,6 @@
   height: 48px;
   border-radius: 40px;
   font-size: 15px;
-  margin-top: 45px;
   border: none;
   color: white;
   cursor: pointer;
