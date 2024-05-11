@@ -1,5 +1,7 @@
 # Content
-### The 'Content' component is responsible for displaying a list of posts fetched from a server API. It provides options for sorting and viewing posts and allows users to interact with individual posts, such as upvoting, saving, and joining communities.
+### The Content function is a React component that displays a list of posts. It fetches the posts from an API based on the sorting type and user authentication status. The component also handles user interactions such as voting, joining communities, saving posts, reporting posts, and hiding posts. It includes pagination to load more posts and has options to change the sorting type and view type. It also displays recent posts if the user is logged in.
+
+
 
 1. **useState**: React hook functions to manage component state.
    - `posts`: Manages the array of posts fetched from the API.
@@ -11,6 +13,9 @@
    - `showSortOptions`: Manages the state of whether to show sorting options or not.
    - `sortingType`: Manages the type of sorting applied to posts (`best`, `hot`, `top`, `new`).
    - `showViewOptions`: Manages the state of whether to show view options or not.
+   - `selectedPostId`: Manages the ID of the currently selected post to navigate to the post page.
+   - `selectedCommunityId`: Manages the ID of the currently selected community to navigate to the commmunity page.
+   - `page`: Manages the current page number for pagination.
    - `token`: variable to save the user token by useAuth() .
 
 ```jsx
@@ -23,6 +28,9 @@
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [sortingType, setSortingType] = useState("best");
   const [showViewOptions, setShowViewOptions] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const [selectedCommunityId, setCommunityId] = useState(null);
+  const [page, setPage] = useState(1);
   const { token } = useAuth(); //init
 ```
 2. **useEffect**: React hook function to perform side effects in the component.
@@ -342,5 +350,100 @@ useEffect(() => {
     }
   };
 ```
-17. **ToastContainer**: Component from "react-toastify" library to display notifications.
+17. **fetchRecentPosts**: Fetches recent posts from the server API and updates the state with the fetched data.
+```
+useEffect(() => {
+    const fetchRecentPosts = async () => {
+      try {
+        if (!token) {
+          return; // No need to fetch if not logged in
+        }
 
+        const response = await fetch(
+          "http://localhost:5000/api/recentlyViewedPosts",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log("Recent posts:", responseData);
+        // Update state with recent posts data
+        setRecentPosts(responseData.message.result);
+      } catch (error) {
+        console.error("Error fetching recent posts:", error);
+      }
+    };
+
+    fetchRecentPosts();
+  }, [token]);
+```
+18. **deleteRecentPosts**: Deletes the recent posts data from the server API and clears the recent posts state.
+```
+const deleteRecentPosts = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/deleteRecentlyViewedPosts",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      console.log(responseData.message);
+      setRecentPosts([]); // Clear recent posts
+    } catch (error) {
+      console.error("Error deleting recent posts:", error);
+    }
+  };
+```
+19. **scrollToTop**: Scrolls the window to the top smoothly.
+```
+const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+```
+
+20. **calculateTimeSinceCreation**: Calculates the time elapsed since a post was created and returns a human-readable string representing the time.
+```
+const calculateTimeSinceCreation = (createdAt) => {
+    const currentTime = new Date();
+    const postTime = new Date(createdAt);
+    const timeDifference = currentTime - postTime;
+
+    // Convert milliseconds to seconds
+    const seconds = Math.floor(timeDifference / 1000);
+
+    if (seconds < 60) {
+      return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
+    } else if (seconds < 3600) {
+      const minutes = Math.floor(seconds / 60);
+      return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
+    } else if (seconds < 86400) {
+      const hours = Math.floor(seconds / 3600);
+      return `${hours} hour${hours !== 1 ? "s" : ""} ago`;
+    } else {
+      const days = Math.floor(seconds / 86400);
+      return `${days} day${days !== 1 ? "s" : ""} ago`;
+    }
+  };
+```
+21. **ToastContainer**: Component from "react-toastify" library to display notifications.
