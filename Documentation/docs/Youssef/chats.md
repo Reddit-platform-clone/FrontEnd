@@ -29,6 +29,102 @@
 ```
 #### to send the sent messages data to the third tab(sent messages)
 
+### ReportModel 
+```jsx
+ const handleOpenReportModal = () => {
+      setReportModalOpen(true); };
+  
+    const handleCloseReportModal = () => {
+      setReportModalOpen(false);};
+  
+    const handleSubmitReport = async () => {
+      if (!selectedReportReason) {
+        alert('Please select a reason for the report.');
+        return;}
+  
+      const messageId = ''; // Set the message ID here
+      const reportDetails = selectedReportReason;
+  
+      try {
+        await handleReportMessage(messageId, reportDetails);
+        alert('Message reported successfully.');
+        handleCloseReportModal();
+      } catch (error) {
+        console.error('Failed to report message:', error.message);
+        alert('Failed to report message.');} };
+
+     const toggleReportModal = () => {
+      setReportModalOpen(!reportModalOpen); };
+    
+    onst handleReportMessage = async (messageId) => {
+  try {
+    toggleReportModal();
+    if (selectedReportReason) {
+      const response = await fetch(`http://localhost:5000/api/report_msg`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`},
+        body: JSON.stringify({ _id: messageId, reportDetails: selectedReportReason })});
+
+      if (response.ok) {
+        alert('Message reported successfully.');
+      } else {
+        const data = await response.json();
+        alert('Failed to report message: ' + data.message);}
+    } else {
+      alert('Please select a reason for reporting.');}
+  } catch (error) {
+    console.error('Error reporting message:', error);
+    alert('Failed to report message.');}};
+
+```
+#### explains Report Model logic and the choice of the report message popup window
+
+### fetchPostReplies functions
+```jsx
+
+ useEffect(() => {
+      async function fetchPostReplies() {
+        try {
+          const response = await axios.post('http://localhost:5000/api/get_post_replies');
+          const { data } = response;
+          if (data && Array.isArray(data.message)) {
+            setPostReplies(data.message); // Update component state with retrieved post replies
+          } else {
+            console.error('Invalid response format for post replies:', data);
+          }
+        } catch (error) {
+          console.error('Failed to fetch post replies:', error.message);}}
+  
+      fetchPostReplies();
+    }, []);
+```
+#### function to get the post replies from the back end and display it
+
+### delete button
+``` jsx
+async function handleDeleteMessage(messageId) {
+  try {
+    const response = await fetch(`http://localhost:5000/api/message/del_msg`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`},
+      body: JSON.stringify({ messageId })});
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(`Failed to delete message: ${data.message}`);}
+
+    alert('Message deleted successfully.');
+  } catch (error) {
+    console.error('Error deleting message:', error);
+    alert('Failed to delete message.');}}
+
+```
+#### as when the user click the delete button it gets the message id and remove it from the database
+
 ### getUnreadMessages function
 ```jsx
 async function getUnreadMessages(username) {
@@ -286,3 +382,31 @@ function displayInboxMessages(messages) {
   </div>
 ```
 #### div to divide this window to show the message
+
+### Report window
+```jsx
+  {reportModalOpen && (
+              <div className="report-modal-overlay">
+                <div className="report-modal">
+                  <h2>Submit a Report</h2>
+                  <p>Thanks for looking out for yourself and your fellow redditors by reporting things that break the rules. Let us know what's happening, and we'll look into it.</p>
+                  <select
+                    value={selectedReportReason}
+                    onChange={(e) => setSelectedReportReason(e.target.value)}
+                  >
+                    <option value="">Select a reason</option>
+                    <option value="Harassment">Harassment</option>
+                    <option value="Threatening violence">Threatening violence</option>
+                    <option value="Hate">Hate</option>
+                    {/* Add more report reasons as needed */}
+                  </select>
+                  <button onClick={handleSubmitReport}>Submit</button>
+                  <button onClick={handleCloseReportModal}>Cancel</button>
+                </div>
+              </div>
+            )}
+```
+#### on clicking the report button a pop up window appear to choose the report reason from drop down list of 3 choices
+#### Harassment
+#### Hate
+#### Threatening Violence
